@@ -13,10 +13,7 @@ const sortedProjects = allProjects.sort((a, b) => a.data.title.localeCompare(b.d
 	<div class="project-grid">
 		{sortedProjects.map((project) => (
 			<article class="project-card">
-				<div class="project-image" style={`background: linear-gradient(135deg, ${
-					project.data.title === 'PuTTY Themer' ? '#667eea 0%, #764ba2' : 
-					'#f093fb 0%, #f5576c'
-				} 100%);`}></div>
+				<div class="project-image project-gradient" data-project={project.data.title}></div>
 				<div class="project-content">
 					<h2 class="project-title">
 						<a href={`/projects/${project.slug}`}>{project.data.title}</a>
@@ -125,5 +122,23 @@ const sortedProjects = allProjects.sort((a, b) => a.data.title.localeCompare(b.d
 		.project-grid {
 			grid-template-columns: 1fr;
 		}
+	}
+	
+	/* Project gradients */
+	.project-gradient[data-project="PuTTY Themer"] {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	}
+	
+	.project-gradient:not([data-project="PuTTY Themer"]) {
+		background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+	}
+	
+	/* Dark mode gradients */
+	[data-theme="dark"] .project-gradient[data-project="PuTTY Themer"] {
+		background: linear-gradient(135deg, #4c5fd8 0%, #5a3885 100%);
+	}
+	
+	[data-theme="dark"] .project-gradient:not([data-project="PuTTY Themer"]) {
+		background: linear-gradient(135deg, #c06dd9 0%, #c73f57 100%);
 	}
 </style>

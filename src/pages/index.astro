@@ -1,5 +1,27 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getReadingTime } from '../utils/readingTime.js';
+
+// Get recent blog posts
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+	.slice(0, 3);
+
+// Get reading times for recent posts
+const recentPostsWithReadingTime = await Promise.all(
+	recentPosts.map(async (post) => {
+		const { body } = await post.render();
+		return {
+			...post,
+			readingTime: getReadingTime(body)
+		};
+	})
+);
+
+// Get projects
+const allProjects = await getCollection('projects');
 ---
 
 <BaseLayout pageTitle="Home">
@@ -32,6 +54,61 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			</a>
 		</div>
 	</div>
+	
+	<section class="home-section">
+		<div class="section-header">
+			<h2>Recent Posts</h2>
+			<a href="/blog" class="view-all">View all posts →</a>
+		</div>
+		
+		<div class="recent-posts">
+			{recentPostsWithReadingTime.map((post) => (
+				<article class="post-card">
+					<div class="post-meta">
+						<time>{post.data.pubDate.toLocaleDateString('en-US', { 
+							year: 'numeric', 
+							month: 'short', 
+							day: 'numeric' 
+						})}</time>
+						<span class="reading-time">{post.readingTime} min read</span>
+					</div>
+					<h3 class="post-title">
+						<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+					</h3>
+					<p class="post-excerpt">{post.data.excerpt}</p>
+				</article>
+			))}
+		</div>
+	</section>
+	
+	<section class="home-section">
+		<div class="section-header">
+			<h2>Projects</h2>
+			<a href="/projects" class="view-all">View all projects →</a>
+		</div>
+		
+		<div class="projects-grid">
+			{allProjects.map((project) => (
+				<article class="project-card-home">
+					<div class="project-header project-gradient" data-project={project.data.title}>
+						<h3>{project.data.title}</h3>
+					</div>
+					<div class="project-content">
+						<p>{project.data.description}</p>
+						<div class="project-links">
+							<a href={`/projects/${project.slug}`} class="project-link">Learn more →</a>
+							<a href={project.data.githubUrl} target="_blank" rel="noopener" class="github-link">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+									<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
+								</svg>
+								GitHub
+							</a>
+						</div>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
 </BaseLayout>
 
 <style>
@@ -40,6 +117,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		padding: var(--spacing-2xl) 0;
 		max-width: 600px;
 		margin: 0 auto;
+		border-bottom: 1px solid var(--color-border);
+		margin-bottom: var(--spacing-2xl);
 	}
 	
 	.hero-title {
@@ -123,6 +202,170 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		height: 20px;
 	}
 	
+	/* Home sections */
+	.home-section {
+		margin-bottom: var(--spacing-2xl);
+		animation: fadeIn var(--transition-slow) ease-out;
+	}
+	
+	.section-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: var(--spacing-lg);
+	}
+	
+	.section-header h2 {
+		font-size: var(--font-size-2xl);
+		margin: 0;
+		color: var(--color-text-primary);
+	}
+	
+	.view-all {
+		font-size: var(--font-size-sm);
+		color: var(--color-primary);
+		font-weight: var(--font-weight-medium);
+		transition: transform var(--transition-fast);
+	}
+	
+	.view-all:hover {
+		transform: translateX(4px);
+	}
+	
+	/* Recent posts */
+	.recent-posts {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-lg);
+	}
+	
+	.post-card {
+		padding: var(--spacing-lg);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		transition: all var(--transition-base);
+	}
+	
+	.post-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+		border-color: var(--color-border-hover);
+	}
+	
+	.post-meta {
+		display: flex;
+		gap: var(--spacing-sm);
+		font-size: var(--font-size-sm);
+		color: var(--color-text-tertiary);
+		margin-bottom: var(--spacing-xs);
+	}
+	
+	.reading-time {
+		color: var(--color-text-muted);
+	}
+	
+	.post-title {
+		font-size: var(--font-size-xl);
+		margin: 0 0 var(--spacing-sm) 0;
+		line-height: var(--line-height-tight);
+	}
+	
+	.post-title a {
+		color: var(--color-text-primary);
+		text-decoration: none;
+		font-weight: var(--font-weight-semibold);
+	}
+	
+	.post-title a:hover {
+		color: var(--color-primary);
+	}
+	
+	.post-excerpt {
+		color: var(--color-text-secondary);
+		line-height: var(--line-height-relaxed);
+		margin: 0;
+	}
+	
+	/* Projects grid */
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--spacing-lg);
+	}
+	
+	.project-card-home {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		transition: all var(--transition-base);
+	}
+	
+	.project-card-home:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg);
+	}
+	
+	.project-header {
+		padding: var(--spacing-lg);
+		color: white;
+		text-align: center;
+	}
+	
+	.project-header h3 {
+		margin: 0;
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-weight-semibold);
+	}
+	
+	.project-content {
+		padding: var(--spacing-lg);
+	}
+	
+	.project-content p {
+		color: var(--color-text-secondary);
+		line-height: var(--line-height-relaxed);
+		margin: 0 0 var(--spacing-md) 0;
+		font-size: var(--font-size-base);
+	}
+	
+	.project-links {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.project-link {
+		font-size: var(--font-size-sm);
+		color: var(--color-primary);
+		font-weight: var(--font-weight-medium);
+		transition: transform var(--transition-fast);
+	}
+	
+	.project-link:hover {
+		transform: translateX(4px);
+	}
+	
+	.github-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		font-size: var(--font-size-sm);
+		color: var(--color-text-secondary);
+		text-decoration: none;
+		padding: 0.375rem 0.75rem;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		transition: all var(--transition-fast);
+	}
+	
+	.github-link:hover {
+		color: var(--color-text-primary);
+		border-color: var(--color-border-hover);
+		background: var(--color-bg-tertiary);
+	}
+	
 	@media (max-width: 640px) {
 		.hero-title {
 			font-size: var(--font-size-4xl);
@@ -135,5 +378,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		.hero-links {
 			font-size: var(--font-size-base);
 		}
+		
+		.section-header {
+			flex-direction: column;
+			gap: var(--spacing-xs);
+		}
+		
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	
+	/* Project gradients */
+	.project-gradient[data-project="PuTTY Themer"] {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	}
+	
+	.project-gradient:not([data-project="PuTTY Themer"]) {
+		background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+	}
+	
+	/* Dark mode gradients */
+	[data-theme="dark"] .project-gradient[data-project="PuTTY Themer"] {
+		background: linear-gradient(135deg, #4c5fd8 0%, #5a3885 100%);
+	}
+	
+	[data-theme="dark"] .project-gradient:not([data-project="PuTTY Themer"]) {
+		background: linear-gradient(135deg, #c06dd9 0%, #c73f57 100%);
 	}
 </style>
