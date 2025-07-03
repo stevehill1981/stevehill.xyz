@@ -10,6 +10,10 @@ tags:
 github: "https://github.com/stevehill1981/rachel"
 demo: "https://rachel.stevehill.xyz"
 featured: true
+technologies:
+  - elixir
+  - phoenix
+  - liveview
 ---
 
 Rachel is a fast-paced, strategic card game implemented in Phoenix LiveView, based on a 30-year-old family tradition. It combines the nostalgia of pub games with modern web technology to create an engaging multiplayer experience.
