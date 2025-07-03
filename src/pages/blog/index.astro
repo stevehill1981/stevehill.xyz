@@ -62,22 +62,27 @@ const postsWithReadingTime = await Promise.all(
 	.blog-nav {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		margin: 1.5rem 0 2rem 0;
-		padding: 1rem;
-		background: #f8f8f8;
-		border-radius: 0.5rem;
-		font-size: 0.95rem;
+		gap: var(--spacing-xs);
+		margin: var(--spacing-lg) 0 var(--spacing-xl) 0;
+		padding: var(--spacing-md);
+		background: var(--color-bg-tertiary);
+		border-radius: var(--radius-lg);
+		font-size: var(--font-size-base);
+		border: 1px solid var(--color-border);
 	}
 	.nav-link {
-		font-weight: 500;
-		color: #555;
-		transition: color 0.2s;
+		font-weight: var(--font-weight-medium);
+		color: var(--color-text-secondary);
+		transition: all 0.2s;
+		padding: 0.25rem 0.5rem;
+		border-radius: var(--radius-md);
 	}
 	.nav-link:hover {
-		color: #222;
+		color: var(--color-primary);
+		background: var(--color-bg);
+		text-decoration: none;
 	}
 	.separator {
-		color: #ccc;
+		color: var(--color-border);
 	}
 </style>
