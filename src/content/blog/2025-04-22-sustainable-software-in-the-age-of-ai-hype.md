@@ -8,6 +8,9 @@ tags:
   - sustainability
   - software-engineering
   - tooling
+series:
+  name: "Building Sustainable Software"
+  part: 1
 --- 
 
 Somewhere between the AI-powered IDEs and the "GPT in every feature" startups,  

@@ -8,6 +8,9 @@ tags:
   - sustainability
   - software-design
   - devops
+series:
+  name: "Building Sustainable Software"
+  part: 2
 --- 
 
 Some code is easy to change. Some systems are easy to reason about.  

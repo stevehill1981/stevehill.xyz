@@ -50,16 +50,68 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml" />
 		
 		<title>{pageTitle} | Steve Hill</title>
-		<ViewTransitions />
+		<ViewTransitions fallback="swap" />
 		<script>
 			// Prevent flash of unstyled content
 			const theme = localStorage.getItem('theme') || 'light';
 			document.documentElement.setAttribute('data-theme', theme);
 		</script>
+		
+		<script>
+			// Enhanced view transitions
+			document.addEventListener('astro:page-load', () => {
+				// Reinitialize any interactive components after navigation
+				// This ensures functionality works after view transitions
+				
+				// Re-initialize theme toggle if it exists
+				const themeToggle = document.querySelector('.theme-toggle');
+				if (themeToggle && !themeToggle.hasAttribute('data-initialized')) {
+					themeToggle.setAttribute('data-initialized', 'true');
+					// Theme toggle functionality will be handled by the SiteHeader component
+				}
+				
+				// Re-initialize mobile menu toggle if it exists
+				const mobileToggle = document.querySelector('.mobile-menu-toggle');
+				if (mobileToggle && !mobileToggle.hasAttribute('data-initialized')) {
+					mobileToggle.setAttribute('data-initialized', 'true');
+					// Mobile menu functionality will be handled by the SiteHeader component
+				}
+			});
+			
+			// Add transition direction based on navigation
+			document.addEventListener('astro:before-preparation', (event) => {
+				const fromUrl = event.from?.pathname || '';
+				const toUrl = event.to?.pathname || '';
+				
+				// Determine transition direction
+				let direction = 'forward';
+				
+				// Going back to blog list from post
+				if (fromUrl.startsWith('/blog/') && toUrl === '/blog') {
+					direction = 'back';
+				}
+				// Going back to home from any page
+				else if (toUrl === '/' && fromUrl !== '/') {
+					direction = 'back';
+				}
+				// Going to a post from blog list
+				else if (fromUrl === '/blog' && toUrl.startsWith('/blog/')) {
+					direction = 'forward';
+				}
+				
+				// Apply direction class for CSS to use
+				document.documentElement.setAttribute('data-transition-direction', direction);
+			});
+			
+			// Clean up after transition
+			document.addEventListener('astro:after-swap', () => {
+				document.documentElement.removeAttribute('data-transition-direction');
+			});
+		</script>
 	</head>
 	<body>
 		<SiteHeader />
-		<main>
+		<main data-pagefind-body style="view-transition-name: main-content;">
 			<slot />
 		</main>
 		<SiteFooter />
@@ -450,6 +502,131 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			[data-theme="dark"] :not(pre) > code {
 				background: var(--color-bg-tertiary);
 				color: var(--color-accent);
+			}
+			
+			/* View Transitions */
+			@media (prefers-reduced-motion: no-preference) {
+				::view-transition-old(root),
+				::view-transition-new(root) {
+					animation-duration: 300ms;
+					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				
+				/* Default forward navigation */
+				::view-transition-old(main-content) {
+					animation: slideOutLeft 300ms cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				
+				::view-transition-new(main-content) {
+					animation: slideInRight 300ms cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				
+				/* Reverse navigation (back button) */
+				[data-transition-direction="back"] ::view-transition-old(main-content) {
+					animation: slideOutRight 300ms cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				
+				[data-transition-direction="back"] ::view-transition-new(main-content) {
+					animation: slideInLeft 300ms cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				
+				@keyframes slideOutLeft {
+					from {
+						opacity: 1;
+						transform: translateX(0);
+					}
+					to {
+						opacity: 0;
+						transform: translateX(-20px);
+					}
+				}
+				
+				@keyframes slideInRight {
+					from {
+						opacity: 0;
+						transform: translateX(20px);
+					}
+					to {
+						opacity: 1;
+						transform: translateX(0);
+					}
+				}
+				
+				@keyframes slideOutRight {
+					from {
+						opacity: 1;
+						transform: translateX(0);
+					}
+					to {
+						opacity: 0;
+						transform: translateX(20px);
+					}
+				}
+				
+				@keyframes slideInLeft {
+					from {
+						opacity: 0;
+						transform: translateX(-20px);
+					}
+					to {
+						opacity: 1;
+						transform: translateX(0);
+					}
+				}
+				
+				/* Special transitions for blog posts */
+				::view-transition-old(blog-post),
+				::view-transition-new(blog-post) {
+					animation-duration: 400ms;
+				}
+				
+				::view-transition-old(blog-post) {
+					animation: fadeSlideOut 400ms cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				
+				::view-transition-new(blog-post) {
+					animation: fadeSlideIn 400ms cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				
+				@keyframes fadeSlideOut {
+					from {
+						opacity: 1;
+						transform: translateY(0) scale(1);
+					}
+					to {
+						opacity: 0;
+						transform: translateY(-10px) scale(0.98);
+					}
+				}
+				
+				@keyframes fadeSlideIn {
+					from {
+						opacity: 0;
+						transform: translateY(10px) scale(0.98);
+					}
+					to {
+						opacity: 1;
+						transform: translateY(0) scale(1);
+					}
+				}
+				
+				/* Enhanced fade for faster transitions */
+				::view-transition-old(fade-fast),
+				::view-transition-new(fade-fast) {
+					animation-duration: 200ms;
+				}
+			}
+			
+			/* Respect motion preferences */
+			@media (prefers-reduced-motion: reduce) {
+				::view-transition-old(root),
+				::view-transition-new(root),
+				::view-transition-old(main-content),
+				::view-transition-new(main-content),
+				::view-transition-old(blog-post),
+				::view-transition-new(blog-post) {
+					animation: none !important;
+				}
 			}
 		</style>
 	</body>
