@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getReadingTime } from '../../utils/readingTime.js';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, body } = await entry.render();
+const readingTime = getReadingTime(body);
+---
+
+<BaseLayout pageTitle={entry.data.title} description={entry.data.excerpt} type="article">
+	<article>
+		<h1>{entry.data.title}</h1>
+		<div class="post-meta">
+			Published {entry.data.pubDate.toLocaleDateString('en-US', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
+			})} • {readingTime} min read
+		</div>
+		{entry.data.tags && (
+			<div class="tags">
+				{entry.data.tags.map((tag) => (
+					<span class="tag">{tag}</span>
+				))}
+			</div>
+		)}
+		<div class="content">
+			<Content />
+		</div>
+		<nav style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #eee;">
+			<a href="/blog">&larr; Back to Blog</a>
+		</nav>
+	</article>
+</BaseLayout>
+
+<style>
+	.content {
+		margin-top: 2rem;
+	}
+	.content :global(h2) {
+		margin-top: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	.content :global(h3) {
+		margin-top: 2rem;
+		margin-bottom: 0.8rem;
+	}
+	.content :global(pre) {
+		padding: 1rem;
+		border-radius: 0.5rem;
+		overflow-x: auto;
+		margin: 1.5rem 0;
+		border: 1px solid #e0e0e0;
+	}
+	.content :global(code) {
+		background: #f0f0f0;
+		padding: 0.2rem 0.4rem;
+		border-radius: 0.3rem;
+		font-size: 0.9em;
+		font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+	}
+	.content :global(pre code) {
+		background: none;
+		padding: 0;
+		border-radius: 0;
+	}
+	.content :global(blockquote) {
+		border-left: 4px solid #ddd;
+		margin: 1.5rem 0;
+		padding-left: 1rem;
+		color: #666;
+		font-style: italic;
+	}
+</style>

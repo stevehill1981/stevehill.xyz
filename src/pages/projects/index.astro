@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout pageTitle="Projects" description="Steve Hill's software projects and open source contributions">
+	<h1>Projects</h1>
+	<p>A collection of software projects and tools I've built.</p>
+	
+	<ul class="post-list">
+		{sortedProjects.map((project) => (
+			<li>
+				<h2 class="post-title">
+					<a href={`/projects/${project.slug}`}>{project.data.title}</a>
+				</h2>
+				<p class="post-excerpt">{project.data.description}</p>
+				<div class="tags">
+					{project.data.technologies.map((tech) => (
+						<span class="tag">{tech}</span>
+					))}
+				</div>
+				<div style="margin-top: 0.8rem;">
+					<a href={project.data.githubUrl} target="_blank" rel="noopener" style="font-size: 0.9rem; color: #666;">
+						View on GitHub →
+					</a>
+				</div>
+			</li>
+		))}
+	</ul>
+</BaseLayout>

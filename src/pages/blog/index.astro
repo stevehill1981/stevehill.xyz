@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getReadingTime } from '../../utils/readingTime.js';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// Get reading times for all posts
+const postsWithReadingTime = await Promise.all(
+	sortedPosts.map(async (post) => {
+		const { body } = await post.render();
+		return {
+			...post,
+			readingTime: getReadingTime(body)
+		};
+	})
+);
+---
+
+<BaseLayout pageTitle="Blog" description="Steve Hill's blog - thoughts on software engineering, technology, and more">
+	<h1>Blog</h1>
+	<p>Thoughts on software engineering, technology, and more.</p>
+	
+	<ul class="post-list">
+		{postsWithReadingTime.map((post) => (
+			<li>
+				<h2 class="post-title">
+					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+				</h2>
+				<div class="post-meta">
+					{post.data.pubDate.toLocaleDateString('en-US', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric'
+					})} • {post.readingTime} min read
+				</div>
+				<p class="post-excerpt">{post.data.excerpt}</p>
+				{post.data.tags && (
+					<div class="tags">
+						{post.data.tags.map((tag) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+				)}
+			</li>
+		))}
+	</ul>
+</BaseLayout>

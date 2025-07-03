@@ -1,0 +1,149 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import SiteHeader from '../components/SiteHeader.astro';
+
+interface Props {
+	pageTitle: string;
+	description?: string;
+	image?: string;
+	type?: string;
+}
+
+const { 
+	pageTitle, 
+	description = "Steve Hill - Software Engineer, Storyteller, Explorer",
+	image = "/favicon.svg",
+	type = "website"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={`${pageTitle} | Steve Hill`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.site)} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={`${pageTitle} | Steve Hill`} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.site)} />
+		
+		<!-- RSS Feed -->
+		<link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml" />
+		
+		<title>{pageTitle} | Steve Hill</title>
+		<ViewTransitions />
+	</head>
+	<body>
+		<SiteHeader />
+		<main>
+			<slot />
+		</main>
+		<style is:global>
+			body {
+				font-family: 'Lato', system-ui, sans-serif;
+				background: linear-gradient(135deg, #e0e7ef 0%, #c9d6ff 50%, #e2e2e2 100%);
+				color: #222;
+				margin: 0;
+				min-height: 100vh;
+			}
+			main {
+				max-width: 800px;
+				margin: 2rem auto;
+				padding: 2rem 2.5rem;
+				background: #fff;
+				border-radius: 1rem;
+				box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+			}
+			h1, h2, h3 {
+				color: #222;
+			}
+			h1 {
+				font-family: 'Montserrat', system-ui, sans-serif;
+				font-weight: 700;
+				font-size: 2.5rem;
+				margin-bottom: 1.5rem;
+			}
+			h2 {
+				font-size: 1.8rem;
+				margin-top: 2rem;
+				margin-bottom: 1rem;
+			}
+			h3 {
+				font-size: 1.4rem;
+				margin-top: 1.5rem;
+				margin-bottom: 0.8rem;
+			}
+			p {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				margin-bottom: 1.2rem;
+				color: #444;
+			}
+			a {
+				color: #222;
+				text-decoration: none;
+				font-weight: 500;
+				transition: color 0.2s;
+			}
+			a:hover {
+				color: #444;
+			}
+			.post-list {
+				list-style: none;
+				padding: 0;
+			}
+			.post-list li {
+				margin-bottom: 1.5rem;
+				padding-bottom: 1.5rem;
+				border-bottom: 1px solid #eee;
+			}
+			.post-list li:last-child {
+				border-bottom: none;
+			}
+			.post-title {
+				font-size: 1.3rem;
+				font-weight: 600;
+				margin-bottom: 0.5rem;
+			}
+			.post-meta {
+				font-size: 0.9rem;
+				color: #666;
+				margin-bottom: 0.5rem;
+			}
+			.post-excerpt {
+				color: #555;
+				line-height: 1.5;
+			}
+			.tags {
+				display: flex;
+				gap: 0.5rem;
+				margin-top: 0.5rem;
+			}
+			.tag {
+				background: #f0f0f0;
+				padding: 0.2rem 0.5rem;
+				border-radius: 0.3rem;
+				font-size: 0.8rem;
+				color: #666;
+			}
+		</style>
+	</body>
+</html>
