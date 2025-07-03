@@ -42,27 +42,114 @@ const postsWithReadingTime = await Promise.all(
 	<h1>Tag: {tag}</h1>
 	<p>{posts.length} post{posts.length !== 1 ? 's' : ''} tagged with "{tag}"</p>
 	
-	<ul class="post-list">
+	<div class="card-grid">
 		{postsWithReadingTime.map((post) => (
-			<li>
-				<h2 class="post-title">
-					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
-				</h2>
-				<div class="post-meta">
-					{post.data.pubDate.toLocaleDateString('en-US', {
+			<article class="card">
+				<div class="card-header">
+					<time class="card-date">{post.data.pubDate.toLocaleDateString('en-US', {
 						year: 'numeric',
 						month: 'long',
 						day: 'numeric'
-					})} • {post.readingTime} min read
+					})}</time>
+					<span class="card-reading-time">{post.readingTime} min read</span>
 				</div>
-				<p class="post-excerpt">{post.data.excerpt}</p>
-			</li>
+				<h2 class="card-title">
+					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+				</h2>
+				<p class="card-excerpt">{post.data.excerpt}</p>
+			</article>
 		))}
-	</ul>
+	</div>
 	
-	<nav style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #eee;">
+	<nav class="tag-nav">
 		<a href="/tags">&larr; Back to All Tags</a>
-		<span style="margin: 0 1rem;">|</span>
+		<span class="separator">|</span>
 		<a href="/blog">Back to Blog</a>
 	</nav>
 </BaseLayout>
+
+<style>
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: var(--spacing-lg);
+		margin-top: var(--spacing-xl);
+	}
+	
+	.card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-lg);
+		transition: all 0.2s;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-lg);
+		border-color: var(--color-border-hover);
+	}
+	
+	.card-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: var(--spacing-sm);
+		font-size: var(--font-size-sm);
+		color: var(--color-text-tertiary);
+	}
+	
+	.card-date {
+		color: var(--color-text-tertiary);
+	}
+	
+	.card-reading-time {
+		color: var(--color-text-muted);
+	}
+	
+	.card-title {
+		font-size: var(--font-size-xl);
+		margin: 0 0 var(--spacing-sm) 0;
+		line-height: var(--line-height-tight);
+		font-weight: var(--font-weight-semibold);
+	}
+	
+	.card-title a {
+		color: var(--color-text-primary);
+		text-decoration: none;
+		font-weight: var(--font-weight-semibold);
+	}
+	
+	.card-title a:hover {
+		color: var(--color-primary);
+	}
+	
+	.card-excerpt {
+		color: var(--color-text-secondary);
+		line-height: var(--line-height-relaxed);
+		margin-bottom: 0;
+		flex: 1;
+		font-size: var(--font-size-base);
+	}
+	
+	.tag-nav {
+		margin-top: var(--spacing-2xl);
+		padding-top: var(--spacing-xl);
+		border-top: 1px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-md);
+	}
+	
+	.separator {
+		color: var(--color-border);
+	}
+	
+	@media (max-width: 640px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
