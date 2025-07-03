@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getReadingTime } from '../../utils/readingTime.js';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  
+  // Get all unique tags
+  const uniqueTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
+  
+  return uniqueTags.map(tag => {
+    const filteredPosts = allPosts.filter(post => 
+      post.data.tags && post.data.tags.includes(tag)
+    );
+    
+    return {
+      params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
+      props: { 
+        tag,
+        posts: filteredPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+      }
+    };
+  });
+}
+
+const { tag, posts } = Astro.props;
+
+// Get reading times for all posts
+const postsWithReadingTime = await Promise.all(
+	posts.map(async (post) => {
+		const { body } = await post.render();
+		return {
+			...post,
+			readingTime: getReadingTime(body)
+		};
+	})
+);
+---
+
+<BaseLayout pageTitle={`Tag: ${tag}`} description={`Blog posts tagged with "${tag}"`}>
+	<h1>Tag: {tag}</h1>
+	<p>{posts.length} post{posts.length !== 1 ? 's' : ''} tagged with "{tag}"</p>
+	
+	<ul class="post-list">
+		{postsWithReadingTime.map((post) => (
+			<li>
+				<h2 class="post-title">
+					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+				</h2>
+				<div class="post-meta">
+					{post.data.pubDate.toLocaleDateString('en-US', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric'
+					})} • {post.readingTime} min read
+				</div>
+				<p class="post-excerpt">{post.data.excerpt}</p>
+			</li>
+		))}
+	</ul>
+	
+	<nav style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #eee;">
+		<a href="/tags">&larr; Back to All Tags</a>
+		<span style="margin: 0 1rem;">|</span>
+		<a href="/blog">Back to Blog</a>
+	</nav>
+</BaseLayout>

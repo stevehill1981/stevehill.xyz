@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = new Date('2025-07-03');
+---
+
+<BaseLayout pageTitle="Now" description="What Steve Hill is doing now">
+	<h1>Now</h1>
+	<p class="subtitle">What I'm doing now</p>
+	
+	<div class="last-updated">
+		Last updated: {lastUpdated.toLocaleDateString('en-US', { 
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric' 
+		})}
+	</div>
+	
+	<section>
+		<h2>Currently Working On</h2>
+		<ul>
+			<li>Building <strong>Bitshelf</strong> - A macOS app for organizing retro gaming ROM collections</li>
+			<li>Maintaining <strong>Rachel</strong> - A strategic card game built with Phoenix LiveView</li>
+			<li>Writing about sustainable software practices and the lessons learned from the microservices era</li>
+		</ul>
+	</section>
+	
+	<section>
+		<h2>Learning</h2>
+		<ul>
+			<li>Diving deeper into Swift and SwiftUI for native macOS development</li>
+			<li>Exploring AI-assisted development workflows while maintaining code quality</li>
+			<li>Phoenix LiveView patterns for real-time applications</li>
+		</ul>
+	</section>
+	
+	<section>
+		<h2>Reading</h2>
+		<ul>
+			<li>Currently reading books on software architecture and system design</li>
+			<li>Following developments in the Elixir ecosystem</li>
+			<li>Keeping up with the indie web movement and personal website renaissance</li>
+		</ul>
+	</section>
+	
+	<section>
+		<h2>Life</h2>
+		<ul>
+			<li>Living in the UK</li>
+			<li>Enjoying retro gaming and preserving gaming history</li>
+			<li>Advocating for sustainable software development practices</li>
+		</ul>
+	</section>
+	
+	<section class="now-about">
+		<p>This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>, 
+		and if you have your own site, <a href="https://nownownow.com/about" target="_blank" rel="noopener">you should make one</a>, too.</p>
+	</section>
+</BaseLayout>
+
+<style>
+	.subtitle {
+		font-size: 1.2rem;
+		color: #666;
+		margin-top: -1rem;
+		margin-bottom: 2rem;
+		font-style: italic;
+	}
+	
+	.last-updated {
+		background: #f8f8f8;
+		padding: 0.75rem 1rem;
+		border-radius: 0.5rem;
+		font-size: 0.9rem;
+		color: #666;
+		margin-bottom: 2rem;
+		display: inline-block;
+	}
+	
+	section {
+		margin: 2.5rem 0;
+	}
+	
+	section h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: #333;
+	}
+	
+	section ul {
+		list-style: none;
+		padding: 0;
+	}
+	
+	section li {
+		margin-bottom: 0.75rem;
+		padding-left: 1.5rem;
+		position: relative;
+	}
+	
+	section li::before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: #888;
+	}
+	
+	.now-about {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid #eee;
+		font-size: 0.95rem;
+		color: #666;
+	}
+	
+	.now-about a {
+		color: #555;
+		text-decoration: underline;
+	}
+</style>

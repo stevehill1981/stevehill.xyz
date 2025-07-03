@@ -6,6 +6,8 @@ const currentPath = Astro.url.pathname;
   <a href="/" class="site-title" aria-label="Home">Steve Hill</a>
   <a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a>
   <span class="dot">&middot;</span>
+  <a href="/now" class={currentPath === '/now' ? 'active' : ''}>Now</a>
+  <span class="dot">&middot;</span>
   <a href="/blog" class={currentPath.startsWith('/blog') ? 'active' : ''}>Blog</a>
   <span class="dot">&middot;</span>
   <a href="/projects" class={currentPath.startsWith('/projects') ? 'active' : ''}>Projects</a>

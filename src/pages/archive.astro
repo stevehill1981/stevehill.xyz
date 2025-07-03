@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// Group posts by year and month
+const postsByYearMonth = new Map();
+
+sortedPosts.forEach(post => {
+  const year = post.data.pubDate.getFullYear();
+  const month = post.data.pubDate.toLocaleDateString('en-US', { month: 'long' });
+  const yearMonth = `${year}-${month}`;
+  
+  if (!postsByYearMonth.has(year)) {
+    postsByYearMonth.set(year, new Map());
+  }
+  
+  const yearMap = postsByYearMonth.get(year);
+  if (!yearMap.has(month)) {
+    yearMap.set(month, []);
+  }
+  
+  yearMap.get(month).push(post);
+});
+
+// Convert to sorted array
+const sortedYears = Array.from(postsByYearMonth.entries()).sort((a, b) => b[0] - a[0]);
+---
+
+<BaseLayout pageTitle="Archive" description="All blog posts organized by date">
+	<h1>Archive</h1>
+	<p>All blog posts organized by year and month.</p>
+	
+	<div class="archive">
+		{sortedYears.map(([year, monthsMap]) => (
+			<section class="year-section">
+				<h2 class="year-heading">{year}</h2>
+				{Array.from(monthsMap.entries()).map(([month, posts]) => (
+					<div class="month-section">
+						<h3 class="month-heading">{month} ({posts.length})</h3>
+						<ul class="archive-list">
+							{posts.map(post => (
+								<li>
+									<span class="post-date">
+										{post.data.pubDate.toLocaleDateString('en-US', { day: 'numeric' })}
+									</span>
+									<a href={`/blog/${post.slug}`}>
+										{post.data.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</section>
+		))}
+	</div>
+	
+	<nav style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #eee;">
+		<a href="/blog">&larr; Back to Blog</a>
+	</nav>
+</BaseLayout>
+
+<style>
+	.archive {
+		margin: 2rem 0;
+	}
+	.year-section {
+		margin-bottom: 3rem;
+	}
+	.year-heading {
+		font-size: 2rem;
+		color: #111;
+		margin-bottom: 1.5rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid #eee;
+	}
+	.month-section {
+		margin-bottom: 2rem;
+	}
+	.month-heading {
+		font-size: 1.3rem;
+		color: #444;
+		margin-bottom: 1rem;
+	}
+	.archive-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.archive-list li {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		margin-bottom: 0.5rem;
+		padding: 0.5rem 0;
+		border-bottom: 1px dotted #eee;
+	}
+	.archive-list li:last-child {
+		border-bottom: none;
+	}
+	.post-date {
+		color: #666;
+		font-size: 0.9rem;
+		min-width: 2rem;
+		text-align: right;
+	}
+	.archive-list a {
+		flex: 1;
+	}
+</style>
