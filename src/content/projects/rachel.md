@@ -18,7 +18,9 @@ technologies:
 
 Rachel is a fast-paced, strategic card game implemented in Phoenix LiveView, based on a 30-year-old family tradition. It combines the nostalgia of pub games with modern web technology to create an engaging multiplayer experience.
 
-*Currently in development - live demo coming soon at rachel.stevehill.xyz via Fly.io deployment.*
+**✨ Now live at [rachel.stevehill.xyz](https://rachel.stevehill.xyz) with a complete theme system!**
+
+The latest version features three distinct visual themes that completely transform the game's appearance - from clean Apple-inspired minimalism to luxury casino aesthetics. Users can switch themes instantly and their preferences persist across sessions.
 
 ## 🎮 What Makes Rachel Special
 
@@ -42,10 +44,12 @@ Unlike typical card games, Rachel features a unique combination of strategic spe
 
 ### Technical Highlights
 - **Phoenix LiveView** for real-time updates without JavaScript complexity
+- **Dynamic theme system** with 3 distinct visual identities and instant switching
 - **GenServer-based game engine** ensuring reliable state management
 - **Comprehensive rule validation** preventing cheating and handling edge cases
 - **Responsive design** with touch-friendly mobile interface
 - **AI system** with strategic decision-making and difficulty levels
+- **Production security** with CSP headers and comprehensive vulnerability protection
 
 ## 🚀 Technical Implementation
 
@@ -104,11 +108,14 @@ The game leverages Phoenix's strengths for real-time applications:
 ## 🎨 User Experience Design
 
 ### Visual Polish
-- **Glowing effects** for special cards
+- **Three distinct themes** - Modern Minimalist, Premium Card Room, and Warm & Social
+- **Instant theme switching** with localStorage persistence and smooth transitions
+- **Theme-specific animations** with different timing functions and visual effects
+- **Glowing effects** for special cards with theme-appropriate colors
 - **Smooth animations** for card plays and transitions
 - **AI thinking indicators** with animated dots
 - **Direction flow animations** showing play order changes
-- **Winner celebration** with confetti effects
+- **Winner celebration** with theme-aware confetti effects
 
 ### Accessibility
 - **Keyboard navigation** support

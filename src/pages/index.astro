@@ -20,8 +20,17 @@ const recentPostsWithReadingTime = await Promise.all(
 	})
 );
 
-// Get projects
-const allProjects = await getCollection('projects');
+// Get projects, sorted with featured ones first
+const allProjects = (await getCollection('projects'))
+	.sort((a, b) => {
+		// Featured projects first
+		const aFeatured = a.data.featured ?? false;
+		const bFeatured = b.data.featured ?? false;
+		if (aFeatured && !bFeatured) return -1;
+		if (!aFeatured && bFeatured) return 1;
+		// Then sort alphabetically by title
+		return a.data.title.localeCompare(b.data.title);
+	});
 ---
 
 <BaseLayout pageTitle="Home">
@@ -89,20 +98,23 @@ const allProjects = await getCollection('projects');
 		
 		<div class="projects-grid">
 			{allProjects.map((project) => (
-				<article class="project-card-home">
+				<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
 					<div class="project-header project-gradient" data-project={project.data.title}>
 						<h3>{project.data.title}</h3>
+						{project.data.featured && <span class="featured-badge">Featured</span>}
 					</div>
 					<div class="project-content">
 						<p>{project.data.description}</p>
 						<div class="project-links">
 							<a href={`/projects/${project.slug}`} class="project-link">Learn more →</a>
-							<a href={project.data.githubUrl} target="_blank" rel="noopener" class="github-link">
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-									<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
-								</svg>
-								GitHub
-							</a>
+							{project.data.github && (
+								<a href={project.data.github} target="_blank" rel="noopener" class="github-link">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+										<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
+									</svg>
+									GitHub
+								</a>
+							)}
 						</div>
 					</div>
 				</article>
@@ -311,14 +323,38 @@ const allProjects = await getCollection('projects');
 		padding: var(--spacing-lg);
 		color: white;
 		text-align: center;
+		position: relative;
 	}
-	
+
 	.project-header h3 {
 		margin: 0;
 		font-size: var(--font-size-xl);
 		font-weight: var(--font-weight-semibold);
 	}
-	
+
+	.featured-badge {
+		display: inline-block;
+		margin-top: var(--spacing-xs);
+		padding: 0.25rem 0.75rem;
+		background: rgba(255, 255, 255, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		border-radius: var(--radius-full);
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-medium);
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		backdrop-filter: blur(10px);
+	}
+
+	.project-card-home.featured {
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 1px var(--color-primary);
+	}
+
+	.project-card-home.featured:hover {
+		box-shadow: var(--shadow-xl), 0 0 0 2px var(--color-primary);
+	}
+
 	.project-content {
 		padding: var(--spacing-lg);
 	}
@@ -390,20 +426,46 @@ const allProjects = await getCollection('projects');
 	}
 	
 	/* Project gradients */
+	/* Featured projects get vibrant gradients */
+	.project-gradient[data-project="Rachel - Strategic Card Game"] {
+		background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+	}
+
+	.project-gradient[data-project="shiki-highlight-api"] {
+		background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+	}
+
+	.project-gradient[data-project="remark-shiki-highlight-api"] {
+		background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+	}
+
 	.project-gradient[data-project="PuTTY Themer"] {
 		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	}
-	
-	.project-gradient:not([data-project="PuTTY Themer"]) {
-		background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
+	/* Non-featured projects get neutral gradients */
+	.project-gradient:not([data-project="Rachel - Strategic Card Game"]):not([data-project="shiki-highlight-api"]):not([data-project="remark-shiki-highlight-api"]):not([data-project="PuTTY Themer"]) {
+		background: linear-gradient(135deg, #64748b 0%, #475569 100%);
 	}
-	
+
 	/* Dark mode gradients */
+	[data-theme="dark"] .project-gradient[data-project="Rachel - Strategic Card Game"] {
+		background: linear-gradient(135deg, #c06dd9 0%, #c73f57 100%);
+	}
+
+	[data-theme="dark"] .project-gradient[data-project="shiki-highlight-api"] {
+		background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+	}
+
+	[data-theme="dark"] .project-gradient[data-project="remark-shiki-highlight-api"] {
+		background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+	}
+
 	[data-theme="dark"] .project-gradient[data-project="PuTTY Themer"] {
 		background: linear-gradient(135deg, #4c5fd8 0%, #5a3885 100%);
 	}
-	
-	[data-theme="dark"] .project-gradient:not([data-project="PuTTY Themer"]) {
-		background: linear-gradient(135deg, #c06dd9 0%, #c73f57 100%);
+
+	[data-theme="dark"] .project-gradient:not([data-project="Rachel - Strategic Card Game"]):not([data-project="shiki-highlight-api"]):not([data-project="remark-shiki-highlight-api"]):not([data-project="PuTTY Themer"]) {
+		background: linear-gradient(135deg, #475569 0%, #334155 100%);
 	}
 </style>
