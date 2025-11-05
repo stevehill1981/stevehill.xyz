@@ -8,7 +8,7 @@ tags:
   - markdown
   - syntax-highlighting
   - astro
-github: "https://github.com/stevehill1981/remark-shiki-highlight-api"
+github: "https://github.com/shiki-highlights/remark-shiki-highlight-api"
 demo: "https://www.npmjs.com/package/remark-shiki-highlight-api"
 featured: true
 technologies:
@@ -326,7 +326,7 @@ Part of the shiki-highlight-api family:
 ## 📖 Documentation
 
 Complete API reference, examples, and migration guides available on:
-- [GitHub](https://github.com/stevehill1981/remark-shiki-highlight-api)
+- [GitHub](https://github.com/shiki-highlights/remark-shiki-highlight-api)
 - [npm](https://www.npmjs.com/package/remark-shiki-highlight-api)
 
 ## 🎓 Why CSS Highlights API?
@@ -337,7 +337,7 @@ Instead of treating styled text as a hierarchy of elements (the DOM way), we tre
 
 ## 🤝 Contributing
 
-Open source and accepting contributions! See the [GitHub repo](https://github.com/stevehill1981/remark-shiki-highlight-api) for:
+Open source and accepting contributions! See the [GitHub repo](https://github.com/shiki-highlights/remark-shiki-highlight-api) for:
 - Issue templates
 - Contribution guidelines
 - Development setup

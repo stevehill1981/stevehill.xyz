@@ -7,7 +7,7 @@ tags:
   - syntax-highlighting
   - performance
   - web-standards
-github: "https://github.com/stevehill1981/shiki-highlight-api"
+github: "https://github.com/shiki-highlights/shiki-highlight-api"
 demo: "https://www.npmjs.com/package/shiki-highlight-api"
 featured: true
 technologies:
@@ -211,4 +211,4 @@ The library is intentionally minimal - it does one thing (syntax highlighting) e
 
 ## 📖 Documentation
 
-Full API documentation and examples available on [GitHub](https://github.com/stevehill1981/shiki-highlight-api) and [npm](https://www.npmjs.com/package/shiki-highlight-api).
+Full API documentation and examples available on [GitHub](https://github.com/shiki-highlights/shiki-highlight-api) and [npm](https://www.npmjs.com/package/shiki-highlight-api).
