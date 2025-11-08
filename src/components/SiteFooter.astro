@@ -3,35 +3,6 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <div class="footer-content">
-    <div class="footer-section">
-      <h3>Steve Hill</h3>
-      <p>Software Engineer building sustainable systems and telling stories through code.</p>
-    </div>
-    
-    <div class="footer-section">
-      <h4>Quick Links</h4>
-      <nav class="footer-nav">
-        <a href="/about">About</a>
-        <a href="/now">Now</a>
-        <a href="/blog">Blog</a>
-        <a href="/projects">Projects</a>
-        <a href="/search">Search</a>
-        <a href="/tags">Tags</a>
-        <a href="/archive">Archive</a>
-      </nav>
-    </div>
-    
-    <div class="footer-section">
-      <h4>Connect</h4>
-      <nav class="footer-nav">
-        <a href="mailto:steve@stevehill.xyz">Email</a>
-        <a href="https://github.com/stevehill1981" target="_blank" rel="noopener">GitHub</a>
-        <a href="/rss.xml">RSS Feed</a>
-      </nav>
-    </div>
-  </div>
-  
   <div class="footer-bottom">
     <p>&copy; {currentYear} Steve Hill. All rights reserved.</p>
   </div>
@@ -72,139 +43,18 @@ const currentYear = new Date().getFullYear();
     0% { background-position: 0% 0%; }
     100% { background-position: 200% 0%; }
   }
-  
-  .footer-content {
+
+  .footer-bottom {
     max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-2xl) var(--spacing-lg);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-2xl);
-  }
-  
-  .footer-section h3,
-  .footer-section h4 {
-    margin-top: 0;
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-lg);
-    color: var(--color-text-primary);
-  }
-  
-  .footer-section p {
-    color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
-    font-size: var(--font-size-base);
-    margin: 0;
-  }
-  
-  .footer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-  
-  .footer-nav a {
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    font-size: var(--font-size-base);
-    padding: 0.25rem 0;
-    transition: color var(--transition-fast);
-    position: relative;
-    display: inline-block;
-  }
-
-  .footer-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--gradient-ocean);
-    opacity: 0;
-    transition: opacity 200ms ease;
-  }
-
-  .footer-nav a:hover {
-    background: var(--gradient-ocean);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .footer-nav a:hover::after {
-    opacity: 1;
-  }
-
-  /* Rotate gradients for different sections */
-  .footer-section:nth-child(2) .footer-nav a::after,
-  .footer-section:nth-child(2) .footer-nav a:hover {
-    background: var(--gradient-ocean);
-  }
-
-  .footer-section:nth-child(2) .footer-nav a:nth-child(2)::after,
-  .footer-section:nth-child(2) .footer-nav a:nth-child(2):hover {
-    background: var(--gradient-sunset);
-  }
-
-  .footer-section:nth-child(2) .footer-nav a:nth-child(3)::after,
-  .footer-section:nth-child(2) .footer-nav a:nth-child(3):hover {
-    background: var(--gradient-forest);
-  }
-
-  .footer-section:nth-child(2) .footer-nav a:nth-child(4)::after,
-  .footer-section:nth-child(2) .footer-nav a:nth-child(4):hover {
-    background: var(--gradient-cosmic);
-  }
-
-  .footer-section:nth-child(2) .footer-nav a:nth-child(5)::after,
-  .footer-section:nth-child(2) .footer-nav a:nth-child(5):hover {
-    background: var(--gradient-fire);
-  }
-
-  .footer-section:nth-child(2) .footer-nav a:nth-child(6)::after,
-  .footer-section:nth-child(2) .footer-nav a:nth-child(6):hover {
-    background: var(--gradient-aurora);
-  }
-
-  .footer-section:nth-child(2) .footer-nav a:nth-child(7)::after,
-  .footer-section:nth-child(2) .footer-nav a:nth-child(7):hover {
-    background: var(--gradient-ocean);
-  }
-
-  .footer-section:nth-child(3) .footer-nav a:nth-child(1)::after,
-  .footer-section:nth-child(3) .footer-nav a:nth-child(1):hover {
-    background: var(--gradient-sunset);
-  }
-
-  .footer-section:nth-child(3) .footer-nav a:nth-child(2)::after,
-  .footer-section:nth-child(3) .footer-nav a:nth-child(2):hover {
-    background: var(--gradient-forest);
-  }
-
-  .footer-section:nth-child(3) .footer-nav a:nth-child(3)::after,
-  .footer-section:nth-child(3) .footer-nav a:nth-child(3):hover {
-    background: var(--gradient-cosmic);
-  }
-  
-  .footer-bottom {
-    border-top: 1px solid var(--color-border);
     padding: var(--spacing-lg);
-    text-align: center;
+    text-align: left;
   }
-  
+
   .footer-bottom p {
     margin: 0;
     color: var(--color-text-tertiary);
     font-size: var(--font-size-sm);
-  }
-  
-  @media (max-width: 768px) {
-    .footer-content {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
-      padding: var(--spacing-lg) var(--spacing-md);
-    }
   }
 
   /* Reduced motion support for accessibility */
@@ -216,11 +66,6 @@ const currentYear = new Date().getFullYear();
 
     footer::before {
       background-position: 0% 0%;
-    }
-
-    .footer-nav a,
-    .footer-nav a::after {
-      transition: none;
     }
   }
 </style>

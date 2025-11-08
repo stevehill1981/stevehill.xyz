@@ -27,7 +27,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
 		
 		<!-- Canonical URL -->
 		<link rel="canonical" href={canonicalURL} />
@@ -189,6 +189,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				--gradient-ocean: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
 				--gradient-sunset: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
 				--gradient-forest: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+				--gradient-tropical: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
 
 				/* Gradient colors for fine-grained control */
 				--color-purple: #8b5cf6;
@@ -218,19 +219,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				text-rendering: optimizeLegibility;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
+				display: flex;
+				flex-direction: column;
 			}
-			
+
 			main {
-				max-width: 900px;
+				max-width: 1200px;
 				margin: 0 auto;
-				padding: var(--spacing-xl) var(--spacing-lg);
+				padding: 0 var(--spacing-lg) var(--spacing-xl) var(--spacing-lg);
 				background: transparent;
-				min-height: 60vh;
+				flex: 1;
+				width: 100%;
 			}
-			
+
 			@media (min-width: 768px) {
 				main {
-					padding: var(--spacing-2xl) var(--spacing-xl);
+					padding: 0 var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
 				}
 			}
 			

@@ -31,37 +31,77 @@ const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => a[0].localeCom
 		))}
 	</div>
 	
-	<nav style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #eee;">
-		<a href="/blog">&larr; Back to Blog</a>
+	<nav class="tags-navigation">
+		<a href="/blog" class="back-to-blog">&larr; Back to Blog</a>
 	</nav>
 </BaseLayout>
 
 <style>
+	h1 {
+		margin-top: var(--spacing-2xl);
+		background: var(--gradient-sunrise);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
 	.tag-cloud {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
-		margin: 2rem 0;
+		gap: var(--spacing-md);
+		margin: var(--spacing-2xl) 0;
 	}
+
 	.tag-link {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem 1rem;
-		background: #f0f0f0;
-		border-radius: 0.5rem;
+		gap: var(--spacing-sm);
+		padding: var(--spacing-sm) var(--spacing-md);
+		background: var(--color-bg-tertiary);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
 		text-decoration: none;
-		transition: all 0.2s;
+		transition: all var(--transition-fast);
+		color: var(--color-text-primary);
 	}
+
 	.tag-link:hover {
-		background: #e0e0e0;
+		background: var(--color-surface);
+		border-color: var(--color-border-hover);
 		transform: translateY(-2px);
+		box-shadow: var(--shadow-sm);
+		text-decoration: none;
 	}
+
 	.tag-name {
-		font-weight: 600;
+		font-weight: var(--font-weight-semibold);
 	}
+
 	.tag-count {
-		color: #666;
-		font-size: 0.9rem;
+		color: var(--color-text-tertiary);
+		font-size: var(--font-size-sm);
+	}
+
+	.tags-navigation {
+		margin-top: var(--spacing-2xl);
+		padding-top: var(--spacing-xl);
+		border-top: 1px solid var(--color-border);
+		text-align: center;
+	}
+
+	.back-to-blog {
+		color: var(--color-primary);
+		font-weight: var(--font-weight-medium);
+		font-size: var(--font-size-base);
+		text-decoration: none;
+		padding: var(--spacing-sm) var(--spacing-lg);
+		border-radius: var(--radius-md);
+		transition: all var(--transition-fast);
+		display: inline-block;
+	}
+
+	.back-to-blog:hover {
+		background: var(--color-bg-tertiary);
+		text-decoration: none;
 	}
 </style>

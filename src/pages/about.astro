@@ -1,87 +1,292 @@
 ---
-import SiteHeader from '../components/SiteHeader.astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const allProjects = await getCollection('projects');
+const recentProjects = allProjects
+  .filter(project => !project.data.draft)
+  .sort((a, b) => (b.data.order || 0) - (a.data.order || 0))
+  .slice(0, 3);
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>About &ndash; Steve Hill</title>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet" />
-    <style>
-      body {
-        font-family: 'Lato', system-ui, sans-serif;
-        background: linear-gradient(135deg, #e0e7ef 0%, #c9d6ff 50%, #e2e2e2 100%);
-        color: #222;
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      .about-container {
-        text-align: center;
-        max-width: 600px;
-        margin: 2.5rem auto;
-        padding: 0 1rem;
-      }
-      section {
-        margin-bottom: 2.5rem;
-      }
-      h1 {
-        font-family: 'Montserrat', system-ui, sans-serif;
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 2.2rem;
-      }
-      p {
-        font-family: 'Lato', system-ui, sans-serif;
-        font-size: 1.13rem;
-        color: #444;
-        margin: 1.5rem 0;
-        line-height: 1.75;
-      }
-      a {
-        color: #222;
-        text-decoration: none;
-        font-family: 'Inter', system-ui, sans-serif;
-        font-weight: 500;
-        transition: color 0.2s;
-      }
-      a:hover {
-        color: #444;
-      }
-    </style>
-  </head>
-  <body>
-    <SiteHeader active="about" />
-    <div class="about-container">
-      <section>
-  <h1>About Me</h1>
-  <p><strong>Software Engineer. Storyteller. Explorer.</strong></p>
 
-  <p>
-    I'm Steve Hill, a senior software engineer based in the UK. I've been writing code professionally for over 15 years, but my interest in how things work goes back much further—back to the days of rubber keys, cassette tapes, and typing out BASIC listings from magazines.
-  </p>
+<BaseLayout
+  pageTitle="About"
+  description="Software Engineer. Storyteller. Explorer. Building sustainable systems and telling stories through code."
+>
+  <div class="about-layout">
+    <div class="about-content">
+      <h1>About Me</h1>
+      <p class="tagline"><strong>Software Engineer. Storyteller. Explorer.</strong></p>
 
-  <p>
-    These days, I work across full-stack web development and infrastructure, with a particular focus on Ruby on Rails, PostgreSQL, and Kubernetes. I've led projects that modernise legacy systems, improve CI/CD pipelines, introduce infrastructure-as-code, and guide teams through major upgrades. I've worked in scaling SaaS companies like 
-    <a href="https://www.resourceguruapp.com" target="_blank" rel="noopener noreferrer">Resource Guru</a>, as well as in smaller teams where I've worn many hats—developer, architect, problem-solver, occasional firefighter.
-  </p>
+      <p>
+        I'm Steve Hill, a senior software engineer based in the UK. I've been writing code professionally for over 15 years, but my interest in how things work goes back much further—back to the days of rubber keys, cassette tapes, and typing out BASIC listings from magazines.
+      </p>
 
-  <p>
-    I care about clean code, clear thinking, and meaningful outcomes. I believe that understanding <em>why</em> we build is just as important as <em>how</em> we build. That belief has shaped the way I work and the kind of problems I like to solve.
-  </p>
+      <p>
+        These days, I work across full-stack web development and infrastructure, with a particular focus on Ruby on Rails, PostgreSQL, and Kubernetes. I've led projects that modernise legacy systems, improve CI/CD pipelines, introduce infrastructure-as-code, and guide teams through major upgrades. I've worked in scaling SaaS companies like
+        <a href="https://www.resourceguruapp.com" target="_blank" rel="noopener noreferrer">Resource Guru</a>, as well as in smaller teams where I've worn many hats—developer, architect, problem-solver, occasional firefighter.
+      </p>
 
-  <p>
-    Outside of client work, I run <a href="https://code198x.stevehill.xyz" target="_blank" rel="noopener">Code Like It's 198x</a>, a long-term project exploring retro computers like the ZX Spectrum, Commodore 64, and BBC Micro. It's part curriculum, part toolkit, part time machine—bringing modern tooling like Docker and Makefiles to classic 8-bit and early 16-bit platforms. It's an excuse to understand old systems deeply, and to teach others along the way.
-  </p>
+      <p>
+        I care about clean code, clear thinking, and meaningful outcomes. I believe that understanding <em>why</em> we build is just as important as <em>how</em> we build. That belief has shaped the way I work and the kind of problems I like to solve.
+      </p>
 
-  <p>
-    You'll find all of that—and more—reflected across this site. Expect blog posts about engineering and architecture, technical deep dives, occasional rants, and a fair bit of nostalgia. If you're into thoughtful software, honest documentation, or seeing what yesterday's machines can teach today's developers, you'll probably feel at home here.
-  </p>
-</section>
+      <p>
+        Outside of client work, I run <a href="https://code198x.stevehill.xyz" target="_blank" rel="noopener">Code Like It's 198x</a>, a long-term project exploring retro computers like the ZX Spectrum, Commodore 64, and BBC Micro. It's part curriculum, part toolkit, part time machine—bringing modern tooling like Docker and Makefiles to classic 8-bit and early 16-bit platforms. It's an excuse to understand old systems deeply, and to teach others along the way.
+      </p>
+
+      <p>
+        You'll find all of that—and more—reflected across this site. Expect blog posts about engineering and architecture, technical deep dives, occasional rants, and a fair bit of nostalgia. If you're into thoughtful software, honest documentation, or seeing what yesterday's machines can teach today's developers, you'll probably feel at home here.
+      </p>
     </div>
-  </body>
-</html> 
+
+    <aside class="about-sidebar">
+      <section class="sidebar-section">
+        <h2>Recent Posts</h2>
+        <div class="sidebar-posts">
+          {recentPosts.map((post) => (
+            <article class="sidebar-post-card">
+              <h3 class="sidebar-post-title">
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              </h3>
+            </article>
+          ))}
+        </div>
+        <a href="/blog" class="sidebar-link">View all posts →</a>
+      </section>
+
+      <section class="sidebar-section">
+        <h2>Recent Projects</h2>
+        <div class="sidebar-projects">
+          {recentProjects.map((project) => (
+            <article class="sidebar-project-card">
+              <h3 class="sidebar-project-title">
+                <a href={`/projects#${project.slug}`}>{project.data.title}</a>
+              </h3>
+            </article>
+          ))}
+        </div>
+        <a href="/projects" class="sidebar-link">View all projects →</a>
+      </section>
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-layout {
+    max-width: 1200px;
+    margin: 0;
+    padding: var(--spacing-2xl) 0;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--spacing-2xl);
+    animation: fadeIn var(--transition-slow) ease-out;
+  }
+
+  .about-content {
+    max-width: 800px;
+  }
+
+  h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-xl);
+    background: var(--gradient-sunrise);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .about-content p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-primary);
+    margin: var(--spacing-lg) 0;
+    line-height: var(--line-height-relaxed);
+  }
+
+  .about-content a {
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    text-decoration-color: rgba(139, 92, 246, 0.5);
+    text-underline-offset: 0.2em;
+    transition: all var(--transition-fast);
+  }
+
+  .about-content a:hover {
+    color: var(--color-pink);
+    text-decoration-color: var(--color-pink);
+  }
+
+  em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .sidebar-section h2 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  .sidebar-posts,
+  .sidebar-projects {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  /* Sidebar post cards with gradient left borders like homepage */
+  .sidebar-post-card {
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    width: 100%;
+  }
+
+  .sidebar-post-card:nth-child(1) {
+    border-image: var(--gradient-sunrise) 1;
+  }
+
+  .sidebar-post-card:nth-child(2) {
+    border-image: var(--gradient-ocean) 1;
+  }
+
+  .sidebar-post-card:nth-child(3) {
+    border-image: var(--gradient-sunset) 1;
+  }
+
+  .sidebar-post-card:hover {
+    transform: translateY(-2px);
+    border: 1px solid;
+    border-left-width: 4px;
+    border-radius: var(--radius-md);
+  }
+
+  .sidebar-post-card:nth-child(1):hover {
+    border-image: var(--gradient-sunrise) 1;
+    box-shadow: 0 0 15px rgba(251, 146, 60, 0.25), var(--shadow-sm);
+  }
+
+  .sidebar-post-card:nth-child(2):hover {
+    border-image: var(--gradient-ocean) 1;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25), var(--shadow-sm);
+  }
+
+  .sidebar-post-card:nth-child(3):hover {
+    border-image: var(--gradient-sunset) 1;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25), var(--shadow-sm);
+  }
+
+  .sidebar-post-title {
+    font-size: var(--font-size-sm);
+    margin: 0;
+    line-height: var(--line-height-tight);
+  }
+
+  .sidebar-post-title a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .sidebar-post-title a:hover {
+    color: var(--color-pink);
+  }
+
+  /* Sidebar project cards */
+  .sidebar-project-card {
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    width: 100%;
+  }
+
+  .sidebar-project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-pink);
+  }
+
+  .sidebar-project-title {
+    font-size: var(--font-size-sm);
+    margin: 0;
+    line-height: var(--line-height-tight);
+  }
+
+  .sidebar-project-title a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .sidebar-project-title a:hover {
+    color: var(--color-pink);
+  }
+
+  .sidebar-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+    margin-top: var(--spacing-xs);
+  }
+
+  .sidebar-link:hover {
+    color: var(--color-pink);
+  }
+
+  @media (max-width: 768px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .about-sidebar {
+      order: 2;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

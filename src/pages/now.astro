@@ -7,15 +7,15 @@ const lastUpdated = new Date('2025-07-03');
 <BaseLayout pageTitle="Now" description="What Steve Hill is doing now">
 	<h1>Now</h1>
 	<p class="subtitle">What I'm doing now</p>
-	
+
 	<div class="last-updated">
-		Last updated: {lastUpdated.toLocaleDateString('en-US', { 
-			year: 'numeric', 
-			month: 'long', 
-			day: 'numeric' 
+		Last updated: {lastUpdated.toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
 		})}
 	</div>
-	
+
 	<section>
 		<h2>Currently Working On</h2>
 		<ul>
@@ -24,7 +24,7 @@ const lastUpdated = new Date('2025-07-03');
 			<li>Writing about sustainable software practices and the lessons learned from the microservices era</li>
 		</ul>
 	</section>
-	
+
 	<section>
 		<h2>Learning</h2>
 		<ul>
@@ -33,7 +33,7 @@ const lastUpdated = new Date('2025-07-03');
 			<li>Phoenix LiveView patterns for real-time applications</li>
 		</ul>
 	</section>
-	
+
 	<section>
 		<h2>Reading</h2>
 		<ul>
@@ -42,7 +42,7 @@ const lastUpdated = new Date('2025-07-03');
 			<li>Keeping up with the indie web movement and personal website renaissance</li>
 		</ul>
 	</section>
-	
+
 	<section>
 		<h2>Life</h2>
 		<ul>
@@ -51,70 +51,86 @@ const lastUpdated = new Date('2025-07-03');
 			<li>Advocating for sustainable software development practices</li>
 		</ul>
 	</section>
-	
+
 	<section class="now-about">
-		<p>This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>, 
+		<p>This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>,
 		and if you have your own site, <a href="https://nownownow.com/about" target="_blank" rel="noopener">you should make one</a>, too.</p>
 	</section>
 </BaseLayout>
 
 <style>
-	.subtitle {
-		font-size: 1.2rem;
-		color: #666;
-		margin-top: -1rem;
-		margin-bottom: 2rem;
-		font-style: italic;
+	h1 {
+		margin-top: var(--spacing-2xl);
+		background: var(--gradient-sunrise);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
-	
+
+	.subtitle {
+		font-style: italic;
+		color: var(--color-text-secondary);
+		margin-top: calc(-1 * var(--spacing-lg));
+		margin-bottom: var(--spacing-xl);
+	}
+
 	.last-updated {
-		background: #f8f8f8;
-		padding: 0.75rem 1rem;
-		border-radius: 0.5rem;
-		font-size: 0.9rem;
-		color: #666;
-		margin-bottom: 2rem;
+		background: var(--color-bg-surface);
+		border: 1px solid var(--color-border);
+		padding: var(--spacing-md) var(--spacing-lg);
+		border-radius: var(--radius-md);
+		font-size: var(--font-size-sm);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-xl);
 		display: inline-block;
 	}
-	
+
 	section {
-		margin: 2.5rem 0;
+		margin: var(--spacing-2xl) 0;
 	}
-	
-	section h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		color: #333;
-	}
-	
+
 	section ul {
 		list-style: none;
 		padding: 0;
 	}
-	
+
 	section li {
-		margin-bottom: 0.75rem;
-		padding-left: 1.5rem;
+		margin-bottom: var(--spacing-md);
+		padding-left: var(--spacing-xl);
 		position: relative;
+		line-height: var(--line-height-relaxed);
 	}
-	
+
 	section li::before {
 		content: "→";
 		position: absolute;
 		left: 0;
-		color: #888;
+		color: var(--color-text-tertiary);
+		font-weight: var(--font-weight-bold);
 	}
-	
+
 	.now-about {
-		margin-top: 3rem;
-		padding-top: 2rem;
-		border-top: 1px solid #eee;
-		font-size: 0.95rem;
-		color: #666;
+		margin-top: var(--spacing-2xl);
+		padding-top: var(--spacing-xl);
+		border-top: 1px solid var(--color-border);
 	}
-	
+
+	.now-about p {
+		font-size: var(--font-size-base);
+		color: var(--color-text-secondary);
+		line-height: var(--line-height-relaxed);
+	}
+
 	.now-about a {
-		color: #555;
+		color: var(--color-text-primary);
 		text-decoration: underline;
+		text-decoration-color: rgba(139, 92, 246, 0.5);
+		text-underline-offset: 0.2em;
+		transition: all var(--transition-fast);
+	}
+
+	.now-about a:hover {
+		color: var(--color-pink);
+		text-decoration-color: var(--color-pink);
 	}
 </style>

@@ -7,7 +7,7 @@ import { getReadingTime } from '../utils/readingTime.js';
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
 	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-	.slice(0, 3);
+	.slice(0, 5);
 
 // Get reading times for recent posts
 const recentPostsWithReadingTime = await Promise.all(
@@ -31,112 +31,126 @@ const allProjects = (await getCollection('projects'))
 		// Then sort alphabetically by title
 		return a.data.title.localeCompare(b.data.title);
 	});
+
+// Technology icon mapping with brand colors
+const techIcons: Record<string, string> = {
+	elixir: `<svg viewBox="0 0 24 24"><path fill="#4B275F" d="M19.793 16.575c0 3.752-2.927 7.426-7.743 7.426-5.249 0-7.843-3.71-7.843-8.29 0-5.21 3.892-12.952 8-15.647a.397.397 0 0 1 .61.371 9.716 9.716 0 0 0 1.694 6.518c.522.795 1.092 1.478 1.763 2.352.94 1.227 1.637 1.906 2.644 3.842l.015.028a7.107 7.107 0 0 1 .86 3.4z"/></svg>`,
+	phoenix: `<svg viewBox="0 0 24 24"><path fill="#FD4F00" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 14.828c-1.227 1.26-3.248 1.381-4.543.425-.77-.57-1.32-1.43-1.614-2.376-.293.95-.843 1.807-1.614 2.376-1.295.957-3.316.836-4.543-.425-1.227-1.261-1.304-3.195-.312-4.453.992-1.258 2.763-1.644 4.122-1.173.81.28 1.49.834 1.969 1.538.48-.704 1.159-1.257 1.97-1.538 1.358-.47 3.13-.085 4.122 1.173.992 1.258.915 3.192-.312 4.453z"/></svg>`,
+	liveview: `<svg viewBox="0 0 24 24"><path fill="#4B275F" d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18.5c-3.87-.94-6.5-4.42-6.5-8.5V8.3l6.5-3.11 6.5 3.11V12c0 4.08-2.63 7.56-6.5 8.5z"/></svg>`,
+	typescript: `<svg viewBox="0 0 24 24"><path fill="#3178C6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>`,
+	javascript: `<svg viewBox="0 0 24 24"><path fill="#F7DF1E" d="M0 0h24v24H0V0z"/><path fill="#000" d="M22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>`,
+	node: `<svg viewBox="0 0 24 24"><path fill="#339933" d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57.329.924.944.924,1.603 v10.15c0,0.659-0.354,1.276-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/></svg>`,
+};
+
+const getTechIcon = (tech: string): string => {
+	const normalized = tech.toLowerCase();
+	return techIcons[normalized] || techIcons['node']; // fallback to node icon
+};
 ---
 
 <BaseLayout pageTitle="Home">
 	<div class="hero">
-		<h1 class="hero-title">Steve Hill</h1>
-		<p class="hero-subtitle">Software Engineer. Storyteller. Explorer.</p>
-		
-		<div class="hero-links">
-			<a href="/about" class="hero-link">About</a>
-			<span class="dot">&middot;</span>
-			<a href="/now" class="hero-link">Now</a>
-			<span class="dot">&middot;</span>
-			<a href="/blog" class="hero-link">Blog</a>
-			<span class="dot">&middot;</span>
-			<a href="/projects" class="hero-link">Projects</a>
-			<span class="dot">&middot;</span>
-			<a href="https://code198x.stevehill.xyz" target="_blank" rel="noopener" class="hero-link">Code Like It's 198x</a>
-		</div>
-		
-		<div class="hero-social">
-			<a href="mailto:steve@stevehill.xyz" aria-label="Email" class="social-link">
-				<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z"/>
-				</svg>
-			</a>
-			<a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" class="social-link">
-				<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
-			</svg>
-			</a>
+		<div class="hero-content">
+			<h1 class="hero-title">
+				<span class="hero-title-first">Steve</span>
+				<span class="hero-title-last">Hill</span>
+			</h1>
+			<div class="hero-subtitle">
+				<p>Software Engineer</p>
+				<p>Storyteller</p>
+				<p>Explorer</p>
+			</div>
 		</div>
 	</div>
 	
-	<section class="home-section">
-		<div class="section-header">
-			<h2 class="recent-posts-heading">Recent Posts</h2>
-			<a href="/blog" class="view-all">View all posts →</a>
-		</div>
-		
-		<div class="recent-posts">
-			{recentPostsWithReadingTime.map((post) => (
-				<article class="post-card">
-					<div class="post-meta">
-						<time>{post.data.pubDate.toLocaleDateString('en-US', { 
-							year: 'numeric', 
-							month: 'short', 
-							day: 'numeric' 
-						})}</time>
-						<span class="reading-time">{post.readingTime} min read</span>
-					</div>
-					<h3 class="post-title">
-						<a href={`/blog/${post.slug}`}>{post.data.title}</a>
-					</h3>
-					<p class="post-excerpt">{post.data.excerpt}</p>
-				</article>
-			))}
-		</div>
-	</section>
-	
-	<section class="home-section">
-		<div class="section-header">
-			<h2 class="projects-heading">Projects</h2>
-			<a href="/projects" class="view-all">View all projects →</a>
-		</div>
-		
-		<div class="projects-grid">
-			{allProjects.filter(project => project.data.featured).map((project) => (
-				<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
-					<div class="project-header project-gradient" data-project={project.data.title}>
-						<h3>{project.data.title}</h3>
-						{project.data.featured && <span class="featured-badge">Featured</span>}
-					</div>
-					<div class="project-content">
-						<p>{project.data.description}</p>
-						<div class="project-links">
-							<a href={`/projects/${project.slug}`} class="project-link">Learn more →</a>
-							{project.data.github && (
-								<a href={project.data.github} target="_blank" rel="noopener" class="github-link">
-									<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-										<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
-									</svg>
-									GitHub
-								</a>
+	<div class="home-content-grid">
+		<section class="home-section">
+			<div class="section-header">
+				<h2 class="recent-posts-heading">Recent Posts</h2>
+				<a href="/blog" class="view-all">View all posts →</a>
+			</div>
+
+			<div class="recent-posts">
+				{recentPostsWithReadingTime.map((post) => (
+					<article class="post-card">
+						<div class="post-meta">
+							<time>{post.data.pubDate.toLocaleDateString('en-US', {
+								year: 'numeric',
+								month: 'short',
+								day: 'numeric'
+							})}</time>
+							<span class="reading-time">{post.readingTime} min read</span>
+						</div>
+						<h3 class="post-title">
+							<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+						</h3>
+						<p class="post-excerpt">{post.data.excerpt}</p>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section class="home-section">
+			<div class="section-header">
+				<h2 class="projects-heading">Projects</h2>
+				<a href="/projects" class="view-all">View all projects →</a>
+			</div>
+
+			<div class="projects-grid">
+				{allProjects.filter(project => project.data.featured).map((project) => (
+					<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
+						<div class="project-header project-gradient" data-project={project.data.title}>
+							<h3>{project.data.title}</h3>
+							{project.data.technologies && project.data.technologies.length > 0 && (
+								<div class="tech-icons">
+									{project.data.technologies.slice(0, 3).map((tech) => (
+										<span class="tech-badge" title={tech}>{tech.charAt(0).toUpperCase()}</span>
+									))}
+								</div>
 							)}
 						</div>
-					</div>
-				</article>
-			))}
-		</div>
-	</section>
+						<div class="project-content">
+							<p>{project.data.description}</p>
+							<div class="project-links">
+								<a href={`/projects/${project.slug}`} class="project-link">Learn more →</a>
+								{project.data.github && (
+									<a href={project.data.github} target="_blank" rel="noopener" class="github-link">
+										<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+											<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
+										</svg>
+										GitHub
+									</a>
+								)}
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+	</div>
 </BaseLayout>
 
 <style>
 	.hero {
-		text-align: center;
 		padding: var(--spacing-2xl) 0;
-		max-width: 600px;
-		margin: 0 auto;
-		border-bottom: 1px solid var(--color-border);
+		width: 100vw;
+		margin-left: calc(-50vw + 50%);
+		margin-right: calc(-50vw + 50%);
 		margin-bottom: var(--spacing-2xl);
 		background: var(--gradient-sunrise-vibrant);
 		background-size: 200% 200%;
 		animation: gradient-shift 25s ease infinite;
-		border-radius: var(--radius-2xl);
 		position: relative;
 		overflow: hidden;
+	}
+
+	.hero-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 var(--spacing-lg);
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2xl);
 	}
 
 	/* Add subtle texture overlay for depth */
@@ -165,26 +179,44 @@ const allProjects = (await getCollection('projects'))
 	
 	.hero-title {
 		font-family: 'Montserrat', system-ui, sans-serif;
-		font-size: var(--font-size-5xl);
-		font-weight: var(--font-weight-bold);
-		margin: 0 0 var(--spacing-md) 0;
-		letter-spacing: -0.02em;
+		font-weight: 900;
+		margin: 0;
+		letter-spacing: -0.03em;
+		line-height: 0.85;
+		text-transform: uppercase;
+		text-align: left;
 		position: relative;
 		z-index: 1;
+		display: flex;
+		flex-direction: column;
 
-		/* Generative pattern text mask */
+		/* Darker gradient with no shadows */
 		background:
-			radial-gradient(circle at 20% 30%, var(--color-purple) 0%, transparent 50%),
-			radial-gradient(circle at 80% 70%, var(--color-cyan) 0%, transparent 50%),
-			radial-gradient(circle at 50% 50%, var(--color-pink) 0%, transparent 50%),
-			radial-gradient(circle at 10% 80%, var(--color-orange) 0%, transparent 50%),
-			radial-gradient(circle at 90% 20%, var(--color-teal) 0%, transparent 50%);
+			radial-gradient(circle at 20% 30%, #3d1466 0%, transparent 50%),
+			radial-gradient(circle at 80% 70%, #024a6b 0%, transparent 50%),
+			radial-gradient(circle at 50% 50%, #7d103d 0%, transparent 50%),
+			radial-gradient(circle at 10% 80%, #7c2d12 0%, transparent 50%),
+			radial-gradient(circle at 90% 20%, #064e3b 0%, transparent 50%);
 		background-size: 400% 400%;
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		color: transparent;
 		animation: pattern-shift 50s ease-in-out infinite;
+	}
+
+	.hero-title-first {
+		font-size: clamp(2rem, 5vw, 4rem);
+		display: block;
+		margin-left: 0;
+		padding-left: 0;
+	}
+
+	.hero-title-last {
+		font-size: clamp(5rem, 15vw, 12rem);
+		display: block;
+		margin-left: -0.08em;
+		padding-left: 0;
 	}
 
 	@keyframes pattern-shift {
@@ -204,14 +236,23 @@ const allProjects = (await getCollection('projects'))
 
 	.hero-subtitle {
 		font-family: 'Inter', system-ui, sans-serif;
-		font-size: var(--font-size-xl);
-		font-weight: var(--font-weight-semibold);
-		margin: 0 0 var(--spacing-2xl) 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-xs);
 		position: relative;
 		z-index: 1;
+		text-align: right;
+		flex: 1;
+	}
 
-		/* Ocean gradient text for contrast with the animated name */
-		background: var(--gradient-ocean);
+	.hero-subtitle p {
+		font-size: var(--font-size-3xl);
+		font-weight: 900;
+		margin: 0;
+		text-transform: uppercase;
+
+		/* Darker ocean gradient */
+		background: linear-gradient(135deg, #1e40af 0%, #0369a1 100%);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -292,9 +333,22 @@ const allProjects = (await getCollection('projects'))
 	}
 	
 	/* Home sections */
-	.home-section {
+	.home-content-grid {
+		display: grid;
+		grid-template-columns: 3fr 2fr;
+		gap: var(--spacing-2xl);
 		margin-bottom: var(--spacing-2xl);
+	}
+
+	.home-section {
 		animation: fadeIn var(--transition-slow) ease-out;
+	}
+
+	@media (max-width: 968px) {
+		.home-content-grid {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-xl);
+		}
 	}
 	
 	.section-header {
@@ -305,7 +359,8 @@ const allProjects = (await getCollection('projects'))
 	}
 	
 	.section-header h2 {
-		font-size: var(--font-size-2xl);
+		font-size: var(--font-size-4xl);
+		font-weight: 900;
 		margin: 0;
 		color: var(--color-text-primary);
 	}
@@ -345,7 +400,6 @@ const allProjects = (await getCollection('projects'))
 	}
 
 	.post-card {
-		width: 100%;
 		padding: var(--spacing-lg);
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
@@ -365,6 +419,14 @@ const allProjects = (await getCollection('projects'))
 
 	.post-card:nth-child(3) {
 		border-image: var(--gradient-sunset) 1;
+	}
+
+	.post-card:nth-child(4) {
+		border-image: var(--gradient-forest) 1;
+	}
+
+	.post-card:nth-child(5) {
+		border-image: var(--gradient-tropical) 1;
 	}
 
 	.post-card:hover {
@@ -388,6 +450,16 @@ const allProjects = (await getCollection('projects'))
 	.post-card:nth-child(3):hover {
 		border-image: var(--gradient-sunset) 1;
 		box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), var(--shadow-md);
+	}
+
+	.post-card:nth-child(4):hover {
+		border-image: var(--gradient-forest) 1;
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), var(--shadow-md);
+	}
+
+	.post-card:nth-child(5):hover {
+		border-image: var(--gradient-tropical) 1;
+		box-shadow: 0 0 20px rgba(236, 72, 153, 0.3), var(--shadow-md);
 	}
 	
 	.post-meta {
@@ -426,17 +498,34 @@ const allProjects = (await getCollection('projects'))
 	
 	/* Projects grid */
 	.projects-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		display: flex;
+		flex-direction: column;
 		gap: var(--spacing-lg);
 	}
 	
 	.project-card-home {
 		background: var(--color-surface);
-		border: 1px solid var(--color-border);
+		border: 2px solid var(--color-border);
 		border-radius: var(--radius-lg);
 		overflow: hidden;
 		transition: all var(--transition-base);
+	}
+
+	/* Match border colors to gradient headers */
+	.project-card-home:has(.project-gradient[data-project="Rachel - Strategic Card Game"]) {
+		border-color: #f093fb;
+	}
+
+	.project-card-home:has(.project-gradient[data-project="shiki-highlight-api"]) {
+		border-color: #3b82f6;
+	}
+
+	.project-card-home:has(.project-gradient[data-project="remark-shiki-highlight-api"]) {
+		border-color: #8b5cf6;
+	}
+
+	.project-card-home:has(.project-gradient[data-project="PuTTY Themer"]) {
+		border-color: #667eea;
 	}
 	
 	.project-card-home:hover {
@@ -464,7 +553,10 @@ const allProjects = (await getCollection('projects'))
 	.project-header {
 		padding: var(--spacing-lg);
 		color: white;
-		text-align: center;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--spacing-md);
 		position: relative;
 	}
 
@@ -476,6 +568,35 @@ const allProjects = (await getCollection('projects'))
 		margin: 0;
 		font-size: var(--font-size-xl);
 		font-weight: var(--font-weight-semibold);
+		text-align: left;
+	}
+
+	.tech-icons {
+		display: flex;
+		gap: var(--spacing-xs);
+	}
+
+	.tech-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 28px;
+		height: 28px;
+		background: rgba(255, 255, 255, 0.95);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		border-radius: var(--radius-full);
+		backdrop-filter: blur(10px);
+		transition: all var(--transition-fast);
+		color: rgba(0, 0, 0, 0.8);
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-bold);
+		letter-spacing: -0.02em;
+	}
+
+	.tech-badge:hover {
+		background: rgba(255, 255, 255, 1);
+		transform: scale(1.15);
+		color: rgba(0, 0, 0, 1);
 	}
 
 	.featured-badge {
@@ -552,22 +673,18 @@ const allProjects = (await getCollection('projects'))
 		.hero-title {
 			font-size: var(--font-size-4xl);
 		}
-		
+
 		.hero-subtitle {
 			font-size: var(--font-size-lg);
 		}
-		
+
 		.hero-links {
 			font-size: var(--font-size-base);
 		}
-		
+
 		.section-header {
 			flex-direction: column;
 			gap: var(--spacing-xs);
-		}
-		
-		.projects-grid {
-			grid-template-columns: 1fr;
 		}
 	}
 	
