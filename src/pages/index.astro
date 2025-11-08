@@ -424,8 +424,25 @@ const allProjects = (await getCollection('projects'))
 	}
 	
 	.project-card-home:hover {
-		transform: translateY(-4px);
+		transform: translateY(-4px) scale(1.02);
 		box-shadow: var(--shadow-lg);
+	}
+
+	/* Project-specific gradient glow effects on hover */
+	.project-card-home:has(.project-gradient[data-project="Rachel - Strategic Card Game"]):hover {
+		filter: drop-shadow(0 8px 24px rgba(240, 147, 251, 0.4));
+	}
+
+	.project-card-home:has(.project-gradient[data-project="shiki-highlight-api"]):hover {
+		filter: drop-shadow(0 8px 24px rgba(59, 130, 246, 0.4));
+	}
+
+	.project-card-home:has(.project-gradient[data-project="remark-shiki-highlight-api"]):hover {
+		filter: drop-shadow(0 8px 24px rgba(139, 92, 246, 0.4));
+	}
+
+	.project-card-home:has(.project-gradient[data-project="PuTTY Themer"]):hover {
+		filter: drop-shadow(0 8px 24px rgba(102, 126, 234, 0.4));
 	}
 	
 	.project-header {
