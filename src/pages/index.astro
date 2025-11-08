@@ -131,6 +131,36 @@ const allProjects = (await getCollection('projects'))
 		margin: 0 auto;
 		border-bottom: 1px solid var(--color-border);
 		margin-bottom: var(--spacing-2xl);
+		background: var(--gradient-sunrise-vibrant);
+		background-size: 200% 200%;
+		animation: gradient-shift 25s ease infinite;
+		border-radius: var(--radius-2xl);
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Add subtle texture overlay for depth */
+	.hero::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image:
+			radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+			radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+		pointer-events: none;
+		opacity: 0.5;
+	}
+
+	@keyframes gradient-shift {
+		0%, 100% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
 	}
 	
 	.hero-title {
@@ -139,17 +169,23 @@ const allProjects = (await getCollection('projects'))
 		font-weight: var(--font-weight-bold);
 		margin: 0 0 var(--spacing-md) 0;
 		letter-spacing: -0.02em;
-		color: var(--color-text-primary);
+		color: white;
+		position: relative;
+		z-index: 1;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 	}
-	
+
 	.hero-subtitle {
 		font-family: 'Inter', system-ui, sans-serif;
 		font-size: var(--font-size-xl);
 		font-weight: var(--font-weight-semibold);
-		color: var(--color-text-secondary);
+		color: rgba(255, 255, 255, 0.95);
 		margin: 0 0 var(--spacing-2xl) 0;
+		position: relative;
+		z-index: 1;
+		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 	}
-	
+
 	.hero-links {
 		display: flex;
 		justify-content: center;
@@ -157,27 +193,31 @@ const allProjects = (await getCollection('projects'))
 		gap: var(--spacing-sm);
 		margin-bottom: var(--spacing-xl);
 		flex-wrap: wrap;
+		position: relative;
+		z-index: 1;
 	}
-	
+
 	.hero-link {
 		font-family: 'Inter', system-ui, sans-serif;
 		font-size: var(--font-size-lg);
 		font-weight: var(--font-weight-medium);
-		color: var(--color-text-secondary);
+		color: rgba(255, 255, 255, 0.9);
 		text-decoration: none;
 		padding: 0.25rem 0.5rem;
 		border-radius: var(--radius-md);
 		transition: all 0.2s;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	}
-	
+
 	.hero-link:hover {
-		color: var(--color-primary);
-		background: var(--color-bg-tertiary);
+		color: white;
+		background: rgba(255, 255, 255, 0.15);
 		text-decoration: none;
+		backdrop-filter: blur(10px);
 	}
-	
+
 	.dot {
-		color: var(--color-border);
+		color: rgba(255, 255, 255, 0.5);
 		font-size: var(--font-size-sm);
 	}
 	
@@ -186,8 +226,10 @@ const allProjects = (await getCollection('projects'))
 		justify-content: center;
 		gap: var(--spacing-lg);
 		margin-top: var(--spacing-xl);
+		position: relative;
+		z-index: 1;
 	}
-	
+
 	.social-link {
 		display: inline-flex;
 		align-items: center;
@@ -195,20 +237,23 @@ const allProjects = (await getCollection('projects'))
 		width: 44px;
 		height: 44px;
 		border-radius: var(--radius-full);
-		background: var(--color-bg-tertiary);
-		color: var(--color-text-secondary);
+		background: rgba(255, 255, 255, 0.15);
+		color: white;
 		transition: all 0.2s;
 		text-decoration: none;
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.2);
 	}
-	
+
 	.social-link:hover {
-		background: var(--color-primary);
+		background: rgba(255, 255, 255, 0.25);
 		color: white;
 		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 		text-decoration: none;
+		border-color: rgba(255, 255, 255, 0.3);
 	}
-	
+
 	.icon {
 		width: 20px;
 		height: 20px;
