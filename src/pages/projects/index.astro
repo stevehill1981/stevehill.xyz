@@ -134,11 +134,11 @@ const sortedProjects = allProjects.sort((a, b) => a.data.title.localeCompare(b.d
 	}
 	
 	/* Dark mode gradients */
-	[data-theme="dark"] .project-gradient[data-project="PuTTY Themer"] {
+	.project-gradient[data-project="PuTTY Themer"] {
 		background: linear-gradient(135deg, #4c5fd8 0%, #5a3885 100%);
 	}
-	
-	[data-theme="dark"] .project-gradient:not([data-project="PuTTY Themer"]) {
+
+	.project-gradient:not([data-project="PuTTY Themer"]) {
 		background: linear-gradient(135deg, #c06dd9 0%, #c73f57 100%);
 	}
 </style>

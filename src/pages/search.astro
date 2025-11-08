@@ -129,13 +129,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		background: var(--color-primary-hover);
 		transform: translateY(-1px);
 	}
-	
+
 	/* Dark mode adjustments */
-	[data-theme="dark"] :global(.pagefind-ui__search-input) {
+	:global(.pagefind-ui__search-input) {
 		color: var(--color-text-primary);
 	}
-	
-	[data-theme="dark"] :global(.pagefind-ui__search-input::placeholder) {
+
+	:global(.pagefind-ui__search-input::placeholder) {
 		color: var(--color-text-tertiary);
 	}
 </style>
