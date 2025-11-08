@@ -154,18 +154,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				--transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
 				--transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-				/* Colors */
+				/* Colors - Dark-only theme optimized for bold gradients */
+				--color-bg-primary: #0a0a0a;      /* Near-black base */
 				--color-bg: #0f0f0f;
 				--color-bg-secondary: #171717;
-				--color-bg-tertiary: #262626;
+				--color-bg-surface: #1a1a1a;      /* Cards/elevated surfaces */
+				--color-bg-tertiary: #262626;     /* Subtle variations */
 				--color-surface: #1a1a1a;
 				--color-surface-hover: #262626;
 				--color-border: #404040;
 				--color-border-hover: #525252;
 
-				--color-text-primary: #f3f4f6;
-				--color-text-secondary: #d1d5db;
-				--color-text-tertiary: #9ca3af;
+				--color-text-primary: #f3f4f6;    /* High contrast white */
+				--color-text-secondary: #d1d5db;  /* Readable gray */
+				--color-text-tertiary: #9ca3af;   /* Muted gray */
 				--color-text-muted: #6b7280;
 
 				--color-primary: #60a5fa;
