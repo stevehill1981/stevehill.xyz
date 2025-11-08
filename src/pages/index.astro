@@ -66,7 +66,7 @@ const allProjects = (await getCollection('projects'))
 	
 	<section class="home-section">
 		<div class="section-header">
-			<h2>Recent Posts</h2>
+			<h2 class="recent-posts-heading">Recent Posts</h2>
 			<a href="/blog" class="view-all">View all posts →</a>
 		</div>
 		
@@ -92,7 +92,7 @@ const allProjects = (await getCollection('projects'))
 	
 	<section class="home-section">
 		<div class="section-header">
-			<h2>Projects</h2>
+			<h2 class="projects-heading">Projects</h2>
 			<a href="/projects" class="view-all">View all projects →</a>
 		</div>
 		
@@ -309,7 +309,23 @@ const allProjects = (await getCollection('projects'))
 		margin: 0;
 		color: var(--color-text-primary);
 	}
-	
+
+	.recent-posts-heading {
+		background: var(--gradient-ocean);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
+	}
+
+	.projects-heading {
+		background: var(--gradient-sunset);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
+	}
+
 	.view-all {
 		font-size: var(--font-size-sm);
 		color: var(--color-primary);
