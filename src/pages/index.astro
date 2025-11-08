@@ -333,14 +333,45 @@ const allProjects = (await getCollection('projects'))
 		padding: var(--spacing-lg);
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
+		border-left: 6px solid;
 		border-radius: var(--radius-lg);
 		transition: all var(--transition-base);
 	}
-	
+
+	/* Rotate through gradient palettes for each post card */
+	.post-card:nth-child(1) {
+		border-image: var(--gradient-sunrise) 1;
+	}
+
+	.post-card:nth-child(2) {
+		border-image: var(--gradient-ocean) 1;
+	}
+
+	.post-card:nth-child(3) {
+		border-image: var(--gradient-sunset) 1;
+	}
+
 	.post-card:hover {
 		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
-		border-color: var(--color-border-hover);
+		border: 2px solid;
+		border-left-width: 6px;
+		border-radius: var(--radius-lg);
+	}
+
+	/* Add gradient-specific hover glow effects */
+	.post-card:nth-child(1):hover {
+		border-image: var(--gradient-sunrise) 1;
+		box-shadow: 0 0 20px rgba(251, 146, 60, 0.3), var(--shadow-md);
+	}
+
+	.post-card:nth-child(2):hover {
+		border-image: var(--gradient-ocean) 1;
+		box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), var(--shadow-md);
+	}
+
+	.post-card:nth-child(3):hover {
+		border-image: var(--gradient-sunset) 1;
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), var(--shadow-md);
 	}
 	
 	.post-meta {
