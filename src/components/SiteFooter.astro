@@ -40,9 +40,37 @@ const currentYear = new Date().getFullYear();
 <style>
   footer {
     background: var(--color-bg);
-    border-top: 1px solid var(--color-border);
+    position: relative;
     margin-top: var(--spacing-2xl);
     animation: fadeIn var(--transition-slow) ease-out;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--color-purple),
+      var(--color-pink),
+      var(--color-blue),
+      var(--color-cyan),
+      var(--color-orange),
+      var(--color-red),
+      var(--color-green),
+      var(--color-teal),
+      var(--color-purple)
+    );
+    background-size: 200% 100%;
+    animation: border-shift 15s linear infinite;
+  }
+
+  @keyframes border-shift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
   }
   
   .footer-content {
