@@ -97,7 +97,7 @@ const allProjects = (await getCollection('projects'))
 		</div>
 		
 		<div class="projects-grid">
-			{allProjects.map((project) => (
+			{allProjects.filter(project => project.data.featured).map((project) => (
 				<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
 					<div class="project-header project-gradient" data-project={project.data.title}>
 						<h3>{project.data.title}</h3>
