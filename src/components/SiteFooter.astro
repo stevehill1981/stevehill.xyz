@@ -206,4 +206,21 @@ const currentYear = new Date().getFullYear();
       padding: var(--spacing-lg) var(--spacing-md);
     }
   }
+
+  /* Reduced motion support for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    footer,
+    footer::before {
+      animation: none;
+    }
+
+    footer::before {
+      background-position: 0% 0%;
+    }
+
+    .footer-nav a,
+    .footer-nav a::after {
+      transition: none;
+    }
+  }
 </style>

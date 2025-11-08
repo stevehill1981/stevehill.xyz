@@ -261,4 +261,17 @@ const currentPath = Astro.url.pathname;
       margin-top: var(--spacing-sm);
     }
   }
+
+  /* Reduced motion support for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    header::after {
+      animation: none;
+      background-position: 0% 0%;
+    }
+
+    .nav-link::after,
+    .nav-links a {
+      transition: none;
+    }
+  }
 </style>
