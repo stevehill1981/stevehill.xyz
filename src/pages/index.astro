@@ -206,11 +206,16 @@ const allProjects = (await getCollection('projects'))
 		font-family: 'Inter', system-ui, sans-serif;
 		font-size: var(--font-size-xl);
 		font-weight: var(--font-weight-semibold);
-		color: rgba(255, 255, 255, 0.95);
 		margin: 0 0 var(--spacing-2xl) 0;
 		position: relative;
 		z-index: 1;
-		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+
+		/* Ocean gradient text for contrast with the animated name */
+		background: var(--gradient-ocean);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
 	}
 
 	.hero-links {
