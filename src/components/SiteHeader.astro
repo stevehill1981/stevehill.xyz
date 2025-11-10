@@ -15,6 +15,7 @@ const currentPath = Astro.url.pathname;
     <div class="nav-links">
       <a href="/about" class={`nav-link ${currentPath === '/about' ? 'active' : ''}`}>About</a>
       <a href="/now" class={`nav-link ${currentPath === '/now' ? 'active' : ''}`}>Now</a>
+      <a href="/principles" class={`nav-link ${currentPath === '/principles' ? 'active' : ''}`}>Principles</a>
       <a href="/blog" class={`nav-link ${currentPath.startsWith('/blog') ? 'active' : ''}`}>Blog</a>
       <a href="/projects" class={`nav-link ${currentPath.startsWith('/projects') ? 'active' : ''}`}>Projects</a>
       <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener">Code Like It's 198x</a>
@@ -36,21 +37,40 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  
-  mobileMenuToggle?.addEventListener('click', () => {
-    const isOpen = navLinks?.classList.contains('active');
-    navLinks?.classList.toggle('active');
-    mobileMenuToggle.setAttribute('aria-expanded', (!isOpen).toString());
-  });
-  
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-container')) {
-      navLinks?.classList.remove('active');
-      mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+  function initializeMobileMenu() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Remove any existing listeners by cloning and replacing
+    const newToggle = mobileMenuToggle?.cloneNode(true);
+    if (mobileMenuToggle && newToggle) {
+      mobileMenuToggle.parentNode?.replaceChild(newToggle, mobileMenuToggle);
     }
+
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const links = document.querySelector('.nav-links');
+
+    toggle?.addEventListener('click', () => {
+      const isOpen = links?.classList.contains('active');
+      links?.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', (!isOpen).toString());
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-container')) {
+        links?.classList.remove('active');
+        toggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Initialize on first load
+  initializeMobileMenu();
+
+  // Re-initialize after view transitions
+  document.addEventListener('astro:page-load', () => {
+    initializeMobileMenu();
   });
 </script>
 
@@ -61,6 +81,9 @@ const currentPath = Astro.url.pathname;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
   }
 
   header::after {
@@ -218,7 +241,7 @@ const currentPath = Astro.url.pathname;
   /* Mobile styles */
   @media (max-width: 768px) {
     .nav-container {
-      padding: var(--spacing-sm) var(--spacing-md);
+      padding: var(--spacing-sm) var(--spacing-sm);
     }
     
     .mobile-menu-toggle {

@@ -186,9 +186,32 @@ const postsWithReadingTime = await Promise.all(
 		margin-top: auto;
 	}
 	
-	@media (max-width: 640px) {
+	@media (max-width: 768px) {
+		h1 {
+			font-size: var(--font-size-2xl);
+		}
+
+		.blog-nav {
+			flex-direction: column;
+			align-items: stretch;
+			gap: var(--spacing-xs);
+		}
+
+		.nav-link {
+			padding: var(--spacing-sm);
+			text-align: center;
+		}
+
+		.separator {
+			display: none;
+		}
+
 		.card-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.card-title {
+			font-size: var(--font-size-lg);
 		}
 	}
 </style>

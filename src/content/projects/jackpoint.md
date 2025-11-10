@@ -1,6 +1,7 @@
 ---
 title: "Jackpoint - Premium Virtual Tabletop"
 description: "A Phoenix LiveView VTT platform for Shadowrun 6th Edition with full rules automation, investigation mechanics, and global campaign support"
+draft: true
 tags:
   - elixir
   - phoenix

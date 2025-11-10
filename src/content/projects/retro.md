@@ -1,6 +1,7 @@
 ---
 title: "Retro"
 description: "A real-time retrospective tool for agile teams built with Phoenix LiveView, featuring vote-based prioritization, moderation tools, and comprehensive email workflows."
+draft: true
 technologies: ["Elixir", "Phoenix LiveView", "PostgreSQL", "Tailwind CSS", "Postmark"]
 status: "Development"
 priority: 2

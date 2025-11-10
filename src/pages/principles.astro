@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout pageTitle="My Principles" description="Engineering principles from nearly two decades of professional software development">
+	<h1>My Principles</h1>
+	<p class="subtitle">I've arrived at these principles after nearly two decades of being a professional software engineer.</p>
+
+	<section>
+		<h2>1. Boring Technology Wins</h2>
+		<p>Proven, stable tech beats shiny every time. I've seen fashionable rewrites corrupt six months of billing data. GraphQL layers added to paper over organisational problems. Serverless costs hidden by AWS credits until they weren't. New tech promises elegance but delivers complexity most teams can't sustain. Pick boring.</p>
+	</section>
+
+	<section>
+		<h2>2. Legacy Systems Aren't the Enemy</h2>
+		<p>Neglect is. Every "big rewrite" I've done could have been avoided with consistent maintenance. Rescue beats replace.</p>
+	</section>
+
+	<section>
+		<h2>3. The Monolith Is Not Your Biggest Problem</h2>
+		<p>Microservices solve organisational problems, not technical ones. I've seen them deployed most often when teams don't want to talk to each other - so instead of fixing communication, they add network boundaries. Monolith is not a dirty word.</p>
+	</section>
+
+	<section>
+		<h2>4. Sustainable Software Means Sustainable Teams</h2>
+		<p>Code that can't be maintained by humans at a reasonable pace will eventually fail. Burnout kills more projects than bad architecture.</p>
+	</section>
+
+	<section>
+		<h2>5. Build for Today, Design for Tomorrow</h2>
+		<p>Most failed systems I've rescued weren't too rigid - they were too "flexible." Abstract frameworks for use cases that never materialised. Solve the problem in front of you. Avoid irreversible decisions. But don't build abstractions you don't need yet.</p>
+	</section>
+
+	<section>
+		<h2>6. Process Theatre Kills Teams</h2>
+		<p>Teams spend hours debating sprint length and story points while the actual work waits. Endless estimation and planning rituals create disengaged engineers who'd rather be solving problems. Trust the team. Get out of their way.</p>
+	</section>
+
+	<section>
+		<h2>7. Write It Down or Watch History Repeat</h2>
+		<p>Engineers hate writing documentation. Without it, teams make the same mistakes repeatedly. Knowledge expires when people move on - and those who come after figure things out from scratch, repeating avoidable errors. Writing, teaching, and documenting are how we stop wasting time.</p>
+	</section>
+
+	<section class="principles-footer">
+		<p>These are patterns I've seen repeated over nearly two decades.</p>
+	</section>
+</BaseLayout>
+
+<style>
+	h1 {
+		margin-top: var(--spacing-2xl);
+		background: var(--gradient-sunrise);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.subtitle {
+		font-style: italic;
+		color: var(--color-text-secondary);
+		margin-top: calc(-1 * var(--spacing-lg));
+		margin-bottom: var(--spacing-2xl);
+		font-size: var(--font-size-lg);
+	}
+
+	section {
+		margin: var(--spacing-2xl) 0;
+	}
+
+	section h2 {
+		font-size: var(--font-size-2xl);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-text-primary);
+		margin-bottom: var(--spacing-md);
+	}
+
+	section p {
+		line-height: var(--line-height-relaxed);
+		color: var(--color-text-secondary);
+		font-size: var(--font-size-lg);
+	}
+
+	.principles-footer {
+		margin-top: var(--spacing-3xl);
+		padding-top: var(--spacing-2xl);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.principles-footer p {
+		font-size: var(--font-size-base);
+		color: var(--color-text-tertiary);
+		font-style: italic;
+	}
+
+	@media (max-width: 768px) {
+		h1 {
+			font-size: var(--font-size-2xl);
+		}
+
+		.subtitle {
+			font-size: var(--font-size-base);
+		}
+
+		section h2 {
+			font-size: var(--font-size-xl);
+		}
+
+		section p {
+			font-size: var(--font-size-base);
+		}
+	}
+</style>

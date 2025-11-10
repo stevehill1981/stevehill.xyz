@@ -1,6 +1,7 @@
 ---
 title: "Retro Emulation Research"
 description: "Exploring emulator development opportunities for underserved systems on macOS, with a focus on learning and preservation"
+draft: true
 tags:
   - rust
   - emulation

@@ -1,6 +1,7 @@
 ---
 title: "Shelved - Media Collection Tracker"
 description: "A privacy-focused Rails app with Hotwire Native mobile apps for tracking books, movies, and TV shows with physical location awareness"
+draft: true
 tags:
   - rails
   - hotwire

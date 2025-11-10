@@ -1,6 +1,7 @@
 ---
 title: "Chaotic Tanx - Destructible Terrain Game"
 description: "An iOS SpriteKit prototype featuring destructible terrain, physics-based combat, and multiple weapon systems with real-time crater generation"
+draft: true
 tags:
   - swift
   - spritekit

@@ -1,6 +1,7 @@
 ---
 title: "Code Like It's 198x"
 description: "An ambitious retro programming education platform teaching vintage computer assembly programming through hands-on lessons and authentic development environments."
+featured: true
 technologies: ["Astro", "Docker", "Assembly", "Emulation"]
 status: "Early Development"
 repository: "https://github.com/stevehill1981/code198x"

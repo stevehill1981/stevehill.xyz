@@ -2,7 +2,9 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const allProjects = await getCollection('projects');
+const allProjects = await getCollection('projects', ({ data }) => {
+  return data.draft !== true;
+});
 const sortedProjects = allProjects.sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
@@ -126,9 +128,21 @@ const sortedProjects = allProjects.sort((a, b) => a.data.title.localeCompare(b.d
 		text-decoration: underline;
 	}
 	
-	@media (max-width: 640px) {
+	@media (max-width: 768px) {
+		h1 {
+			font-size: var(--font-size-2xl);
+		}
+
 		.project-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.project-title {
+			font-size: var(--font-size-lg);
+		}
+
+		.project-description {
+			font-size: var(--font-size-base);
 		}
 	}
 	

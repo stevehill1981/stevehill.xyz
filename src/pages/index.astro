@@ -3,6 +3,20 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getReadingTime } from '../utils/readingTime.js';
 
+// Rotating taglines pool
+const taglines = [
+	"From 6502 Assembly<br>to Rails 8",
+	"Building Software That Lasts<br>Since 2006",
+	"Rescuing Legacy Systems<br>Since 2006",
+	"Technical Rescuer<br>Assembly Teacher",
+	"Fixing What Others<br>Over-Engineered",
+	"Teaching Assembly Across<br>C64, ZX Spectrum, NES & Amiga",
+	"Building Boring Software<br>That Works",
+	"Sustainable Software<br>Pragmatic Engineering",
+	"Rails • Phoenix<br>6502 Assembly",
+	"Senior Engineer Specializing<br>in Technical Rescue"
+];
+
 // Get recent blog posts
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
@@ -21,8 +35,9 @@ const recentPostsWithReadingTime = await Promise.all(
 );
 
 // Get projects, sorted with featured ones first
-const allProjects = (await getCollection('projects'))
-	.sort((a, b) => {
+const allProjects = (await getCollection('projects', ({ data }) => {
+	return data.draft !== true;
+})).sort((a, b) => {
 		// Featured projects first
 		const aFeatured = a.data.featured ?? false;
 		const bFeatured = b.data.featured ?? false;
@@ -55,10 +70,8 @@ const getTechIcon = (tech: string): string => {
 				<span class="hero-title-first">Steve</span>
 				<span class="hero-title-last">Hill</span>
 			</h1>
-			<div class="hero-subtitle">
-				<p>Software Engineer</p>
-				<p>Storyteller</p>
-				<p>Explorer</p>
+			<div class="hero-tagline">
+				<p id="rotating-tagline"></p>
 			</div>
 		</div>
 	</div>
@@ -130,6 +143,12 @@ const getTechIcon = (tech: string): string => {
 	</div>
 </BaseLayout>
 
+<script define:vars={{ taglines }}>
+	// Randomly select and display a tagline on page load
+	const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
+	document.getElementById('rotating-tagline').innerHTML = randomTagline;
+</script>
+
 <style>
 	.hero {
 		padding: var(--spacing-2xl) 0;
@@ -137,9 +156,21 @@ const getTechIcon = (tech: string): string => {
 		margin-left: calc(-50vw + 50%);
 		margin-right: calc(-50vw + 50%);
 		margin-bottom: var(--spacing-2xl);
-		background: var(--gradient-sunrise-vibrant);
-		background-size: 200% 200%;
-		animation: gradient-shift 25s ease infinite;
+		/* Cycling through 8 vibrant color combinations */
+		background: linear-gradient(
+			135deg,
+			#ea580c 0%,    /* vibrant orange */
+			#e11d48 12.5%, /* vibrant rose */
+			#7c3aed 25%,   /* vibrant purple */
+			#3b82f6 37.5%, /* vibrant blue */
+			#10b981 50%,   /* vibrant emerald */
+			#f59e0b 62.5%, /* vibrant amber */
+			#a855f7 75%,   /* vibrant violet */
+			#ec4899 87.5%, /* vibrant pink */
+			#ea580c 100%   /* back to vibrant orange */
+		);
+		background-size: 400% 400%;
+		animation: gradient-cycle 120s ease-in-out infinite;
 		position: relative;
 		overflow: hidden;
 	}
@@ -162,18 +193,28 @@ const getTechIcon = (tech: string): string => {
 		right: 0;
 		bottom: 0;
 		background-image:
+			url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E"),
 			radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
 			radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
 		pointer-events: none;
 		opacity: 0.5;
 	}
 
-	@keyframes gradient-shift {
-		0%, 100% {
+	@keyframes gradient-cycle {
+		0% {
 			background-position: 0% 50%;
 		}
+		25% {
+			background-position: 100% 75%;
+		}
 		50% {
-			background-position: 100% 50%;
+			background-position: 100% 25%;
+		}
+		75% {
+			background-position: 0% 75%;
+		}
+		100% {
+			background-position: 0% 50%;
 		}
 	}
 	
@@ -189,20 +230,7 @@ const getTechIcon = (tech: string): string => {
 		z-index: 1;
 		display: flex;
 		flex-direction: column;
-
-		/* Darker gradient with no shadows */
-		background:
-			radial-gradient(circle at 20% 30%, #3d1466 0%, transparent 50%),
-			radial-gradient(circle at 80% 70%, #024a6b 0%, transparent 50%),
-			radial-gradient(circle at 50% 50%, #7d103d 0%, transparent 50%),
-			radial-gradient(circle at 10% 80%, #7c2d12 0%, transparent 50%),
-			radial-gradient(circle at 90% 20%, #064e3b 0%, transparent 50%);
-		background-size: 400% 400%;
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		color: transparent;
-		animation: pattern-shift 50s ease-in-out infinite;
+		color: rgba(0, 0, 0, 0.85);
 	}
 
 	.hero-title-first {
@@ -234,29 +262,24 @@ const getTechIcon = (tech: string): string => {
 		}
 	}
 
-	.hero-subtitle {
+	.hero-tagline {
 		font-family: 'Inter', system-ui, sans-serif;
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-xs);
 		position: relative;
 		z-index: 1;
 		text-align: right;
 		flex: 1;
 	}
 
-	.hero-subtitle p {
+	.hero-tagline p {
 		font-size: var(--font-size-3xl);
-		font-weight: 900;
+		font-weight: 700;
 		margin: 0;
+		margin-left: auto;
 		text-transform: uppercase;
-
-		/* Darker ocean gradient */
-		background: linear-gradient(135deg, #1e40af 0%, #0369a1 100%);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		color: transparent;
+		letter-spacing: 0.02em;
+		max-width: 600px;
+		line-height: var(--line-height-tight);
+		color: rgba(0, 0, 0, 0.85);
 	}
 
 	.hero-links {
@@ -344,20 +367,13 @@ const getTechIcon = (tech: string): string => {
 		animation: fadeIn var(--transition-slow) ease-out;
 	}
 
-	@media (max-width: 968px) {
-		.home-content-grid {
-			grid-template-columns: 1fr;
-			gap: var(--spacing-xl);
-		}
-	}
-	
 	.section-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
 		margin-bottom: var(--spacing-lg);
 	}
-	
+
 	.section-header h2 {
 		font-size: var(--font-size-4xl);
 		font-weight: 900;
@@ -387,11 +403,11 @@ const getTechIcon = (tech: string): string => {
 		font-weight: var(--font-weight-medium);
 		transition: transform var(--transition-fast);
 	}
-	
+
 	.view-all:hover {
 		transform: translateX(4px);
 	}
-	
+
 	/* Recent posts */
 	.recent-posts {
 		display: flex;
@@ -461,7 +477,7 @@ const getTechIcon = (tech: string): string => {
 		border-image: var(--gradient-tropical) 1;
 		box-shadow: 0 0 20px rgba(236, 72, 153, 0.3), var(--shadow-md);
 	}
-	
+
 	.post-meta {
 		display: flex;
 		gap: var(--spacing-sm);
@@ -469,40 +485,40 @@ const getTechIcon = (tech: string): string => {
 		color: var(--color-text-tertiary);
 		margin-bottom: var(--spacing-xs);
 	}
-	
+
 	.reading-time {
 		color: var(--color-text-muted);
 	}
-	
+
 	.post-title {
 		font-size: var(--font-size-xl);
 		margin: 0 0 var(--spacing-sm) 0;
 		line-height: var(--line-height-tight);
 	}
-	
+
 	.post-title a {
 		color: var(--color-text-primary);
 		text-decoration: none;
 		font-weight: var(--font-weight-semibold);
 	}
-	
+
 	.post-title a:hover {
 		color: var(--color-primary);
 	}
-	
+
 	.post-excerpt {
 		color: var(--color-text-secondary);
 		line-height: var(--line-height-relaxed);
 		margin: 0;
 	}
-	
+
 	/* Projects grid */
 	.projects-grid {
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-lg);
 	}
-	
+
 	.project-card-home {
 		background: var(--color-surface);
 		border: 2px solid var(--color-border);
@@ -527,7 +543,7 @@ const getTechIcon = (tech: string): string => {
 	.project-card-home:has(.project-gradient[data-project="PuTTY Themer"]) {
 		border-color: #667eea;
 	}
-	
+
 	.project-card-home:hover {
 		transform: translateY(-4px) scale(1.02);
 		box-shadow: var(--shadow-lg);
@@ -549,7 +565,7 @@ const getTechIcon = (tech: string): string => {
 	.project-card-home:has(.project-gradient[data-project="PuTTY Themer"]):hover {
 		filter: drop-shadow(0 8px 24px rgba(102, 126, 234, 0.4));
 	}
-	
+
 	.project-header {
 		padding: var(--spacing-lg);
 		color: white;
@@ -625,31 +641,31 @@ const getTechIcon = (tech: string): string => {
 	.project-content {
 		padding: var(--spacing-lg);
 	}
-	
+
 	.project-content p {
 		color: var(--color-text-secondary);
 		line-height: var(--line-height-relaxed);
 		margin: 0 0 var(--spacing-md) 0;
 		font-size: var(--font-size-base);
 	}
-	
+
 	.project-links {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	
+
 	.project-link {
 		font-size: var(--font-size-sm);
 		color: var(--color-primary);
 		font-weight: var(--font-weight-medium);
 		transition: transform var(--transition-fast);
 	}
-	
+
 	.project-link:hover {
 		transform: translateX(4px);
 	}
-	
+
 	.github-link {
 		display: inline-flex;
 		align-items: center;
@@ -662,29 +678,97 @@ const getTechIcon = (tech: string): string => {
 		border-radius: var(--radius-md);
 		transition: all var(--transition-fast);
 	}
-	
+
 	.github-link:hover {
 		color: var(--color-text-primary);
 		border-color: var(--color-border-hover);
 		background: var(--color-bg-tertiary);
 	}
-	
-	@media (max-width: 640px) {
-		.hero-title {
-			font-size: var(--font-size-4xl);
+
+	/* Mobile responsive styles */
+	@media (max-width: 768px) {
+		/* Layout adjustments */
+		.home-content-grid {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-xl);
 		}
 
-		.hero-subtitle {
+		/* Hero section */
+		.hero {
+			padding: var(--spacing-xl) 0;
+		}
+
+		.hero-content {
+			flex-direction: column;
+			gap: var(--spacing-lg);
+			text-align: center;
+		}
+
+		.hero-title {
+			text-align: center;
+		}
+
+		.hero-title-first {
+			font-size: clamp(1.5rem, 8vw, 2.5rem);
+		}
+
+		.hero-title-last {
+			font-size: clamp(3rem, 20vw, 6rem);
+		}
+
+		.hero-tagline {
+			text-align: center;
+		}
+
+		.hero-tagline p {
+			font-size: var(--font-size-xl);
+			margin-left: 0;
+			margin-right: 0;
+			max-width: 100%;
+		}
+
+		/* Section headers */
+		.section-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--spacing-xs);
+		}
+
+		.section-header h2 {
+			font-size: var(--font-size-3xl);
+		}
+
+		/* Post cards */
+		.post-card {
+			padding: var(--spacing-md);
+		}
+
+		.post-title {
 			font-size: var(--font-size-lg);
 		}
 
-		.hero-links {
-			font-size: var(--font-size-base);
+		/* Project cards */
+		.project-header {
+			padding: var(--spacing-md);
 		}
 
-		.section-header {
+		.project-header h3 {
+			font-size: var(--font-size-lg);
+		}
+
+		.project-content {
+			padding: var(--spacing-md);
+		}
+
+		.project-links {
 			flex-direction: column;
-			gap: var(--spacing-xs);
+			gap: var(--spacing-sm);
+			align-items: flex-start;
+		}
+
+		.github-link {
+			width: 100%;
+			justify-content: center;
 		}
 	}
 	

@@ -1,6 +1,7 @@
 ---
 title: "Bitshelf - ROM Collection Manager"
 description: "A modern macOS ROM organizer with TOSEC/MAME support, archive handling, and emulator integration for retrogaming collections"
+draft: true
 tags:
   - rust
   - tauri
