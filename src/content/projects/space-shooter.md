@@ -2,7 +2,7 @@
 title: 'Space Shooter'
 description: 'A simple space shooter game developed in Unity.'
 draft: true
-githubUrl: 'https://github.com/stevehill1981/Space-Shooter'
+github: 'https://github.com/stevehill1981/Space-Shooter'
 technologies: ["Unity", "C#"]
 ---
 

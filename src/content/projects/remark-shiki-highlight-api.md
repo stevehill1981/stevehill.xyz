@@ -1,6 +1,6 @@
 ---
 title: "remark-shiki-highlight-api"
-description: "Remark plugin for high-performance syntax highlighting in Markdown using the CSS Highlights API with Shiki"
+description: "Brings CSS Highlights API performance to your Markdown workflow. Perfect for technical blogs drowning in code examples - this Remark plugin delivers the same 90% DOM reduction without touching your build pipeline. Astro and Next.js ready."
 tags:
   - typescript
   - npm

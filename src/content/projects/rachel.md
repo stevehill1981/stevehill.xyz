@@ -1,13 +1,12 @@
 ---
 title: "Rachel - Strategic Card Game"
-description: "A Phoenix LiveView implementation of a beloved family card game with AI opponents, real-time multiplayer, and beautiful animations"
+description: "A 30-year-old family card game rebuilt with Phoenix LiveView. Features strategic AI opponents, real-time multiplayer for 4-8 players, and three distinct visual themes. Proves Elixir isn't just for messaging systems - it's perfect for complex, stateful games."
 tags:
   - elixir
   - phoenix
   - liveview
   - game-development
   - real-time
-github: "https://github.com/stevehill1981/rachel"
 demo: "https://rachel.stevehill.xyz"
 featured: true
 technologies:
@@ -142,9 +141,124 @@ The modular architecture supports exciting future features:
 - **OTP GenServers** - Rock-solid game state management
 - **ExUnit** - Comprehensive test coverage (80%+ on game logic)
 
+## 🌌 The Rachel Multiverse
+
+The Phoenix LiveView implementation you see above? That's just the **beginning**.
+
+### The Vision: One Game, Every Platform
+
+Rachel is being developed as a **universal multiverse card game** - the same strategic gameplay implemented on every computing platform imaginable, all connected through a universal binary protocol.
+
+**Planned platform count: 200+**
+
+From vintage computers:
+- Commodore 64 (1982) - 6502 assembly, VIC-II graphics
+- ZX Spectrum (1982) - Z80 assembly, 48KB RAM
+- MS-DOS (1981) - x86 assembly, VGA graphics
+- Apple II (1977) - 6502 assembly, 1MHz processor
+
+To modern systems:
+- iOS/Android native apps
+- Desktop applications (Windows/Mac/Linux)
+- Terminal versions (ncurses)
+- Smart TV implementations
+- Even calculators, embedded systems, and smart appliances
+
+**The truly absurd**: If it computes, it can play Rachel. We're talking mainframes, game consoles, handheld devices, PDAs, routers, oscilloscopes, and yes - even smart fridges.
+
+### The Universal Protocol
+
+At the heart of the multiverse is the **Rachel Universal Binary Protocol (RUBP)** - a 64-byte fixed message format designed to work everywhere:
+
+```
+Bytes 0-3:   Magic Header "RACH" [0x52 0x41 0x43 0x48]
+Byte  4:     Protocol Version [0x01]
+Byte  5:     Message Type (HELLO, PLAY_CARD, GAME_STATE, etc.)
+Bytes 6-7:   Sequence Number
+Bytes 8-9:   Player ID
+Bytes 10-11: Game ID
+Bytes 12-15: Timestamp
+Bytes 16-63: Payload (48 bytes, message-specific)
+```
+
+**Design principles:**
+- **Minimal size** - Fits in <1KB buffers (works on systems with severely limited memory)
+- **Fixed layout** - No parsing complexity, works on 8-bit systems
+- **Transport agnostic** - TCP/IP, serial connections, modems (300 baud to 5G)
+- **Big-endian** - Universal byte order for maximum compatibility
+
+### Cross-Platform Play
+
+This isn't about nostalgia. It's about creating **impossible matchups**:
+
+- A **Commodore 64** (1982, 1MHz CPU, 64KB RAM) battles an **iPhone 15** (2023, 3.46GHz CPU, 8GB RAM)
+- A **ZX Spectrum** connected via RS-232 modem plays against a **Tesla's infotainment system**
+- A **TI-83 calculator** competes with **modern gaming consoles**
+
+Same game. Same rules. Different eras. Universal protocol.
+
+### The Development Philosophy
+
+**"If it computes, it plays Rachel."**
+
+Each platform implementation:
+- **Respects historical constraints** - C64 version uses authentic 6502 assembly and VIC-II sprites
+- **Follows canonical rules** - GAME_RULES.md is sacred, no platform gets creative with rules
+- **Works offline** - Every platform has full AI opponents for single-player
+- **Connects online** - TCP-capable platforms join the multiverse server
+
+**Why do this?**
+- Preserve computing history through playable software
+- Teach assembly programming across multiple architectures
+- Create the most comprehensive cross-platform project ever attempted
+- Unite every programming community through one shared game
+- Because someone should, and nobody else is crazy enough
+
+### Current Status
+
+**✅ Complete:**
+- Phoenix LiveView web implementation (you're looking at it)
+- Comprehensive test suite validating game rules
+- AI system with strategic decision-making
+- Theme system with visual polish
+
+**🚧 In Progress:**
+- Finalizing RUBP protocol specification
+- Setting up unified repository structure
+- Building protocol server infrastructure
+
+**📋 Planned:**
+- First vintage platform implementations (DOS, C64, ZX Spectrum)
+- Protocol server with matchmaking
+- Community contribution framework
+- Museum partnerships for vintage hardware testing
+
+**⏰ Timeline:**
+- Started: December 2024
+- Estimated completion: Heat death of universe
+- Current status: Lost our minds, found our purpose
+
+### The Manifesto
+
+From the [PROJECT_MANIFESTO.md](https://github.com/stevehill1981/Rachel):
+
+> *"They said it couldn't be done.*
+> *They said it shouldn't be done.*
+> *They were probably right.*
+> *We're doing it anyway.*
+>
+> *From 1 MHz to quantum qubits.*
+> *From punch cards to neural implants.*
+> *From sanity to madness.*
+> *From madness to legend."*
+
+See the full platform target list, technical specifications, and documentation at the [Rachel GitHub organization](https://github.com/stevehill1981/Rachel).
+
+---
+
 ## 🎲 Why Build Rachel?
 
-This project showcases how Elixir and Phoenix LiveView excel at real-time, stateful applications. It demonstrates:
+The **Phoenix LiveView version** showcases how Elixir excels at real-time, stateful applications:
 
 - **Complex business logic** implementation with comprehensive testing
 - **Real-time multiplayer** without the complexity of traditional WebSocket management
@@ -152,6 +266,14 @@ This project showcases how Elixir and Phoenix LiveView excel at real-time, state
 - **Graceful failure handling** in distributed systems
 - **Modern web UX** with traditional gaming nostalgia
 
-Rachel proves that Elixir isn't just for messaging systems and APIs - it's perfect for building engaging, interactive applications that need to handle complex state and real-time updates reliably.
+The **Rachel Multiverse** demonstrates something different:
 
-The game captures 30 years of family tradition in a modern, accessible format while serving as a technical showcase of Phoenix LiveView's capabilities for building sophisticated real-time applications.
+- **Historical preservation** - Making computing history interactive and accessible
+- **Cross-platform expertise** - Assembly on multiple architectures (6502, Z80, 68K, x86)
+- **Protocol design** - Building communication systems that work on everything
+- **Technical ambition** - Solving problems most developers wouldn't attempt
+- **Educational mission** - Teaching through implementation across 50 years of computing
+
+Rachel proves that you can capture 30 years of family tradition in a modern, accessible format **and** use it as a vehicle for preserving computing history, teaching low-level programming, and connecting every platform ever created through one universal game.
+
+It's technical showcase meets historical preservation meets creative insanity. And it's working.

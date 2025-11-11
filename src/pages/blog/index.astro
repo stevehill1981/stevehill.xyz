@@ -7,15 +7,12 @@ const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 // Get reading times for all posts
-const postsWithReadingTime = await Promise.all(
-	sortedPosts.map(async (post) => {
-		const { body } = await post.render();
-		return {
-			...post,
-			readingTime: getReadingTime(body)
-		};
-	})
-);
+const postsWithReadingTime = sortedPosts.map((post) => {
+	return {
+		...post,
+		readingTime: getReadingTime(post.body)
+	};
+});
 ---
 
 <BaseLayout pageTitle="Blog" description="Steve Hill's blog - thoughts on software engineering, technology, and more">

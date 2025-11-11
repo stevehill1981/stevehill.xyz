@@ -1,6 +1,6 @@
 ---
 title: "shiki-highlight-api"
-description: "High-performance syntax highlighting using the CSS Highlights API instead of span elements, dramatically improving rendering performance"
+description: "Born from frustration with bloated syntax highlighting, this library slashes DOM nodes by 90% using the CSS Highlights API. What used to take 180KB and thousands of spans now takes 45KB and renders in a fraction of the time."
 tags:
   - typescript
   - npm

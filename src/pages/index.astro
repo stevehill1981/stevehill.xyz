@@ -21,18 +21,15 @@ const taglines = [
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
 	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-	.slice(0, 5);
+	.slice(0, 7);
 
 // Get reading times for recent posts
-const recentPostsWithReadingTime = await Promise.all(
-	recentPosts.map(async (post) => {
-		const { body } = await post.render();
-		return {
-			...post,
-			readingTime: getReadingTime(body)
-		};
-	})
-);
+const recentPostsWithReadingTime = recentPosts.map((post) => {
+	return {
+		...post,
+		readingTime: getReadingTime(post.body)
+	};
+});
 
 // Get projects, sorted with featured ones first
 const allProjects = (await getCollection('projects', ({ data }) => {
@@ -85,20 +82,20 @@ const getTechIcon = (tech: string): string => {
 
 			<div class="recent-posts">
 				{recentPostsWithReadingTime.map((post) => (
-					<article class="post-card">
-						<div class="post-meta">
-							<time>{post.data.pubDate.toLocaleDateString('en-US', {
-								year: 'numeric',
-								month: 'short',
-								day: 'numeric'
-							})}</time>
-							<span class="reading-time">{post.readingTime} min read</span>
-						</div>
-						<h3 class="post-title">
-							<a href={`/blog/${post.slug}`}>{post.data.title}</a>
-						</h3>
-						<p class="post-excerpt">{post.data.excerpt}</p>
-					</article>
+					<a href={`/blog/${post.slug}`} class="post-card-link">
+						<article class="post-card">
+							<div class="post-meta">
+								<time>{post.data.pubDate.toLocaleDateString('en-US', {
+									year: 'numeric',
+									month: 'short',
+									day: 'numeric'
+								})}</time>
+								<span class="reading-time">{post.readingTime} min read</span>
+							</div>
+							<h3 class="post-title">{post.data.title}</h3>
+							<p class="post-excerpt">{post.data.excerpt}</p>
+						</article>
+					</a>
 				))}
 			</div>
 		</section>
@@ -111,32 +108,33 @@ const getTechIcon = (tech: string): string => {
 
 			<div class="projects-grid">
 				{allProjects.filter(project => project.data.featured).map((project) => (
-					<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
-						<div class="project-header project-gradient" data-project={project.data.title}>
-							<h3>{project.data.title}</h3>
-							{project.data.technologies && project.data.technologies.length > 0 && (
-								<div class="tech-icons">
-									{project.data.technologies.slice(0, 3).map((tech) => (
-										<span class="tech-badge" title={tech}>{tech.charAt(0).toUpperCase()}</span>
-									))}
-								</div>
-							)}
-						</div>
-						<div class="project-content">
-							<p>{project.data.description}</p>
-							<div class="project-links">
-								<a href={`/projects/${project.slug}`} class="project-link">Learn more →</a>
-								{project.data.github && (
-									<a href={project.data.github} target="_blank" rel="noopener" class="github-link">
-										<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-											<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
-										</svg>
-										GitHub
-									</a>
+					<a href={`/projects/${project.slug}`} class="project-card-link">
+						<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
+							<div class="project-header project-gradient" data-project={project.data.title}>
+								<h3>{project.data.title}</h3>
+								{project.data.technologies && project.data.technologies.length > 0 && (
+									<div class="tech-icons">
+										{project.data.technologies.slice(0, 3).map((tech) => (
+											<span class="tech-badge" title={tech}>{tech.charAt(0).toUpperCase()}</span>
+										))}
+									</div>
 								)}
 							</div>
-						</div>
-					</article>
+							<div class="project-content">
+								<p>{project.data.description}</p>
+								{project.data.github && (
+									<div class="project-links">
+										<a href={project.data.github} target="_blank" rel="noopener" class="github-link" onclick="event.stopPropagation()">
+											<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+												<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
+											</svg>
+											View on GitHub
+										</a>
+									</div>
+								)}
+							</div>
+						</article>
+					</a>
 				))}
 			</div>
 		</section>
@@ -344,7 +342,6 @@ const getTechIcon = (tech: string): string => {
 	.social-link:hover {
 		background: rgba(255, 255, 255, 0.25);
 		color: white;
-		transform: translateY(-2px);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 		text-decoration: none;
 		border-color: rgba(255, 255, 255, 0.3);
@@ -401,11 +398,11 @@ const getTechIcon = (tech: string): string => {
 		font-size: var(--font-size-sm);
 		color: var(--color-primary);
 		font-weight: var(--font-weight-medium);
-		transition: transform var(--transition-fast);
+		transition: color var(--transition-fast);
 	}
 
 	.view-all:hover {
-		transform: translateX(4px);
+		color: var(--color-primary-hover);
 	}
 
 	/* Recent posts */
@@ -415,6 +412,13 @@ const getTechIcon = (tech: string): string => {
 		gap: var(--spacing-lg);
 	}
 
+	.post-card-link {
+		text-decoration: none;
+		display: block;
+		color: inherit;
+		cursor: pointer;
+	}
+
 	.post-card {
 		padding: var(--spacing-lg);
 		background: var(--color-surface);
@@ -422,60 +426,77 @@ const getTechIcon = (tech: string): string => {
 		border-left: 6px solid;
 		border-radius: var(--radius-lg);
 		transition: all var(--transition-base);
+		cursor: pointer;
 	}
 
 	/* Rotate through gradient palettes for each post card */
-	.post-card:nth-child(1) {
+	.post-card-link:nth-child(1) .post-card {
 		border-image: var(--gradient-sunrise) 1;
 	}
 
-	.post-card:nth-child(2) {
+	.post-card-link:nth-child(2) .post-card {
 		border-image: var(--gradient-ocean) 1;
 	}
 
-	.post-card:nth-child(3) {
+	.post-card-link:nth-child(3) .post-card {
 		border-image: var(--gradient-sunset) 1;
 	}
 
-	.post-card:nth-child(4) {
+	.post-card-link:nth-child(4) .post-card {
 		border-image: var(--gradient-forest) 1;
 	}
 
-	.post-card:nth-child(5) {
+	.post-card-link:nth-child(5) .post-card {
 		border-image: var(--gradient-tropical) 1;
+	}
+
+	.post-card-link:nth-child(6) .post-card {
+		border-image: var(--gradient-cosmic) 1;
+	}
+
+	.post-card-link:nth-child(7) .post-card {
+		border-image: var(--gradient-neon) 1;
 	}
 
 	.post-card:hover {
-		transform: translateY(-2px);
-		border: 2px solid;
-		border-left-width: 6px;
-		border-radius: var(--radius-lg);
+		outline: 2px solid;
+		outline-offset: -1px;
 	}
 
 	/* Add gradient-specific hover glow effects */
-	.post-card:nth-child(1):hover {
-		border-image: var(--gradient-sunrise) 1;
+	.post-card-link:nth-child(1) .post-card:hover {
+		outline-color: #fb923c;
 		box-shadow: 0 0 20px rgba(251, 146, 60, 0.3), var(--shadow-md);
 	}
 
-	.post-card:nth-child(2):hover {
-		border-image: var(--gradient-ocean) 1;
+	.post-card-link:nth-child(2) .post-card:hover {
+		outline-color: #3b82f6;
 		box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), var(--shadow-md);
 	}
 
-	.post-card:nth-child(3):hover {
-		border-image: var(--gradient-sunset) 1;
+	.post-card-link:nth-child(3) .post-card:hover {
+		outline-color: #8b5cf6;
 		box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), var(--shadow-md);
 	}
 
-	.post-card:nth-child(4):hover {
-		border-image: var(--gradient-forest) 1;
+	.post-card-link:nth-child(4) .post-card:hover {
+		outline-color: #10b981;
 		box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), var(--shadow-md);
 	}
 
-	.post-card:nth-child(5):hover {
-		border-image: var(--gradient-tropical) 1;
+	.post-card-link:nth-child(5) .post-card:hover {
+		outline-color: #ec4899;
 		box-shadow: 0 0 20px rgba(236, 72, 153, 0.3), var(--shadow-md);
+	}
+
+	.post-card-link:nth-child(6) .post-card:hover {
+		outline-color: #8b5cf6;
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), var(--shadow-md);
+	}
+
+	.post-card-link:nth-child(7) .post-card:hover {
+		outline-color: #06b6d4;
+		box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), var(--shadow-md);
 	}
 
 	.post-meta {
@@ -494,15 +515,11 @@ const getTechIcon = (tech: string): string => {
 		font-size: var(--font-size-xl);
 		margin: 0 0 var(--spacing-sm) 0;
 		line-height: var(--line-height-tight);
-	}
-
-	.post-title a {
 		color: var(--color-text-primary);
-		text-decoration: none;
 		font-weight: var(--font-weight-semibold);
 	}
 
-	.post-title a:hover {
+	.post-card-link:hover .post-title {
 		color: var(--color-primary);
 	}
 
@@ -519,12 +536,20 @@ const getTechIcon = (tech: string): string => {
 		gap: var(--spacing-lg);
 	}
 
+	.project-card-link {
+		text-decoration: none;
+		display: block;
+		color: inherit;
+		cursor: pointer;
+	}
+
 	.project-card-home {
 		background: var(--color-surface);
 		border: 2px solid var(--color-border);
 		border-radius: var(--radius-lg);
 		overflow: hidden;
 		transition: all var(--transition-base);
+		cursor: pointer;
 	}
 
 	/* Match border colors to gradient headers */
@@ -545,7 +570,6 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.project-card-home:hover {
-		transform: translateY(-4px) scale(1.02);
 		box-shadow: var(--shadow-lg);
 	}
 
@@ -611,7 +635,6 @@ const getTechIcon = (tech: string): string => {
 
 	.tech-badge:hover {
 		background: rgba(255, 255, 255, 1);
-		transform: scale(1.15);
 		color: rgba(0, 0, 0, 1);
 	}
 
@@ -651,22 +674,13 @@ const getTechIcon = (tech: string): string => {
 
 	.project-links {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
 	}
 
-	.project-link {
-		font-size: var(--font-size-sm);
-		color: var(--color-primary);
-		font-weight: var(--font-weight-medium);
-		transition: transform var(--transition-fast);
-	}
-
-	.project-link:hover {
-		transform: translateX(4px);
-	}
-
 	.github-link {
+		position: relative;
+		z-index: 1;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.375rem;
@@ -834,11 +848,6 @@ const getTechIcon = (tech: string): string => {
 		.project-card-home,
 		.project-link {
 			transition: none;
-		}
-
-		.social-link:hover,
-		.project-card-home:hover {
-			transform: none;
 		}
 	}
 </style>

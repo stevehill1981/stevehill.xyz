@@ -27,15 +27,12 @@ export async function getStaticPaths() {
 const { tag, posts } = Astro.props;
 
 // Get reading times for all posts
-const postsWithReadingTime = await Promise.all(
-	posts.map(async (post) => {
-		const { body } = await post.render();
-		return {
-			...post,
-			readingTime: getReadingTime(body)
-		};
-	})
-);
+const postsWithReadingTime = posts.map((post) => {
+	return {
+		...post,
+		readingTime: getReadingTime(post.body)
+	};
+});
 ---
 
 <BaseLayout pageTitle={`Tag: ${tag}`} description={`Blog posts tagged with "${tag}"`}>

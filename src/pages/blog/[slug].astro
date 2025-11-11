@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import { getReadingTime } from '../../utils/readingTime.js';
 import { getRelatedPosts } from '../../utils/relatedPosts.js';
 import { getSeriesPosts, getSeriesNavigation } from '../../utils/series.js';
@@ -26,8 +27,8 @@ export async function getStaticPaths() {
 }
 
 const { entry, prevPost, nextPost, relatedPosts, seriesNavigation } = Astro.props;
-const { Content, body } = await entry.render();
-const readingTime = getReadingTime(body);
+const { Content } = await entry.render();
+const readingTime = getReadingTime(entry.body);
 ---
 
 <BaseLayout pageTitle={entry.data.title} description={entry.data.excerpt} type="article">
@@ -86,6 +87,8 @@ const readingTime = getReadingTime(body);
 				<div class="content">
 					<Content />
 				</div>
+
+				<ShareButtons title={entry.data.title} />
 			</div>
 
 			<aside class="post-sidebar">
@@ -130,9 +133,8 @@ const readingTime = getReadingTime(body);
 					<div class="sidebar-section related-posts">
 						<h3>Related Posts</h3>
 						<div class="related-posts-list">
-							{relatedPosts.map(async (relatedPost) => {
-								const { body: relatedBody } = await relatedPost.render();
-								const relatedReadingTime = getReadingTime(relatedBody);
+							{relatedPosts.map((relatedPost) => {
+								const relatedReadingTime = getReadingTime(relatedPost.body);
 
 								return (
 									<article class="related-post-card">

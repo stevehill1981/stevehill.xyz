@@ -117,15 +117,15 @@ const recentProjects = allProjects
   }
 
   .about-content a {
-    color: var(--color-text-primary);
+    color: var(--color-primary);
     text-decoration: underline;
     text-underline-offset: 0.2em;
     transition: all var(--transition-fast);
   }
 
   .about-content a:hover {
-    color: var(--color-pink);
-    text-decoration-color: var(--color-pink);
+    color: var(--color-primary-hover);
+    text-decoration-color: var(--color-primary-hover);
   }
 
   em {
@@ -183,24 +183,22 @@ const recentProjects = allProjects
   }
 
   .sidebar-post-card:hover {
-    transform: translateY(-2px);
-    border: 1px solid;
-    border-left-width: 4px;
-    border-radius: var(--radius-md);
+    outline: 2px solid;
+    outline-offset: -1px;
   }
 
   .sidebar-post-card:nth-child(1):hover {
-    border-image: var(--gradient-sunrise) 1;
+    outline-color: #fb923c;
     box-shadow: 0 0 15px rgba(251, 146, 60, 0.25), var(--shadow-sm);
   }
 
   .sidebar-post-card:nth-child(2):hover {
-    border-image: var(--gradient-ocean) 1;
+    outline-color: #3b82f6;
     box-shadow: 0 0 15px rgba(59, 130, 246, 0.25), var(--shadow-sm);
   }
 
   .sidebar-post-card:nth-child(3):hover {
-    border-image: var(--gradient-sunset) 1;
+    outline-color: #8b5cf6;
     box-shadow: 0 0 15px rgba(139, 92, 246, 0.25), var(--shadow-sm);
   }
 
@@ -218,7 +216,7 @@ const recentProjects = allProjects
   }
 
   .sidebar-post-title a:hover {
-    color: var(--color-pink);
+    color: var(--color-primary);
   }
 
   /* Sidebar project cards */
@@ -232,9 +230,8 @@ const recentProjects = allProjects
   }
 
   .sidebar-project-card:hover {
-    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-    border-color: var(--color-pink);
+    border-color: var(--color-primary);
   }
 
   .sidebar-project-title {
@@ -251,7 +248,7 @@ const recentProjects = allProjects
   }
 
   .sidebar-project-title a:hover {
-    color: var(--color-pink);
+    color: var(--color-primary);
   }
 
   .sidebar-link {
@@ -264,7 +261,7 @@ const recentProjects = allProjects
   }
 
   .sidebar-link:hover {
-    color: var(--color-pink);
+    color: var(--color-primary);
   }
 
   @media (max-width: 768px) {

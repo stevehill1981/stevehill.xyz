@@ -1,6 +1,6 @@
 ---
 title: "NetNodes Platform Development"
-description: "Freelance full-stack development for a multi-service access control platform, leading infrastructure migrations and enterprise-grade Rails development."
+description: "Leading development on a 15+ service access control platform. Orchestrated zero-downtime migrations from legacy servers to Docker to Kubernetes, upgraded PostgreSQL 11→17 with TimescaleDB, and built the automation to keep it all running. Enterprise Rails at scale."
 technologies: ["Ruby on Rails", "Python", "TimescaleDB", "PostgreSQL", "Redis", "Kubernetes", "Docker", "Ansible"]
 status: "Ongoing"
 priority: 1
