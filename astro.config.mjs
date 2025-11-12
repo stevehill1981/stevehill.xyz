@@ -8,6 +8,9 @@ export default defineConfig({
   site: 'https://stevehill.xyz',
   output: 'static',
   integrations: [sitemap()],
+  image: {
+    service: { entrypoint: 'astro/assets/services/noop' }
+  },
   markdown: {
     syntaxHighlight: false,
     remarkPlugins: [
@@ -15,12 +18,5 @@ export default defineConfig({
         theme: 'dark-plus'
       }]
     ]
-  },
-  vite: {
-    build: {
-      rollupOptions: {
-        external: ['sharp']
-      }
-    }
   }
 });
