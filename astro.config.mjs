@@ -15,5 +15,12 @@ export default defineConfig({
         theme: 'dark-plus'
       }]
     ]
+  },
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['sharp']
+      }
+    }
   }
 });
