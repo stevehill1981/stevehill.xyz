@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import remarkShikiHighlightApi from 'remark-shiki-highlight-api';
+import { remarkHighlightApi } from 'remark-shiki-highlight-api';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +11,7 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
     remarkPlugins: [
-      [remarkShikiHighlightApi, {
+      [remarkHighlightApi, {
         theme: 'dark-plus'
       }]
     ]
