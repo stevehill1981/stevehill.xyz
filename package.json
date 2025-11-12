@@ -14,7 +14,7 @@
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.1",
     "astro": "^5.10.2",
-    "remark-shiki-highlight-api": "^0.3.0"
+    "remark-shiki-highlight-api": "^0.2.1"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
