@@ -533,6 +533,14 @@ const readingTime = getReadingTime(entry.body);
 		padding-right: 1.25rem;
 	}
 
+	.content :global(img) {
+		max-width: 100%;
+		height: auto;
+		border-radius: var(--radius-md);
+		margin: var(--spacing-lg) 0;
+		box-shadow: var(--shadow-md);
+	}
+
 	.content :global(blockquote) {
 		border-left: 4px solid var(--color-primary);
 		margin: var(--spacing-lg) 0;
