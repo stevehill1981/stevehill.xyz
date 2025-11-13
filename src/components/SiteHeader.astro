@@ -4,7 +4,10 @@ const currentPath = Astro.url.pathname;
 ---
 <header style="view-transition-name: site-header;">
   <nav class="nav-container">
-    <a href="/" class="site-title" aria-label="Home">Steve Hill</a>
+    <a href="/" class="site-title" aria-label="Home">
+      <span class="site-title-first">STEVE</span>
+      <span class="site-title-last">HILL</span>
+    </a>
     
     <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
       <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -125,15 +128,24 @@ const currentPath = Astro.url.pathname;
   }
   
   .site-title {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-weight: var(--font-weight-bold);
+    font-family: 'Montserrat', system-ui, sans-serif;
     font-size: 1.25rem;
     letter-spacing: -0.02em;
     color: var(--color-text-primary);
     text-decoration: none;
     transition: color 0.2s;
+    display: flex;
+    gap: 0.35em;
   }
-  
+
+  .site-title-first {
+    font-weight: 400;
+  }
+
+  .site-title-last {
+    font-weight: 900;
+  }
+
   .site-title:hover {
     color: var(--color-primary);
   }
@@ -161,13 +173,13 @@ const currentPath = Astro.url.pathname;
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Montserrat', system-ui, sans-serif;
   }
-  
+
   .nav-links a {
     color: var(--color-text-secondary);
     text-decoration: none;
-    font-weight: var(--font-weight-medium);
+    font-weight: 500;
     padding: 0.5rem 0.75rem;
     border-radius: var(--radius-md);
     transition: all 0.2s;
