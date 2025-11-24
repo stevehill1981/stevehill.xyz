@@ -11,7 +11,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.12",
+    "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.4.1",
     "astro": "^5.10.2",
     "remark-shiki-highlight-api": "^0.3.4"
