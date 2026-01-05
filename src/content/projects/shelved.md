@@ -7,7 +7,6 @@ tags:
   - mobile
   - privacy
   - tracking
-github: "https://github.com/stevehill1981/Shelved"
 featured: false
 technologies:
   - rails

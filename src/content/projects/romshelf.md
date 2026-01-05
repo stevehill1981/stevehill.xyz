@@ -8,7 +8,7 @@ tags:
   - typescript
   - gaming
   - desktop-app
-github: "https://github.com/stevehill1981/Romshelf"
+github: "https://github.com/romshelf"
 featured: false
 technologies:
   - rust

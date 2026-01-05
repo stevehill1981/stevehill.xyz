@@ -117,4 +117,4 @@ Now I'm building it. The tool I always wanted - and learning Rust along the way.
 
 ---
 
-*Romshelf is in active development. The codebase is at [github.com/stevehill1981/Romshelf](https://github.com/stevehill1981/Romshelf).*
+*Romshelf is in active development. The codebase is at [github.com/romshelf](https://github.com/romshelf).*
