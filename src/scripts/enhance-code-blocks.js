@@ -1,17 +1,19 @@
 export function enhanceCodeBlocks() {
-  const codeBlocks = document.querySelectorAll('pre.astro-code');
-  
+  // Support both astro-code (standard Shiki) and shiki (CSS Highlights API)
+  const codeBlocks = document.querySelectorAll('pre.astro-code, pre.shiki');
+
   codeBlocks.forEach((block) => {
     // Check if already enhanced
-    if (block.querySelector('.code-toolbar')) return;
-    
+    if (block.parentElement?.classList.contains('enhanced-code-block')) return;
+
     // Create toolbar
     const toolbar = document.createElement('div');
     toolbar.className = 'code-toolbar';
-    
-    // Get language from class
+
+    // Get language from class or data attribute
     const langMatch = block.className.match(/language-(\w+)/);
-    const lang = langMatch ? langMatch[1] : 'text';
+    const dataLang = block.dataset.language;
+    const lang = langMatch ? langMatch[1] : (dataLang || 'code');
     
     // Create language label
     const langLabel = document.createElement('span');
@@ -31,7 +33,9 @@ export function enhanceCodeBlocks() {
     `;
     
     copyButton.addEventListener('click', async () => {
-      const code = block.querySelector('code')?.textContent || '';
+      // Get code content - handle both regular code elements and shiki structure
+      const codeElement = block.querySelector('code');
+      const code = codeElement?.textContent || block.textContent || '';
       
       try {
         await navigator.clipboard.writeText(code);
