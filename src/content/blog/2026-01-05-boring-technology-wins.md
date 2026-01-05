@@ -1,6 +1,6 @@
 ---
 title: "Boring Technology Wins"
-pubDate: 2025-01-05
+pubDate: 2026-01-05
 excerpt: "GraphQL layers to paper over communication problems. Serverless costs hidden by AWS credits. Fashionable rewrites that corrupt production data. New tech promises elegance but delivers complexity most teams can't sustain."
 tags:
   - architecture
