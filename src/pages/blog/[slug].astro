@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import { getReadingTime } from '../../utils/readingTime.js';
 import { getRelatedPosts } from '../../utils/relatedPosts.js';
@@ -38,6 +39,10 @@ const readingTime = getReadingTime(entry.body);
 	</div>
 
 	<article class="blog-post">
+		<Breadcrumb items={[
+			{ label: 'Blog', href: '/blog' },
+			{ label: entry.data.title }
+		]} />
 		<div class="post-layout">
 			<div class="post-main">
 				<h1>{entry.data.title}</h1>
