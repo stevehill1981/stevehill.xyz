@@ -1,0 +1,226 @@
+---
+---
+
+<button class="search-trigger" aria-label="Search" title="Search (Ctrl+K)">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"></circle>
+    <path d="m21 21-4.35-4.35"></path>
+  </svg>
+</button>
+
+<div class="search-overlay" id="search-overlay" aria-hidden="true">
+  <div class="search-modal" role="dialog" aria-label="Search">
+    <button class="search-close" aria-label="Close search">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+    <div id="pagefind-container"></div>
+  </div>
+</div>
+
+<script>
+  function initSearch() {
+    const trigger = document.querySelector('.search-trigger');
+    const overlay = document.getElementById('search-overlay');
+    const closeBtn = document.querySelector('.search-close');
+    let pagefindLoaded = false;
+
+    async function openSearch() {
+      overlay?.classList.add('active');
+      overlay?.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      if (!pagefindLoaded) {
+        try {
+          // Dynamically load Pagefind at runtime (it's generated during build)
+          const script = document.createElement('script');
+          script.src = '/pagefind/pagefind-ui.js';
+          script.onload = () => {
+            // @ts-ignore
+            new window.PagefindUI({
+              element: '#pagefind-container',
+              showSubResults: true,
+              showImages: false
+            });
+          };
+          document.head.appendChild(script);
+          pagefindLoaded = true;
+        } catch (e) {
+          console.error('Failed to load Pagefind:', e);
+        }
+      }
+
+      // Focus the search input
+      setTimeout(() => {
+        const input = document.querySelector('#pagefind-container input');
+        if (input instanceof HTMLInputElement) {
+          input.focus();
+        }
+      }, 100);
+    }
+
+    function closeSearch() {
+      overlay?.classList.remove('active');
+      overlay?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    trigger?.addEventListener('click', openSearch);
+    closeBtn?.addEventListener('click', closeSearch);
+
+    // Close on overlay click
+    overlay?.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeSearch();
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      // Ctrl+K or Cmd+K to open
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        openSearch();
+      }
+      // Escape to close
+      if (e.key === 'Escape' && overlay?.classList.contains('active')) {
+        closeSearch();
+      }
+    });
+  }
+
+  initSearch();
+  document.addEventListener('astro:page-load', initSearch);
+</script>
+
+<style>
+  .search-trigger {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-trigger:hover {
+    color: var(--color-primary);
+  }
+
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-modal {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .search-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text-tertiary);
+    transition: color 0.2s;
+    z-index: 10;
+  }
+
+  .search-close:hover {
+    color: var(--color-text-primary);
+  }
+
+  #pagefind-container {
+    padding: 1.5rem;
+  }
+
+  /* Pagefind UI Overrides */
+  :global(.pagefind-ui) {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--color-primary);
+    --pagefind-ui-text: var(--color-text-primary);
+    --pagefind-ui-background: var(--color-bg);
+    --pagefind-ui-border: var(--color-border);
+    --pagefind-ui-tag: var(--color-primary-light);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: var(--radius-md);
+    --pagefind-ui-font: inherit;
+  }
+
+  :global(.pagefind-ui__search-input) {
+    background: var(--color-surface) !important;
+    color: var(--color-text-primary) !important;
+    font-size: var(--font-size-lg) !important;
+    padding: 1rem 1rem 1rem 3rem !important;
+  }
+
+  :global(.pagefind-ui__search-input::placeholder) {
+    color: var(--color-text-muted) !important;
+  }
+
+  :global(.pagefind-ui__result) {
+    padding: 1rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  :global(.pagefind-ui__result:hover) {
+    background: var(--color-surface) !important;
+  }
+
+  :global(.pagefind-ui__result-link) {
+    color: var(--color-primary) !important;
+    font-weight: var(--font-weight-semibold) !important;
+  }
+
+  :global(.pagefind-ui__result-excerpt) {
+    color: var(--color-text-secondary) !important;
+  }
+
+  :global(.pagefind-ui__results-area) {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  :global(.pagefind-ui__message) {
+    color: var(--color-text-tertiary) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .search-overlay {
+      transition: none;
+    }
+  }
+</style>
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />

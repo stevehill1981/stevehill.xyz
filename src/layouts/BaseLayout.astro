@@ -8,16 +8,59 @@ interface Props {
 	description?: string;
 	image?: string;
 	type?: string;
+	publishDate?: Date;
+	modifiedDate?: Date;
 }
 
 const {
 	pageTitle,
 	description = "Senior software engineer specializing in technical rescue, legacy systems, and teaching assembly language since 2006.",
-	image = "/favicon.svg",
-	type = "website"
+	image = "/og-image.svg",
+	type = "website",
+	publishDate,
+	modifiedDate
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Build JSON-LD structured data
+const personSchema = {
+	"@type": "Person",
+	"name": "Steve Hill",
+	"url": Astro.site?.toString(),
+	"jobTitle": "Senior Software Engineer",
+	"sameAs": [
+		"https://github.com/stevehill1981"
+	]
+};
+
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": "Steve Hill",
+	"url": Astro.site?.toString(),
+	"author": personSchema,
+	"description": "Personal website of Steve Hill - software engineering, technical rescue, and assembly language."
+};
+
+const articleSchema = type === "article" && publishDate ? {
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"headline": pageTitle,
+	"description": description,
+	"url": canonicalURL.toString(),
+	"datePublished": publishDate.toISOString(),
+	"dateModified": (modifiedDate || publishDate).toISOString(),
+	"author": personSchema,
+	"publisher": {
+		"@type": "Person",
+		"name": "Steve Hill",
+		"url": Astro.site?.toString()
+	},
+	"image": new URL(image, Astro.site).toString()
+} : null;
+
+const jsonLd = type === "article" ? articleSchema : websiteSchema;
 ---
 <!doctype html>
 <html lang="en" data-theme="dark">
@@ -48,7 +91,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		
 		<!-- RSS Feed -->
 		<link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml" />
-		
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
 		<title>{pageTitle} | Steve Hill</title>
 		<ViewTransitions fallback="swap" />
 

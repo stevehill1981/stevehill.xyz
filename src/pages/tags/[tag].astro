@@ -88,15 +88,43 @@ const postsWithReadingTime = posts.map((post) => {
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
 		padding: var(--spacing-lg);
-		transition: all var(--transition-fast);
+		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 		display: flex;
 		flex-direction: column;
+		position: relative;
+	}
+
+	.card::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		border-radius: calc(var(--radius-lg) + 1px);
+		background: var(--gradient-ocean);
+		opacity: 0;
+		z-index: -1;
+		transition: opacity 0.2s ease;
 	}
 
 	.card:hover {
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-lg);
-		border-color: var(--color-border-hover);
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg), 0 0 20px rgba(59, 130, 246, 0.15);
+		border-color: transparent;
+	}
+
+	.card:hover::before {
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.card {
+			transition: none;
+		}
+		.card::before {
+			transition: none;
+		}
+		.card:hover {
+			transform: none;
+		}
 	}
 
 	.card-header {

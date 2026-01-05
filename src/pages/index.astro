@@ -158,9 +158,17 @@ const getTechIcon = (tech: string): string => {
 			#ea580c 100%   /* back to vibrant orange */
 		);
 		background-size: 400% 400%;
-		animation: gradient-cycle 120s ease-in-out infinite;
+		animation: gradient-cycle 60s ease-in-out infinite;
 		position: relative;
 		overflow: hidden;
+		will-change: background-position;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero {
+			animation: none;
+			background-position: 0% 50%;
+		}
 	}
 
 	.hero-content {
@@ -233,21 +241,6 @@ const getTechIcon = (tech: string): string => {
 		display: block;
 		margin-left: -0.08em;
 		padding-left: 0;
-	}
-
-	@keyframes pattern-shift {
-		0%, 100% {
-			background-position: 0% 50%;
-		}
-		25% {
-			background-position: 50% 100%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		75% {
-			background-position: 50% 0%;
-		}
 	}
 
 	.hero-tagline {
