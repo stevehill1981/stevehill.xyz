@@ -2,6 +2,7 @@
 import { ViewTransitions } from 'astro:transitions';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import BackToTop from '../components/BackToTop.astro';
 
 interface Props {
 	pageTitle: string;
@@ -69,6 +70,11 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<meta name="theme-color" content="#8b5cf6" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<link rel="apple-touch-icon" href="/icons/icon-192.svg" />
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- Preconnect to Google Fonts for faster loading -->
@@ -154,6 +160,7 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 			<slot />
 		</main>
 		<SiteFooter />
+		<BackToTop />
 		<style is:global>
 			*, *::before, *::after {
 				box-sizing: border-box;
@@ -819,6 +826,106 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 					animation: none !important;
 				}
 			}
+
+			/* Print styles */
+			@media print {
+				/* Hide non-essential elements */
+				header,
+				footer,
+				nav,
+				.skip-link,
+				.back-to-top,
+				.share-buttons,
+				.post-navigation,
+				.search-modal,
+				.mobile-menu-toggle {
+					display: none !important;
+				}
+
+				/* Reset colors for printing */
+				body {
+					background: white !important;
+					color: black !important;
+					font-size: 12pt;
+					line-height: 1.5;
+				}
+
+				main {
+					max-width: 100% !important;
+					padding: 0 !important;
+					margin: 0 !important;
+				}
+
+				/* Ensure text is readable */
+				h1, h2, h3, h4, h5, h6 {
+					color: black !important;
+					page-break-after: avoid;
+				}
+
+				p, li {
+					color: #333 !important;
+				}
+
+				a {
+					color: #333 !important;
+					text-decoration: underline;
+				}
+
+				/* Show URLs for links */
+				article a[href^="http"]::after {
+					content: " (" attr(href) ")";
+					font-size: 0.8em;
+					color: #666;
+				}
+
+				/* Code blocks */
+				pre, code {
+					background: #f5f5f5 !important;
+					color: black !important;
+					border: 1px solid #ddd;
+					page-break-inside: avoid;
+				}
+
+				.enhanced-code-block {
+					background: #f5f5f5 !important;
+				}
+
+				.code-toolbar {
+					display: none !important;
+				}
+
+				/* Images */
+				img {
+					max-width: 100% !important;
+					page-break-inside: avoid;
+				}
+
+				/* Prevent orphans and widows */
+				p, li {
+					orphans: 3;
+					widows: 3;
+				}
+
+				/* Page margins */
+				@page {
+					margin: 2cm;
+				}
+			}
 		</style>
+
+		<!-- Service Worker Registration -->
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/sw.js')
+						.then((registration) => {
+							console.log('SW registered:', registration.scope);
+						})
+						.catch((error) => {
+							console.log('SW registration failed:', error);
+						});
+				});
+			}
+		</script>
 	</body>
 </html>

@@ -1,0 +1,112 @@
+---
+// Back to top button - appears after scrolling down
+---
+
+<button
+  id="back-to-top"
+  class="back-to-top"
+  aria-label="Back to top"
+  title="Back to top"
+>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--transition-base);
+
+    box-shadow: var(--shadow-lg);
+  }
+
+  .back-to-top:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+    transform: translateY(-2px);
+  }
+
+  .back-to-top:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .back-to-top svg {
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .back-to-top {
+      transition: opacity var(--transition-fast);
+      transform: none;
+    }
+
+    .back-to-top:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  function initBackToTop() {
+    const button = document.getElementById('back-to-top');
+    if (!button) return;
+
+    const scrollThreshold = 300;
+
+    function toggleVisibility() {
+      if (window.scrollY > scrollThreshold) {
+        button.classList.add('visible');
+      } else {
+        button.classList.remove('visible');
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Check initial scroll position
+    toggleVisibility();
+
+    // Listen for scroll
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+
+    // Handle click
+    button.addEventListener('click', scrollToTop);
+  }
+
+  // Initialize on page load and after view transitions
+  initBackToTop();
+  document.addEventListener('astro:page-load', initBackToTop);
+</script>
