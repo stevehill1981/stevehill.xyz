@@ -1,7 +1,6 @@
 ---
 title: "Shelved - Media Collection Tracker"
-description: "A privacy-focused Rails app with Hotwire Native mobile apps for tracking books, movies, and TV shows with physical location awareness"
-draft: true
+description: "A privacy-focused Rails app for tracking books, movies, and TV shows. Shipped in a day with AI-assisted development, then shut down due to hosting costs."
 tags:
   - rails
   - hotwire
@@ -16,7 +15,7 @@ technologies:
   - postgresql
   - swift
   - kotlin
-status: "In Development"
+status: "Parked"
 year: 2025
 ---
 
@@ -165,7 +164,7 @@ end
 
 ### Potential Expansions
 - **Music collections** - Vinyl, CDs, cassettes
-- **Games** - Board games, video games (complement to Bitshelf)
+- **Games** - Board games, video games (complement to Romshelf)
 - **Comics** - Issue tracking, variant covers
 - **Federation** - Optional sharing between friends' instances
 
