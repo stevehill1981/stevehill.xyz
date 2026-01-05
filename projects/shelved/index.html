@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="A privacy-focused Rails app for tracking books, movies, and TV shows. Shipped in a day with AI-assisted development, then shut down due to hosting costs."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/projects/shelved/"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://stevehill.xyz/projects/shelved/"><meta property="og:title" content="Shelved - Media Collection Tracker | Steve Hill"><meta property="og:description" content="A privacy-focused Rails app for tracking books, movies, and TV shows. Shipped in a day with AI-assisted development, then shut down due to hosting costs."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/projects/shelved/"><meta property="twitter:title" content="Shelved - Media Collection Tracker | Steve Hill"><meta property="twitter:description" content="A privacy-focused Rails app for tracking books, movies, and TV shows. Shipped in a day with AI-assisted development, then shut down due to hosting costs."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Shelved - Media Collection Tracker | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.BQy-Icdq.css">
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link " data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link active" data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">  <article class="project-page" data-astro-cid-ovxcmftc> <div class="project-layout" data-astro-cid-ovxcmftc> <div class="project-main" data-astro-cid-ovxcmftc> <h1 data-astro-cid-ovxcmftc>Shelved - Media Collection Tracker</h1> <p class="project-description" data-astro-cid-ovxcmftc>A privacy-focused Rails app for tracking books, movies, and TV shows. Shipped in a day with AI-assisted development, then shut down due to hosting costs.</p> <div class="content" data-astro-cid-ovxcmftc> <p>Shelved is a privacy-focused media collection tracker built with Rails 8 and Hotwire Native, designed for people who value their reading and viewing history staying private while maintaining a comprehensive catalog of their physical media.</p>
+<h2 id="-core-philosophy">🎯 Core Philosophy</h2>
+<h3 id="privacy-first-design">Privacy-First Design</h3>
+<ul>
+<li><strong>Local-first data</strong> - Your collection stays on your devices</li>
+<li><strong>No social features</strong> - No public profiles or sharing pressure</li>
+<li><strong>No analytics</strong> - Zero tracking of your reading/viewing habits</li>
+<li><strong>Self-hosted option</strong> - Run on your own server for complete control</li>
+</ul>
+<h3 id="physical-media-focus">Physical Media Focus</h3>
+<p>Unlike digital-only services, Shelved embraces the reality of physical collections:</p>
+<ul>
+<li><strong>Location tracking</strong> - “Which bookshelf?”, “Lent to whom?”</li>
+<li><strong>Barcode scanning</strong> - Quick ISBN/UPC entry via mobile camera</li>
+<li><strong>Cross-format awareness</strong> - Track book-to-film adaptations</li>
+<li><strong>Condition notes</strong> - First editions, signed copies, special features</li>
+</ul>
+<h2 id="-key-features">📚 Key Features</h2>
+<h3 id="multi-format-support">Multi-Format Support</h3>
+<ul>
+<li><strong>Books</strong> - ISBN lookup, series tracking, edition details</li>
+<li><strong>Movies</strong> - Physical media formats (DVD, Blu-ray, 4K)</li>
+<li><strong>TV Shows</strong> - Season/episode tracking, box set management</li>
+<li><strong>Cross-references</strong> - Link adaptations and related media</li>
+</ul>
+<h3 id="smart-data-entry">Smart Data Entry</h3>
+<ul>
+<li><strong>Barcode scanning</strong> - Native mobile bridge for camera access</li>
+<li><strong>API metadata</strong> - Auto-populate from Google Books, TMDb, Open Library</li>
+<li><strong>Manual override</strong> - Full control over all data fields</li>
+<li><strong>Bulk import</strong> - CSV support for existing catalogs</li>
+</ul>
+<h3 id="organization-tools">Organization Tools</h3>
+<ul>
+<li><strong>Custom shelving</strong> - Define your actual physical locations</li>
+<li><strong>Loan tracking</strong> - Remember who borrowed what</li>
+<li><strong>Wishlist management</strong> - Track items you want to acquire</li>
+<li><strong>Smart filtering</strong> - By location, format, genre, status</li>
+</ul>
+<h2 id="️-technical-architecture">🛠️ Technical Architecture</h2>
+<h3 id="rails-8-foundation">Rails 8 Foundation</h3>
+<pre class="shiki" data-highlight-block="hl-2"><code><span id="hl-2-L0" class="line"><span class="line-content"># Clean Rails architecture</span></span>
+<span id="hl-2-L1" class="line"><span class="line-content">class Book &#x3C; ApplicationRecord</span></span>
+<span id="hl-2-L2" class="line"><span class="line-content">  has_one_attached :cover</span></span>
+<span id="hl-2-L3" class="line"><span class="line-content">  belongs_to :shelf, optional: true</span></span>
+<span id="hl-2-L4" class="line"><span class="line-content">  has_many :cross_references</span></span>
+<span id="hl-2-L5" class="line"><span class="line-content">  </span></span>
+<span id="hl-2-L6" class="line"><span class="line-content">  scope :on_loan, -> { where.not(loaned_to: nil) }</span></span>
+<span id="hl-2-L7" class="line"><span class="line-content">  scope :unread, -> { where(read: false) }</span></span>
+<span id="hl-2-L8" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-2">
+::highlight(hl-hl-2-0) { color: #6A9955; }
+::highlight(hl-hl-2-1) { color: #C586C0; }
+::highlight(hl-hl-2-2) { color: #D4D4D4; }
+::highlight(hl-hl-2-3) { color: #4EC9B0; }
+::highlight(hl-hl-2-4) { color: #569CD6; }
+::highlight(hl-hl-2-5) { color: #DCDCAA; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-2';
+  const colorMap = {"#6A9955":"hl-hl-2-0","#C586C0":"hl-hl-2-1","#D4D4D4":"hl-hl-2-2","#4EC9B0":"hl-hl-2-3","#569CD6":"hl-hl-2-4","#DCDCAA":"hl-hl-2-5"};
+  const ranges = [{"line":0,"start":0,"end":26,"color":"#6A9955"},{"line":1,"start":0,"end":5,"color":"#C586C0"},{"line":1,"start":5,"end":6,"color":"#D4D4D4"},{"line":1,"start":6,"end":10,"color":"#4EC9B0"},{"line":1,"start":10,"end":13,"color":"#D4D4D4"},{"line":1,"start":13,"end":30,"color":"#4EC9B0"},{"line":2,"start":0,"end":19,"color":"#D4D4D4"},{"line":2,"start":19,"end":25,"color":"#569CD6"},{"line":3,"start":0,"end":13,"color":"#D4D4D4"},{"line":3,"start":13,"end":19,"color":"#569CD6"},{"line":3,"start":19,"end":21,"color":"#D4D4D4"},{"line":3,"start":21,"end":30,"color":"#569CD6"},{"line":3,"start":30,"end":31,"color":"#D4D4D4"},{"line":3,"start":31,"end":35,"color":"#569CD6"},{"line":4,"start":0,"end":11,"color":"#D4D4D4"},{"line":4,"start":11,"end":28,"color":"#569CD6"},{"line":5,"start":0,"end":2,"color":"#D4D4D4"},{"line":6,"start":0,"end":8,"color":"#D4D4D4"},{"line":6,"start":8,"end":16,"color":"#569CD6"},{"line":6,"start":16,"end":18,"color":"#D4D4D4"},{"line":6,"start":18,"end":20,"color":"#DCDCAA"},{"line":6,"start":20,"end":29,"color":"#D4D4D4"},{"line":6,"start":29,"end":32,"color":"#DCDCAA"},{"line":6,"start":32,"end":33,"color":"#D4D4D4"},{"line":6,"start":33,"end":43,"color":"#569CD6"},{"line":6,"start":43,"end":44,"color":"#D4D4D4"},{"line":6,"start":44,"end":47,"color":"#569CD6"},{"line":6,"start":47,"end":50,"color":"#D4D4D4"},{"line":7,"start":0,"end":8,"color":"#D4D4D4"},{"line":7,"start":8,"end":15,"color":"#569CD6"},{"line":7,"start":15,"end":17,"color":"#D4D4D4"},{"line":7,"start":17,"end":19,"color":"#DCDCAA"},{"line":7,"start":19,"end":22,"color":"#D4D4D4"},{"line":7,"start":22,"end":27,"color":"#DCDCAA"},{"line":7,"start":27,"end":28,"color":"#D4D4D4"},{"line":7,"start":28,"end":33,"color":"#569CD6"},{"line":7,"start":33,"end":34,"color":"#D4D4D4"},{"line":7,"start":34,"end":39,"color":"#569CD6"},{"line":7,"start":39,"end":42,"color":"#D4D4D4"},{"line":8,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h3 id="hotwire-native-integration">Hotwire Native Integration</h3>
+<ul>
+<li><strong>Seamless mobile apps</strong> - iOS and Android without separate codebases</li>
+<li><strong>Native features</strong> - Camera access for barcode scanning</li>
+<li><strong>Push notifications</strong> - Loan reminders (local only)</li>
+<li><strong>Offline support</strong> - Browse collection without connection</li>
+</ul>
+<h3 id="api-integration-strategy">API Integration Strategy</h3>
+<pre class="shiki" data-highlight-block="hl-1"><code><span id="hl-1-L0" class="line"><span class="line-content"># Graceful fallback pattern</span></span>
+<span id="hl-1-L1" class="line"><span class="line-content">class MetadataFetcher</span></span>
+<span id="hl-1-L2" class="line"><span class="line-content">  def fetch(isbn)</span></span>
+<span id="hl-1-L3" class="line"><span class="line-content">    google_books_fetch(isbn) ||</span></span>
+<span id="hl-1-L4" class="line"><span class="line-content">    open_library_fetch(isbn) ||</span></span>
+<span id="hl-1-L5" class="line"><span class="line-content">    manual_entry_prompt</span></span>
+<span id="hl-1-L6" class="line"><span class="line-content">  end</span></span>
+<span id="hl-1-L7" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-1">
+::highlight(hl-hl-1-0) { color: #6A9955; }
+::highlight(hl-hl-1-1) { color: #C586C0; }
+::highlight(hl-hl-1-2) { color: #D4D4D4; }
+::highlight(hl-hl-1-3) { color: #4EC9B0; }
+::highlight(hl-hl-1-4) { color: #DCDCAA; }
+::highlight(hl-hl-1-5) { color: #9CDCFE; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-1';
+  const colorMap = {"#6A9955":"hl-hl-1-0","#C586C0":"hl-hl-1-1","#D4D4D4":"hl-hl-1-2","#4EC9B0":"hl-hl-1-3","#DCDCAA":"hl-hl-1-4","#9CDCFE":"hl-hl-1-5"};
+  const ranges = [{"line":0,"start":0,"end":27,"color":"#6A9955"},{"line":1,"start":0,"end":5,"color":"#C586C0"},{"line":1,"start":5,"end":6,"color":"#D4D4D4"},{"line":1,"start":6,"end":21,"color":"#4EC9B0"},{"line":2,"start":0,"end":2,"color":"#D4D4D4"},{"line":2,"start":2,"end":5,"color":"#C586C0"},{"line":2,"start":5,"end":6,"color":"#D4D4D4"},{"line":2,"start":6,"end":11,"color":"#DCDCAA"},{"line":2,"start":11,"end":12,"color":"#D4D4D4"},{"line":2,"start":12,"end":16,"color":"#9CDCFE"},{"line":2,"start":16,"end":17,"color":"#D4D4D4"},{"line":3,"start":0,"end":4,"color":"#D4D4D4"},{"line":3,"start":4,"end":22,"color":"#DCDCAA"},{"line":3,"start":22,"end":31,"color":"#D4D4D4"},{"line":4,"start":0,"end":4,"color":"#D4D4D4"},{"line":4,"start":4,"end":22,"color":"#DCDCAA"},{"line":4,"start":22,"end":31,"color":"#D4D4D4"},{"line":5,"start":0,"end":23,"color":"#D4D4D4"},{"line":6,"start":0,"end":2,"color":"#D4D4D4"},{"line":6,"start":2,"end":5,"color":"#C586C0"},{"line":7,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h2 id="-platform-approach">📱 Platform Approach</h2>
+<h3 id="web-plus-mobile">Web PLUS Mobile</h3>
+<ul>
+<li><strong>Desktop-first design</strong> - Full functionality in the browser</li>
+<li><strong>Mobile enhancement</strong> - Native apps add convenience features</li>
+<li><strong>Progressive enhancement</strong> - Works everywhere, better with apps</li>
+<li><strong>Sync when needed</strong> - Optional server sync for multi-device use</li>
+</ul>
+<h3 id="native-bridge-features">Native Bridge Features</h3>
+<ul>
+<li><strong>Barcode scanning</strong> - Quick entry via device camera</li>
+<li><strong>Photo capture</strong> - Document special editions or damage</li>
+<li><strong>Location services</strong> - “Books at office” vs “Books at home”</li>
+<li><strong>Offline mode</strong> - Full read access without connection</li>
+</ul>
+<h2 id="-privacy-features">🔐 Privacy Features</h2>
+<h3 id="data-ownership">Data Ownership</h3>
+<ul>
+<li><strong>Export everything</strong> - Your data in standard formats (CSV, JSON)</li>
+<li><strong>No vendor lock-in</strong> - Simple PostgreSQL database</li>
+<li><strong>Backup friendly</strong> - Standard Rails structure for easy backups</li>
+<li><strong>Delete means delete</strong> - No soft deletes or data retention</li>
+</ul>
+<h3 id="no-surveillance-capitalism">No Surveillance Capitalism</h3>
+<ul>
+<li><strong>No recommendations</strong> - You decide what to read/watch</li>
+<li><strong>No social pressure</strong> - No public reading goals or competitions</li>
+<li><strong>No data mining</strong> - Your interests stay private</li>
+<li><strong>No ads ever</strong> - Not even “relevant” ones</li>
+</ul>
+<h2 id="-development-status">🚀 Development Status</h2>
+<h3 id="currently-working">Currently Working</h3>
+<ul>
+<li>Rails 8 application skeleton</li>
+<li>Basic CRUD for books, movies, TV shows</li>
+<li>PostgreSQL database schema</li>
+<li>Tailwind CSS styling framework</li>
+</ul>
+<h3 id="next-up">Next Up</h3>
+<ul>
+<li>API integration for metadata fetching</li>
+<li>Hotwire Native iOS app</li>
+<li>Barcode scanning bridge</li>
+<li>Physical location management</li>
+</ul>
+<h3 id="future-features">Future Features</h3>
+<ul>
+<li>Hotwire Native Android app</li>
+<li>Advanced filtering and search</li>
+<li>Export/import functionality</li>
+<li>Self-hosting documentation</li>
+</ul>
+<h2 id="-use-cases">🎯 Use Cases</h2>
+<h3 id="personal-library-management">Personal Library Management</h3>
+<ul>
+<li>Track hundreds of books across multiple locations</li>
+<li>Know instantly what you’ve lent out</li>
+<li>Find that specific edition you remember buying</li>
+</ul>
+<h3 id="movie-collection-curation">Movie Collection Curation</h3>
+<ul>
+<li>Catalog special editions and box sets</li>
+<li>Track format upgrades (DVD → Blu-ray → 4K)</li>
+<li>Note special features and commentaries</li>
+</ul>
+<h3 id="cross-media-connections">Cross-Media Connections</h3>
+<ul>
+<li>Link book series to their TV adaptations</li>
+<li>Track which movies you’ve read the books for</li>
+<li>Build reading lists from watched content</li>
+</ul>
+<h2 id="-long-term-vision">🔮 Long-Term Vision</h2>
+<h3 id="sustainable-personal-tool">Sustainable Personal Tool</h3>
+<ul>
+<li><strong>No VC funding needed</strong> - Simple enough to maintain solo</li>
+<li><strong>No growth metrics</strong> - Success is happy users, not user count</li>
+<li><strong>No feature creep</strong> - Does one thing exceptionally well</li>
+<li><strong>Community-friendly</strong> - Open source with self-hosting guides</li>
+</ul>
+<h3 id="potential-expansions">Potential Expansions</h3>
+<ul>
+<li><strong>Music collections</strong> - Vinyl, CDs, cassettes</li>
+<li><strong>Games</strong> - Board games, video games (complement to Romshelf)</li>
+<li><strong>Comics</strong> - Issue tracking, variant covers</li>
+<li><strong>Federation</strong> - Optional sharing between friends’ instances</li>
+</ul>
+<h2 id="️-why-shelved-matters">🛡️ Why Shelved Matters</h2>
+<p>In an era of streaming services and social media book clubs, Shelved offers something different:</p>
+<ul>
+<li><strong>Your data stays yours</strong> - No corporate intermediary</li>
+<li><strong>Physical media respect</strong> - Not everything is digital</li>
+<li><strong>Quiet enjoyment</strong> - Read and watch without performative pressure</li>
+<li><strong>Long-term thinking</strong> - Your collection outlasts any startup</li>
+</ul>
+<p>Shelved proves that modern web technology (Rails 8, Hotwire, native mobile) can build privacy-respecting tools that enhance rather than exploit our cultural consumption.</p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Shelved%20-%20Media%20Collection%20Tracker&url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fshelved%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fshelved%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="project-sidebar" data-astro-cid-ovxcmftc> <div class="sidebar-section project-info" data-astro-cid-ovxcmftc> <h3 data-astro-cid-ovxcmftc>Project Info</h3> <div class="info-item" data-astro-cid-ovxcmftc> <strong data-astro-cid-ovxcmftc>Technologies</strong> <div class="technologies" data-astro-cid-ovxcmftc> <span class="tech-tag" data-astro-cid-ovxcmftc>rails</span><span class="tech-tag" data-astro-cid-ovxcmftc>hotwire</span><span class="tech-tag" data-astro-cid-ovxcmftc>postgresql</span><span class="tech-tag" data-astro-cid-ovxcmftc>swift</span><span class="tech-tag" data-astro-cid-ovxcmftc>kotlin</span> </div> </div>  </div> </aside> </div> <nav class="project-navigation" data-astro-cid-ovxcmftc> <a href="/projects" class="back-to-projects" data-astro-cid-ovxcmftc>&larr; Back to Projects</a> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> 

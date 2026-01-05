@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="A 30-year-old family card game rebuilt with Phoenix LiveView. Features strategic AI opponents, real-time multiplayer for 4-8 players, and three distinct visual themes. Proves Elixir isn't just for messaging systems - it's perfect for complex, stateful games."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/projects/rachel/"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://stevehill.xyz/projects/rachel/"><meta property="og:title" content="Rachel - Strategic Card Game | Steve Hill"><meta property="og:description" content="A 30-year-old family card game rebuilt with Phoenix LiveView. Features strategic AI opponents, real-time multiplayer for 4-8 players, and three distinct visual themes. Proves Elixir isn't just for messaging systems - it's perfect for complex, stateful games."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/projects/rachel/"><meta property="twitter:title" content="Rachel - Strategic Card Game | Steve Hill"><meta property="twitter:description" content="A 30-year-old family card game rebuilt with Phoenix LiveView. Features strategic AI opponents, real-time multiplayer for 4-8 players, and three distinct visual themes. Proves Elixir isn't just for messaging systems - it's perfect for complex, stateful games."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Rachel - Strategic Card Game | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.BQy-Icdq.css">
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link " data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link active" data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">  <article class="project-page" data-astro-cid-ovxcmftc> <div class="project-layout" data-astro-cid-ovxcmftc> <div class="project-main" data-astro-cid-ovxcmftc> <h1 data-astro-cid-ovxcmftc>Rachel - Strategic Card Game</h1> <p class="project-description" data-astro-cid-ovxcmftc>A 30-year-old family card game rebuilt with Phoenix LiveView. Features strategic AI opponents, real-time multiplayer for 4-8 players, and three distinct visual themes. Proves Elixir isn&#39;t just for messaging systems - it&#39;s perfect for complex, stateful games.</p> <div class="content" data-astro-cid-ovxcmftc> <p>Rachel is a fast-paced, strategic card game implemented in Phoenix LiveView, based on a 30-year-old family tradition. It combines the nostalgia of pub games with modern web technology to create an engaging multiplayer experience.</p>
+<p><strong>✨ Now live at <a href="https://rachel.stevehill.xyz">rachel.stevehill.xyz</a> with a complete theme system!</strong></p>
+<p>The latest version features three distinct visual themes that completely transform the game’s appearance - from clean Apple-inspired minimalism to luxury casino aesthetics. Users can switch themes instantly and their preferences persist across sessions.</p>
+<h2 id="-what-makes-rachel-special">🎮 What Makes Rachel Special</h2>
+<p>Unlike typical card games, Rachel features a unique combination of strategic special card effects and stacking mechanics that create intense, unpredictable gameplay:</p>
+<ul>
+<li><strong>Strategic special cards</strong> - 2s force pickups, 7s skip turns, Black Jacks deal massive penalties</li>
+<li><strong>Stacking mechanics</strong> - Build devastating combinations by playing multiple cards of the same rank</li>
+<li><strong>Smart AI opponents</strong> - Intelligent decision-making that adapts to different difficulty levels</li>
+<li><strong>Real-time multiplayer</strong> - Seamless LiveView updates for 4-8 players</li>
+<li><strong>Beautiful animations</strong> - Smooth card transitions and visual feedback</li>
+</ul>
+<h2 id="-key-game-features">🃏 Key Game Features</h2>
+<h3 id="special-card-effects">Special Card Effects</h3>
+<ul>
+<li><strong>2s</strong>: Next player picks up 2 cards (stackable for massive penalties)</li>
+<li><strong>7s</strong>: Skip the next player’s turn (chainable across multiple players)</li>
+<li><strong>Black Jacks</strong>: Force pickup of 5 cards (the game’s nuclear option)</li>
+<li><strong>Red Jacks</strong>: Counter Black Jacks defensively</li>
+<li><strong>Queens</strong>: Reverse the direction of play</li>
+<li><strong>Aces</strong>: Wild cards that let you nominate the next suit</li>
+</ul>
+<h3 id="technical-highlights">Technical Highlights</h3>
+<ul>
+<li><strong>Phoenix LiveView</strong> for real-time updates without JavaScript complexity</li>
+<li><strong>Dynamic theme system</strong> with 3 distinct visual identities and instant switching</li>
+<li><strong>GenServer-based game engine</strong> ensuring reliable state management</li>
+<li><strong>Comprehensive rule validation</strong> preventing cheating and handling edge cases</li>
+<li><strong>Responsive design</strong> with touch-friendly mobile interface</li>
+<li><strong>AI system</strong> with strategic decision-making and difficulty levels</li>
+<li><strong>Production security</strong> with CSP headers and comprehensive vulnerability protection</li>
+</ul>
+<h2 id="-technical-implementation">🚀 Technical Implementation</h2>
+<h3 id="architecture">Architecture</h3>
+<pre class="shiki" data-highlight-block="hl-18"><code><span id="hl-18-L0" class="line"><span class="line-content"># Game state managed by isolated GenServers</span></span>
+<span id="hl-18-L1" class="line"><span class="line-content">Rachel.Games.GameServer    # Authoritative game logic</span></span>
+<span id="hl-18-L2" class="line"><span class="line-content">RachelWeb.GameLive        # LiveView UI with real-time updates</span></span>
+<span id="hl-18-L3" class="line"><span class="line-content">Rachel.Games.AIPlayer     # Strategic AI decision engine</span></span></code></pre>
+<style data-highlight-styles="hl-18">
+::highlight(hl-hl-18-0) { color: #6A9955; }
+::highlight(hl-hl-18-1) { color: #4EC9B0; }
+::highlight(hl-hl-18-2) { color: #D4D4D4; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-18';
+  const colorMap = {"#6A9955":"hl-hl-18-0","#4EC9B0":"hl-hl-18-1","#D4D4D4":"hl-hl-18-2"};
+  const ranges = [{"line":0,"start":0,"end":43,"color":"#6A9955"},{"line":1,"start":0,"end":6,"color":"#4EC9B0"},{"line":1,"start":6,"end":7,"color":"#D4D4D4"},{"line":1,"start":7,"end":12,"color":"#4EC9B0"},{"line":1,"start":12,"end":13,"color":"#D4D4D4"},{"line":1,"start":13,"end":23,"color":"#4EC9B0"},{"line":1,"start":23,"end":27,"color":"#D4D4D4"},{"line":1,"start":27,"end":53,"color":"#6A9955"},{"line":2,"start":0,"end":9,"color":"#4EC9B0"},{"line":2,"start":9,"end":10,"color":"#D4D4D4"},{"line":2,"start":10,"end":18,"color":"#4EC9B0"},{"line":2,"start":18,"end":26,"color":"#D4D4D4"},{"line":2,"start":26,"end":62,"color":"#6A9955"},{"line":3,"start":0,"end":6,"color":"#4EC9B0"},{"line":3,"start":6,"end":7,"color":"#D4D4D4"},{"line":3,"start":7,"end":12,"color":"#4EC9B0"},{"line":3,"start":12,"end":13,"color":"#D4D4D4"},{"line":3,"start":13,"end":21,"color":"#4EC9B0"},{"line":3,"start":21,"end":26,"color":"#D4D4D4"},{"line":3,"start":26,"end":56,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h3 id="key-technical-challenges-solved">Key Technical Challenges Solved</h3>
+<ul>
+<li><strong>Complex stacking rules</strong> - Multiple cards of the same rank with accumulating effects</li>
+<li><strong>Turn management</strong> - Direction changes, skips, and player elimination</li>
+<li><strong>Real-time synchronization</strong> - PubSub ensures all players see updates within 500ms</li>
+<li><strong>AI strategy</strong> - Balances aggressive play with defensive card retention</li>
+<li><strong>Connection handling</strong> - Graceful disconnection/reconnection with AI backfill</li>
+</ul>
+<h3 id="performance--scalability">Performance &#x26; Scalability</h3>
+<ul>
+<li><strong>Sub-200ms response times</strong> for card plays and game actions</li>
+<li><strong>Memory efficient</strong> - Each game session uses &#x3C;10MB memory</li>
+<li><strong>Concurrent games</strong> - Supports 50+ simultaneous games</li>
+<li><strong>Fault tolerance</strong> - Individual game failures don’t affect other sessions</li>
+</ul>
+<h2 id="-development-philosophy">🎯 Development Philosophy</h2>
+<p>Rachel demonstrates several important software engineering principles:</p>
+<h3 id="test-driven-game-logic">Test-Driven Game Logic</h3>
+<pre class="shiki" data-highlight-block="hl-17"><code><span id="hl-17-L0" class="line"><span class="line-content">describe "card stacking" do</span></span>
+<span id="hl-17-L1" class="line"><span class="line-content">  test "multiple 2s accumulate pickup penalty correctly" do</span></span>
+<span id="hl-17-L2" class="line"><span class="line-content">    game = Game.new(["Alice", "Bob", "Charlie"])</span></span>
+<span id="hl-17-L3" class="line"><span class="line-content">    |> Game.play_cards("Alice", [%Card{rank: "2", suit: "hearts"}])</span></span>
+<span id="hl-17-L4" class="line"><span class="line-content">    |> Game.play_cards("Bob", [%Card{rank: "2", suit: "spades"}])</span></span>
+<span id="hl-17-L5" class="line"><span class="line-content">    </span></span>
+<span id="hl-17-L6" class="line"><span class="line-content">    # Charlie must pick up 4 cards (2 × 2)</span></span>
+<span id="hl-17-L7" class="line"><span class="line-content">    assert Game.get_pickup_count(game) == 4</span></span>
+<span id="hl-17-L8" class="line"><span class="line-content">  end</span></span>
+<span id="hl-17-L9" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-17">
+::highlight(hl-hl-17-0) { color: #D4D4D4; }
+::highlight(hl-hl-17-1) { color: #CE9178; }
+::highlight(hl-hl-17-2) { color: #C586C0; }
+::highlight(hl-hl-17-3) { color: #4EC9B0; }
+::highlight(hl-hl-17-4) { color: #DCDCAA; }
+::highlight(hl-hl-17-5) { color: #6A9955; }
+::highlight(hl-hl-17-6) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-17';
+  const colorMap = {"#D4D4D4":"hl-hl-17-0","#CE9178":"hl-hl-17-1","#C586C0":"hl-hl-17-2","#4EC9B0":"hl-hl-17-3","#DCDCAA":"hl-hl-17-4","#6A9955":"hl-hl-17-5","#B5CEA8":"hl-hl-17-6"};
+  const ranges = [{"line":0,"start":0,"end":9,"color":"#D4D4D4"},{"line":0,"start":9,"end":24,"color":"#CE9178"},{"line":0,"start":24,"end":25,"color":"#D4D4D4"},{"line":0,"start":25,"end":27,"color":"#C586C0"},{"line":1,"start":0,"end":7,"color":"#D4D4D4"},{"line":1,"start":7,"end":56,"color":"#CE9178"},{"line":1,"start":56,"end":57,"color":"#D4D4D4"},{"line":1,"start":57,"end":59,"color":"#C586C0"},{"line":2,"start":0,"end":11,"color":"#D4D4D4"},{"line":2,"start":11,"end":15,"color":"#4EC9B0"},{"line":2,"start":15,"end":16,"color":"#D4D4D4"},{"line":2,"start":16,"end":19,"color":"#DCDCAA"},{"line":2,"start":19,"end":21,"color":"#D4D4D4"},{"line":2,"start":21,"end":28,"color":"#CE9178"},{"line":2,"start":28,"end":30,"color":"#D4D4D4"},{"line":2,"start":30,"end":35,"color":"#CE9178"},{"line":2,"start":35,"end":37,"color":"#D4D4D4"},{"line":2,"start":37,"end":46,"color":"#CE9178"},{"line":2,"start":46,"end":48,"color":"#D4D4D4"},{"line":3,"start":0,"end":7,"color":"#D4D4D4"},{"line":3,"start":7,"end":11,"color":"#4EC9B0"},{"line":3,"start":11,"end":12,"color":"#D4D4D4"},{"line":3,"start":12,"end":22,"color":"#DCDCAA"},{"line":3,"start":22,"end":23,"color":"#D4D4D4"},{"line":3,"start":23,"end":30,"color":"#CE9178"},{"line":3,"start":30,"end":34,"color":"#D4D4D4"},{"line":3,"start":34,"end":38,"color":"#4EC9B0"},{"line":3,"start":38,"end":45,"color":"#D4D4D4"},{"line":3,"start":45,"end":48,"color":"#CE9178"},{"line":3,"start":48,"end":56,"color":"#D4D4D4"},{"line":3,"start":56,"end":64,"color":"#CE9178"},{"line":3,"start":64,"end":67,"color":"#D4D4D4"},{"line":4,"start":0,"end":7,"color":"#D4D4D4"},{"line":4,"start":7,"end":11,"color":"#4EC9B0"},{"line":4,"start":11,"end":12,"color":"#D4D4D4"},{"line":4,"start":12,"end":22,"color":"#DCDCAA"},{"line":4,"start":22,"end":23,"color":"#D4D4D4"},{"line":4,"start":23,"end":28,"color":"#CE9178"},{"line":4,"start":28,"end":32,"color":"#D4D4D4"},{"line":4,"start":32,"end":36,"color":"#4EC9B0"},{"line":4,"start":36,"end":43,"color":"#D4D4D4"},{"line":4,"start":43,"end":46,"color":"#CE9178"},{"line":4,"start":46,"end":54,"color":"#D4D4D4"},{"line":4,"start":54,"end":62,"color":"#CE9178"},{"line":4,"start":62,"end":65,"color":"#D4D4D4"},{"line":5,"start":0,"end":4,"color":"#D4D4D4"},{"line":6,"start":0,"end":4,"color":"#D4D4D4"},{"line":6,"start":4,"end":42,"color":"#6A9955"},{"line":7,"start":0,"end":11,"color":"#D4D4D4"},{"line":7,"start":11,"end":15,"color":"#4EC9B0"},{"line":7,"start":15,"end":16,"color":"#D4D4D4"},{"line":7,"start":16,"end":32,"color":"#DCDCAA"},{"line":7,"start":32,"end":42,"color":"#D4D4D4"},{"line":7,"start":42,"end":43,"color":"#B5CEA8"},{"line":8,"start":0,"end":2,"color":"#D4D4D4"},{"line":8,"start":2,"end":5,"color":"#C586C0"},{"line":9,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h3 id="separation-of-concerns">Separation of Concerns</h3>
+<ul>
+<li><strong>Game logic</strong> is completely independent of the web layer</li>
+<li><strong>AI decision-making</strong> is modular and testable</li>
+<li><strong>LiveView</strong> handles only UI state and user interactions</li>
+<li><strong>GenServer</strong> manages game state with OTP supervision</li>
+</ul>
+<h3 id="real-time-architecture">Real-Time Architecture</h3>
+<p>The game leverages Phoenix’s strengths for real-time applications:</p>
+<ul>
+<li>PubSub for efficient broadcasting</li>
+<li>LiveView for seamless updates</li>
+<li>Presence for connection tracking</li>
+<li>Registry for game session discovery</li>
+</ul>
+<h2 id="-user-experience-design">🎨 User Experience Design</h2>
+<h3 id="visual-polish">Visual Polish</h3>
+<ul>
+<li><strong>Three distinct themes</strong> - Modern Minimalist, Premium Card Room, and Warm &#x26; Social</li>
+<li><strong>Instant theme switching</strong> with localStorage persistence and smooth transitions</li>
+<li><strong>Theme-specific animations</strong> with different timing functions and visual effects</li>
+<li><strong>Glowing effects</strong> for special cards with theme-appropriate colors</li>
+<li><strong>Smooth animations</strong> for card plays and transitions</li>
+<li><strong>AI thinking indicators</strong> with animated dots</li>
+<li><strong>Direction flow animations</strong> showing play order changes</li>
+<li><strong>Winner celebration</strong> with theme-aware confetti effects</li>
+</ul>
+<h3 id="accessibility">Accessibility</h3>
+<ul>
+<li><strong>Keyboard navigation</strong> support</li>
+<li><strong>Screen reader friendly</strong> card descriptions</li>
+<li><strong>Touch-optimized</strong> interface for mobile devices</li>
+<li><strong>Clear visual feedback</strong> for game state changes</li>
+</ul>
+<h2 id="-future-enhancements">📈 Future Enhancements</h2>
+<p>The modular architecture supports exciting future features:</p>
+<ul>
+<li><strong>Tournament mode</strong> with bracket-style competition</li>
+<li><strong>Achievement system</strong> tracking “Most Evil” plays and defensive heroics</li>
+<li><strong>Statistics engine</strong> with leaderboards and player profiles</li>
+<li><strong>Multiple game variants</strong> including “Ultimate Rachel” with expanded rules</li>
+<li><strong>Mobile app</strong> using the JSON API foundation</li>
+</ul>
+<h2 id="️-technologies-used">🛠️ Technologies Used</h2>
+<ul>
+<li><strong>Elixir 1.18+</strong> - Concurrent, fault-tolerant backend</li>
+<li><strong>Phoenix 1.8</strong> - Modern web framework with LiveView</li>
+<li><strong>PostgreSQL</strong> - Reliable data persistence</li>
+<li><strong>Tailwind CSS + daisyUI</strong> - Beautiful, responsive UI components</li>
+<li><strong>OTP GenServers</strong> - Rock-solid game state management</li>
+<li><strong>ExUnit</strong> - Comprehensive test coverage (80%+ on game logic)</li>
+</ul>
+<h2 id="-the-rachel-multiverse">🌌 The Rachel Multiverse</h2>
+<p>The Phoenix LiveView implementation you see above? That’s just the <strong>beginning</strong>.</p>
+<h3 id="the-vision-one-game-every-platform">The Vision: One Game, Every Platform</h3>
+<p>Rachel is being developed as a <strong>universal multiverse card game</strong> - the same strategic gameplay implemented on every computing platform imaginable, all connected through a universal binary protocol.</p>
+<p><strong>Planned platform count: 200+</strong></p>
+<p>From vintage computers:</p>
+<ul>
+<li>Commodore 64 (1982) - 6502 assembly, VIC-II graphics</li>
+<li>ZX Spectrum (1982) - Z80 assembly, 48KB RAM</li>
+<li>MS-DOS (1981) - x86 assembly, VGA graphics</li>
+<li>Apple II (1977) - 6502 assembly, 1MHz processor</li>
+</ul>
+<p>To modern systems:</p>
+<ul>
+<li>iOS/Android native apps</li>
+<li>Desktop applications (Windows/Mac/Linux)</li>
+<li>Terminal versions (ncurses)</li>
+<li>Smart TV implementations</li>
+<li>Even calculators, embedded systems, and smart appliances</li>
+</ul>
+<p><strong>The truly absurd</strong>: If it computes, it can play Rachel. We’re talking mainframes, game consoles, handheld devices, PDAs, routers, oscilloscopes, and yes - even smart fridges.</p>
+<h3 id="the-universal-protocol">The Universal Protocol</h3>
+<p>At the heart of the multiverse is the <strong>Rachel Universal Binary Protocol (RUBP)</strong> - a 64-byte fixed message format designed to work everywhere:</p>
+<pre class="shiki" data-highlight-block="hl-16"><code><span id="hl-16-L0" class="line"><span class="line-content">Bytes 0-3:   Magic Header "RACH" [0x52 0x41 0x43 0x48]</span></span>
+<span id="hl-16-L1" class="line"><span class="line-content">Byte  4:     Protocol Version [0x01]</span></span>
+<span id="hl-16-L2" class="line"><span class="line-content">Byte  5:     Message Type (HELLO, PLAY_CARD, GAME_STATE, etc.)</span></span>
+<span id="hl-16-L3" class="line"><span class="line-content">Bytes 6-7:   Sequence Number</span></span>
+<span id="hl-16-L4" class="line"><span class="line-content">Bytes 8-9:   Player ID</span></span>
+<span id="hl-16-L5" class="line"><span class="line-content">Bytes 10-11: Game ID</span></span>
+<span id="hl-16-L6" class="line"><span class="line-content">Bytes 12-15: Timestamp</span></span>
+<span id="hl-16-L7" class="line"><span class="line-content">Bytes 16-63: Payload (48 bytes, message-specific)</span></span></code></pre>
+<style data-highlight-styles="hl-16">
+
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-16';
+  const colorMap = {};
+  const ranges = [];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p><strong>Design principles:</strong></p>
+<ul>
+<li><strong>Minimal size</strong> - Fits in &#x3C;1KB buffers (works on systems with severely limited memory)</li>
+<li><strong>Fixed layout</strong> - No parsing complexity, works on 8-bit systems</li>
+<li><strong>Transport agnostic</strong> - TCP/IP, serial connections, modems (300 baud to 5G)</li>
+<li><strong>Big-endian</strong> - Universal byte order for maximum compatibility</li>
+</ul>
+<h3 id="cross-platform-play">Cross-Platform Play</h3>
+<p>This isn’t about nostalgia. It’s about creating <strong>impossible matchups</strong>:</p>
+<ul>
+<li>A <strong>Commodore 64</strong> (1982, 1MHz CPU, 64KB RAM) battles an <strong>iPhone 15</strong> (2023, 3.46GHz CPU, 8GB RAM)</li>
+<li>A <strong>ZX Spectrum</strong> connected via RS-232 modem plays against a <strong>Tesla’s infotainment system</strong></li>
+<li>A <strong>TI-83 calculator</strong> competes with <strong>modern gaming consoles</strong></li>
+</ul>
+<p>Same game. Same rules. Different eras. Universal protocol.</p>
+<h3 id="the-development-philosophy">The Development Philosophy</h3>
+<p><strong>“If it computes, it plays Rachel.”</strong></p>
+<p>Each platform implementation:</p>
+<ul>
+<li><strong>Respects historical constraints</strong> - C64 version uses authentic 6502 assembly and VIC-II sprites</li>
+<li><strong>Follows canonical rules</strong> - GAME_RULES.md is sacred, no platform gets creative with rules</li>
+<li><strong>Works offline</strong> - Every platform has full AI opponents for single-player</li>
+<li><strong>Connects online</strong> - TCP-capable platforms join the multiverse server</li>
+</ul>
+<p><strong>Why do this?</strong></p>
+<ul>
+<li>Preserve computing history through playable software</li>
+<li>Teach assembly programming across multiple architectures</li>
+<li>Create the most comprehensive cross-platform project ever attempted</li>
+<li>Unite every programming community through one shared game</li>
+<li>Because someone should, and nobody else is crazy enough</li>
+</ul>
+<h3 id="current-status">Current Status</h3>
+<p><strong>✅ Complete:</strong></p>
+<ul>
+<li>Phoenix LiveView web implementation (you’re looking at it)</li>
+<li>Comprehensive test suite validating game rules</li>
+<li>AI system with strategic decision-making</li>
+<li>Theme system with visual polish</li>
+</ul>
+<p><strong>🚧 In Progress:</strong></p>
+<ul>
+<li>Finalizing RUBP protocol specification</li>
+<li>Setting up unified repository structure</li>
+<li>Building protocol server infrastructure</li>
+</ul>
+<p><strong>📋 Planned:</strong></p>
+<ul>
+<li>First vintage platform implementations (DOS, C64, ZX Spectrum)</li>
+<li>Protocol server with matchmaking</li>
+<li>Community contribution framework</li>
+<li>Museum partnerships for vintage hardware testing</li>
+</ul>
+<p><strong>⏰ Timeline:</strong></p>
+<ul>
+<li>Started: December 2024</li>
+<li>Estimated completion: Heat death of universe</li>
+<li>Current status: Lost our minds, found our purpose</li>
+</ul>
+<h3 id="the-manifesto">The Manifesto</h3>
+<p>From the <a href="https://github.com/stevehill1981/Rachel">PROJECT_MANIFESTO.md</a>:</p>
+<blockquote>
+<p><em>“They said it couldn’t be done.</em>
+<em>They said it shouldn’t be done.</em>
+<em>They were probably right.</em>
+<em>We’re doing it anyway.</em></p>
+<p><em>From 1 MHz to quantum qubits.</em>
+<em>From punch cards to neural implants.</em>
+<em>From sanity to madness.</em>
+<em>From madness to legend.”</em></p>
+</blockquote>
+<p>See the full platform target list, technical specifications, and documentation at the <a href="https://github.com/stevehill1981/Rachel">Rachel GitHub organization</a>.</p>
+<hr>
+<h2 id="-why-build-rachel">🎲 Why Build Rachel?</h2>
+<p>The <strong>Phoenix LiveView version</strong> showcases how Elixir excels at real-time, stateful applications:</p>
+<ul>
+<li><strong>Complex business logic</strong> implementation with comprehensive testing</li>
+<li><strong>Real-time multiplayer</strong> without the complexity of traditional WebSocket management</li>
+<li><strong>AI system design</strong> with strategic decision-making</li>
+<li><strong>Graceful failure handling</strong> in distributed systems</li>
+<li><strong>Modern web UX</strong> with traditional gaming nostalgia</li>
+</ul>
+<p>The <strong>Rachel Multiverse</strong> demonstrates something different:</p>
+<ul>
+<li><strong>Historical preservation</strong> - Making computing history interactive and accessible</li>
+<li><strong>Cross-platform expertise</strong> - Assembly on multiple architectures (6502, Z80, 68K, x86)</li>
+<li><strong>Protocol design</strong> - Building communication systems that work on everything</li>
+<li><strong>Technical ambition</strong> - Solving problems most developers wouldn’t attempt</li>
+<li><strong>Educational mission</strong> - Teaching through implementation across 50 years of computing</li>
+</ul>
+<p>Rachel proves that you can capture 30 years of family tradition in a modern, accessible format <strong>and</strong> use it as a vehicle for preserving computing history, teaching low-level programming, and connecting every platform ever created through one universal game.</p>
+<p>It’s technical showcase meets historical preservation meets creative insanity. And it’s working.</p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Rachel%20-%20Strategic%20Card%20Game&url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Frachel%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Frachel%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="project-sidebar" data-astro-cid-ovxcmftc> <div class="sidebar-section project-info" data-astro-cid-ovxcmftc> <h3 data-astro-cid-ovxcmftc>Project Info</h3> <div class="info-item" data-astro-cid-ovxcmftc> <strong data-astro-cid-ovxcmftc>Technologies</strong> <div class="technologies" data-astro-cid-ovxcmftc> <span class="tech-tag" data-astro-cid-ovxcmftc>elixir</span><span class="tech-tag" data-astro-cid-ovxcmftc>phoenix</span><span class="tech-tag" data-astro-cid-ovxcmftc>liveview</span> </div> </div>  </div> </aside> </div> <nav class="project-navigation" data-astro-cid-ovxcmftc> <a href="/projects" class="back-to-projects" data-astro-cid-ovxcmftc>&larr; Back to Projects</a> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> 

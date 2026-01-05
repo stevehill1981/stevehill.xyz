@@ -1,0 +1,1109 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="Fixed MySQL check constraint bugs in Rails core, enhanced TimescaleDB schema dumping for multi-column compression, and debugged HTML Pipeline's node filter merging. Real-world problems found in production, fixed upstream for everyone."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/projects/open-source-contributions/"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://stevehill.xyz/projects/open-source-contributions/"><meta property="og:title" content="Open Source Contributions | Steve Hill"><meta property="og:description" content="Fixed MySQL check constraint bugs in Rails core, enhanced TimescaleDB schema dumping for multi-column compression, and debugged HTML Pipeline's node filter merging. Real-world problems found in production, fixed upstream for everyone."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/projects/open-source-contributions/"><meta property="twitter:title" content="Open Source Contributions | Steve Hill"><meta property="twitter:description" content="Fixed MySQL check constraint bugs in Rails core, enhanced TimescaleDB schema dumping for multi-column compression, and debugged HTML Pipeline's node filter merging. Real-world problems found in production, fixed upstream for everyone."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Open Source Contributions | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.BQy-Icdq.css">
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link " data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link active" data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">  <article class="project-page" data-astro-cid-ovxcmftc> <div class="project-layout" data-astro-cid-ovxcmftc> <div class="project-main" data-astro-cid-ovxcmftc> <h1 data-astro-cid-ovxcmftc>Open Source Contributions</h1> <p class="project-description" data-astro-cid-ovxcmftc>Fixed MySQL check constraint bugs in Rails core, enhanced TimescaleDB schema dumping for multi-column compression, and debugged HTML Pipeline&#39;s node filter merging. Real-world problems found in production, fixed upstream for everyone.</p> <div class="content" data-astro-cid-ovxcmftc> <p>Selected contributions to major open source projects where I encountered bugs in production, tracked down root causes, and submitted fixes that benefit the entire Ruby community.</p>
+<h2 id="-ruby-on-rails-core">🎯 Ruby on Rails Core</h2>
+<h3 id="mysql-check-constraints-schema-dumping-pr-53619">MySQL Check Constraints Schema Dumping (<a href="https://github.com/rails/rails/pull/53619">PR #53619</a>)</h3>
+<p><strong>Merged November 2024</strong></p>
+<h4 id="the-problem">The Problem</h4>
+<p>A constraint with embedded newlines in MySQL 8.0.16+:</p>
+<pre class="shiki" data-highlight-block="hl-53"><code><span id="hl-53-L0" class="line"><span class="line-content">json_schema_valid(_utf8mb4'\n        {\n          "oneOf": [\n...</span></span></code></pre>
+<style data-highlight-styles="hl-53">
+::highlight(hl-hl-53-0) { color: #D4D4D4; }
+::highlight(hl-hl-53-1) { color: #CE9178; }
+::highlight(hl-hl-53-2) { color: #D7BA7D; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-53';
+  const colorMap = {"#D4D4D4":"hl-hl-53-0","#CE9178":"hl-hl-53-1","#D7BA7D":"hl-hl-53-2"};
+  const ranges = [{"line":0,"start":0,"end":26,"color":"#D4D4D4"},{"line":0,"start":26,"end":27,"color":"#CE9178"},{"line":0,"start":27,"end":29,"color":"#D7BA7D"},{"line":0,"start":29,"end":38,"color":"#CE9178"},{"line":0,"start":38,"end":40,"color":"#D7BA7D"},{"line":0,"start":40,"end":60,"color":"#CE9178"},{"line":0,"start":60,"end":62,"color":"#D7BA7D"},{"line":0,"start":62,"end":65,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Was being dumped as <strong>invalid SQL</strong> with literal <code>n</code> characters instead of properly stripped whitespace:</p>
+<pre class="shiki" data-highlight-block="hl-52"><code><span id="hl-52-L0" class="line"><span class="line-content">json_schema_valid(_utf8mb4'n {n "oneOf": [n {n "type": "null"n }...</span></span></code></pre>
+<style data-highlight-styles="hl-52">
+::highlight(hl-hl-52-0) { color: #D4D4D4; }
+::highlight(hl-hl-52-1) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-52';
+  const colorMap = {"#D4D4D4":"hl-hl-52-0","#CE9178":"hl-hl-52-1"};
+  const ranges = [{"line":0,"start":0,"end":26,"color":"#D4D4D4"},{"line":0,"start":26,"end":67,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>This completely broke schema restoration. You’d get a valid schema dump from your database, but attempting to load it would fail with syntax errors.</p>
+<h4 id="the-root-cause">The Root Cause</h4>
+<p>My earlier PR #47851 (see below) attempted to fix whitespace stripping using a regex pattern, but the regex was incorrectly specified. Instead of removing newline characters, it was leaving the letter <code>n</code> behind.</p>
+<p>Classic regex mistake: the pattern wasn’t properly escaping the newline sequence.</p>
+<h4 id="the-solution">The Solution</h4>
+<p>Replaced the faulty regex approach with simple string manipulation:</p>
+<pre class="shiki" data-highlight-block="hl-51"><code><span id="hl-51-L0" class="line"><span class="line-content"># Before (broken regex)</span></span>
+<span id="hl-51-L1" class="line"><span class="line-content">check_expression.gsub(/[\n]/, ' ').squeeze(' ').strip</span></span>
+<span id="hl-51-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-51-L3" class="line"><span class="line-content"># After (reliable string operations)</span></span>
+<span id="hl-51-L4" class="line"><span class="line-content">check_expression.gsub("\n", ' ').squeeze(' ').strip</span></span></code></pre>
+<style data-highlight-styles="hl-51">
+::highlight(hl-hl-51-0) { color: #6A9955; }
+::highlight(hl-hl-51-1) { color: #D4D4D4; }
+::highlight(hl-hl-51-2) { color: #DCDCAA; }
+::highlight(hl-hl-51-3) { color: #D16969; }
+::highlight(hl-hl-51-4) { color: #D7BA7D; }
+::highlight(hl-hl-51-5) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-51';
+  const colorMap = {"#6A9955":"hl-hl-51-0","#D4D4D4":"hl-hl-51-1","#DCDCAA":"hl-hl-51-2","#D16969":"hl-hl-51-3","#D7BA7D":"hl-hl-51-4","#CE9178":"hl-hl-51-5"};
+  const ranges = [{"line":0,"start":0,"end":23,"color":"#6A9955"},{"line":1,"start":0,"end":17,"color":"#D4D4D4"},{"line":1,"start":17,"end":21,"color":"#DCDCAA"},{"line":1,"start":21,"end":22,"color":"#D4D4D4"},{"line":1,"start":22,"end":24,"color":"#D16969"},{"line":1,"start":24,"end":26,"color":"#D7BA7D"},{"line":1,"start":26,"end":28,"color":"#D16969"},{"line":1,"start":28,"end":30,"color":"#D4D4D4"},{"line":1,"start":30,"end":33,"color":"#CE9178"},{"line":1,"start":33,"end":35,"color":"#D4D4D4"},{"line":1,"start":35,"end":42,"color":"#DCDCAA"},{"line":1,"start":42,"end":43,"color":"#D4D4D4"},{"line":1,"start":43,"end":46,"color":"#CE9178"},{"line":1,"start":46,"end":48,"color":"#D4D4D4"},{"line":1,"start":48,"end":53,"color":"#DCDCAA"},{"line":3,"start":0,"end":36,"color":"#6A9955"},{"line":4,"start":0,"end":17,"color":"#D4D4D4"},{"line":4,"start":17,"end":21,"color":"#DCDCAA"},{"line":4,"start":21,"end":22,"color":"#D4D4D4"},{"line":4,"start":22,"end":23,"color":"#CE9178"},{"line":4,"start":23,"end":25,"color":"#D7BA7D"},{"line":4,"start":25,"end":26,"color":"#CE9178"},{"line":4,"start":26,"end":28,"color":"#D4D4D4"},{"line":4,"start":28,"end":31,"color":"#CE9178"},{"line":4,"start":31,"end":33,"color":"#D4D4D4"},{"line":4,"start":33,"end":40,"color":"#DCDCAA"},{"line":4,"start":40,"end":41,"color":"#D4D4D4"},{"line":4,"start":41,"end":44,"color":"#CE9178"},{"line":4,"start":44,"end":46,"color":"#D4D4D4"},{"line":4,"start":46,"end":51,"color":"#DCDCAA"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Now the same constraint dumps cleanly:</p>
+<pre class="shiki" data-highlight-block="hl-50"><code><span id="hl-50-L0" class="line"><span class="line-content">json_schema_valid(_utf8mb4' { "oneOf": [ { "type": "null" }...</span></span></code></pre>
+<style data-highlight-styles="hl-50">
+::highlight(hl-hl-50-0) { color: #D4D4D4; }
+::highlight(hl-hl-50-1) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-50';
+  const colorMap = {"#D4D4D4":"hl-hl-50-0","#CE9178":"hl-hl-50-1"};
+  const ranges = [{"line":0,"start":0,"end":26,"color":"#D4D4D4"},{"line":0,"start":26,"end":62,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h4 id="impact">Impact</h4>
+<ul>
+<li>Fixed schema dump reliability for <strong>all</strong> MySQL 8.0.16+ databases with complex check constraints</li>
+<li>Prevented production deployment failures when restoring schemas</li>
+<li>Lesson learned: when fixing a bug in your own previous fix, maybe skip the regex next time</li>
+</ul>
+<hr>
+<h3 id="mysql-schema-dumper-character-stripping-pr-47851">MySQL Schema Dumper Character Stripping (<a href="https://github.com/rails/rails/pull/47851">PR #47851</a>)</h3>
+<p><strong>Merged April 2023</strong> • <strong>My first Rails core contribution</strong> 🎉</p>
+<h4 id="the-problem-1">The Problem</h4>
+<p>MySQL <strong>8.0.16 changed its behavior</strong> around check constraints. Prior versions wrapped constraints in extra parentheses:</p>
+<pre class="shiki" data-highlight-block="hl-49"><code><span id="hl-49-L0" class="line"><span class="line-content">-- MySQL &#x3C; 8.0.16</span></span>
+<span id="hl-49-L1" class="line"><span class="line-content">((column > 0))</span></span>
+<span id="hl-49-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-49-L3" class="line"><span class="line-content">-- MySQL >= 8.0.16</span></span>
+<span id="hl-49-L4" class="line"><span class="line-content">(column > 0)</span></span></code></pre>
+<style data-highlight-styles="hl-49">
+::highlight(hl-hl-49-0) { color: #6A9955; }
+::highlight(hl-hl-49-1) { color: #D4D4D4; }
+::highlight(hl-hl-49-2) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-49';
+  const colorMap = {"#6A9955":"hl-hl-49-0","#D4D4D4":"hl-hl-49-1","#B5CEA8":"hl-hl-49-2"};
+  const ranges = [{"line":0,"start":0,"end":17,"color":"#6A9955"},{"line":1,"start":0,"end":11,"color":"#D4D4D4"},{"line":1,"start":11,"end":12,"color":"#B5CEA8"},{"line":1,"start":12,"end":14,"color":"#D4D4D4"},{"line":3,"start":0,"end":18,"color":"#6A9955"},{"line":4,"start":0,"end":10,"color":"#D4D4D4"},{"line":4,"start":10,"end":11,"color":"#B5CEA8"},{"line":4,"start":11,"end":12,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Rails was <strong>blindly stripping the first and last characters</strong> from all constraints, regardless of MySQL version. This worked fine before 8.0.16 (removing the extra outer parens), but broke after:</p>
+<pre class="shiki" data-highlight-block="hl-48"><code><span id="hl-48-L0" class="line"><span class="line-content"># Original constraint</span></span>
+<span id="hl-48-L1" class="line"><span class="line-content">check "email LIKE '%@%'"</span></span>
+<span id="hl-48-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-48-L3" class="line"><span class="line-content"># After Rails stripped first/last chars</span></span>
+<span id="hl-48-L4" class="line"><span class="line-content">check "mail LIKE '%@%"</span></span></code></pre>
+<style data-highlight-styles="hl-48">
+::highlight(hl-hl-48-0) { color: #6A9955; }
+::highlight(hl-hl-48-1) { color: #D4D4D4; }
+::highlight(hl-hl-48-2) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-48';
+  const colorMap = {"#6A9955":"hl-hl-48-0","#D4D4D4":"hl-hl-48-1","#CE9178":"hl-hl-48-2"};
+  const ranges = [{"line":0,"start":0,"end":21,"color":"#6A9955"},{"line":1,"start":0,"end":6,"color":"#D4D4D4"},{"line":1,"start":6,"end":24,"color":"#CE9178"},{"line":3,"start":0,"end":39,"color":"#6A9955"},{"line":4,"start":0,"end":6,"color":"#D4D4D4"},{"line":4,"start":6,"end":22,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>The closing quote and paren were gone. Schema dumps became invalid and couldn’t be restored.</p>
+<h4 id="the-solution-1">The Solution</h4>
+<p>Added version detection to handle MySQL 8.0.16+ correctly:</p>
+<pre class="shiki" data-highlight-block="hl-47"><code><span id="hl-47-L0" class="line"><span class="line-content">def prepare_check_constraint_for_schema_dump(expression)</span></span>
+<span id="hl-47-L1" class="line"><span class="line-content">  # Only strip outer parens if MySQL &#x3C; 8.0.16</span></span>
+<span id="hl-47-L2" class="line"><span class="line-content">  if database_version &#x3C; "8.0.16"</span></span>
+<span id="hl-47-L3" class="line"><span class="line-content">    expression = expression[1..-2] if expression.start_with?("(") &#x26;&#x26; expression.end_with?(")")</span></span>
+<span id="hl-47-L4" class="line"><span class="line-content">  else</span></span>
+<span id="hl-47-L5" class="line"><span class="line-content">    # For 8.0.16+, strip parens only if double-wrapped</span></span>
+<span id="hl-47-L6" class="line"><span class="line-content">    expression = expression[1..-2] if expression.start_with?("((") &#x26;&#x26; expression.end_with?("))")</span></span>
+<span id="hl-47-L7" class="line"><span class="line-content">  end</span></span>
+<span id="hl-47-L8" class="line"><span class="line-content"></span></span>
+<span id="hl-47-L9" class="line"><span class="line-content">  # Also strip whitespace and newlines</span></span>
+<span id="hl-47-L10" class="line"><span class="line-content">  expression.gsub(/[\n]/, ' ').squeeze(' ').strip</span></span>
+<span id="hl-47-L11" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-47">
+::highlight(hl-hl-47-0) { color: #C586C0; }
+::highlight(hl-hl-47-1) { color: #D4D4D4; }
+::highlight(hl-hl-47-2) { color: #DCDCAA; }
+::highlight(hl-hl-47-3) { color: #9CDCFE; }
+::highlight(hl-hl-47-4) { color: #6A9955; }
+::highlight(hl-hl-47-5) { color: #CE9178; }
+::highlight(hl-hl-47-6) { color: #B5CEA8; }
+::highlight(hl-hl-47-7) { color: #D16969; }
+::highlight(hl-hl-47-8) { color: #D7BA7D; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-47';
+  const colorMap = {"#C586C0":"hl-hl-47-0","#D4D4D4":"hl-hl-47-1","#DCDCAA":"hl-hl-47-2","#9CDCFE":"hl-hl-47-3","#6A9955":"hl-hl-47-4","#CE9178":"hl-hl-47-5","#B5CEA8":"hl-hl-47-6","#D16969":"hl-hl-47-7","#D7BA7D":"hl-hl-47-8"};
+  const ranges = [{"line":0,"start":0,"end":3,"color":"#C586C0"},{"line":0,"start":3,"end":4,"color":"#D4D4D4"},{"line":0,"start":4,"end":44,"color":"#DCDCAA"},{"line":0,"start":44,"end":45,"color":"#D4D4D4"},{"line":0,"start":45,"end":55,"color":"#9CDCFE"},{"line":0,"start":55,"end":56,"color":"#D4D4D4"},{"line":1,"start":0,"end":2,"color":"#D4D4D4"},{"line":1,"start":2,"end":45,"color":"#6A9955"},{"line":2,"start":0,"end":2,"color":"#D4D4D4"},{"line":2,"start":2,"end":4,"color":"#C586C0"},{"line":2,"start":4,"end":24,"color":"#D4D4D4"},{"line":2,"start":24,"end":32,"color":"#CE9178"},{"line":3,"start":0,"end":4,"color":"#D4D4D4"},{"line":3,"start":4,"end":14,"color":"#9CDCFE"},{"line":3,"start":14,"end":28,"color":"#D4D4D4"},{"line":3,"start":28,"end":29,"color":"#B5CEA8"},{"line":3,"start":29,"end":32,"color":"#D4D4D4"},{"line":3,"start":32,"end":33,"color":"#B5CEA8"},{"line":3,"start":33,"end":35,"color":"#D4D4D4"},{"line":3,"start":35,"end":37,"color":"#C586C0"},{"line":3,"start":37,"end":49,"color":"#D4D4D4"},{"line":3,"start":49,"end":60,"color":"#DCDCAA"},{"line":3,"start":60,"end":61,"color":"#D4D4D4"},{"line":3,"start":61,"end":64,"color":"#CE9178"},{"line":3,"start":64,"end":80,"color":"#D4D4D4"},{"line":3,"start":80,"end":89,"color":"#DCDCAA"},{"line":3,"start":89,"end":90,"color":"#D4D4D4"},{"line":3,"start":90,"end":93,"color":"#CE9178"},{"line":3,"start":93,"end":94,"color":"#D4D4D4"},{"line":4,"start":0,"end":2,"color":"#D4D4D4"},{"line":4,"start":2,"end":6,"color":"#C586C0"},{"line":5,"start":0,"end":4,"color":"#D4D4D4"},{"line":5,"start":4,"end":54,"color":"#6A9955"},{"line":6,"start":0,"end":4,"color":"#D4D4D4"},{"line":6,"start":4,"end":14,"color":"#9CDCFE"},{"line":6,"start":14,"end":28,"color":"#D4D4D4"},{"line":6,"start":28,"end":29,"color":"#B5CEA8"},{"line":6,"start":29,"end":32,"color":"#D4D4D4"},{"line":6,"start":32,"end":33,"color":"#B5CEA8"},{"line":6,"start":33,"end":35,"color":"#D4D4D4"},{"line":6,"start":35,"end":37,"color":"#C586C0"},{"line":6,"start":37,"end":49,"color":"#D4D4D4"},{"line":6,"start":49,"end":60,"color":"#DCDCAA"},{"line":6,"start":60,"end":61,"color":"#D4D4D4"},{"line":6,"start":61,"end":65,"color":"#CE9178"},{"line":6,"start":65,"end":81,"color":"#D4D4D4"},{"line":6,"start":81,"end":90,"color":"#DCDCAA"},{"line":6,"start":90,"end":91,"color":"#D4D4D4"},{"line":6,"start":91,"end":95,"color":"#CE9178"},{"line":6,"start":95,"end":96,"color":"#D4D4D4"},{"line":7,"start":0,"end":2,"color":"#D4D4D4"},{"line":7,"start":2,"end":5,"color":"#C586C0"},{"line":9,"start":0,"end":2,"color":"#D4D4D4"},{"line":9,"start":2,"end":38,"color":"#6A9955"},{"line":10,"start":0,"end":13,"color":"#D4D4D4"},{"line":10,"start":13,"end":17,"color":"#DCDCAA"},{"line":10,"start":17,"end":18,"color":"#D4D4D4"},{"line":10,"start":18,"end":20,"color":"#D16969"},{"line":10,"start":20,"end":22,"color":"#D7BA7D"},{"line":10,"start":22,"end":24,"color":"#D16969"},{"line":10,"start":24,"end":26,"color":"#D4D4D4"},{"line":10,"start":26,"end":29,"color":"#CE9178"},{"line":10,"start":29,"end":31,"color":"#D4D4D4"},{"line":10,"start":31,"end":38,"color":"#DCDCAA"},{"line":10,"start":38,"end":39,"color":"#D4D4D4"},{"line":10,"start":39,"end":42,"color":"#CE9178"},{"line":10,"start":42,"end":44,"color":"#D4D4D4"},{"line":10,"start":44,"end":49,"color":"#DCDCAA"},{"line":11,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Now schema dumps work correctly across MySQL versions.</p>
+<h4 id="impact-1">Impact</h4>
+<ul>
+<li>Unblocked Rails users upgrading to MySQL 8.0.16+</li>
+<li>Backported to <code>7-0-stable</code> branch after production reports</li>
+<li>Led to discovering the newline bug that required PR #53619 (see above)</li>
+</ul>
+<h2 id="-timescaledb-ruby-gem">📊 TimescaleDB Ruby Gem</h2>
+<h3 id="multi-column-compression-schema-support-pr-38">Multi-Column Compression Schema Support (<a href="https://github.com/timescale/timescaledb-ruby/pull/38">PR #38</a>)</h3>
+<p><strong>Merged January 2023</strong></p>
+<h4 id="the-problem-2">The Problem</h4>
+<p>TimescaleDB supports <strong>multiple columns</strong> for both compression segmentation and ordering, but the Ruby gem’s schema dumper was only capturing the <strong>first column</strong>. This caused silent data loss during schema restoration.</p>
+<p>Example configuration that would break:</p>
+<pre class="shiki" data-highlight-block="hl-46"><code><span id="hl-46-L0" class="line"><span class="line-content">create_table :sensor_data, hypertable: { time_column: 'created_at' } do |t|</span></span>
+<span id="hl-46-L1" class="line"><span class="line-content">  t.string :device_id</span></span>
+<span id="hl-46-L2" class="line"><span class="line-content">  t.string :location</span></span>
+<span id="hl-46-L3" class="line"><span class="line-content">  t.float :temperature</span></span>
+<span id="hl-46-L4" class="line"><span class="line-content">  t.datetime :created_at</span></span>
+<span id="hl-46-L5" class="line"><span class="line-content">end</span></span>
+<span id="hl-46-L6" class="line"><span class="line-content"></span></span>
+<span id="hl-46-L7" class="line"><span class="line-content"># Enable compression with multiple segmentation columns</span></span>
+<span id="hl-46-L8" class="line"><span class="line-content">execute &#x3C;&#x3C;-SQL</span></span>
+<span id="hl-46-L9" class="line"><span class="line-content">  ALTER TABLE sensor_data SET (</span></span>
+<span id="hl-46-L10" class="line"><span class="line-content">    timescaledb.compress,</span></span>
+<span id="hl-46-L11" class="line"><span class="line-content">    timescaledb.compress_segmentby = 'device_id, location',</span></span>
+<span id="hl-46-L12" class="line"><span class="line-content">    timescaledb.compress_orderby = 'created_at DESC NULLS FIRST, temperature DESC NULLS LAST'</span></span>
+<span id="hl-46-L13" class="line"><span class="line-content">  );</span></span>
+<span id="hl-46-L14" class="line"><span class="line-content">SQL</span></span></code></pre>
+<style data-highlight-styles="hl-46">
+::highlight(hl-hl-46-0) { color: #D4D4D4; }
+::highlight(hl-hl-46-1) { color: #569CD6; }
+::highlight(hl-hl-46-2) { color: #CE9178; }
+::highlight(hl-hl-46-3) { color: #C586C0; }
+::highlight(hl-hl-46-4) { color: #9CDCFE; }
+::highlight(hl-hl-46-5) { color: #DCDCAA; }
+::highlight(hl-hl-46-6) { color: #6A9955; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-46';
+  const colorMap = {"#D4D4D4":"hl-hl-46-0","#569CD6":"hl-hl-46-1","#CE9178":"hl-hl-46-2","#C586C0":"hl-hl-46-3","#9CDCFE":"hl-hl-46-4","#DCDCAA":"hl-hl-46-5","#6A9955":"hl-hl-46-6"};
+  const ranges = [{"line":0,"start":0,"end":13,"color":"#D4D4D4"},{"line":0,"start":13,"end":25,"color":"#569CD6"},{"line":0,"start":25,"end":27,"color":"#D4D4D4"},{"line":0,"start":27,"end":38,"color":"#569CD6"},{"line":0,"start":38,"end":41,"color":"#D4D4D4"},{"line":0,"start":41,"end":53,"color":"#569CD6"},{"line":0,"start":53,"end":54,"color":"#D4D4D4"},{"line":0,"start":54,"end":66,"color":"#CE9178"},{"line":0,"start":66,"end":69,"color":"#D4D4D4"},{"line":0,"start":69,"end":71,"color":"#C586C0"},{"line":0,"start":71,"end":73,"color":"#D4D4D4"},{"line":0,"start":73,"end":74,"color":"#9CDCFE"},{"line":0,"start":74,"end":75,"color":"#D4D4D4"},{"line":1,"start":0,"end":4,"color":"#D4D4D4"},{"line":1,"start":4,"end":10,"color":"#DCDCAA"},{"line":1,"start":10,"end":11,"color":"#D4D4D4"},{"line":1,"start":11,"end":21,"color":"#569CD6"},{"line":2,"start":0,"end":4,"color":"#D4D4D4"},{"line":2,"start":4,"end":10,"color":"#DCDCAA"},{"line":2,"start":10,"end":11,"color":"#D4D4D4"},{"line":2,"start":11,"end":20,"color":"#569CD6"},{"line":3,"start":0,"end":4,"color":"#D4D4D4"},{"line":3,"start":4,"end":9,"color":"#DCDCAA"},{"line":3,"start":9,"end":10,"color":"#D4D4D4"},{"line":3,"start":10,"end":22,"color":"#569CD6"},{"line":4,"start":0,"end":4,"color":"#D4D4D4"},{"line":4,"start":4,"end":12,"color":"#DCDCAA"},{"line":4,"start":12,"end":13,"color":"#D4D4D4"},{"line":4,"start":13,"end":24,"color":"#569CD6"},{"line":5,"start":0,"end":3,"color":"#C586C0"},{"line":7,"start":0,"end":55,"color":"#6A9955"},{"line":8,"start":0,"end":8,"color":"#D4D4D4"},{"line":8,"start":8,"end":14,"color":"#CE9178"},{"line":9,"start":0,"end":2,"color":"#D4D4D4"},{"line":9,"start":2,"end":7,"color":"#569CD6"},{"line":9,"start":7,"end":8,"color":"#D4D4D4"},{"line":9,"start":8,"end":13,"color":"#569CD6"},{"line":9,"start":13,"end":26,"color":"#D4D4D4"},{"line":9,"start":26,"end":29,"color":"#569CD6"},{"line":9,"start":29,"end":31,"color":"#D4D4D4"},{"line":10,"start":0,"end":25,"color":"#D4D4D4"},{"line":11,"start":0,"end":37,"color":"#D4D4D4"},{"line":11,"start":37,"end":58,"color":"#CE9178"},{"line":11,"start":58,"end":59,"color":"#D4D4D4"},{"line":12,"start":0,"end":35,"color":"#D4D4D4"},{"line":12,"start":35,"end":93,"color":"#CE9178"},{"line":13,"start":0,"end":4,"color":"#D4D4D4"},{"line":14,"start":0,"end":3,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>When dumping the schema, the gem would output:</p>
+<pre class="shiki" data-highlight-block="hl-45"><code><span id="hl-45-L0" class="line"><span class="line-content">compress_segmentby: "device_id"              # Missing 'location'</span></span>
+<span id="hl-45-L1" class="line"><span class="line-content">compress_orderby: "created_at DESC"          # Missing 'temperature' and NULLS handling</span></span></code></pre>
+<style data-highlight-styles="hl-45">
+::highlight(hl-hl-45-0) { color: #569CD6; }
+::highlight(hl-hl-45-1) { color: #D4D4D4; }
+::highlight(hl-hl-45-2) { color: #CE9178; }
+::highlight(hl-hl-45-3) { color: #6A9955; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-45';
+  const colorMap = {"#569CD6":"hl-hl-45-0","#D4D4D4":"hl-hl-45-1","#CE9178":"hl-hl-45-2","#6A9955":"hl-hl-45-3"};
+  const ranges = [{"line":0,"start":0,"end":19,"color":"#569CD6"},{"line":0,"start":19,"end":20,"color":"#D4D4D4"},{"line":0,"start":20,"end":31,"color":"#CE9178"},{"line":0,"start":31,"end":45,"color":"#D4D4D4"},{"line":0,"start":45,"end":65,"color":"#6A9955"},{"line":1,"start":0,"end":17,"color":"#569CD6"},{"line":1,"start":17,"end":18,"color":"#D4D4D4"},{"line":1,"start":18,"end":35,"color":"#CE9178"},{"line":1,"start":35,"end":45,"color":"#D4D4D4"},{"line":1,"start":45,"end":87,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Restoring this schema would create a <strong>differently configured</strong> compression setup, affecting query performance and storage efficiency.</p>
+<h4 id="the-solution-2">The Solution</h4>
+<p>Enhanced the schema dumper to:</p>
+<ol>
+<li>Capture <strong>all</strong> segmentation columns, not just the first</li>
+<li>Parse <strong>all</strong> ordering columns with their direction (ASC/DESC)</li>
+<li>Handle PostgreSQL’s <code>NULLS FIRST</code> / <code>NULLS LAST</code> ordering correctly</li>
+</ol>
+<p>Key implementation detail: PostgreSQL has implicit NULLS handling defaults:</p>
+<ul>
+<li><code>ORDER BY column ASC</code> → defaults to <code>NULLS LAST</code></li>
+<li><code>ORDER BY column DESC</code> → defaults to <code>NULLS FIRST</code></li>
+</ul>
+<p>The schema dumper now only includes explicit NULLS directives when they differ from the defaults, keeping schema files clean.</p>
+<h4 id="impact-2">Impact</h4>
+<ul>
+<li>Schema dumps now <strong>perfectly replicate</strong> complex compression configurations</li>
+<li>Eliminated subtle performance regressions caused by incorrect schema restoration</li>
+<li>Comprehensive test coverage validates multi-column handling</li>
+</ul>
+<hr>
+<h3 id="hypertable-dimensions-bug-fix-pr-30">Hypertable Dimensions Bug Fix (<a href="https://github.com/timescale/timescaledb-ruby/pull/30">PR #30</a>)</h3>
+<p><strong>Merged October 2022</strong></p>
+<h4 id="the-problem-3">The Problem</h4>
+<p>The <code>timescale_hypertable</code> helper method was attempting to access dimension properties directly on a collection proxy:</p>
+<pre class="shiki" data-highlight-block="hl-44"><code><span id="hl-44-L0" class="line"><span class="line-content">hypertable.dimensions.time_column  # NoMethodError: undefined method for collection</span></span></code></pre>
+<style data-highlight-styles="hl-44">
+::highlight(hl-hl-44-0) { color: #D4D4D4; }
+::highlight(hl-hl-44-1) { color: #DCDCAA; }
+::highlight(hl-hl-44-2) { color: #6A9955; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-44';
+  const colorMap = {"#D4D4D4":"hl-hl-44-0","#DCDCAA":"hl-hl-44-1","#6A9955":"hl-hl-44-2"};
+  const ranges = [{"line":0,"start":0,"end":11,"color":"#D4D4D4"},{"line":0,"start":11,"end":21,"color":"#DCDCAA"},{"line":0,"start":21,"end":22,"color":"#D4D4D4"},{"line":0,"start":22,"end":33,"color":"#DCDCAA"},{"line":0,"start":33,"end":35,"color":"#D4D4D4"},{"line":0,"start":35,"end":83,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>This crashed when trying to create hypertables in migrations, making the gem’s helper methods completely unusable.</p>
+<h4 id="the-solution-3">The Solution</h4>
+<p>Fixed the code to select the first dimension explicitly:</p>
+<pre class="shiki" data-highlight-block="hl-43"><code><span id="hl-43-L0" class="line"><span class="line-content">hypertable.dimensions.first.time_column  # Works correctly</span></span></code></pre>
+<style data-highlight-styles="hl-43">
+::highlight(hl-hl-43-0) { color: #D4D4D4; }
+::highlight(hl-hl-43-1) { color: #DCDCAA; }
+::highlight(hl-hl-43-2) { color: #6A9955; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-43';
+  const colorMap = {"#D4D4D4":"hl-hl-43-0","#DCDCAA":"hl-hl-43-1","#6A9955":"hl-hl-43-2"};
+  const ranges = [{"line":0,"start":0,"end":11,"color":"#D4D4D4"},{"line":0,"start":11,"end":21,"color":"#DCDCAA"},{"line":0,"start":21,"end":22,"color":"#D4D4D4"},{"line":0,"start":22,"end":27,"color":"#DCDCAA"},{"line":0,"start":27,"end":28,"color":"#D4D4D4"},{"line":0,"start":28,"end":39,"color":"#DCDCAA"},{"line":0,"start":39,"end":41,"color":"#D4D4D4"},{"line":0,"start":41,"end":58,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>TimescaleDB hypertables always have a primary time-based dimension, so accessing <code>.first</code> is safe and expected.</p>
+<h4 id="impact-3">Impact</h4>
+<p>Restored functionality to <code>timescale_hypertable</code> migrations helper, unblocking users who had upgraded to the broken version.</p>
+<h2 id="-html-pipeline">🔍 HTML Pipeline</h2>
+<h3 id="nodefilter-array-merging-fix-pr-389">NodeFilter Array Merging Fix (<a href="https://github.com/gjtorikian/html-pipeline/pull/389">PR #389</a>)</h3>
+<p><strong>Merged December 2023</strong> • Shipped as v3.0.1</p>
+<h4 id="the-problem-4">The Problem</h4>
+<p>The weirdest kind of bug: one that exhibits a <strong>pattern</strong> but not a reason.</p>
+<p>When configuring NodeFilter instances for HTML processing:</p>
+<ul>
+<li><strong>0 filters</strong>: ✅ Works</li>
+<li><strong>1 filter</strong>: ✅ Works</li>
+<li><strong>2 filters</strong>: ✅ Works</li>
+<li><strong>3 filters</strong>: ❌ <code>ArgumentError</code> crashes</li>
+<li><strong>4 filters</strong>: ✅ Works again</li>
+</ul>
+<p>Classic symptom of array flattening issues. The library was treating NodeFilter results as <strong>2-element pairs</strong> during the merge operation, which broke with odd numbers.</p>
+<p>This was a regression in html-pipeline 3.0.0 that made certain filter configurations completely unusable.</p>
+<h4 id="the-root-cause-1">The Root Cause</h4>
+<p>Ruby’s array handling was interpreting the merge operation as a sequence of 2-element arrays. When you had 3 filters, Ruby tried to pair them as <code>[filter1, filter2]</code> and <code>[filter3, ???]</code>, causing the <code>ArgumentError</code>.</p>
+<p>The code was essentially doing:</p>
+<pre class="shiki" data-highlight-block="hl-42"><code><span id="hl-42-L0" class="line"><span class="line-content"># Broken: treats results as pairs</span></span>
+<span id="hl-42-L1" class="line"><span class="line-content">results.each_slice(2) do |a, b|</span></span>
+<span id="hl-42-L2" class="line"><span class="line-content">  merge(a, b)  # Crashes when b is nil (odd number of items)</span></span>
+<span id="hl-42-L3" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-42">
+::highlight(hl-hl-42-0) { color: #6A9955; }
+::highlight(hl-hl-42-1) { color: #D4D4D4; }
+::highlight(hl-hl-42-2) { color: #DCDCAA; }
+::highlight(hl-hl-42-3) { color: #B5CEA8; }
+::highlight(hl-hl-42-4) { color: #C586C0; }
+::highlight(hl-hl-42-5) { color: #9CDCFE; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-42';
+  const colorMap = {"#6A9955":"hl-hl-42-0","#D4D4D4":"hl-hl-42-1","#DCDCAA":"hl-hl-42-2","#B5CEA8":"hl-hl-42-3","#C586C0":"hl-hl-42-4","#9CDCFE":"hl-hl-42-5"};
+  const ranges = [{"line":0,"start":0,"end":33,"color":"#6A9955"},{"line":1,"start":0,"end":8,"color":"#D4D4D4"},{"line":1,"start":8,"end":18,"color":"#DCDCAA"},{"line":1,"start":18,"end":19,"color":"#D4D4D4"},{"line":1,"start":19,"end":20,"color":"#B5CEA8"},{"line":1,"start":20,"end":22,"color":"#D4D4D4"},{"line":1,"start":22,"end":24,"color":"#C586C0"},{"line":1,"start":24,"end":26,"color":"#D4D4D4"},{"line":1,"start":26,"end":27,"color":"#9CDCFE"},{"line":1,"start":27,"end":29,"color":"#D4D4D4"},{"line":1,"start":29,"end":30,"color":"#9CDCFE"},{"line":1,"start":30,"end":31,"color":"#D4D4D4"},{"line":2,"start":0,"end":2,"color":"#D4D4D4"},{"line":2,"start":2,"end":7,"color":"#DCDCAA"},{"line":2,"start":7,"end":15,"color":"#D4D4D4"},{"line":2,"start":15,"end":60,"color":"#6A9955"},{"line":3,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h4 id="the-solution-4">The Solution</h4>
+<p>Fixed the array processing to handle <strong>any number</strong> of filters:</p>
+<pre class="shiki" data-highlight-block="hl-41"><code><span id="hl-41-L0" class="line"><span class="line-content"># Corrected: properly merges all results</span></span>
+<span id="hl-41-L1" class="line"><span class="line-content">results.reduce do |merged, current|</span></span>
+<span id="hl-41-L2" class="line"><span class="line-content">  merge(merged, current)</span></span>
+<span id="hl-41-L3" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-41">
+::highlight(hl-hl-41-0) { color: #6A9955; }
+::highlight(hl-hl-41-1) { color: #D4D4D4; }
+::highlight(hl-hl-41-2) { color: #DCDCAA; }
+::highlight(hl-hl-41-3) { color: #C586C0; }
+::highlight(hl-hl-41-4) { color: #9CDCFE; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-41';
+  const colorMap = {"#6A9955":"hl-hl-41-0","#D4D4D4":"hl-hl-41-1","#DCDCAA":"hl-hl-41-2","#C586C0":"hl-hl-41-3","#9CDCFE":"hl-hl-41-4"};
+  const ranges = [{"line":0,"start":0,"end":40,"color":"#6A9955"},{"line":1,"start":0,"end":8,"color":"#D4D4D4"},{"line":1,"start":8,"end":14,"color":"#DCDCAA"},{"line":1,"start":14,"end":15,"color":"#D4D4D4"},{"line":1,"start":15,"end":17,"color":"#C586C0"},{"line":1,"start":17,"end":19,"color":"#D4D4D4"},{"line":1,"start":19,"end":25,"color":"#9CDCFE"},{"line":1,"start":25,"end":27,"color":"#D4D4D4"},{"line":1,"start":27,"end":34,"color":"#9CDCFE"},{"line":1,"start":34,"end":35,"color":"#D4D4D4"},{"line":2,"start":0,"end":2,"color":"#D4D4D4"},{"line":2,"start":2,"end":7,"color":"#DCDCAA"},{"line":2,"start":7,"end":24,"color":"#D4D4D4"},{"line":3,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Now filter counts don’t matter - merge operations work consistently regardless of configuration.</p>
+<h4 id="impact-4">Impact</h4>
+<ul>
+<li>Fixed html-pipeline 3.0.0 regression</li>
+<li>Shipped as 3.0.1 within days</li>
+<li>Maintainer response: <em>“Gah, thanks for catching this”</em> (we’ve all been there)</li>
+</ul>
+<hr>
+<h2 id="-contribution-philosophy">🎯 Contribution Philosophy</h2>
+<p>All of these started the same way: <strong>I hit a bug in production</strong>, spent time debugging it, found the root cause, and fixed it upstream so nobody else has to deal with it.</p>
+<h3 id="the-pattern">The Pattern</h3>
+<ol>
+<li><strong>Production breaks</strong> with a cryptic error</li>
+<li><strong>Debug relentlessly</strong> - read source code, write reproduction cases, trace through the call stack</li>
+<li><strong>Fix it locally</strong> first to unblock production</li>
+<li><strong>Submit upstream</strong> with comprehensive tests and clear explanation</li>
+<li><strong>Collaborate with maintainers</strong> through review process</li>
+<li><strong>Ship the fix</strong> for everyone</li>
+</ol>
+<h3 id="what-this-demonstrates">What This Demonstrates</h3>
+<p><strong>Database expertise</strong> - Deep understanding of MySQL version differences, PostgreSQL ordering semantics, and TimescaleDB compression internals</p>
+<p><strong>Edge case hunting</strong> - Finding bugs that only surface under specific version combinations or configuration patterns</p>
+<p><strong>Code archaeology</strong> - Reading unfamiliar codebases quickly to understand intent vs. implementation</p>
+<p><strong>Testing discipline</strong> - Every PR includes comprehensive test coverage validating the fix</p>
+<p><strong>Communication</strong> - Writing clear bug reports and explanations for maintainers who don’t have your context</p>
+<h2 id="-impact">📊 Impact</h2>
+<p>These aren’t vanity contributions. Each one fixed a <strong>real production problem</strong> that affected multiple teams:</p>
+<ul>
+<li><strong>Rails MySQL fixes</strong>: Thousands of applications upgrading to MySQL 8.0.16+ can now dump and restore schemas reliably</li>
+<li><strong>TimescaleDB enhancements</strong>: Time-series applications using compression get accurate schema dumps</li>
+<li><strong>HTML Pipeline fix</strong>: Anyone using 3+ NodeFilters in html-pipeline 3.0.0 can now upgrade to 3.0.1</li>
+</ul>
+<p>The best open source contributions aren’t the flashy ones. They’re the unglamorous bug fixes that prevent the next developer from wasting hours on the same problem you already solved.</p>
+<h2 id="-all-contributions">🔗 All Contributions</h2>
+<ul>
+<li><a href="https://github.com/rails/rails/pull/53619">Ruby on Rails PR #53619</a> - MySQL check constraints newline handling</li>
+<li><a href="https://github.com/rails/rails/pull/47851">Ruby on Rails PR #47851</a> - MySQL 8.0.16+ schema dumper fix</li>
+<li><a href="https://github.com/timescale/timescaledb-ruby/pull/38">TimescaleDB Ruby PR #38</a> - Multi-column compression support</li>
+<li><a href="https://github.com/timescale/timescaledb-ruby/pull/30">TimescaleDB Ruby PR #30</a> - Hypertable dimensions fix</li>
+<li><a href="https://github.com/gjtorikian/html-pipeline/pull/389">HTML Pipeline PR #389</a> - NodeFilter merging fix</li>
+</ul> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Open%20Source%20Contributions&url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fopen-source-contributions%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fopen-source-contributions%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="project-sidebar" data-astro-cid-ovxcmftc> <div class="sidebar-section project-info" data-astro-cid-ovxcmftc> <h3 data-astro-cid-ovxcmftc>Project Info</h3> <div class="info-item" data-astro-cid-ovxcmftc> <strong data-astro-cid-ovxcmftc>Technologies</strong> <div class="technologies" data-astro-cid-ovxcmftc> <span class="tech-tag" data-astro-cid-ovxcmftc>Ruby</span><span class="tech-tag" data-astro-cid-ovxcmftc>Rails</span><span class="tech-tag" data-astro-cid-ovxcmftc>MySQL</span><span class="tech-tag" data-astro-cid-ovxcmftc>PostgreSQL</span><span class="tech-tag" data-astro-cid-ovxcmftc>TimescaleDB</span><span class="tech-tag" data-astro-cid-ovxcmftc>HTML Processing</span> </div> </div>  </div> </aside> </div> <nav class="project-navigation" data-astro-cid-ovxcmftc> <a href="/projects" class="back-to-projects" data-astro-cid-ovxcmftc>&larr; Back to Projects</a> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> 

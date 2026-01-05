@@ -1,0 +1,610 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="From functional card game to production-ready web application: implementing a dynamic theme system, fixing critical bugs, and deploying to the world with bank-grade security."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/blog/2025-07-08-building-rachel-part-2-themes-and-deployment/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://stevehill.xyz/blog/2025-07-08-building-rachel-part-2-themes-and-deployment/"><meta property="og:title" content="Building Rachel Part 2: Themes, Polish, and Production Deployment | Steve Hill"><meta property="og:description" content="From functional card game to production-ready web application: implementing a dynamic theme system, fixing critical bugs, and deploying to the world with bank-grade security."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/blog/2025-07-08-building-rachel-part-2-themes-and-deployment/"><meta property="twitter:title" content="Building Rachel Part 2: Themes, Polish, and Production Deployment | Steve Hill"><meta property="twitter:description" content="From functional card game to production-ready web application: implementing a dynamic theme system, fixing critical bugs, and deploying to the world with bank-grade security."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Building Rachel Part 2: Themes, Polish, and Production Deployment | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css">
+<link rel="stylesheet" href="/_astro/_slug_.X48vnfGS.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link active" data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link " data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">   <div class="reading-progress" data-astro-cid-4sn4zg3r> <div class="reading-progress-bar" data-astro-cid-4sn4zg3r></div> </div> <article class="blog-post" data-astro-cid-4sn4zg3r> <div class="post-layout" data-astro-cid-4sn4zg3r> <div class="post-main" data-astro-cid-4sn4zg3r> <h1 data-astro-cid-4sn4zg3r>Building Rachel Part 2: Themes, Polish, and Production Deployment</h1>  <div class="content" data-astro-cid-4sn4zg3r> <p>In <a href="/blog/2025-07-03-building-rachel-part-1/">Part 1</a>, I covered building the core game engine for Rachel, my Phoenix LiveView card game. Today, I’m excited to share how we transformed it from a functional game into a production-ready application with a stunning theme system that’s now live at <a href="https://rachel.stevehill.xyz">rachel.stevehill.xyz</a>.</p>
+<p><em>Note: This development was done in collaboration with Claude (Anthropic’s AI assistant), who provided crucial guidance on CSS architecture, security best practices, and production deployment strategies.</em></p>
+<h2 id="from-functional-to-memorable">From Functional to Memorable</h2>
+<p>The original Rachel worked perfectly - players could join games, cards functioned correctly, and the AI was competitive. But it looked like every other web application: functional, but forgettable.</p>
+<p>The breakthrough came when we decided to implement a complete theme system. Instead of just “dark mode” or “light mode,” we created three distinct visual identities that transform the entire experience:</p>
+<h3 id="-the-three-themes">🎨 The Three Themes</h3>
+<p><strong>Modern Minimalist</strong> - Clean, Apple-inspired design with crisp whites, subtle grays, and precise animations. Perfect for players who want distraction-free focus.</p>
+<p><strong>Premium Card Room</strong> - Luxury casino aesthetic with rich greens, gold accents, and elegant transitions. For when you want to feel like you’re playing in Monte Carlo.</p>
+<p><strong>Warm &#x26; Social</strong> - Cozy pub atmosphere with earth tones, warm browns, and friendly animations. The perfect choice for casual family games.</p>
+<h2 id="the-technical-challenge">The Technical Challenge</h2>
+<p>Building a theme system sounds simple until you try to implement it properly. We needed:</p>
+<ol>
+<li><strong>Instant switching</strong> without page reloads</li>
+<li><strong>Persistence</strong> across browser sessions</li>
+<li><strong>Consistent application</strong> across all components</li>
+<li><strong>Performance</strong> - theme switches must feel instant</li>
+<li><strong>Accessibility</strong> support for reduced motion and high contrast</li>
+</ol>
+<p>The solution was a combination of CSS custom properties, LiveView events, and localStorage persistence:</p>
+<pre class="shiki" data-highlight-block="hl-74"><code><span id="hl-74-L0" class="line"><span class="line-content">/* Base theme variables that all themes override */</span></span>
+<span id="hl-74-L1" class="line"><span class="line-content">:root {</span></span>
+<span id="hl-74-L2" class="line"><span class="line-content">  --theme-primary: #3b82f6;</span></span>
+<span id="hl-74-L3" class="line"><span class="line-content">  --theme-bg-primary: #f8fafc;</span></span>
+<span id="hl-74-L4" class="line"><span class="line-content">  --theme-card-gradient: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);</span></span>
+<span id="hl-74-L5" class="line"><span class="line-content">  --theme-animation-speed: 0.3s;</span></span>
+<span id="hl-74-L6" class="line"><span class="line-content">}</span></span>
+<span id="hl-74-L7" class="line"><span class="line-content"></span></span>
+<span id="hl-74-L8" class="line"><span class="line-content">/* Modern Minimalist theme */</span></span>
+<span id="hl-74-L9" class="line"><span class="line-content">:root[data-theme="modern-minimalist"] {</span></span>
+<span id="hl-74-L10" class="line"><span class="line-content">  --theme-primary: #007aff;</span></span>
+<span id="hl-74-L11" class="line"><span class="line-content">  --theme-bg-primary: #ffffff;</span></span>
+<span id="hl-74-L12" class="line"><span class="line-content">  --theme-animation-speed: 0.2s;</span></span>
+<span id="hl-74-L13" class="line"><span class="line-content">  --theme-animation-easing: cubic-bezier(0.4, 0, 0.2, 1);</span></span>
+<span id="hl-74-L14" class="line"><span class="line-content">}</span></span>
+<span id="hl-74-L15" class="line"><span class="line-content"></span></span>
+<span id="hl-74-L16" class="line"><span class="line-content">/* Premium Card Room theme */</span></span>
+<span id="hl-74-L17" class="line"><span class="line-content">:root[data-theme="premium-card-room"] {</span></span>
+<span id="hl-74-L18" class="line"><span class="line-content">  --theme-primary: #d4af37;</span></span>
+<span id="hl-74-L19" class="line"><span class="line-content">  --theme-bg-primary: #1a2332;</span></span>
+<span id="hl-74-L20" class="line"><span class="line-content">  --theme-animation-speed: 0.4s;</span></span>
+<span id="hl-74-L21" class="line"><span class="line-content">  --theme-animation-easing: cubic-bezier(0.23, 1, 0.32, 1);</span></span>
+<span id="hl-74-L22" class="line"><span class="line-content">}</span></span></code></pre>
+<style data-highlight-styles="hl-74">
+::highlight(hl-hl-74-0) { color: #6A9955; }
+::highlight(hl-hl-74-1) { color: #D7BA7D; }
+::highlight(hl-hl-74-2) { color: #D4D4D4; }
+::highlight(hl-hl-74-3) { color: #9CDCFE; }
+::highlight(hl-hl-74-4) { color: #CE9178; }
+::highlight(hl-hl-74-5) { color: #DCDCAA; }
+::highlight(hl-hl-74-6) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-74';
+  const colorMap = {"#6A9955":"hl-hl-74-0","#D7BA7D":"hl-hl-74-1","#D4D4D4":"hl-hl-74-2","#9CDCFE":"hl-hl-74-3","#CE9178":"hl-hl-74-4","#DCDCAA":"hl-hl-74-5","#B5CEA8":"hl-hl-74-6"};
+  const ranges = [{"line":0,"start":0,"end":51,"color":"#6A9955"},{"line":1,"start":0,"end":5,"color":"#D7BA7D"},{"line":1,"start":5,"end":7,"color":"#D4D4D4"},{"line":2,"start":0,"end":2,"color":"#D4D4D4"},{"line":2,"start":2,"end":17,"color":"#9CDCFE"},{"line":2,"start":17,"end":19,"color":"#D4D4D4"},{"line":2,"start":19,"end":26,"color":"#CE9178"},{"line":2,"start":26,"end":27,"color":"#D4D4D4"},{"line":3,"start":0,"end":2,"color":"#D4D4D4"},{"line":3,"start":2,"end":20,"color":"#9CDCFE"},{"line":3,"start":20,"end":22,"color":"#D4D4D4"},{"line":3,"start":22,"end":29,"color":"#CE9178"},{"line":3,"start":29,"end":30,"color":"#D4D4D4"},{"line":4,"start":0,"end":2,"color":"#D4D4D4"},{"line":4,"start":2,"end":23,"color":"#9CDCFE"},{"line":4,"start":23,"end":25,"color":"#D4D4D4"},{"line":4,"start":25,"end":40,"color":"#DCDCAA"},{"line":4,"start":40,"end":41,"color":"#D4D4D4"},{"line":4,"start":41,"end":47,"color":"#B5CEA8"},{"line":4,"start":47,"end":49,"color":"#D4D4D4"},{"line":4,"start":49,"end":56,"color":"#CE9178"},{"line":4,"start":56,"end":57,"color":"#D4D4D4"},{"line":4,"start":57,"end":59,"color":"#B5CEA8"},{"line":4,"start":59,"end":61,"color":"#D4D4D4"},{"line":4,"start":61,"end":68,"color":"#CE9178"},{"line":4,"start":68,"end":69,"color":"#D4D4D4"},{"line":4,"start":69,"end":73,"color":"#B5CEA8"},{"line":4,"start":73,"end":75,"color":"#D4D4D4"},{"line":5,"start":0,"end":2,"color":"#D4D4D4"},{"line":5,"start":2,"end":25,"color":"#9CDCFE"},{"line":5,"start":25,"end":27,"color":"#D4D4D4"},{"line":5,"start":27,"end":31,"color":"#B5CEA8"},{"line":5,"start":31,"end":32,"color":"#D4D4D4"},{"line":6,"start":0,"end":1,"color":"#D4D4D4"},{"line":8,"start":0,"end":29,"color":"#6A9955"},{"line":9,"start":0,"end":5,"color":"#D7BA7D"},{"line":9,"start":5,"end":6,"color":"#D4D4D4"},{"line":9,"start":6,"end":16,"color":"#9CDCFE"},{"line":9,"start":16,"end":17,"color":"#D4D4D4"},{"line":9,"start":17,"end":36,"color":"#CE9178"},{"line":9,"start":36,"end":39,"color":"#D4D4D4"},{"line":10,"start":0,"end":2,"color":"#D4D4D4"},{"line":10,"start":2,"end":17,"color":"#9CDCFE"},{"line":10,"start":17,"end":19,"color":"#D4D4D4"},{"line":10,"start":19,"end":26,"color":"#CE9178"},{"line":10,"start":26,"end":27,"color":"#D4D4D4"},{"line":11,"start":0,"end":2,"color":"#D4D4D4"},{"line":11,"start":2,"end":20,"color":"#9CDCFE"},{"line":11,"start":20,"end":22,"color":"#D4D4D4"},{"line":11,"start":22,"end":29,"color":"#CE9178"},{"line":11,"start":29,"end":30,"color":"#D4D4D4"},{"line":12,"start":0,"end":2,"color":"#D4D4D4"},{"line":12,"start":2,"end":25,"color":"#9CDCFE"},{"line":12,"start":25,"end":27,"color":"#D4D4D4"},{"line":12,"start":27,"end":31,"color":"#B5CEA8"},{"line":12,"start":31,"end":32,"color":"#D4D4D4"},{"line":13,"start":0,"end":2,"color":"#D4D4D4"},{"line":13,"start":2,"end":26,"color":"#9CDCFE"},{"line":13,"start":26,"end":28,"color":"#D4D4D4"},{"line":13,"start":28,"end":40,"color":"#DCDCAA"},{"line":13,"start":40,"end":41,"color":"#D4D4D4"},{"line":13,"start":41,"end":44,"color":"#B5CEA8"},{"line":13,"start":44,"end":46,"color":"#D4D4D4"},{"line":13,"start":46,"end":47,"color":"#B5CEA8"},{"line":13,"start":47,"end":49,"color":"#D4D4D4"},{"line":13,"start":49,"end":52,"color":"#B5CEA8"},{"line":13,"start":52,"end":54,"color":"#D4D4D4"},{"line":13,"start":54,"end":55,"color":"#B5CEA8"},{"line":13,"start":55,"end":57,"color":"#D4D4D4"},{"line":14,"start":0,"end":1,"color":"#D4D4D4"},{"line":16,"start":0,"end":29,"color":"#6A9955"},{"line":17,"start":0,"end":5,"color":"#D7BA7D"},{"line":17,"start":5,"end":6,"color":"#D4D4D4"},{"line":17,"start":6,"end":16,"color":"#9CDCFE"},{"line":17,"start":16,"end":17,"color":"#D4D4D4"},{"line":17,"start":17,"end":36,"color":"#CE9178"},{"line":17,"start":36,"end":39,"color":"#D4D4D4"},{"line":18,"start":0,"end":2,"color":"#D4D4D4"},{"line":18,"start":2,"end":17,"color":"#9CDCFE"},{"line":18,"start":17,"end":19,"color":"#D4D4D4"},{"line":18,"start":19,"end":26,"color":"#CE9178"},{"line":18,"start":26,"end":27,"color":"#D4D4D4"},{"line":19,"start":0,"end":2,"color":"#D4D4D4"},{"line":19,"start":2,"end":20,"color":"#9CDCFE"},{"line":19,"start":20,"end":22,"color":"#D4D4D4"},{"line":19,"start":22,"end":29,"color":"#CE9178"},{"line":19,"start":29,"end":30,"color":"#D4D4D4"},{"line":20,"start":0,"end":2,"color":"#D4D4D4"},{"line":20,"start":2,"end":25,"color":"#9CDCFE"},{"line":20,"start":25,"end":27,"color":"#D4D4D4"},{"line":20,"start":27,"end":31,"color":"#B5CEA8"},{"line":20,"start":31,"end":32,"color":"#D4D4D4"},{"line":21,"start":0,"end":2,"color":"#D4D4D4"},{"line":21,"start":2,"end":26,"color":"#9CDCFE"},{"line":21,"start":26,"end":28,"color":"#D4D4D4"},{"line":21,"start":28,"end":40,"color":"#DCDCAA"},{"line":21,"start":40,"end":41,"color":"#D4D4D4"},{"line":21,"start":41,"end":45,"color":"#B5CEA8"},{"line":21,"start":45,"end":47,"color":"#D4D4D4"},{"line":21,"start":47,"end":48,"color":"#B5CEA8"},{"line":21,"start":48,"end":50,"color":"#D4D4D4"},{"line":21,"start":50,"end":54,"color":"#B5CEA8"},{"line":21,"start":54,"end":56,"color":"#D4D4D4"},{"line":21,"start":56,"end":57,"color":"#B5CEA8"},{"line":21,"start":57,"end":59,"color":"#D4D4D4"},{"line":22,"start":0,"end":1,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Each theme doesn’t just change colors - it has its own animation personality, timing functions, and visual effects.</p>
+<h2 id="theme-specific-animations">Theme-Specific Animations</h2>
+<p>One of the most delightful discoveries was making animations theme-aware. Modern Minimalist uses quick, precise transitions. Premium Card Room has slower, more elegant movements. Warm &#x26; Social includes playful bouncy effects:</p>
+<pre class="shiki" data-highlight-block="hl-73"><code><span id="hl-73-L0" class="line"><span class="line-content">/* Modern Minimalist: Quick, precise */</span></span>
+<span id="hl-73-L1" class="line"><span class="line-content">:root[data-theme="modern-minimalist"] .playing-card:hover {</span></span>
+<span id="hl-73-L2" class="line"><span class="line-content">  transform: translateY(-2px) scale(1.02);</span></span>
+<span id="hl-73-L3" class="line"><span class="line-content">  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);</span></span>
+<span id="hl-73-L4" class="line"><span class="line-content">}</span></span>
+<span id="hl-73-L5" class="line"><span class="line-content"></span></span>
+<span id="hl-73-L6" class="line"><span class="line-content">/* Premium Card Room: Elegant luxury */</span></span>
+<span id="hl-73-L7" class="line"><span class="line-content">:root[data-theme="premium-card-room"] .playing-card:hover {</span></span>
+<span id="hl-73-L8" class="line"><span class="line-content">  transform: translateY(-4px) scale(1.08) rotateZ(-1deg);</span></span>
+<span id="hl-73-L9" class="line"><span class="line-content">  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);</span></span>
+<span id="hl-73-L10" class="line"><span class="line-content">  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);</span></span>
+<span id="hl-73-L11" class="line"><span class="line-content">}</span></span>
+<span id="hl-73-L12" class="line"><span class="line-content"></span></span>
+<span id="hl-73-L13" class="line"><span class="line-content">/* Warm &#x26; Social: Playful bounces */</span></span>
+<span id="hl-73-L14" class="line"><span class="line-content">:root[data-theme="warm-social"] .playing-card:hover {</span></span>
+<span id="hl-73-L15" class="line"><span class="line-content">  transform: translateY(-6px) scale(1.06) rotateZ(1deg);</span></span>
+<span id="hl-73-L16" class="line"><span class="line-content">  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);</span></span>
+<span id="hl-73-L17" class="line"><span class="line-content">}</span></span></code></pre>
+<style data-highlight-styles="hl-73">
+::highlight(hl-hl-73-0) { color: #6A9955; }
+::highlight(hl-hl-73-1) { color: #D7BA7D; }
+::highlight(hl-hl-73-2) { color: #D4D4D4; }
+::highlight(hl-hl-73-3) { color: #9CDCFE; }
+::highlight(hl-hl-73-4) { color: #CE9178; }
+::highlight(hl-hl-73-5) { color: #DCDCAA; }
+::highlight(hl-hl-73-6) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-73';
+  const colorMap = {"#6A9955":"hl-hl-73-0","#D7BA7D":"hl-hl-73-1","#D4D4D4":"hl-hl-73-2","#9CDCFE":"hl-hl-73-3","#CE9178":"hl-hl-73-4","#DCDCAA":"hl-hl-73-5","#B5CEA8":"hl-hl-73-6"};
+  const ranges = [{"line":0,"start":0,"end":39,"color":"#6A9955"},{"line":1,"start":0,"end":5,"color":"#D7BA7D"},{"line":1,"start":5,"end":6,"color":"#D4D4D4"},{"line":1,"start":6,"end":16,"color":"#9CDCFE"},{"line":1,"start":16,"end":17,"color":"#D4D4D4"},{"line":1,"start":17,"end":36,"color":"#CE9178"},{"line":1,"start":36,"end":38,"color":"#D4D4D4"},{"line":1,"start":38,"end":57,"color":"#D7BA7D"},{"line":1,"start":57,"end":59,"color":"#D4D4D4"},{"line":2,"start":0,"end":2,"color":"#D4D4D4"},{"line":2,"start":2,"end":11,"color":"#9CDCFE"},{"line":2,"start":11,"end":13,"color":"#D4D4D4"},{"line":2,"start":13,"end":23,"color":"#DCDCAA"},{"line":2,"start":23,"end":24,"color":"#D4D4D4"},{"line":2,"start":24,"end":28,"color":"#B5CEA8"},{"line":2,"start":28,"end":30,"color":"#D4D4D4"},{"line":2,"start":30,"end":35,"color":"#DCDCAA"},{"line":2,"start":35,"end":36,"color":"#D4D4D4"},{"line":2,"start":36,"end":40,"color":"#B5CEA8"},{"line":2,"start":40,"end":42,"color":"#D4D4D4"},{"line":3,"start":0,"end":2,"color":"#D4D4D4"},{"line":3,"start":2,"end":12,"color":"#9CDCFE"},{"line":3,"start":12,"end":14,"color":"#D4D4D4"},{"line":3,"start":14,"end":17,"color":"#CE9178"},{"line":3,"start":17,"end":18,"color":"#D4D4D4"},{"line":3,"start":18,"end":22,"color":"#B5CEA8"},{"line":3,"start":22,"end":23,"color":"#D4D4D4"},{"line":3,"start":23,"end":35,"color":"#DCDCAA"},{"line":3,"start":35,"end":36,"color":"#D4D4D4"},{"line":3,"start":36,"end":39,"color":"#B5CEA8"},{"line":3,"start":39,"end":41,"color":"#D4D4D4"},{"line":3,"start":41,"end":42,"color":"#B5CEA8"},{"line":3,"start":42,"end":44,"color":"#D4D4D4"},{"line":3,"start":44,"end":47,"color":"#B5CEA8"},{"line":3,"start":47,"end":49,"color":"#D4D4D4"},{"line":3,"start":49,"end":50,"color":"#B5CEA8"},{"line":3,"start":50,"end":52,"color":"#D4D4D4"},{"line":4,"start":0,"end":1,"color":"#D4D4D4"},{"line":6,"start":0,"end":39,"color":"#6A9955"},{"line":7,"start":0,"end":5,"color":"#D7BA7D"},{"line":7,"start":5,"end":6,"color":"#D4D4D4"},{"line":7,"start":6,"end":16,"color":"#9CDCFE"},{"line":7,"start":16,"end":17,"color":"#D4D4D4"},{"line":7,"start":17,"end":36,"color":"#CE9178"},{"line":7,"start":36,"end":38,"color":"#D4D4D4"},{"line":7,"start":38,"end":57,"color":"#D7BA7D"},{"line":7,"start":57,"end":59,"color":"#D4D4D4"},{"line":8,"start":0,"end":2,"color":"#D4D4D4"},{"line":8,"start":2,"end":11,"color":"#9CDCFE"},{"line":8,"start":11,"end":13,"color":"#D4D4D4"},{"line":8,"start":13,"end":23,"color":"#DCDCAA"},{"line":8,"start":23,"end":24,"color":"#D4D4D4"},{"line":8,"start":24,"end":28,"color":"#B5CEA8"},{"line":8,"start":28,"end":30,"color":"#D4D4D4"},{"line":8,"start":30,"end":35,"color":"#DCDCAA"},{"line":8,"start":35,"end":36,"color":"#D4D4D4"},{"line":8,"start":36,"end":40,"color":"#B5CEA8"},{"line":8,"start":40,"end":42,"color":"#D4D4D4"},{"line":8,"start":42,"end":49,"color":"#DCDCAA"},{"line":8,"start":49,"end":50,"color":"#D4D4D4"},{"line":8,"start":50,"end":55,"color":"#B5CEA8"},{"line":8,"start":55,"end":57,"color":"#D4D4D4"},{"line":9,"start":0,"end":2,"color":"#D4D4D4"},{"line":9,"start":2,"end":12,"color":"#9CDCFE"},{"line":9,"start":12,"end":14,"color":"#D4D4D4"},{"line":9,"start":14,"end":17,"color":"#CE9178"},{"line":9,"start":17,"end":18,"color":"#D4D4D4"},{"line":9,"start":18,"end":22,"color":"#B5CEA8"},{"line":9,"start":22,"end":23,"color":"#D4D4D4"},{"line":9,"start":23,"end":35,"color":"#DCDCAA"},{"line":9,"start":35,"end":36,"color":"#D4D4D4"},{"line":9,"start":36,"end":40,"color":"#B5CEA8"},{"line":9,"start":40,"end":42,"color":"#D4D4D4"},{"line":9,"start":42,"end":43,"color":"#B5CEA8"},{"line":9,"start":43,"end":45,"color":"#D4D4D4"},{"line":9,"start":45,"end":49,"color":"#B5CEA8"},{"line":9,"start":49,"end":51,"color":"#D4D4D4"},{"line":9,"start":51,"end":52,"color":"#B5CEA8"},{"line":9,"start":52,"end":54,"color":"#D4D4D4"},{"line":10,"start":0,"end":2,"color":"#D4D4D4"},{"line":10,"start":2,"end":12,"color":"#9CDCFE"},{"line":10,"start":12,"end":14,"color":"#D4D4D4"},{"line":10,"start":14,"end":15,"color":"#B5CEA8"},{"line":10,"start":15,"end":16,"color":"#D4D4D4"},{"line":10,"start":16,"end":19,"color":"#B5CEA8"},{"line":10,"start":19,"end":20,"color":"#D4D4D4"},{"line":10,"start":20,"end":24,"color":"#B5CEA8"},{"line":10,"start":24,"end":25,"color":"#D4D4D4"},{"line":10,"start":25,"end":29,"color":"#DCDCAA"},{"line":10,"start":29,"end":30,"color":"#D4D4D4"},{"line":10,"start":30,"end":33,"color":"#B5CEA8"},{"line":10,"start":33,"end":35,"color":"#D4D4D4"},{"line":10,"start":35,"end":38,"color":"#B5CEA8"},{"line":10,"start":38,"end":40,"color":"#D4D4D4"},{"line":10,"start":40,"end":42,"color":"#B5CEA8"},{"line":10,"start":42,"end":44,"color":"#D4D4D4"},{"line":10,"start":44,"end":47,"color":"#B5CEA8"},{"line":10,"start":47,"end":49,"color":"#D4D4D4"},{"line":11,"start":0,"end":1,"color":"#D4D4D4"},{"line":13,"start":0,"end":36,"color":"#6A9955"},{"line":14,"start":0,"end":5,"color":"#D7BA7D"},{"line":14,"start":5,"end":6,"color":"#D4D4D4"},{"line":14,"start":6,"end":16,"color":"#9CDCFE"},{"line":14,"start":16,"end":17,"color":"#D4D4D4"},{"line":14,"start":17,"end":30,"color":"#CE9178"},{"line":14,"start":30,"end":32,"color":"#D4D4D4"},{"line":14,"start":32,"end":51,"color":"#D7BA7D"},{"line":14,"start":51,"end":53,"color":"#D4D4D4"},{"line":15,"start":0,"end":2,"color":"#D4D4D4"},{"line":15,"start":2,"end":11,"color":"#9CDCFE"},{"line":15,"start":11,"end":13,"color":"#D4D4D4"},{"line":15,"start":13,"end":23,"color":"#DCDCAA"},{"line":15,"start":23,"end":24,"color":"#D4D4D4"},{"line":15,"start":24,"end":28,"color":"#B5CEA8"},{"line":15,"start":28,"end":30,"color":"#D4D4D4"},{"line":15,"start":30,"end":35,"color":"#DCDCAA"},{"line":15,"start":35,"end":36,"color":"#D4D4D4"},{"line":15,"start":36,"end":40,"color":"#B5CEA8"},{"line":15,"start":40,"end":42,"color":"#D4D4D4"},{"line":15,"start":42,"end":49,"color":"#DCDCAA"},{"line":15,"start":49,"end":50,"color":"#D4D4D4"},{"line":15,"start":50,"end":54,"color":"#B5CEA8"},{"line":15,"start":54,"end":56,"color":"#D4D4D4"},{"line":16,"start":0,"end":2,"color":"#D4D4D4"},{"line":16,"start":2,"end":12,"color":"#9CDCFE"},{"line":16,"start":12,"end":14,"color":"#D4D4D4"},{"line":16,"start":14,"end":17,"color":"#CE9178"},{"line":16,"start":17,"end":18,"color":"#D4D4D4"},{"line":16,"start":18,"end":22,"color":"#B5CEA8"},{"line":16,"start":22,"end":23,"color":"#D4D4D4"},{"line":16,"start":23,"end":35,"color":"#DCDCAA"},{"line":16,"start":35,"end":36,"color":"#D4D4D4"},{"line":16,"start":36,"end":40,"color":"#B5CEA8"},{"line":16,"start":40,"end":42,"color":"#D4D4D4"},{"line":16,"start":42,"end":47,"color":"#B5CEA8"},{"line":16,"start":47,"end":49,"color":"#D4D4D4"},{"line":16,"start":49,"end":54,"color":"#B5CEA8"},{"line":16,"start":54,"end":56,"color":"#D4D4D4"},{"line":16,"start":56,"end":60,"color":"#B5CEA8"},{"line":16,"start":60,"end":62,"color":"#D4D4D4"},{"line":17,"start":0,"end":1,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>The result? Each theme doesn’t just look different - it <em>feels</em> different to use.</p>
+<h2 id="production-polish-and-bug-fixes">Production Polish and Bug Fixes</h2>
+<p>Implementing the theme system revealed several critical bugs that we fixed:</p>
+<h3 id="the-ai-takeover-bug">The AI Takeover Bug</h3>
+<p><strong>Problem</strong>: When human players took too long to make moves, the AI would take over their turns.
+<strong>Solution</strong>: Fixed the GameServer disconnection logic to only schedule AI turns for actual AI players.</p>
+<pre class="shiki" data-highlight-block="hl-72"><code><span id="hl-72-L0" class="line"><span class="line-content"># Before: AI would take over for any disconnected player</span></span>
+<span id="hl-72-L1" class="line"><span class="line-content">defp should_process_ai_turn?(state) do</span></span>
+<span id="hl-72-L2" class="line"><span class="line-content">  state.game.status == :playing &#x26;&#x26; player_disconnected?(state)</span></span>
+<span id="hl-72-L3" class="line"><span class="line-content">end</span></span>
+<span id="hl-72-L4" class="line"><span class="line-content"></span></span>
+<span id="hl-72-L5" class="line"><span class="line-content"># After: AI only acts for actual AI players  </span></span>
+<span id="hl-72-L6" class="line"><span class="line-content">defp should_process_ai_turn?(state) do</span></span>
+<span id="hl-72-L7" class="line"><span class="line-content">  state.game.status == :playing &#x26;&#x26; current_player_is_ai?(state)</span></span>
+<span id="hl-72-L8" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-72">
+::highlight(hl-hl-72-0) { color: #6A9955; }
+::highlight(hl-hl-72-1) { color: #C586C0; }
+::highlight(hl-hl-72-2) { color: #D4D4D4; }
+::highlight(hl-hl-72-3) { color: #DCDCAA; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-72';
+  const colorMap = {"#6A9955":"hl-hl-72-0","#C586C0":"hl-hl-72-1","#D4D4D4":"hl-hl-72-2","#DCDCAA":"hl-hl-72-3"};
+  const ranges = [{"line":0,"start":0,"end":56,"color":"#6A9955"},{"line":1,"start":0,"end":4,"color":"#C586C0"},{"line":1,"start":4,"end":5,"color":"#D4D4D4"},{"line":1,"start":5,"end":28,"color":"#DCDCAA"},{"line":1,"start":28,"end":36,"color":"#D4D4D4"},{"line":1,"start":36,"end":38,"color":"#C586C0"},{"line":2,"start":0,"end":35,"color":"#D4D4D4"},{"line":2,"start":35,"end":55,"color":"#DCDCAA"},{"line":2,"start":55,"end":62,"color":"#D4D4D4"},{"line":3,"start":0,"end":3,"color":"#C586C0"},{"line":5,"start":0,"end":45,"color":"#6A9955"},{"line":6,"start":0,"end":4,"color":"#C586C0"},{"line":6,"start":4,"end":5,"color":"#D4D4D4"},{"line":6,"start":5,"end":28,"color":"#DCDCAA"},{"line":6,"start":28,"end":36,"color":"#D4D4D4"},{"line":6,"start":36,"end":38,"color":"#C586C0"},{"line":7,"start":0,"end":35,"color":"#D4D4D4"},{"line":7,"start":35,"end":56,"color":"#DCDCAA"},{"line":7,"start":56,"end":63,"color":"#D4D4D4"},{"line":8,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h3 id="card-duplication-in-deck-reshuffling">Card Duplication in Deck Reshuffling</h3>
+<p><strong>Problem</strong>: When the deck ran out, cards could be duplicated during reshuffle.
+<strong>Solution</strong>: Improved the deck management logic to properly track cards during multiple-card draws.</p>
+<h3 id="theme-contrast-issues">Theme Contrast Issues</h3>
+<p><strong>Problem</strong>: Player names were invisible in certain theme combinations.
+<strong>Solution</strong>: Added theme-aware text colors using CSS custom properties.</p>
+<h2 id="security-production-grade-protection">Security: Production-Grade Protection</h2>
+<p>Before deployment, we implemented comprehensive security measures:</p>
+<pre class="shiki" data-highlight-block="hl-71"><code><span id="hl-71-L0" class="line"><span class="line-content"># Content Security Policy headers</span></span>
+<span id="hl-71-L1" class="line"><span class="line-content">defp csp_header do</span></span>
+<span id="hl-71-L2" class="line"><span class="line-content">  [</span></span>
+<span id="hl-71-L3" class="line"><span class="line-content">    "default-src 'self'",</span></span>
+<span id="hl-71-L4" class="line"><span class="line-content">    "script-src 'self' 'unsafe-inline' 'unsafe-eval'", # Needed for LiveView</span></span>
+<span id="hl-71-L5" class="line"><span class="line-content">    "style-src 'self' 'unsafe-inline'", # Needed for theme CSS</span></span>
+<span id="hl-71-L6" class="line"><span class="line-content">    "connect-src 'self' ws: wss:", # WebSocket connections</span></span>
+<span id="hl-71-L7" class="line"><span class="line-content">    "frame-ancestors 'none'",</span></span>
+<span id="hl-71-L8" class="line"><span class="line-content">    "base-uri 'self'"</span></span>
+<span id="hl-71-L9" class="line"><span class="line-content">  ] |> Enum.join("; ")</span></span>
+<span id="hl-71-L10" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-71">
+::highlight(hl-hl-71-0) { color: #6A9955; }
+::highlight(hl-hl-71-1) { color: #C586C0; }
+::highlight(hl-hl-71-2) { color: #D4D4D4; }
+::highlight(hl-hl-71-3) { color: #DCDCAA; }
+::highlight(hl-hl-71-4) { color: #CE9178; }
+::highlight(hl-hl-71-5) { color: #4EC9B0; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-71';
+  const colorMap = {"#6A9955":"hl-hl-71-0","#C586C0":"hl-hl-71-1","#D4D4D4":"hl-hl-71-2","#DCDCAA":"hl-hl-71-3","#CE9178":"hl-hl-71-4","#4EC9B0":"hl-hl-71-5"};
+  const ranges = [{"line":0,"start":0,"end":33,"color":"#6A9955"},{"line":1,"start":0,"end":4,"color":"#C586C0"},{"line":1,"start":4,"end":5,"color":"#D4D4D4"},{"line":1,"start":5,"end":15,"color":"#DCDCAA"},{"line":1,"start":15,"end":16,"color":"#D4D4D4"},{"line":1,"start":16,"end":18,"color":"#C586C0"},{"line":2,"start":0,"end":3,"color":"#D4D4D4"},{"line":3,"start":0,"end":4,"color":"#D4D4D4"},{"line":3,"start":4,"end":24,"color":"#CE9178"},{"line":3,"start":24,"end":25,"color":"#D4D4D4"},{"line":4,"start":0,"end":4,"color":"#D4D4D4"},{"line":4,"start":4,"end":53,"color":"#CE9178"},{"line":4,"start":53,"end":55,"color":"#D4D4D4"},{"line":4,"start":55,"end":76,"color":"#6A9955"},{"line":5,"start":0,"end":4,"color":"#D4D4D4"},{"line":5,"start":4,"end":38,"color":"#CE9178"},{"line":5,"start":38,"end":40,"color":"#D4D4D4"},{"line":5,"start":40,"end":62,"color":"#6A9955"},{"line":6,"start":0,"end":4,"color":"#D4D4D4"},{"line":6,"start":4,"end":33,"color":"#CE9178"},{"line":6,"start":33,"end":35,"color":"#D4D4D4"},{"line":6,"start":35,"end":58,"color":"#6A9955"},{"line":7,"start":0,"end":4,"color":"#D4D4D4"},{"line":7,"start":4,"end":28,"color":"#CE9178"},{"line":7,"start":28,"end":29,"color":"#D4D4D4"},{"line":8,"start":0,"end":4,"color":"#D4D4D4"},{"line":8,"start":4,"end":21,"color":"#CE9178"},{"line":9,"start":0,"end":7,"color":"#D4D4D4"},{"line":9,"start":7,"end":11,"color":"#4EC9B0"},{"line":9,"start":11,"end":12,"color":"#D4D4D4"},{"line":9,"start":12,"end":16,"color":"#DCDCAA"},{"line":9,"start":16,"end":17,"color":"#D4D4D4"},{"line":9,"start":17,"end":21,"color":"#CE9178"},{"line":9,"start":21,"end":22,"color":"#D4D4D4"},{"line":10,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Plus additional security headers:</p>
+<ul>
+<li><strong>HSTS</strong> with preload for HTTPS enforcement</li>
+<li><strong>X-Frame-Options</strong> to prevent clickjacking</li>
+<li><strong>X-Content-Type-Options</strong> to prevent MIME sniffing</li>
+<li><strong>Referrer-Policy</strong> for privacy protection</li>
+</ul>
+<p><strong>Security audit results</strong>: ✅ Zero vulnerabilities, all dependencies up-to-date</p>
+<h2 id="performance-monitoring">Performance Monitoring</h2>
+<p>We added real-time performance monitoring for theme switches:</p>
+<pre class="shiki" data-highlight-block="hl-70"><code><span id="hl-70-L0" class="line"><span class="line-content">// Performance monitoring for theme switches</span></span>
+<span id="hl-70-L1" class="line"><span class="line-content">const start = performance.now();</span></span>
+<span id="hl-70-L2" class="line"><span class="line-content">window.dispatchEvent(new CustomEvent("phx:set-theme", {detail: {theme}}));</span></span>
+<span id="hl-70-L3" class="line"><span class="line-content"></span></span>
+<span id="hl-70-L4" class="line"><span class="line-content">requestAnimationFrame(() => {</span></span>
+<span id="hl-70-L5" class="line"><span class="line-content">  const duration = performance.now() - start;</span></span>
+<span id="hl-70-L6" class="line"><span class="line-content">  console.log(`Theme switch: ${duration.toFixed(2)}ms`);</span></span>
+<span id="hl-70-L7" class="line"><span class="line-content">  </span></span>
+<span id="hl-70-L8" class="line"><span class="line-content">  if (duration > 50) {</span></span>
+<span id="hl-70-L9" class="line"><span class="line-content">    console.warn(`Slow theme switch detected: ${duration}ms`);</span></span>
+<span id="hl-70-L10" class="line"><span class="line-content">  }</span></span>
+<span id="hl-70-L11" class="line"><span class="line-content">});</span></span></code></pre>
+<style data-highlight-styles="hl-70">
+::highlight(hl-hl-70-0) { color: #6A9955; }
+::highlight(hl-hl-70-1) { color: #569CD6; }
+::highlight(hl-hl-70-2) { color: #D4D4D4; }
+::highlight(hl-hl-70-3) { color: #4FC1FF; }
+::highlight(hl-hl-70-4) { color: #9CDCFE; }
+::highlight(hl-hl-70-5) { color: #DCDCAA; }
+::highlight(hl-hl-70-6) { color: #CE9178; }
+::highlight(hl-hl-70-7) { color: #B5CEA8; }
+::highlight(hl-hl-70-8) { color: #C586C0; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-70';
+  const colorMap = {"#6A9955":"hl-hl-70-0","#569CD6":"hl-hl-70-1","#D4D4D4":"hl-hl-70-2","#4FC1FF":"hl-hl-70-3","#9CDCFE":"hl-hl-70-4","#DCDCAA":"hl-hl-70-5","#CE9178":"hl-hl-70-6","#B5CEA8":"hl-hl-70-7","#C586C0":"hl-hl-70-8"};
+  const ranges = [{"line":0,"start":0,"end":44,"color":"#6A9955"},{"line":1,"start":0,"end":5,"color":"#569CD6"},{"line":1,"start":5,"end":6,"color":"#D4D4D4"},{"line":1,"start":6,"end":11,"color":"#4FC1FF"},{"line":1,"start":11,"end":14,"color":"#D4D4D4"},{"line":1,"start":14,"end":25,"color":"#9CDCFE"},{"line":1,"start":25,"end":26,"color":"#D4D4D4"},{"line":1,"start":26,"end":29,"color":"#DCDCAA"},{"line":1,"start":29,"end":32,"color":"#D4D4D4"},{"line":2,"start":0,"end":6,"color":"#9CDCFE"},{"line":2,"start":6,"end":7,"color":"#D4D4D4"},{"line":2,"start":7,"end":20,"color":"#DCDCAA"},{"line":2,"start":20,"end":21,"color":"#D4D4D4"},{"line":2,"start":21,"end":24,"color":"#569CD6"},{"line":2,"start":24,"end":25,"color":"#D4D4D4"},{"line":2,"start":25,"end":36,"color":"#DCDCAA"},{"line":2,"start":36,"end":37,"color":"#D4D4D4"},{"line":2,"start":37,"end":52,"color":"#CE9178"},{"line":2,"start":52,"end":55,"color":"#D4D4D4"},{"line":2,"start":55,"end":62,"color":"#9CDCFE"},{"line":2,"start":62,"end":64,"color":"#D4D4D4"},{"line":2,"start":64,"end":69,"color":"#9CDCFE"},{"line":2,"start":69,"end":74,"color":"#D4D4D4"},{"line":4,"start":0,"end":21,"color":"#DCDCAA"},{"line":4,"start":21,"end":25,"color":"#D4D4D4"},{"line":4,"start":25,"end":27,"color":"#569CD6"},{"line":4,"start":27,"end":29,"color":"#D4D4D4"},{"line":5,"start":0,"end":2,"color":"#D4D4D4"},{"line":5,"start":2,"end":7,"color":"#569CD6"},{"line":5,"start":7,"end":8,"color":"#D4D4D4"},{"line":5,"start":8,"end":16,"color":"#4FC1FF"},{"line":5,"start":16,"end":19,"color":"#D4D4D4"},{"line":5,"start":19,"end":30,"color":"#9CDCFE"},{"line":5,"start":30,"end":31,"color":"#D4D4D4"},{"line":5,"start":31,"end":34,"color":"#DCDCAA"},{"line":5,"start":34,"end":39,"color":"#D4D4D4"},{"line":5,"start":39,"end":44,"color":"#9CDCFE"},{"line":5,"start":44,"end":45,"color":"#D4D4D4"},{"line":6,"start":0,"end":2,"color":"#D4D4D4"},{"line":6,"start":2,"end":9,"color":"#9CDCFE"},{"line":6,"start":9,"end":10,"color":"#D4D4D4"},{"line":6,"start":10,"end":13,"color":"#DCDCAA"},{"line":6,"start":13,"end":14,"color":"#D4D4D4"},{"line":6,"start":14,"end":29,"color":"#CE9178"},{"line":6,"start":29,"end":31,"color":"#569CD6"},{"line":6,"start":31,"end":39,"color":"#9CDCFE"},{"line":6,"start":39,"end":40,"color":"#D4D4D4"},{"line":6,"start":40,"end":47,"color":"#DCDCAA"},{"line":6,"start":47,"end":48,"color":"#D4D4D4"},{"line":6,"start":48,"end":49,"color":"#B5CEA8"},{"line":6,"start":49,"end":50,"color":"#D4D4D4"},{"line":6,"start":50,"end":51,"color":"#569CD6"},{"line":6,"start":51,"end":54,"color":"#CE9178"},{"line":6,"start":54,"end":56,"color":"#D4D4D4"},{"line":7,"start":0,"end":2,"color":"#D4D4D4"},{"line":8,"start":0,"end":2,"color":"#D4D4D4"},{"line":8,"start":2,"end":4,"color":"#C586C0"},{"line":8,"start":4,"end":6,"color":"#D4D4D4"},{"line":8,"start":6,"end":14,"color":"#9CDCFE"},{"line":8,"start":14,"end":17,"color":"#D4D4D4"},{"line":8,"start":17,"end":19,"color":"#B5CEA8"},{"line":8,"start":19,"end":22,"color":"#D4D4D4"},{"line":9,"start":0,"end":4,"color":"#D4D4D4"},{"line":9,"start":4,"end":11,"color":"#9CDCFE"},{"line":9,"start":11,"end":12,"color":"#D4D4D4"},{"line":9,"start":12,"end":16,"color":"#DCDCAA"},{"line":9,"start":16,"end":17,"color":"#D4D4D4"},{"line":9,"start":17,"end":46,"color":"#CE9178"},{"line":9,"start":46,"end":48,"color":"#569CD6"},{"line":9,"start":48,"end":56,"color":"#9CDCFE"},{"line":9,"start":56,"end":57,"color":"#569CD6"},{"line":9,"start":57,"end":60,"color":"#CE9178"},{"line":9,"start":60,"end":62,"color":"#D4D4D4"},{"line":10,"start":0,"end":3,"color":"#D4D4D4"},{"line":11,"start":0,"end":3,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p><strong>Target</strong>: &#x3C;16ms for 60fps smooth transitions<br>
+<strong>Achieved</strong>: Average 8-12ms theme switching</p>
+<h2 id="deployment-to-production">Deployment to Production</h2>
+<p>The final step was deployment to Fly.io. The process was remarkably smooth:</p>
+<pre class="shiki" data-highlight-block="hl-69"><code><span id="hl-69-L0" class="line"><span class="line-content"># Deploy Rachel to production</span></span>
+<span id="hl-69-L1" class="line"><span class="line-content">fly deploy</span></span>
+<span id="hl-69-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-69-L3" class="line"><span class="line-content"># Add custom domain with automatic SSL</span></span>
+<span id="hl-69-L4" class="line"><span class="line-content">fly certs add rachel.stevehill.xyz</span></span>
+<span id="hl-69-L5" class="line"><span class="line-content"></span></span>
+<span id="hl-69-L6" class="line"><span class="line-content"># Point DNS and go live</span></span>
+<span id="hl-69-L7" class="line"><span class="line-content">dig rachel.stevehill.xyz  # Verify DNS propagation</span></span></code></pre>
+<style data-highlight-styles="hl-69">
+::highlight(hl-hl-69-0) { color: #6A9955; }
+::highlight(hl-hl-69-1) { color: #DCDCAA; }
+::highlight(hl-hl-69-2) { color: #D4D4D4; }
+::highlight(hl-hl-69-3) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-69';
+  const colorMap = {"#6A9955":"hl-hl-69-0","#DCDCAA":"hl-hl-69-1","#D4D4D4":"hl-hl-69-2","#CE9178":"hl-hl-69-3"};
+  const ranges = [{"line":0,"start":0,"end":29,"color":"#6A9955"},{"line":1,"start":0,"end":3,"color":"#DCDCAA"},{"line":1,"start":3,"end":4,"color":"#D4D4D4"},{"line":1,"start":4,"end":10,"color":"#CE9178"},{"line":3,"start":0,"end":38,"color":"#6A9955"},{"line":4,"start":0,"end":3,"color":"#DCDCAA"},{"line":4,"start":3,"end":4,"color":"#D4D4D4"},{"line":4,"start":4,"end":9,"color":"#CE9178"},{"line":4,"start":9,"end":10,"color":"#D4D4D4"},{"line":4,"start":10,"end":13,"color":"#CE9178"},{"line":4,"start":13,"end":14,"color":"#D4D4D4"},{"line":4,"start":14,"end":34,"color":"#CE9178"},{"line":6,"start":0,"end":23,"color":"#6A9955"},{"line":7,"start":0,"end":3,"color":"#DCDCAA"},{"line":7,"start":3,"end":4,"color":"#D4D4D4"},{"line":7,"start":4,"end":24,"color":"#CE9178"},{"line":7,"start":24,"end":26,"color":"#D4D4D4"},{"line":7,"start":26,"end":50,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h2 id="the-transformation">The Transformation</h2>
+<p>The before-and-after difference is dramatic. What started as a functional card game now offers:</p>
+<ul>
+<li><strong>Three distinct visual experiences</strong> that appeal to different player types</li>
+<li><strong>Instant theme switching</strong> with localStorage persistence</li>
+<li><strong>Production-grade security</strong> with comprehensive headers</li>
+<li><strong>Performance monitoring</strong> and optimization</li>
+<li><strong>Accessibility support</strong> for all users</li>
+<li><strong>Zero security vulnerabilities</strong></li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="css-custom-properties-are-powerful">CSS Custom Properties Are Powerful</h3>
+<p>CSS custom properties enabled theme switching that would have been impossible with traditional CSS. The ability to change hundreds of values instantly by updating the <code>data-theme</code> attribute is magical.</p>
+<h3 id="performance-matters-for-user-delight">Performance Matters for User Delight</h3>
+<p>Measuring theme switch performance revealed optimizations we wouldn’t have found otherwise. The difference between 50ms and 10ms switching is the difference between “nice” and “delightful.”</p>
+<h3 id="security-is-non-negotiable">Security is Non-Negotiable</h3>
+<p>Implementing proper CSP headers and security measures isn’t optional for production applications. The time invested pays dividends in user trust and safety.</p>
+<h3 id="ai-collaboration-accelerates-polish">AI Collaboration Accelerates Polish</h3>
+<p>Working with Claude was particularly valuable for the refinement phase. While I provided the creative vision, AI helped with implementation details, edge case testing, and security best practices that would have taken much longer to research and implement solo.</p>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p>Rachel is now live at <strong><a href="https://rachel.stevehill.xyz">rachel.stevehill.xyz</a></strong>!</p>
+<p>Try switching between the three themes and notice how each one completely changes the game’s personality. The theme selector is in the top-right corner - click it to see visual previews of each theme before switching.</p>
+<h2 id="whats-next">What’s Next</h2>
+<p>The theme system opens up exciting possibilities:</p>
+<ul>
+<li><strong>Seasonal themes</strong> for holidays and special events</li>
+<li><strong>Custom theme creation</strong> tools for players</li>
+<li><strong>Premium theme unlocks</strong> for monetization</li>
+<li><strong>Community-contributed themes</strong></li>
+</ul>
+<p>The modular CSS architecture makes adding new themes straightforward, and the localStorage persistence system ensures user preferences are always remembered.</p>
+<h2 id="source-code">Source Code</h2>
+<p>The complete implementation is available on <a href="https://github.com/stevehill1981/rachel">GitHub</a>. The theme system code is particularly worth studying if you’re building dynamic theming in Phoenix LiveView applications.</p>
+<hr>
+<p>Building Rachel has been a journey from functional to magical. The theme system transformed it from “a working card game” to “an experience worth sharing.” Combined with production-grade security and performance monitoring, it’s now ready to handle real users and real traffic.</p>
+<p>In Part 3, I’ll dive into the AI system implementation and how we made computer opponents that feel genuinely strategic. Stay tuned!</p>
+<p><em>Try Rachel today at <a href="https://rachel.stevehill.xyz">rachel.stevehill.xyz</a> - and let me know which theme is your favorite!</em></p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Building%20Rachel%20Part%202%3A%20Themes%2C%20Polish%2C%20and%20Production%20Deployment&url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2025-07-08-building-rachel-part-2-themes-and-deployment%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2025-07-08-building-rachel-part-2-themes-and-deployment%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="post-sidebar" data-astro-cid-4sn4zg3r> <div class="sidebar-section post-meta" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Post Info</h3> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Published</strong> <span data-astro-cid-4sn4zg3r>July 8, 2025</span> </div> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Reading time</strong> <span data-astro-cid-4sn4zg3r>7 min read</span> </div> <button class="copy-link-btn" title="Copy link to this post" data-astro-cid-4sn4zg3r> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-4sn4zg3r> <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" data-astro-cid-4sn4zg3r></path> <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71" data-astro-cid-4sn4zg3r></path> </svg> <span class="copy-text" data-astro-cid-4sn4zg3r>Copy Link</span> <span class="copied-text" data-astro-cid-4sn4zg3r>Copied!</span> </button> </div> <div class="sidebar-section tags-section" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Tags</h3> <div class="tags" data-astro-cid-4sn4zg3r> <a href="/tags/elixir" class="tag" data-astro-cid-4sn4zg3r> elixir </a><a href="/tags/phoenix" class="tag" data-astro-cid-4sn4zg3r> phoenix </a><a href="/tags/liveview" class="tag" data-astro-cid-4sn4zg3r> liveview </a><a href="/tags/css" class="tag" data-astro-cid-4sn4zg3r> css </a><a href="/tags/themes" class="tag" data-astro-cid-4sn4zg3r> themes </a><a href="/tags/deployment" class="tag" data-astro-cid-4sn4zg3r> deployment </a><a href="/tags/production" class="tag" data-astro-cid-4sn4zg3r> production </a> </div> </div> <div class="sidebar-section related-posts" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Related Posts</h3> <div class="related-posts-list" data-astro-cid-4sn4zg3r> <article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Jul 3, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>7 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-07-03-building-rachel-part-1" data-astro-cid-4sn4zg3r>Building Rachel: A Phoenix LiveView Card Game - Part 1</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>How I turned a 30-year-old family card game into a modern web application using Phoenix LiveView, complete with AI opponents and real-time multiplayer.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>elixir</span><span class="tag-small" data-astro-cid-4sn4zg3r>phoenix</span><span class="tag-small" data-astro-cid-4sn4zg3r>liveview</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 13, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>7 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-13-building-shiki-highlight-api" data-astro-cid-4sn4zg3r>Building Shiki Highlight API: How Development Workflow Saved My Syntax Highlighting</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>From 389 console errors to zero: building a high-performance syntax highlighter with CSS Custom Highlights API, Shiki, and Claude Code—and learning that workflow matters more than I thought.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>development</span><span class="tag-small" data-astro-cid-4sn4zg3r>tooling</span><span class="tag-small" data-astro-cid-4sn4zg3r>performance</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 30, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>7 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-30-building-romshelf-rom-collection-manager" data-astro-cid-4sn4zg3r>Building a ROM Collection Manager: Where Domain Knowledge Meets Multi-Threaded Rust</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>The technical challenges were solvable. The harder part was understanding how collectors actually work - the DAT ecosystem, verification workflows, and organisational patterns that had to shape every architectural decision.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>development</span><span class="tag-small" data-astro-cid-4sn4zg3r>rust</span><span class="tag-small" data-astro-cid-4sn4zg3r>tauri</span> </div> </article> </div> </div> </aside> </div> <nav class="post-navigation" data-astro-cid-4sn4zg3r> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2025-07-03-building-rachel-part-1" class="nav-link prev-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>← Previous</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Building Rachel: A Phoenix LiveView Card Game - Part 1</div> </a> </div> <div class="nav-center" data-astro-cid-4sn4zg3r> <a href="/blog" class="back-to-blog" data-astro-cid-4sn4zg3r>Back to Blog</a> </div> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-10-why-rescue-projects-fail" class="nav-link next-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>Next →</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Why rescue projects fail even when you do everything right</div> </a> </div> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> <script type="module">function y(){document.querySelectorAll("pre.astro-code").forEach(c=>{if(c.querySelector(".code-toolbar"))return;const e=document.createElement("div");e.className="code-toolbar";const r=c.className.match(/language-(\w+)/),t=r?r[1]:"text",n=document.createElement("span");n.className="code-lang-label",n.textContent=t,e.appendChild(n);const o=document.createElement("button");o.className="code-copy-button",o.innerHTML=`
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span>Copy</span>
+    `,o.addEventListener("click",async()=>{const l=c.querySelector("code")?.textContent||"";try{await navigator.clipboard.writeText(l);const a=o.querySelector("span");a.textContent="Copied!",o.classList.add("copied"),setTimeout(()=>{a.textContent="Copy",o.classList.remove("copied")},2e3)}catch(a){console.error("Failed to copy code:",a)}}),e.appendChild(o);const s=document.createElement("div");s.className="enhanced-code-block",c.parentNode.insertBefore(s,c),s.appendChild(e),s.appendChild(c)})}document.addEventListener("DOMContentLoaded",()=>{y();const i=document.querySelector(".reading-progress-bar"),c=document.querySelector("article");if(i&&c){let r=function(){const n=c.getBoundingClientRect(),o=n.top+window.scrollY,s=n.height,l=window.innerHeight,a=window.scrollY,d=o-l*.2,p=o+s-l*.8,m=p-d,h=a-d;let u=0;m>0&&(u=Math.max(0,Math.min(100,h/m*100))),i.style.width=`${u}%`,a>d&&a<p+l?i.parentElement.classList.add("visible"):i.parentElement.classList.remove("visible")};r();let t=!1;window.addEventListener("scroll",()=>{t||(requestAnimationFrame(()=>{r(),t=!1}),t=!0)}),window.addEventListener("resize",r)}const e=document.querySelector(".copy-link-btn");e&&e.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(window.location.href),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch{const t=document.createElement("textarea");t.value=window.location.href,document.body.appendChild(t),t.focus(),t.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(n){console.error("Failed to copy link:",n)}document.body.removeChild(t)}})});</script> 

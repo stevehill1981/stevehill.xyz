@@ -1,0 +1,666 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="Born from frustration with bloated syntax highlighting, this library slashes DOM nodes by 90% using the CSS Highlights API. What used to take 180KB and thousands of spans now takes 45KB and renders in a fraction of the time."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/projects/shiki-highlight-api/"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://stevehill.xyz/projects/shiki-highlight-api/"><meta property="og:title" content="shiki-highlight-api | Steve Hill"><meta property="og:description" content="Born from frustration with bloated syntax highlighting, this library slashes DOM nodes by 90% using the CSS Highlights API. What used to take 180KB and thousands of spans now takes 45KB and renders in a fraction of the time."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/projects/shiki-highlight-api/"><meta property="twitter:title" content="shiki-highlight-api | Steve Hill"><meta property="twitter:description" content="Born from frustration with bloated syntax highlighting, this library slashes DOM nodes by 90% using the CSS Highlights API. What used to take 180KB and thousands of spans now takes 45KB and renders in a fraction of the time."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>shiki-highlight-api | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.BQy-Icdq.css">
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link " data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link active" data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">  <article class="project-page" data-astro-cid-ovxcmftc> <div class="project-layout" data-astro-cid-ovxcmftc> <div class="project-main" data-astro-cid-ovxcmftc> <h1 data-astro-cid-ovxcmftc>shiki-highlight-api</h1> <p class="project-description" data-astro-cid-ovxcmftc>Born from frustration with bloated syntax highlighting, this library slashes DOM nodes by 90% using the CSS Highlights API. What used to take 180KB and thousands of spans now takes 45KB and renders in a fraction of the time.</p> <div class="content" data-astro-cid-ovxcmftc> <p>A modern approach to syntax highlighting that leverages the CSS Highlights API to achieve dramatically better performance than traditional span-based highlighting. Created for <a href="https://code198x.stevehill.xyz">Code Like It’s 198x</a> to handle large code examples efficiently.</p>
+<h2 id="-the-problem">🚀 The Problem</h2>
+<p>Traditional syntax highlighting creates hundreds or thousands of <code>&#x3C;span></code> elements for styling code:</p>
+<pre class="shiki" data-highlight-block="hl-81"><code><span id="hl-81-L0" class="line"><span class="line-content">&#x3C;!-- Traditional approach --></span></span>
+<span id="hl-81-L1" class="line"><span class="line-content">&#x3C;span class="keyword">const&#x3C;/span></span></span>
+<span id="hl-81-L2" class="line"><span class="line-content">&#x3C;span class="variable">foo&#x3C;/span></span></span>
+<span id="hl-81-L3" class="line"><span class="line-content">&#x3C;span class="operator">=&#x3C;/span></span></span>
+<span id="hl-81-L4" class="line"><span class="line-content">&#x3C;span class="string">"bar"&#x3C;/span></span></span></code></pre>
+<style data-highlight-styles="hl-81">
+::highlight(hl-hl-81-0) { color: #6A9955; }
+::highlight(hl-hl-81-1) { color: #808080; }
+::highlight(hl-hl-81-2) { color: #569CD6; }
+::highlight(hl-hl-81-3) { color: #D4D4D4; }
+::highlight(hl-hl-81-4) { color: #9CDCFE; }
+::highlight(hl-hl-81-5) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-81';
+  const colorMap = {"#6A9955":"hl-hl-81-0","#808080":"hl-hl-81-1","#569CD6":"hl-hl-81-2","#D4D4D4":"hl-hl-81-3","#9CDCFE":"hl-hl-81-4","#CE9178":"hl-hl-81-5"};
+  const ranges = [{"line":0,"start":0,"end":29,"color":"#6A9955"},{"line":1,"start":0,"end":1,"color":"#808080"},{"line":1,"start":1,"end":5,"color":"#569CD6"},{"line":1,"start":5,"end":6,"color":"#D4D4D4"},{"line":1,"start":6,"end":11,"color":"#9CDCFE"},{"line":1,"start":11,"end":12,"color":"#D4D4D4"},{"line":1,"start":12,"end":21,"color":"#CE9178"},{"line":1,"start":21,"end":22,"color":"#808080"},{"line":1,"start":22,"end":27,"color":"#D4D4D4"},{"line":1,"start":27,"end":29,"color":"#808080"},{"line":1,"start":29,"end":33,"color":"#569CD6"},{"line":1,"start":33,"end":34,"color":"#808080"},{"line":2,"start":0,"end":1,"color":"#808080"},{"line":2,"start":1,"end":5,"color":"#569CD6"},{"line":2,"start":5,"end":6,"color":"#D4D4D4"},{"line":2,"start":6,"end":11,"color":"#9CDCFE"},{"line":2,"start":11,"end":12,"color":"#D4D4D4"},{"line":2,"start":12,"end":22,"color":"#CE9178"},{"line":2,"start":22,"end":23,"color":"#808080"},{"line":2,"start":23,"end":26,"color":"#D4D4D4"},{"line":2,"start":26,"end":28,"color":"#808080"},{"line":2,"start":28,"end":32,"color":"#569CD6"},{"line":2,"start":32,"end":33,"color":"#808080"},{"line":3,"start":0,"end":1,"color":"#808080"},{"line":3,"start":1,"end":5,"color":"#569CD6"},{"line":3,"start":5,"end":6,"color":"#D4D4D4"},{"line":3,"start":6,"end":11,"color":"#9CDCFE"},{"line":3,"start":11,"end":12,"color":"#D4D4D4"},{"line":3,"start":12,"end":22,"color":"#CE9178"},{"line":3,"start":22,"end":23,"color":"#808080"},{"line":3,"start":23,"end":24,"color":"#D4D4D4"},{"line":3,"start":24,"end":26,"color":"#808080"},{"line":3,"start":26,"end":30,"color":"#569CD6"},{"line":3,"start":30,"end":31,"color":"#808080"},{"line":4,"start":0,"end":1,"color":"#808080"},{"line":4,"start":1,"end":5,"color":"#569CD6"},{"line":4,"start":5,"end":6,"color":"#D4D4D4"},{"line":4,"start":6,"end":11,"color":"#9CDCFE"},{"line":4,"start":11,"end":12,"color":"#D4D4D4"},{"line":4,"start":12,"end":20,"color":"#CE9178"},{"line":4,"start":20,"end":21,"color":"#808080"},{"line":4,"start":21,"end":26,"color":"#D4D4D4"},{"line":4,"start":26,"end":28,"color":"#808080"},{"line":4,"start":28,"end":32,"color":"#569CD6"},{"line":4,"start":32,"end":33,"color":"#808080"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>This has significant performance implications:</p>
+<ul>
+<li><strong>DOM bloat</strong> - Massive element trees for large code blocks</li>
+<li><strong>Layout thrashing</strong> - Every span triggers layout calculations</li>
+<li><strong>Memory overhead</strong> - Each element consumes significant memory</li>
+<li><strong>Slow initial render</strong> - Browser must process thousands of elements</li>
+</ul>
+<h2 id="-the-solution">✨ The Solution</h2>
+<p>The CSS Highlights API lets you style text ranges without creating DOM elements:</p>
+<pre class="shiki" data-highlight-block="hl-80"><code><span id="hl-80-L0" class="line"><span class="line-content">import { highlightCode } from 'shiki-highlight-api';</span></span>
+<span id="hl-80-L1" class="line"><span class="line-content"></span></span>
+<span id="hl-80-L2" class="line"><span class="line-content">const highlighted = await highlightCode(code, {</span></span>
+<span id="hl-80-L3" class="line"><span class="line-content">  lang: 'javascript',</span></span>
+<span id="hl-80-L4" class="line"><span class="line-content">  theme: 'github-dark'</span></span>
+<span id="hl-80-L5" class="line"><span class="line-content">});</span></span>
+<span id="hl-80-L6" class="line"><span class="line-content"></span></span>
+<span id="hl-80-L7" class="line"><span class="line-content">// Apply highlights using the CSS Highlights API</span></span>
+<span id="hl-80-L8" class="line"><span class="line-content">// Zero additional DOM elements created!</span></span></code></pre>
+<style data-highlight-styles="hl-80">
+::highlight(hl-hl-80-0) { color: #C586C0; }
+::highlight(hl-hl-80-1) { color: #D4D4D4; }
+::highlight(hl-hl-80-2) { color: #9CDCFE; }
+::highlight(hl-hl-80-3) { color: #CE9178; }
+::highlight(hl-hl-80-4) { color: #569CD6; }
+::highlight(hl-hl-80-5) { color: #4FC1FF; }
+::highlight(hl-hl-80-6) { color: #DCDCAA; }
+::highlight(hl-hl-80-7) { color: #6A9955; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-80';
+  const colorMap = {"#C586C0":"hl-hl-80-0","#D4D4D4":"hl-hl-80-1","#9CDCFE":"hl-hl-80-2","#CE9178":"hl-hl-80-3","#569CD6":"hl-hl-80-4","#4FC1FF":"hl-hl-80-5","#DCDCAA":"hl-hl-80-6","#6A9955":"hl-hl-80-7"};
+  const ranges = [{"line":0,"start":0,"end":6,"color":"#C586C0"},{"line":0,"start":6,"end":9,"color":"#D4D4D4"},{"line":0,"start":9,"end":22,"color":"#9CDCFE"},{"line":0,"start":22,"end":25,"color":"#D4D4D4"},{"line":0,"start":25,"end":29,"color":"#C586C0"},{"line":0,"start":29,"end":30,"color":"#D4D4D4"},{"line":0,"start":30,"end":51,"color":"#CE9178"},{"line":0,"start":51,"end":52,"color":"#D4D4D4"},{"line":2,"start":0,"end":5,"color":"#569CD6"},{"line":2,"start":5,"end":6,"color":"#D4D4D4"},{"line":2,"start":6,"end":17,"color":"#4FC1FF"},{"line":2,"start":17,"end":20,"color":"#D4D4D4"},{"line":2,"start":20,"end":25,"color":"#C586C0"},{"line":2,"start":25,"end":26,"color":"#D4D4D4"},{"line":2,"start":26,"end":39,"color":"#DCDCAA"},{"line":2,"start":39,"end":40,"color":"#D4D4D4"},{"line":2,"start":40,"end":44,"color":"#9CDCFE"},{"line":2,"start":44,"end":47,"color":"#D4D4D4"},{"line":3,"start":0,"end":2,"color":"#D4D4D4"},{"line":3,"start":2,"end":7,"color":"#9CDCFE"},{"line":3,"start":7,"end":8,"color":"#D4D4D4"},{"line":3,"start":8,"end":20,"color":"#CE9178"},{"line":3,"start":20,"end":21,"color":"#D4D4D4"},{"line":4,"start":0,"end":2,"color":"#D4D4D4"},{"line":4,"start":2,"end":8,"color":"#9CDCFE"},{"line":4,"start":8,"end":9,"color":"#D4D4D4"},{"line":4,"start":9,"end":22,"color":"#CE9178"},{"line":5,"start":0,"end":3,"color":"#D4D4D4"},{"line":7,"start":0,"end":48,"color":"#6A9955"},{"line":8,"start":0,"end":40,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Instead of spans, the browser natively highlights text ranges using the <code>::highlight()</code> pseudo-element:</p>
+<pre class="shiki" data-highlight-block="hl-79"><code><span id="hl-79-L0" class="line"><span class="line-content">::highlight(token-keyword) {</span></span>
+<span id="hl-79-L1" class="line"><span class="line-content">  color: #ff79c6;</span></span>
+<span id="hl-79-L2" class="line"><span class="line-content">}</span></span>
+<span id="hl-79-L3" class="line"><span class="line-content"></span></span>
+<span id="hl-79-L4" class="line"><span class="line-content">::highlight(token-string) {</span></span>
+<span id="hl-79-L5" class="line"><span class="line-content">  color: #f1fa8c;</span></span>
+<span id="hl-79-L6" class="line"><span class="line-content">}</span></span></code></pre>
+<style data-highlight-styles="hl-79">
+::highlight(hl-hl-79-0) { color: #D4D4D4; }
+::highlight(hl-hl-79-1) { color: #569CD6; }
+::highlight(hl-hl-79-2) { color: #9CDCFE; }
+::highlight(hl-hl-79-3) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-79';
+  const colorMap = {"#D4D4D4":"hl-hl-79-0","#569CD6":"hl-hl-79-1","#9CDCFE":"hl-hl-79-2","#CE9178":"hl-hl-79-3"};
+  const ranges = [{"line":0,"start":0,"end":12,"color":"#D4D4D4"},{"line":0,"start":12,"end":25,"color":"#569CD6"},{"line":0,"start":25,"end":28,"color":"#D4D4D4"},{"line":1,"start":0,"end":2,"color":"#D4D4D4"},{"line":1,"start":2,"end":7,"color":"#9CDCFE"},{"line":1,"start":7,"end":9,"color":"#D4D4D4"},{"line":1,"start":9,"end":16,"color":"#CE9178"},{"line":1,"start":16,"end":17,"color":"#D4D4D4"},{"line":2,"start":0,"end":1,"color":"#D4D4D4"},{"line":4,"start":0,"end":12,"color":"#D4D4D4"},{"line":4,"start":12,"end":24,"color":"#569CD6"},{"line":4,"start":24,"end":27,"color":"#D4D4D4"},{"line":5,"start":0,"end":2,"color":"#D4D4D4"},{"line":5,"start":2,"end":7,"color":"#9CDCFE"},{"line":5,"start":7,"end":9,"color":"#D4D4D4"},{"line":5,"start":9,"end":16,"color":"#CE9178"},{"line":5,"start":16,"end":17,"color":"#D4D4D4"},{"line":6,"start":0,"end":1,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h2 id="-performance-benefits">📊 Performance Benefits</h2>
+<p>Inspired by <a href="https://pavi2410.com/blog/high-performance-syntax-highlighting-with-css-highlights-api/">Pavi’s blog post</a>, the CSS Highlights API approach delivers:</p>
+<ul>
+<li><strong>90%+ fewer DOM nodes</strong> - No span elements means dramatically smaller trees</li>
+<li><strong>Faster initial render</strong> - Browser doesn’t construct thousands of elements</li>
+<li><strong>Lower memory usage</strong> - Text ranges are lighter than DOM elements</li>
+<li><strong>Better responsiveness</strong> - Layout calculations happen on native ranges</li>
+<li><strong>Instant theme switching</strong> - Just update CSS custom properties</li>
+</ul>
+<h2 id="-key-features">🎯 Key Features</h2>
+<h3 id="shiki-powered-tokenization">Shiki-Powered Tokenization</h3>
+<ul>
+<li>Uses Shiki’s industry-standard tokenization</li>
+<li>Support for 100+ languages out of the box</li>
+<li>Compatible with all Shiki themes</li>
+<li>TextMate grammar support for accuracy</li>
+</ul>
+<h3 id="css-highlights-api-integration">CSS Highlights API Integration</h3>
+<ul>
+<li>Automatic highlight range creation</li>
+<li>CSS custom properties for theming</li>
+<li>No JavaScript required for styling</li>
+<li>Works with <code>::highlight()</code> pseudo-element</li>
+</ul>
+<h3 id="typescript-support">TypeScript Support</h3>
+<ul>
+<li>Full type definitions included</li>
+<li>IDE autocomplete for all options</li>
+<li>Type-safe theme and language selection</li>
+</ul>
+<h3 id="framework-agnostic">Framework Agnostic</h3>
+<ul>
+<li>Works with any JavaScript framework</li>
+<li>Also available as a Remark plugin (see remark-shiki-highlight-api)</li>
+<li>Can be used standalone or integrated</li>
+</ul>
+<h2 id="-installation">📦 Installation</h2>
+<pre class="shiki" data-highlight-block="hl-78"><code><span id="hl-78-L0" class="line"><span class="line-content">npm install shiki-highlight-api</span></span></code></pre>
+<style data-highlight-styles="hl-78">
+::highlight(hl-hl-78-0) { color: #DCDCAA; }
+::highlight(hl-hl-78-1) { color: #D4D4D4; }
+::highlight(hl-hl-78-2) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-78';
+  const colorMap = {"#DCDCAA":"hl-hl-78-0","#D4D4D4":"hl-hl-78-1","#CE9178":"hl-hl-78-2"};
+  const ranges = [{"line":0,"start":0,"end":3,"color":"#DCDCAA"},{"line":0,"start":3,"end":4,"color":"#D4D4D4"},{"line":0,"start":4,"end":11,"color":"#CE9178"},{"line":0,"start":11,"end":12,"color":"#D4D4D4"},{"line":0,"start":12,"end":31,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h2 id="-basic-usage">🔧 Basic Usage</h2>
+<pre class="shiki" data-highlight-block="hl-77"><code><span id="hl-77-L0" class="line"><span class="line-content">import { highlightCode } from 'shiki-highlight-api';</span></span>
+<span id="hl-77-L1" class="line"><span class="line-content"></span></span>
+<span id="hl-77-L2" class="line"><span class="line-content">// Highlight code and get range data</span></span>
+<span id="hl-77-L3" class="line"><span class="line-content">const result = await highlightCode('const x = 42;', {</span></span>
+<span id="hl-77-L4" class="line"><span class="line-content">  lang: 'javascript',</span></span>
+<span id="hl-77-L5" class="line"><span class="line-content">  theme: 'github-dark'</span></span>
+<span id="hl-77-L6" class="line"><span class="line-content">});</span></span>
+<span id="hl-77-L7" class="line"><span class="line-content"></span></span>
+<span id="hl-77-L8" class="line"><span class="line-content">// Apply highlights to your code element</span></span>
+<span id="hl-77-L9" class="line"><span class="line-content">const codeElement = document.querySelector('code');</span></span>
+<span id="hl-77-L10" class="line"><span class="line-content">result.applyHighlights(codeElement);</span></span></code></pre>
+<style data-highlight-styles="hl-77">
+::highlight(hl-hl-77-0) { color: #C586C0; }
+::highlight(hl-hl-77-1) { color: #D4D4D4; }
+::highlight(hl-hl-77-2) { color: #9CDCFE; }
+::highlight(hl-hl-77-3) { color: #CE9178; }
+::highlight(hl-hl-77-4) { color: #6A9955; }
+::highlight(hl-hl-77-5) { color: #569CD6; }
+::highlight(hl-hl-77-6) { color: #4FC1FF; }
+::highlight(hl-hl-77-7) { color: #DCDCAA; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-77';
+  const colorMap = {"#C586C0":"hl-hl-77-0","#D4D4D4":"hl-hl-77-1","#9CDCFE":"hl-hl-77-2","#CE9178":"hl-hl-77-3","#6A9955":"hl-hl-77-4","#569CD6":"hl-hl-77-5","#4FC1FF":"hl-hl-77-6","#DCDCAA":"hl-hl-77-7"};
+  const ranges = [{"line":0,"start":0,"end":6,"color":"#C586C0"},{"line":0,"start":6,"end":9,"color":"#D4D4D4"},{"line":0,"start":9,"end":22,"color":"#9CDCFE"},{"line":0,"start":22,"end":25,"color":"#D4D4D4"},{"line":0,"start":25,"end":29,"color":"#C586C0"},{"line":0,"start":29,"end":30,"color":"#D4D4D4"},{"line":0,"start":30,"end":51,"color":"#CE9178"},{"line":0,"start":51,"end":52,"color":"#D4D4D4"},{"line":2,"start":0,"end":36,"color":"#6A9955"},{"line":3,"start":0,"end":5,"color":"#569CD6"},{"line":3,"start":5,"end":6,"color":"#D4D4D4"},{"line":3,"start":6,"end":12,"color":"#4FC1FF"},{"line":3,"start":12,"end":15,"color":"#D4D4D4"},{"line":3,"start":15,"end":20,"color":"#C586C0"},{"line":3,"start":20,"end":21,"color":"#D4D4D4"},{"line":3,"start":21,"end":34,"color":"#DCDCAA"},{"line":3,"start":34,"end":35,"color":"#D4D4D4"},{"line":3,"start":35,"end":50,"color":"#CE9178"},{"line":3,"start":50,"end":53,"color":"#D4D4D4"},{"line":4,"start":0,"end":2,"color":"#D4D4D4"},{"line":4,"start":2,"end":7,"color":"#9CDCFE"},{"line":4,"start":7,"end":8,"color":"#D4D4D4"},{"line":4,"start":8,"end":20,"color":"#CE9178"},{"line":4,"start":20,"end":21,"color":"#D4D4D4"},{"line":5,"start":0,"end":2,"color":"#D4D4D4"},{"line":5,"start":2,"end":8,"color":"#9CDCFE"},{"line":5,"start":8,"end":9,"color":"#D4D4D4"},{"line":5,"start":9,"end":22,"color":"#CE9178"},{"line":6,"start":0,"end":3,"color":"#D4D4D4"},{"line":8,"start":0,"end":40,"color":"#6A9955"},{"line":9,"start":0,"end":5,"color":"#569CD6"},{"line":9,"start":5,"end":6,"color":"#D4D4D4"},{"line":9,"start":6,"end":17,"color":"#4FC1FF"},{"line":9,"start":17,"end":20,"color":"#D4D4D4"},{"line":9,"start":20,"end":28,"color":"#9CDCFE"},{"line":9,"start":28,"end":29,"color":"#D4D4D4"},{"line":9,"start":29,"end":42,"color":"#DCDCAA"},{"line":9,"start":42,"end":43,"color":"#D4D4D4"},{"line":9,"start":43,"end":49,"color":"#CE9178"},{"line":9,"start":49,"end":51,"color":"#D4D4D4"},{"line":10,"start":0,"end":6,"color":"#9CDCFE"},{"line":10,"start":6,"end":7,"color":"#D4D4D4"},{"line":10,"start":7,"end":22,"color":"#DCDCAA"},{"line":10,"start":22,"end":23,"color":"#D4D4D4"},{"line":10,"start":23,"end":34,"color":"#9CDCFE"},{"line":10,"start":34,"end":36,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h2 id="-styling">🎨 Styling</h2>
+<p>Define styles for your token types using CSS custom properties:</p>
+<pre class="shiki" data-highlight-block="hl-76"><code><span id="hl-76-L0" class="line"><span class="line-content">::highlight(token-keyword) {</span></span>
+<span id="hl-76-L1" class="line"><span class="line-content">  color: var(--shiki-keyword);</span></span>
+<span id="hl-76-L2" class="line"><span class="line-content">  font-weight: 600;</span></span>
+<span id="hl-76-L3" class="line"><span class="line-content">}</span></span>
+<span id="hl-76-L4" class="line"><span class="line-content"></span></span>
+<span id="hl-76-L5" class="line"><span class="line-content">::highlight(token-string) {</span></span>
+<span id="hl-76-L6" class="line"><span class="line-content">  color: var(--shiki-string);</span></span>
+<span id="hl-76-L7" class="line"><span class="line-content">}</span></span>
+<span id="hl-76-L8" class="line"><span class="line-content"></span></span>
+<span id="hl-76-L9" class="line"><span class="line-content">::highlight(token-function) {</span></span>
+<span id="hl-76-L10" class="line"><span class="line-content">  color: var(--shiki-function);</span></span>
+<span id="hl-76-L11" class="line"><span class="line-content">}</span></span>
+<span id="hl-76-L12" class="line"><span class="line-content"></span></span>
+<span id="hl-76-L13" class="line"><span class="line-content">::highlight(token-comment) {</span></span>
+<span id="hl-76-L14" class="line"><span class="line-content">  color: var(--shiki-comment);</span></span>
+<span id="hl-76-L15" class="line"><span class="line-content">  font-style: italic;</span></span>
+<span id="hl-76-L16" class="line"><span class="line-content">}</span></span></code></pre>
+<style data-highlight-styles="hl-76">
+::highlight(hl-hl-76-0) { color: #D4D4D4; }
+::highlight(hl-hl-76-1) { color: #569CD6; }
+::highlight(hl-hl-76-2) { color: #9CDCFE; }
+::highlight(hl-hl-76-3) { color: #DCDCAA; }
+::highlight(hl-hl-76-4) { color: #B5CEA8; }
+::highlight(hl-hl-76-5) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-76';
+  const colorMap = {"#D4D4D4":"hl-hl-76-0","#569CD6":"hl-hl-76-1","#9CDCFE":"hl-hl-76-2","#DCDCAA":"hl-hl-76-3","#B5CEA8":"hl-hl-76-4","#CE9178":"hl-hl-76-5"};
+  const ranges = [{"line":0,"start":0,"end":12,"color":"#D4D4D4"},{"line":0,"start":12,"end":25,"color":"#569CD6"},{"line":0,"start":25,"end":28,"color":"#D4D4D4"},{"line":1,"start":0,"end":2,"color":"#D4D4D4"},{"line":1,"start":2,"end":7,"color":"#9CDCFE"},{"line":1,"start":7,"end":9,"color":"#D4D4D4"},{"line":1,"start":9,"end":12,"color":"#DCDCAA"},{"line":1,"start":12,"end":13,"color":"#D4D4D4"},{"line":1,"start":13,"end":28,"color":"#9CDCFE"},{"line":1,"start":28,"end":30,"color":"#D4D4D4"},{"line":2,"start":0,"end":2,"color":"#D4D4D4"},{"line":2,"start":2,"end":13,"color":"#9CDCFE"},{"line":2,"start":13,"end":15,"color":"#D4D4D4"},{"line":2,"start":15,"end":18,"color":"#B5CEA8"},{"line":2,"start":18,"end":19,"color":"#D4D4D4"},{"line":3,"start":0,"end":1,"color":"#D4D4D4"},{"line":5,"start":0,"end":12,"color":"#D4D4D4"},{"line":5,"start":12,"end":24,"color":"#569CD6"},{"line":5,"start":24,"end":27,"color":"#D4D4D4"},{"line":6,"start":0,"end":2,"color":"#D4D4D4"},{"line":6,"start":2,"end":7,"color":"#9CDCFE"},{"line":6,"start":7,"end":9,"color":"#D4D4D4"},{"line":6,"start":9,"end":12,"color":"#DCDCAA"},{"line":6,"start":12,"end":13,"color":"#D4D4D4"},{"line":6,"start":13,"end":27,"color":"#9CDCFE"},{"line":6,"start":27,"end":29,"color":"#D4D4D4"},{"line":7,"start":0,"end":1,"color":"#D4D4D4"},{"line":9,"start":0,"end":12,"color":"#D4D4D4"},{"line":9,"start":12,"end":26,"color":"#569CD6"},{"line":9,"start":26,"end":29,"color":"#D4D4D4"},{"line":10,"start":0,"end":2,"color":"#D4D4D4"},{"line":10,"start":2,"end":7,"color":"#9CDCFE"},{"line":10,"start":7,"end":9,"color":"#D4D4D4"},{"line":10,"start":9,"end":12,"color":"#DCDCAA"},{"line":10,"start":12,"end":13,"color":"#D4D4D4"},{"line":10,"start":13,"end":29,"color":"#9CDCFE"},{"line":10,"start":29,"end":31,"color":"#D4D4D4"},{"line":11,"start":0,"end":1,"color":"#D4D4D4"},{"line":13,"start":0,"end":12,"color":"#D4D4D4"},{"line":13,"start":12,"end":25,"color":"#569CD6"},{"line":13,"start":25,"end":28,"color":"#D4D4D4"},{"line":14,"start":0,"end":2,"color":"#D4D4D4"},{"line":14,"start":2,"end":7,"color":"#9CDCFE"},{"line":14,"start":7,"end":9,"color":"#D4D4D4"},{"line":14,"start":9,"end":12,"color":"#DCDCAA"},{"line":14,"start":12,"end":13,"color":"#D4D4D4"},{"line":14,"start":13,"end":28,"color":"#9CDCFE"},{"line":14,"start":28,"end":30,"color":"#D4D4D4"},{"line":15,"start":0,"end":2,"color":"#D4D4D4"},{"line":15,"start":2,"end":12,"color":"#9CDCFE"},{"line":15,"start":12,"end":14,"color":"#D4D4D4"},{"line":15,"start":14,"end":20,"color":"#CE9178"},{"line":15,"start":20,"end":21,"color":"#D4D4D4"},{"line":16,"start":0,"end":1,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<h2 id="-remark-plugin">🔗 Remark Plugin</h2>
+<p>For Markdown/MDX workflows, use the companion plugin:</p>
+<pre class="shiki" data-highlight-block="hl-75"><code><span id="hl-75-L0" class="line"><span class="line-content">import remarkShikiHighlight from 'remark-shiki-highlight-api';</span></span>
+<span id="hl-75-L1" class="line"><span class="line-content"></span></span>
+<span id="hl-75-L2" class="line"><span class="line-content">// In your Remark/Astro config</span></span>
+<span id="hl-75-L3" class="line"><span class="line-content">{</span></span>
+<span id="hl-75-L4" class="line"><span class="line-content">  markdown: {</span></span>
+<span id="hl-75-L5" class="line"><span class="line-content">    remarkPlugins: [</span></span>
+<span id="hl-75-L6" class="line"><span class="line-content">      [remarkShikiHighlight, {</span></span>
+<span id="hl-75-L7" class="line"><span class="line-content">        theme: 'github-dark',</span></span>
+<span id="hl-75-L8" class="line"><span class="line-content">        langs: ['javascript', 'typescript', 'rust']</span></span>
+<span id="hl-75-L9" class="line"><span class="line-content">      }]</span></span>
+<span id="hl-75-L10" class="line"><span class="line-content">    ]</span></span>
+<span id="hl-75-L11" class="line"><span class="line-content">  }</span></span>
+<span id="hl-75-L12" class="line"><span class="line-content">}</span></span></code></pre>
+<style data-highlight-styles="hl-75">
+::highlight(hl-hl-75-0) { color: #C586C0; }
+::highlight(hl-hl-75-1) { color: #D4D4D4; }
+::highlight(hl-hl-75-2) { color: #9CDCFE; }
+::highlight(hl-hl-75-3) { color: #CE9178; }
+::highlight(hl-hl-75-4) { color: #6A9955; }
+::highlight(hl-hl-75-5) { color: #C8C8C8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-75';
+  const colorMap = {"#C586C0":"hl-hl-75-0","#D4D4D4":"hl-hl-75-1","#9CDCFE":"hl-hl-75-2","#CE9178":"hl-hl-75-3","#6A9955":"hl-hl-75-4","#C8C8C8":"hl-hl-75-5"};
+  const ranges = [{"line":0,"start":0,"end":6,"color":"#C586C0"},{"line":0,"start":6,"end":7,"color":"#D4D4D4"},{"line":0,"start":7,"end":27,"color":"#9CDCFE"},{"line":0,"start":27,"end":28,"color":"#D4D4D4"},{"line":0,"start":28,"end":32,"color":"#C586C0"},{"line":0,"start":32,"end":33,"color":"#D4D4D4"},{"line":0,"start":33,"end":61,"color":"#CE9178"},{"line":0,"start":61,"end":62,"color":"#D4D4D4"},{"line":2,"start":0,"end":30,"color":"#6A9955"},{"line":3,"start":0,"end":1,"color":"#D4D4D4"},{"line":4,"start":0,"end":2,"color":"#D4D4D4"},{"line":4,"start":2,"end":10,"color":"#C8C8C8"},{"line":4,"start":10,"end":13,"color":"#D4D4D4"},{"line":5,"start":0,"end":4,"color":"#D4D4D4"},{"line":5,"start":4,"end":17,"color":"#C8C8C8"},{"line":5,"start":17,"end":20,"color":"#D4D4D4"},{"line":6,"start":0,"end":7,"color":"#D4D4D4"},{"line":6,"start":7,"end":27,"color":"#9CDCFE"},{"line":6,"start":27,"end":30,"color":"#D4D4D4"},{"line":7,"start":0,"end":8,"color":"#D4D4D4"},{"line":7,"start":8,"end":14,"color":"#9CDCFE"},{"line":7,"start":14,"end":15,"color":"#D4D4D4"},{"line":7,"start":15,"end":28,"color":"#CE9178"},{"line":7,"start":28,"end":29,"color":"#D4D4D4"},{"line":8,"start":0,"end":8,"color":"#D4D4D4"},{"line":8,"start":8,"end":14,"color":"#9CDCFE"},{"line":8,"start":14,"end":16,"color":"#D4D4D4"},{"line":8,"start":16,"end":28,"color":"#CE9178"},{"line":8,"start":28,"end":30,"color":"#D4D4D4"},{"line":8,"start":30,"end":42,"color":"#CE9178"},{"line":8,"start":42,"end":44,"color":"#D4D4D4"},{"line":8,"start":44,"end":50,"color":"#CE9178"},{"line":8,"start":50,"end":51,"color":"#D4D4D4"},{"line":9,"start":0,"end":8,"color":"#D4D4D4"},{"line":10,"start":0,"end":5,"color":"#D4D4D4"},{"line":11,"start":0,"end":3,"color":"#D4D4D4"},{"line":12,"start":0,"end":1,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>See <a href="/projects/remark-shiki-highlight-api">remark-shiki-highlight-api</a> for details.</p>
+<h2 id="-browser-support">🌐 Browser Support</h2>
+<p>The CSS Highlights API is supported in:</p>
+<ul>
+<li>Chrome/Edge 105+</li>
+<li>Safari 17.2+</li>
+<li>Firefox 134+ (behind flag, full support coming soon)</li>
+</ul>
+<p>For unsupported browsers, the library gracefully degrades to displaying unstyled code (still readable, just without syntax highlighting).</p>
+<h2 id="-inspiration">🎓 Inspiration</h2>
+<p>This project was directly inspired by <a href="https://pavi2410.com/blog/high-performance-syntax-highlighting-with-css-highlights-api/">Pavi’s excellent blog post</a> demonstrating the performance benefits of the CSS Highlights API for syntax highlighting.</p>
+<h2 id="-future-development">🔮 Future Development</h2>
+<p>Potential enhancements:</p>
+<ul>
+<li>Line number integration</li>
+<li>Copy-to-clipboard handling</li>
+<li>Diff highlighting support</li>
+<li>Inline annotations</li>
+<li>Performance benchmarking suite</li>
+</ul>
+<h2 id="-use-cases">📚 Use Cases</h2>
+<p>Perfect for:</p>
+<ul>
+<li><strong>Technical documentation</strong> sites with lots of code examples</li>
+<li><strong>Tutorial platforms</strong> like Code Like It’s 198x</li>
+<li><strong>Code blogs</strong> with syntax highlighting needs</li>
+<li><strong>MDX-based sites</strong> using Astro, Next.js, or similar</li>
+<li>Any project where <strong>performance matters</strong> more than IE11 support</li>
+</ul>
+<h2 id="️-technical-details">🛠️ Technical Details</h2>
+<p>Built with modern web standards:</p>
+<ul>
+<li>TypeScript for type safety</li>
+<li>Shiki for tokenization</li>
+<li>CSS Highlights API for rendering</li>
+<li>ES modules for tree-shaking</li>
+</ul>
+<p>The library is intentionally minimal - it does one thing (syntax highlighting) exceptionally well, with zero runtime dependencies beyond Shiki.</p>
+<h2 id="-documentation">📖 Documentation</h2>
+<p>Full API documentation and examples available on <a href="https://github.com/shiki-highlights/shiki-highlight-api">GitHub</a> and <a href="https://www.npmjs.com/package/shiki-highlight-api">npm</a>.</p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=shiki-highlight-api&url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fshiki-highlight-api%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fshiki-highlight-api%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="project-sidebar" data-astro-cid-ovxcmftc> <div class="sidebar-section project-info" data-astro-cid-ovxcmftc> <h3 data-astro-cid-ovxcmftc>Project Info</h3> <div class="info-item" data-astro-cid-ovxcmftc> <strong data-astro-cid-ovxcmftc>Technologies</strong> <div class="technologies" data-astro-cid-ovxcmftc> <span class="tech-tag" data-astro-cid-ovxcmftc>typescript</span><span class="tech-tag" data-astro-cid-ovxcmftc>shiki</span><span class="tech-tag" data-astro-cid-ovxcmftc>css-highlights-api</span> </div> </div> <a href="https://github.com/shiki-highlights/shiki-highlight-api" target="_blank" rel="noopener" class="github-link" data-astro-cid-ovxcmftc> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-ovxcmftc> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" data-astro-cid-ovxcmftc></path> </svg>
+View on GitHub
+</a> </div> </aside> </div> <nav class="project-navigation" data-astro-cid-ovxcmftc> <a href="/projects" class="back-to-projects" data-astro-cid-ovxcmftc>&larr; Back to Projects</a> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> 

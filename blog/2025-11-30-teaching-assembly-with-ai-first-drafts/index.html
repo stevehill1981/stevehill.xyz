@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="I'm building an assembly programming education platform. AI generates the first drafts. Every lesson will be rewritten. The honesty is the point."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/blog/2025-11-30-teaching-assembly-with-ai-first-drafts/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://stevehill.xyz/blog/2025-11-30-teaching-assembly-with-ai-first-drafts/"><meta property="og:title" content="Teaching Assembly Programming (With AI Writing the First Drafts) | Steve Hill"><meta property="og:description" content="I'm building an assembly programming education platform. AI generates the first drafts. Every lesson will be rewritten. The honesty is the point."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/blog/2025-11-30-teaching-assembly-with-ai-first-drafts/"><meta property="twitter:title" content="Teaching Assembly Programming (With AI Writing the First Drafts) | Steve Hill"><meta property="twitter:description" content="I'm building an assembly programming education platform. AI generates the first drafts. Every lesson will be rewritten. The honesty is the point."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Teaching Assembly Programming (With AI Writing the First Drafts) | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css">
+<link rel="stylesheet" href="/_astro/_slug_.X48vnfGS.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link active" data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link " data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">   <div class="reading-progress" data-astro-cid-4sn4zg3r> <div class="reading-progress-bar" data-astro-cid-4sn4zg3r></div> </div> <article class="blog-post" data-astro-cid-4sn4zg3r> <div class="post-layout" data-astro-cid-4sn4zg3r> <div class="post-main" data-astro-cid-4sn4zg3r> <h1 data-astro-cid-4sn4zg3r>Teaching Assembly Programming (With AI Writing the First Drafts)</h1>  <div class="content" data-astro-cid-4sn4zg3r> <p>I’ve been a software engineer for decades. I grew up programming a ZX Spectrum, then a Commodore Amiga. That turned into a career - thirty years of building software, from embedded systems to web applications.</p>
+<p>But I never made a proper game. Not until very recently, when I built <a href="/projects/rachel">Rachel</a>, a web-based puzzle game. Somehow, despite all those years, I’d never shipped the thing I originally wanted to build when I was twelve years old.</p>
+<p>Then I got a ZX Spectrum Next - a modern reimagining of the machine I learned to code on - and I wanted to actually learn it properly this time. Not just BASIC, but Z80 assembly. The real thing.</p>
+<p>The learning resources I wanted didn’t exist. There are reference manuals and scattered tutorials, but nothing that teaches through building complete games with modern tooling while respecting the authentic constraints. So I started building it myself.</p>
+<h2 id="the-audacity-of-this">The Audacity of This</h2>
+<p>Let’s address the obvious question: who am I to teach assembly programming for four different CPU architectures?</p>
+<p>The honest answer: I’m not an expert. I’m a curator and a learner. I grew up with these machines and want to understand them properly. The resource I’m building is the one I wish existed when I got my Spectrum Next.</p>
+<p>If that sounds like insufficient credentials to create an education platform, I understand. But I think the alternative - pretending to expertise I don’t have - would be worse. So here’s how it actually works.</p>
+<h2 id="why-vintage-computers">Why Vintage Computers?</h2>
+<p>Modern programming education starts with high-level abstractions:</p>
+<pre class="shiki" data-highlight-block="hl-92"><code><span id="hl-92-L0" class="line"><span class="line-content">const users = await database.query('SELECT * FROM users');</span></span></code></pre>
+<style data-highlight-styles="hl-92">
+::highlight(hl-hl-92-0) { color: #569CD6; }
+::highlight(hl-hl-92-1) { color: #D4D4D4; }
+::highlight(hl-hl-92-2) { color: #4FC1FF; }
+::highlight(hl-hl-92-3) { color: #C586C0; }
+::highlight(hl-hl-92-4) { color: #9CDCFE; }
+::highlight(hl-hl-92-5) { color: #DCDCAA; }
+::highlight(hl-hl-92-6) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-92';
+  const colorMap = {"#569CD6":"hl-hl-92-0","#D4D4D4":"hl-hl-92-1","#4FC1FF":"hl-hl-92-2","#C586C0":"hl-hl-92-3","#9CDCFE":"hl-hl-92-4","#DCDCAA":"hl-hl-92-5","#CE9178":"hl-hl-92-6"};
+  const ranges = [{"line":0,"start":0,"end":5,"color":"#569CD6"},{"line":0,"start":5,"end":6,"color":"#D4D4D4"},{"line":0,"start":6,"end":11,"color":"#4FC1FF"},{"line":0,"start":11,"end":14,"color":"#D4D4D4"},{"line":0,"start":14,"end":19,"color":"#C586C0"},{"line":0,"start":19,"end":20,"color":"#D4D4D4"},{"line":0,"start":20,"end":28,"color":"#9CDCFE"},{"line":0,"start":28,"end":29,"color":"#D4D4D4"},{"line":0,"start":29,"end":34,"color":"#DCDCAA"},{"line":0,"start":34,"end":35,"color":"#D4D4D4"},{"line":0,"start":35,"end":56,"color":"#CE9178"},{"line":0,"start":56,"end":58,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>This code hides everything. How memory allocation works. What “await” does at the CPU level. How database queries translate to I/O operations. You can build a career without understanding any of it.</p>
+<p>Vintage computers force you to confront fundamentals because there are no abstractions to hide behind.</p>
+<p>A Commodore 64 has 64KB of RAM and a 1MHz processor. A ZX Spectrum has 48KB. The NES has <em>two kilobytes</em>. When your entire working memory is 2KB, you cannot:</p>
+<ul>
+<li>Import a framework</li>
+<li>Use inefficient algorithms</li>
+<li>Waste memory on convenience</li>
+<li>Ignore optimisation</li>
+</ul>
+<p>You learn to count cycles because your code must finish before the next frame. You manage memory manually because every allocation is deliberate. You understand hardware because you’re programming chips, not abstractions.</p>
+<p>These skills transfer. Embedded systems programming, game engine development, performance-critical code - the patterns that power modern systems were invented on machines with 64KB of RAM. Understanding them isn’t nostalgia; it’s education.</p>
+<h2 id="why-games">Why Games?</h2>
+<p>Games are complete systems. Input handling, state management, rendering, audio, timing - all integrated into something that runs at 50 or 60 frames per second with no room for slop.</p>
+<p>Each game in Code Like It’s 198x teaches transferable patterns through concrete implementation. You’re not learning abstract theory; you’re building something that runs. A rhythm game that uses the SID chip. A platformer that scrolls smoothly. A shooter that manages dozens of sprites.</p>
+<p>The structure varies by complexity - some games take 8 units, some take 16, some take 32. Each unit produces something runnable. You see progress, not just concepts.</p>
+<h2 id="the-ai-reality">The AI Reality</h2>
+<p>Here’s where I expect pushback.</p>
+<p>First drafts of lesson content come from Claude. The explanations, the code samples, the pedagogical structure - AI-generated, then verified.</p>
+<p>This is not a claim of expertise. It’s an admission of process.</p>
+<p>The criticism is valid: “Who are you to teach this if an AI is writing it?” My answer: I’m the quality controller. I’m the person who ensures every code sample compiles and runs. I’m the one who’ll rewrite every lesson for accuracy and voice once the first pass is complete.</p>
+<p>AI-generated content is starting material, not finished work. The validation infrastructure is the actual product.</p>
+<h2 id="the-validation-infrastructure">The Validation Infrastructure</h2>
+<p>Every code sample must compile. This isn’t negotiable.</p>
+<p>I’ve built Docker containers with authentic assemblers from the era:</p>
+<ul>
+<li><strong>ACME</strong> for Commodore 64 (6510 processor)</li>
+<li><strong>sjasmplus</strong> for ZX Spectrum (Z80 processor)</li>
+<li><strong>ca65</strong> for Nintendo Entertainment System (6502 processor)</li>
+<li><strong>vasm</strong> for Commodore Amiga (68000 processor)</li>
+</ul>
+<p>If a code sample doesn’t assemble, it doesn’t ship. If it assembles but produces the wrong output, it doesn’t ship. Every lesson goes through screenshot verification - the code runs in an emulator and must produce the expected result.</p>
+<p>I’ve built a “skills” system - enforced workflows for lesson creation that mandate compilation, testing, and British English checks. These exist because AI-generated content can produce code that looks right but doesn’t work. The infrastructure catches it.</p>
+<p>This is the actual work. The AI generates drafts; the infrastructure validates them; I’ll rewrite them for quality.</p>
+<h2 id="what-exists-now">What Exists Now</h2>
+<p>Code Like It’s 198x is live at <a href="https://code198x.stevehill.xyz">code198x.stevehill.xyz</a>.</p>
+<p>Current state:</p>
+<ul>
+<li><strong>One complete C64 game</strong>: “SID Symphony” - 16 units building a rhythm game that makes the legendary SID chip sing</li>
+<li><strong>46 vault entries</strong>: Historical reference material covering people (Jeff Minter, Matthew Smith), hardware (VIC-II, SID chip), techniques (sprite multiplexing, raster interrupts), and games</li>
+<li><strong>Platform pages</strong> for Commodore 64, ZX Spectrum, Amiga, and NES - content in various stages of progress</li>
+</ul>
+<p>More platforms are planned. Some might have a single game; others might have many. The coverage is driven by interest and feasibility, not a rigid roadmap.</p>
+<h2 id="whats-next">What’s Next</h2>
+<p>The immediate work is more games across more platforms. The C64 curriculum has 16 games planned, progressing from simple to complex. The ZX Spectrum, Amiga, and NES have their own curricula in development.</p>
+<p>But the bigger task is the rewrite pass. Every lesson that currently exists will be revisited for:</p>
+<ul>
+<li><strong>Accuracy</strong>: Does the code actually do what the explanation claims?</li>
+<li><strong>Completeness</strong>: Are there gaps in the explanation that would confuse a learner?</li>
+<li><strong>Voice</strong>: Does it read like me, or like AI-generated text?</li>
+</ul>
+<p>This is a multi-year project. I’m honest about the scope. Writing accurate, engaging technical education content for multiple CPU architectures is not fast work.</p>
+<h2 id="the-point">The Point</h2>
+<p>I’m not an expert in 6502 assembly or Z80 opcodes or 68000 addressing modes. I’m someone who grew up with these machines and wants to understand them properly - thirty years later than I should have.</p>
+<p>The resource I’m building is the one I wish existed. If it helps others learn, that’s the goal. But I’m learning too, right alongside anyone who uses the site.</p>
+<p>Building in public means showing the scaffolding, not just the facade. AI writes first drafts. Infrastructure validates them. I’ll rewrite for quality. That’s the process, honestly stated.</p>
+<p>Thirty years of software engineering, and I’m finally making the games I never made as a kid. If the lessons help you do the same, that’s the point.</p>
+<hr>
+<p><em>Code Like It’s 198x is live at <a href="https://code198x.stevehill.xyz">code198x.stevehill.xyz</a>. The project is open source at <a href="https://github.com/code198x">github.com/code198x</a>.</em></p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Teaching%20Assembly%20Programming%20(With%20AI%20Writing%20the%20First%20Drafts)&url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2025-11-30-teaching-assembly-with-ai-first-drafts%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2025-11-30-teaching-assembly-with-ai-first-drafts%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="post-sidebar" data-astro-cid-4sn4zg3r> <div class="sidebar-section post-meta" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Post Info</h3> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Published</strong> <span data-astro-cid-4sn4zg3r>November 30, 2025</span> </div> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Reading time</strong> <span data-astro-cid-4sn4zg3r>6 min read</span> </div> <button class="copy-link-btn" title="Copy link to this post" data-astro-cid-4sn4zg3r> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-4sn4zg3r> <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" data-astro-cid-4sn4zg3r></path> <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71" data-astro-cid-4sn4zg3r></path> </svg> <span class="copy-text" data-astro-cid-4sn4zg3r>Copy Link</span> <span class="copied-text" data-astro-cid-4sn4zg3r>Copied!</span> </button> </div> <div class="sidebar-section tags-section" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Tags</h3> <div class="tags" data-astro-cid-4sn4zg3r> <a href="/tags/development" class="tag" data-astro-cid-4sn4zg3r> development </a><a href="/tags/education" class="tag" data-astro-cid-4sn4zg3r> education </a><a href="/tags/ai" class="tag" data-astro-cid-4sn4zg3r> ai </a><a href="/tags/retro-computing" class="tag" data-astro-cid-4sn4zg3r> retro-computing </a><a href="/tags/software-engineering" class="tag" data-astro-cid-4sn4zg3r> software-engineering </a><a href="/tags/project-showcase" class="tag" data-astro-cid-4sn4zg3r> project-showcase </a> </div> </div> <div class="sidebar-section related-posts" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Related Posts</h3> <div class="related-posts-list" data-astro-cid-4sn4zg3r> <article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 30, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>6 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-30-shipping-shelved-in-a-day" data-astro-cid-4sn4zg3r>Shipping a Rails 8 Book Tracker in a Day (With Claude Code Doing the Heavy Lifting)</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>AI-assisted development is fast. Surprisingly fast. But &#39;fast&#39; hides decisions that AI can&#39;t make for you - scope, taste, and the stuff that only matters when you&#39;re the one who has to use it.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>development</span><span class="tag-small" data-astro-cid-4sn4zg3r>rails</span><span class="tag-small" data-astro-cid-4sn4zg3r>ai</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 30, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>7 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-30-building-romshelf-rom-collection-manager" data-astro-cid-4sn4zg3r>Building a ROM Collection Manager: Where Domain Knowledge Meets Multi-Threaded Rust</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>The technical challenges were solvable. The harder part was understanding how collectors actually work - the DAT ecosystem, verification workflows, and organisational patterns that had to shape every architectural decision.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>development</span><span class="tag-small" data-astro-cid-4sn4zg3r>rust</span><span class="tag-small" data-astro-cid-4sn4zg3r>tauri</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 13, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>7 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-13-building-shiki-highlight-api" data-astro-cid-4sn4zg3r>Building Shiki Highlight API: How Development Workflow Saved My Syntax Highlighting</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>From 389 console errors to zero: building a high-performance syntax highlighter with CSS Custom Highlights API, Shiki, and Claude Code—and learning that workflow matters more than I thought.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>development</span><span class="tag-small" data-astro-cid-4sn4zg3r>tooling</span><span class="tag-small" data-astro-cid-4sn4zg3r>performance</span> </div> </article> </div> </div> </aside> </div> <nav class="post-navigation" data-astro-cid-4sn4zg3r> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-13-building-shiki-highlight-api" class="nav-link prev-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>← Previous</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Building Shiki Highlight API: How Development Workflow Saved My Syntax Highlighting</div> </a> </div> <div class="nav-center" data-astro-cid-4sn4zg3r> <a href="/blog" class="back-to-blog" data-astro-cid-4sn4zg3r>Back to Blog</a> </div> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-30-shipping-shelved-in-a-day" class="nav-link next-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>Next →</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Shipping a Rails 8 Book Tracker in a Day (With Claude Code Doing the Heavy Lifting)</div> </a> </div> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> <script type="module">function y(){document.querySelectorAll("pre.astro-code").forEach(c=>{if(c.querySelector(".code-toolbar"))return;const e=document.createElement("div");e.className="code-toolbar";const r=c.className.match(/language-(\w+)/),t=r?r[1]:"text",n=document.createElement("span");n.className="code-lang-label",n.textContent=t,e.appendChild(n);const o=document.createElement("button");o.className="code-copy-button",o.innerHTML=`
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span>Copy</span>
+    `,o.addEventListener("click",async()=>{const l=c.querySelector("code")?.textContent||"";try{await navigator.clipboard.writeText(l);const a=o.querySelector("span");a.textContent="Copied!",o.classList.add("copied"),setTimeout(()=>{a.textContent="Copy",o.classList.remove("copied")},2e3)}catch(a){console.error("Failed to copy code:",a)}}),e.appendChild(o);const s=document.createElement("div");s.className="enhanced-code-block",c.parentNode.insertBefore(s,c),s.appendChild(e),s.appendChild(c)})}document.addEventListener("DOMContentLoaded",()=>{y();const i=document.querySelector(".reading-progress-bar"),c=document.querySelector("article");if(i&&c){let r=function(){const n=c.getBoundingClientRect(),o=n.top+window.scrollY,s=n.height,l=window.innerHeight,a=window.scrollY,d=o-l*.2,p=o+s-l*.8,m=p-d,h=a-d;let u=0;m>0&&(u=Math.max(0,Math.min(100,h/m*100))),i.style.width=`${u}%`,a>d&&a<p+l?i.parentElement.classList.add("visible"):i.parentElement.classList.remove("visible")};r();let t=!1;window.addEventListener("scroll",()=>{t||(requestAnimationFrame(()=>{r(),t=!1}),t=!0)}),window.addEventListener("resize",r)}const e=document.querySelector(".copy-link-btn");e&&e.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(window.location.href),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch{const t=document.createElement("textarea");t.value=window.location.href,document.body.appendChild(t),t.focus(),t.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(n){console.error("Failed to copy link:",n)}document.body.removeChild(t)}})});</script> 

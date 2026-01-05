@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="Teaching assembly programming for C64, ZX Spectrum, NES, and Amiga through authentic development environments. Because modern abstractions hide how computers actually work, and the best way to learn optimization is by programming systems with 64KB of RAM."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/projects/code198x/"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://stevehill.xyz/projects/code198x/"><meta property="og:title" content="Code Like It's 198x | Steve Hill"><meta property="og:description" content="Teaching assembly programming for C64, ZX Spectrum, NES, and Amiga through authentic development environments. Because modern abstractions hide how computers actually work, and the best way to learn optimization is by programming systems with 64KB of RAM."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/projects/code198x/"><meta property="twitter:title" content="Code Like It's 198x | Steve Hill"><meta property="twitter:description" content="Teaching assembly programming for C64, ZX Spectrum, NES, and Amiga through authentic development environments. Because modern abstractions hide how computers actually work, and the best way to learn optimization is by programming systems with 64KB of RAM."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Code Like It&#39;s 198x | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.BQy-Icdq.css">
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link " data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link active" data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">  <article class="project-page" data-astro-cid-ovxcmftc> <div class="project-layout" data-astro-cid-ovxcmftc> <div class="project-main" data-astro-cid-ovxcmftc> <h1 data-astro-cid-ovxcmftc>Code Like It&#39;s 198x</h1> <p class="project-description" data-astro-cid-ovxcmftc>Teaching assembly programming for C64, ZX Spectrum, NES, and Amiga through authentic development environments. Because modern abstractions hide how computers actually work, and the best way to learn optimization is by programming systems with 64KB of RAM.</p> <div class="content" data-astro-cid-ovxcmftc> <p><strong>Status</strong>: Very early development - most features are planned rather than implemented</p>
+<p>An ambitious project to create a comprehensive vintage computer programming education platform. Teaching assembly programming for classic 8-bit and 16-bit systems through structured lessons, authentic development environments, and real constraints that force you to understand how computers actually work.</p>
+<h2 id="-the-problem-with-modern-development-education">🎯 The Problem with Modern Development Education</h2>
+<p>Modern programming education starts with high-level abstractions:</p>
+<pre class="shiki" data-highlight-block="hl-7"><code><span id="hl-7-L0" class="line"><span class="line-content">const users = await database.query('SELECT * FROM users');</span></span></code></pre>
+<style data-highlight-styles="hl-7">
+::highlight(hl-hl-7-0) { color: #569CD6; }
+::highlight(hl-hl-7-1) { color: #D4D4D4; }
+::highlight(hl-hl-7-2) { color: #4FC1FF; }
+::highlight(hl-hl-7-3) { color: #C586C0; }
+::highlight(hl-hl-7-4) { color: #9CDCFE; }
+::highlight(hl-hl-7-5) { color: #DCDCAA; }
+::highlight(hl-hl-7-6) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-7';
+  const colorMap = {"#569CD6":"hl-hl-7-0","#D4D4D4":"hl-hl-7-1","#4FC1FF":"hl-hl-7-2","#C586C0":"hl-hl-7-3","#9CDCFE":"hl-hl-7-4","#DCDCAA":"hl-hl-7-5","#CE9178":"hl-hl-7-6"};
+  const ranges = [{"line":0,"start":0,"end":5,"color":"#569CD6"},{"line":0,"start":5,"end":6,"color":"#D4D4D4"},{"line":0,"start":6,"end":11,"color":"#4FC1FF"},{"line":0,"start":11,"end":14,"color":"#D4D4D4"},{"line":0,"start":14,"end":19,"color":"#C586C0"},{"line":0,"start":19,"end":20,"color":"#D4D4D4"},{"line":0,"start":20,"end":28,"color":"#9CDCFE"},{"line":0,"start":28,"end":29,"color":"#D4D4D4"},{"line":0,"start":29,"end":34,"color":"#DCDCAA"},{"line":0,"start":34,"end":35,"color":"#D4D4D4"},{"line":0,"start":35,"end":56,"color":"#CE9178"},{"line":0,"start":56,"end":58,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>This code hides <strong>everything</strong>:</p>
+<ul>
+<li>How memory allocation works</li>
+<li>What “await” does at the CPU level</li>
+<li>How database queries translate to I/O operations</li>
+<li>Why <code>SELECT *</code> might be inefficient</li>
+<li>What happens when you run out of memory</li>
+</ul>
+<p>You can build a career without understanding any of this. But when you need to optimize performance, debug weird behavior, or work on embedded systems, you’re lost.</p>
+<h2 id="-the-solution-learn-where-abstractions-dont-exist">💡 The Solution: Learn Where Abstractions Don’t Exist</h2>
+<p>Vintage computers force you to confront fundamentals because <strong>there are no abstractions to hide behind</strong>.</p>
+<h3 id="the-constraints">The Constraints</h3>
+<p><strong>Commodore 64</strong> (1982)</p>
+<ul>
+<li>CPU: 1MHz 6510</li>
+<li>RAM: 64KB (38KB available for programs)</li>
+<li>No operating system in the modern sense</li>
+<li>Every byte matters</li>
+</ul>
+<p><strong>ZX Spectrum</strong> (1982)</p>
+<ul>
+<li>CPU: 3.5MHz Z80</li>
+<li>RAM: 48KB</li>
+<li>No hardware sprites</li>
+<li>Want graphics? Draw them yourself, pixel by pixel</li>
+</ul>
+<p><strong>Nintendo Entertainment System</strong> (1983)</p>
+<ul>
+<li>CPU: 1.79MHz 6502</li>
+<li>RAM: 2KB (!!)</li>
+<li>ROM: 32KB typical cartridge</li>
+<li>Fixed 60Hz frame rate - miss it and your game stutters</li>
+</ul>
+<p><strong>Commodore Amiga</strong> (1985)</p>
+<ul>
+<li>CPU: 7.16MHz 68000</li>
+<li>RAM: 512KB</li>
+<li>Custom chips (Agnus, Denise, Paula) for graphics/sound</li>
+<li>Multitasking OS, but still bare metal programming</li>
+</ul>
+<h3 id="what-this-teaches">What This Teaches</h3>
+<p>When you have <strong>2KB of RAM</strong> (NES), you can’t:</p>
+<ul>
+<li>Import a framework</li>
+<li>Use inefficient algorithms</li>
+<li>Waste memory on convenience</li>
+<li>Ignore optimization</li>
+</ul>
+<p>You learn to:</p>
+<ul>
+<li><strong>Count cycles</strong> - your code must finish before the next frame</li>
+<li><strong>Manage memory manually</strong> - every allocation is deliberate</li>
+<li><strong>Understand hardware</strong> - you’re programming chips, not abstractions</li>
+<li><strong>Optimize ruthlessly</strong> - there’s no headroom for waste</li>
+</ul>
+<h2 id="-the-vision">🎓 The Vision</h2>
+<p>A multi-phase learning platform where students progress through increasingly complex programming concepts:</p>
+<h3 id="curriculum-structure">Curriculum Structure</h3>
+<p><strong>Phase 1: Foundations</strong> (32 lessons per system)</p>
+<ul>
+<li>Memory addressing and registers</li>
+<li>Basic arithmetic and logic operations</li>
+<li>Loops, conditionals, and branching</li>
+<li>Drawing to the screen</li>
+<li>Reading input</li>
+<li>Making sound</li>
+</ul>
+<p><strong>Phases 2-8: Advanced Topics</strong> (planned)</p>
+<ul>
+<li>Sprite graphics and animation</li>
+<li>Scrolling and tile maps</li>
+<li>Interrupt handling</li>
+<li>Music and sound effects</li>
+<li>Game loop architecture</li>
+<li>Optimization techniques</li>
+</ul>
+<h3 id="learning-experience">Learning Experience</h3>
+<ul>
+<li><strong>Interactive lessons</strong> with real code examples</li>
+<li><strong>Docker environments</strong> with authentic assemblers</li>
+<li><strong>Emulator integration</strong> for immediate feedback</li>
+<li><strong>Historical context</strong> about each system’s impact</li>
+<li><strong>Progressive difficulty</strong> from “Hello World” to complete games</li>
+</ul>
+<h2 id="-current-status">📊 Current Status</h2>
+<p>Honestly? <strong>Very early</strong>. But here’s what exists:</p>
+<h3 id="whats-built">What’s Built ✅</h3>
+<ul>
+<li><strong>Project structure</strong> - Astro site with content collections</li>
+<li><strong>Docker environments</strong> - Containers with authentic assemblers:
+<ul>
+<li>CA65 (6502 for C64/NES)</li>
+<li>SjASMPlus (Z80 for ZX Spectrum)</li>
+<li>VASM (68000 for Amiga)</li>
+</ul>
+</li>
+<li><strong>Lesson framework</strong> - Markdown-based lesson structure</li>
+<li><strong>Basic infrastructure</strong> - Build system, development workflow</li>
+</ul>
+<h3 id="whats-in-progress">What’s In Progress 🚧</h3>
+<ul>
+<li><strong>Lesson content</strong> - Writing curriculum is slow and requires deep technical accuracy</li>
+<li><strong>Emulator integration</strong> - Getting VICE, Fuse, Nestopia, and FS-UAE working headlessly</li>
+<li><strong>Screenshot automation</strong> - Verifying code examples actually work</li>
+</ul>
+<h3 id="whats-planned">What’s Planned 📋</h3>
+<ul>
+<li>Interactive code examples</li>
+<li>Timeline and historical context</li>
+<li>Progress tracking</li>
+<li>Community features</li>
+<li>Everything else ambitious and difficult</li>
+</ul>
+<p>The honest truth: this is a <strong>multi-year project</strong>. Writing accurate, engaging assembly programming lessons for 4 different CPU architectures is not fast work.</p>
+<h2 id="-technical-approach">🔧 Technical Approach</h2>
+<h3 id="why-these-tools">Why These Tools?</h3>
+<p><strong>Astro</strong> for static site generation</p>
+<ul>
+<li>Fast builds, great for content-heavy sites</li>
+<li>Built-in content collections for lesson management</li>
+<li>Easy deployment to GitHub Pages</li>
+</ul>
+<p><strong>Docker</strong> for development environments</p>
+<ul>
+<li>Authentic assemblers from the actual era</li>
+<li>Consistent environment across machines</li>
+<li>No “works on my machine” problems</li>
+</ul>
+<p><strong>Period-appropriate toolchains</strong>:</p>
+<pre class="shiki" data-highlight-block="hl-5"><code><span id="hl-5-L0" class="line"><span class="line-content"># C64 - using CA65 (6502 assembler)</span></span>
+<span id="hl-5-L1" class="line"><span class="line-content">FROM debian:bullseye-slim</span></span>
+<span id="hl-5-L2" class="line"><span class="line-content">RUN apt-get update &#x26;&#x26; apt-get install -y cc65</span></span>
+<span id="hl-5-L3" class="line"><span class="line-content"></span></span>
+<span id="hl-5-L4" class="line"><span class="line-content"># ZX Spectrum - using SjASMPlus (Z80 assembler)</span></span>
+<span id="hl-5-L5" class="line"><span class="line-content">FROM debian:bullseye-slim</span></span>
+<span id="hl-5-L6" class="line"><span class="line-content">RUN apt-get update &#x26;&#x26; apt-get install -y sjasmplus</span></span>
+<span id="hl-5-L7" class="line"><span class="line-content"></span></span>
+<span id="hl-5-L8" class="line"><span class="line-content"># Amiga - using VASM (68000 assembler)</span></span>
+<span id="hl-5-L9" class="line"><span class="line-content">FROM debian:bullseye-slim</span></span>
+<span id="hl-5-L10" class="line"><span class="line-content">RUN wget http://sun.hasenbraten.de/vasm/release/vasm.tar.gz</span></span></code></pre>
+<style data-highlight-styles="hl-5">
+::highlight(hl-hl-5-0) { color: #6A9955; }
+::highlight(hl-hl-5-1) { color: #569CD6; }
+::highlight(hl-hl-5-2) { color: #D4D4D4; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-5';
+  const colorMap = {"#6A9955":"hl-hl-5-0","#569CD6":"hl-hl-5-1","#D4D4D4":"hl-hl-5-2"};
+  const ranges = [{"line":0,"start":0,"end":35,"color":"#6A9955"},{"line":1,"start":0,"end":4,"color":"#569CD6"},{"line":1,"start":4,"end":25,"color":"#D4D4D4"},{"line":2,"start":0,"end":3,"color":"#569CD6"},{"line":2,"start":3,"end":45,"color":"#D4D4D4"},{"line":4,"start":0,"end":47,"color":"#6A9955"},{"line":5,"start":0,"end":4,"color":"#569CD6"},{"line":5,"start":4,"end":25,"color":"#D4D4D4"},{"line":6,"start":0,"end":3,"color":"#569CD6"},{"line":6,"start":3,"end":50,"color":"#D4D4D4"},{"line":8,"start":0,"end":38,"color":"#6A9955"},{"line":9,"start":0,"end":4,"color":"#569CD6"},{"line":9,"start":4,"end":25,"color":"#D4D4D4"},{"line":10,"start":0,"end":3,"color":"#569CD6"},{"line":10,"start":3,"end":59,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p><strong>Emulators</strong> for validation</p>
+<ul>
+<li>VICE (C64) - verify every code example actually runs</li>
+<li>Fuse (ZX Spectrum) - catch syntax errors</li>
+<li>Nestopia (NES) - ensure 60Hz timing</li>
+<li>FS-UAE (Amiga) - test OS integration</li>
+</ul>
+<h2 id="-why-this-matters">🎯 Why This Matters</h2>
+<h3 id="for-modern-developers">For Modern Developers</h3>
+<p><strong>Embedded systems programming</strong> - These constraints mirror modern microcontrollers. If you can optimize for 2KB of RAM, you can optimize for anything.</p>
+<p><strong>Performance optimization</strong> - Understanding cycle counting and memory access patterns translates directly to modern CPU optimization.</p>
+<p><strong>Problem-solving</strong> - When you can’t import a library to solve your problem, you develop creative solutions.</p>
+<p><strong>Historical perspective</strong> - The patterns that power modern systems (sprite engines, compression, state machines) were invented on these machines.</p>
+<h3 id="real-world-applications">Real-World Applications</h3>
+<ul>
+<li>Game console development (Switch, PlayStation, Xbox)</li>
+<li>Embedded systems (IoT, robotics, automotive)</li>
+<li>Performance-critical code (game engines, video processing)</li>
+<li>Understanding compiler optimizations</li>
+<li>Low-level systems programming</li>
+</ul>
+<p>The skills are timeless. The platforms are just <strong>really good teachers</strong> because they don’t let you fake understanding.</p>
+<h2 id="-the-ai-collaboration">🤖 The AI Collaboration</h2>
+<p>This project wouldn’t exist without Claude. The scope is massive:</p>
+<ul>
+<li>4 different CPU architectures (6502, Z80, 6510, 68000)</li>
+<li>4 different systems with unique hardware quirks</li>
+<li>Hundreds of lessons to write</li>
+<li>Technical accuracy requirements</li>
+<li>Historical research</li>
+</ul>
+<p>Claude helps with:</p>
+<ul>
+<li><strong>Content generation</strong> - First drafts of lesson material</li>
+<li><strong>Code validation</strong> - Catching assembly syntax errors</li>
+<li><strong>Historical research</strong> - Gathering accurate technical specifications</li>
+<li><strong>Project momentum</strong> - Maintaining progress on an overwhelming scope</li>
+</ul>
+<p>But (and this is critical): <strong>AI-generated content requires human verification</strong>. Every code example needs to be assembled and tested. Every technical claim needs verification. AI accelerates the work but doesn’t replace domain expertise.</p>
+<h2 id="-links">🔗 Links</h2>
+<ul>
+<li><a href="https://github.com/code198x">GitHub Organization</a> - Multiple repositories for each system</li>
+<li>Currently no live demo (too early in development)</li>
+</ul>
+<hr>
+<p><strong>Reality Check</strong>: This project might take years. Writing accurate, engaging technical education content is hard. Writing it for 4 different assembly languages is harder. But the end goal - helping modern developers understand how computers actually work - makes it worth the effort.</p>
+<p>If you’re interested in vintage computing, assembly programming, or just think this sounds cool, the repositories are public. Contributions welcome, but set your expectations accordingly about the current state.</p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Code%20Like%20It's%20198x&url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fcode198x%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fprojects%2Fcode198x%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="project-sidebar" data-astro-cid-ovxcmftc> <div class="sidebar-section project-info" data-astro-cid-ovxcmftc> <h3 data-astro-cid-ovxcmftc>Project Info</h3> <div class="info-item" data-astro-cid-ovxcmftc> <strong data-astro-cid-ovxcmftc>Technologies</strong> <div class="technologies" data-astro-cid-ovxcmftc> <span class="tech-tag" data-astro-cid-ovxcmftc>Astro</span><span class="tech-tag" data-astro-cid-ovxcmftc>Docker</span><span class="tech-tag" data-astro-cid-ovxcmftc>Assembly</span><span class="tech-tag" data-astro-cid-ovxcmftc>Emulation</span> </div> </div> <a href="https://github.com/code198x" target="_blank" rel="noopener" class="github-link" data-astro-cid-ovxcmftc> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-ovxcmftc> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" data-astro-cid-ovxcmftc></path> </svg>
+View on GitHub
+</a> </div> </aside> </div> <nav class="project-navigation" data-astro-cid-ovxcmftc> <a href="/projects" class="back-to-projects" data-astro-cid-ovxcmftc>&larr; Back to Projects</a> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> 

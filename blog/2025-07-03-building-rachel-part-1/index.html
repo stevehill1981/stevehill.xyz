@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="How I turned a 30-year-old family card game into a modern web application using Phoenix LiveView, complete with AI opponents and real-time multiplayer."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/blog/2025-07-03-building-rachel-part-1/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://stevehill.xyz/blog/2025-07-03-building-rachel-part-1/"><meta property="og:title" content="Building Rachel: A Phoenix LiveView Card Game - Part 1 | Steve Hill"><meta property="og:description" content="How I turned a 30-year-old family card game into a modern web application using Phoenix LiveView, complete with AI opponents and real-time multiplayer."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/blog/2025-07-03-building-rachel-part-1/"><meta property="twitter:title" content="Building Rachel: A Phoenix LiveView Card Game - Part 1 | Steve Hill"><meta property="twitter:description" content="How I turned a 30-year-old family card game into a modern web application using Phoenix LiveView, complete with AI opponents and real-time multiplayer."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Building Rachel: A Phoenix LiveView Card Game - Part 1 | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css">
+<link rel="stylesheet" href="/_astro/_slug_.X48vnfGS.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link active" data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link " data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">   <div class="reading-progress" data-astro-cid-4sn4zg3r> <div class="reading-progress-bar" data-astro-cid-4sn4zg3r></div> </div> <article class="blog-post" data-astro-cid-4sn4zg3r> <div class="post-layout" data-astro-cid-4sn4zg3r> <div class="post-main" data-astro-cid-4sn4zg3r> <h1 data-astro-cid-4sn4zg3r>Building Rachel: A Phoenix LiveView Card Game - Part 1</h1>  <div class="content" data-astro-cid-4sn4zg3r> <p>For over 30 years, my friends and I have been playing a card game we call “Rachel.” It’s a fast-paced, strategic game with unique rules that create intense, unpredictable gameplay. Recently, I decided to bring this beloved tradition into the digital age using Phoenix LiveView.</p>
+<p><em>Note: This project was built in collaboration with Claude (Anthropic’s AI assistant), who provided architectural guidance, code suggestions, and helped accelerate the development process significantly. The game concept and family tradition are mine, but the technical implementation benefited greatly from AI-assisted development.</em></p>
+<h2 id="the-game-that-started-it-all">The Game That Started It All</h2>
+<p>Rachel is played with a standard 52-card deck, but what makes it special are the strategic special card effects and stacking mechanics:</p>
+<ul>
+<li><strong>2s force pickups</strong> that can be stacked for devastating penalties</li>
+<li><strong>7s skip turns</strong> and can chain across multiple players</li>
+<li><strong>Black Jacks deal 5-card penalties</strong> - the game’s nuclear option</li>
+<li><strong>Red Jacks counter Black Jacks</strong> defensively</li>
+<li><strong>Queens reverse the direction</strong> of play</li>
+<li><strong>Aces are wild</strong> and let you nominate the next suit</li>
+</ul>
+<p>The real excitement comes from the stacking rules. Play multiple 2s in a row, and the next player who can’t counter picks up 2 cards per 2 played. It creates this incredible tension where a simple turn can escalate into someone picking up 8+ cards.</p>
+<h2 id="why-phoenix-liveview">Why Phoenix LiveView?</h2>
+<p>When I started thinking about digitalizing Rachel, I had a few key requirements:</p>
+<ol>
+<li><strong>Real-time multiplayer</strong> - The game loses its magic if you can’t play with friends</li>
+<li><strong>Complex state management</strong> - Card stacking and special effects require precise rule enforcement</li>
+<li><strong>Responsive UI</strong> - Cards need to feel tactile and immediate</li>
+<li><strong>AI opponents</strong> - Sometimes you want to play solo or need to fill empty seats</li>
+</ol>
+<p>Phoenix LiveView turned out to be perfect for this. Here’s why:</p>
+<h3 id="real-time-without-the-complexity">Real-Time Without the Complexity</h3>
+<p>Traditional real-time multiplayer games require complex WebSocket management, client-side state synchronization, and careful handling of connection issues. LiveView abstracts all of this away while giving you real-time updates that feel instant.</p>
+<h3 id="server-authoritative-by-design">Server-Authoritative by Design</h3>
+<p>In LiveView, the server holds the authoritative game state. This makes preventing cheating trivial - the client literally cannot modify the game state directly. Players can’t peek at other hands or manipulate the deck because all they can do is send events to the server.</p>
+<h3 id="the-actor-model-for-game-sessions">The Actor Model for Game Sessions</h3>
+<p>Elixir’s GenServer pattern is perfect for game sessions. Each game runs in its own isolated process with its own state. If one game crashes, it doesn’t affect others. Plus, OTP supervision means games can restart gracefully if needed.</p>
+<h2 id="the-technical-architecture">The Technical Architecture</h2>
+<p>Here’s how I structured the application:</p>
+<pre class="shiki" data-highlight-block="hl-67"><code><span id="hl-67-L0" class="line"><span class="line-content"># Game logic layer - completely independent of web concerns</span></span>
+<span id="hl-67-L1" class="line"><span class="line-content">Rachel.Games.Game          # Core game engine and rules</span></span>
+<span id="hl-67-L2" class="line"><span class="line-content">Rachel.Games.Card          # Card representation  </span></span>
+<span id="hl-67-L3" class="line"><span class="line-content">Rachel.Games.Deck          # Deck shuffling and dealing</span></span>
+<span id="hl-67-L4" class="line"><span class="line-content">Rachel.Games.AIPlayer      # AI decision-making logic</span></span>
+<span id="hl-67-L5" class="line"><span class="line-content"></span></span>
+<span id="hl-67-L6" class="line"><span class="line-content"># Web layer - handles UI and user interactions</span></span>
+<span id="hl-67-L7" class="line"><span class="line-content">RachelWeb.GameLive         # LiveView process managing UI state</span></span>
+<span id="hl-67-L8" class="line"><span class="line-content">RachelWeb.GameComponents   # Reusable UI components</span></span>
+<span id="hl-67-L9" class="line"><span class="line-content">Rachel.Games.GameServer    # GenServer managing game state</span></span></code></pre>
+<style data-highlight-styles="hl-67">
+::highlight(hl-hl-67-0) { color: #6A9955; }
+::highlight(hl-hl-67-1) { color: #4EC9B0; }
+::highlight(hl-hl-67-2) { color: #D4D4D4; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-67';
+  const colorMap = {"#6A9955":"hl-hl-67-0","#4EC9B0":"hl-hl-67-1","#D4D4D4":"hl-hl-67-2"};
+  const ranges = [{"line":0,"start":0,"end":59,"color":"#6A9955"},{"line":1,"start":0,"end":6,"color":"#4EC9B0"},{"line":1,"start":6,"end":7,"color":"#D4D4D4"},{"line":1,"start":7,"end":12,"color":"#4EC9B0"},{"line":1,"start":12,"end":13,"color":"#D4D4D4"},{"line":1,"start":13,"end":17,"color":"#4EC9B0"},{"line":1,"start":17,"end":27,"color":"#D4D4D4"},{"line":1,"start":27,"end":55,"color":"#6A9955"},{"line":2,"start":0,"end":6,"color":"#4EC9B0"},{"line":2,"start":6,"end":7,"color":"#D4D4D4"},{"line":2,"start":7,"end":12,"color":"#4EC9B0"},{"line":2,"start":12,"end":13,"color":"#D4D4D4"},{"line":2,"start":13,"end":17,"color":"#4EC9B0"},{"line":2,"start":17,"end":27,"color":"#D4D4D4"},{"line":2,"start":27,"end":50,"color":"#6A9955"},{"line":3,"start":0,"end":6,"color":"#4EC9B0"},{"line":3,"start":6,"end":7,"color":"#D4D4D4"},{"line":3,"start":7,"end":12,"color":"#4EC9B0"},{"line":3,"start":12,"end":13,"color":"#D4D4D4"},{"line":3,"start":13,"end":17,"color":"#4EC9B0"},{"line":3,"start":17,"end":27,"color":"#D4D4D4"},{"line":3,"start":27,"end":55,"color":"#6A9955"},{"line":4,"start":0,"end":6,"color":"#4EC9B0"},{"line":4,"start":6,"end":7,"color":"#D4D4D4"},{"line":4,"start":7,"end":12,"color":"#4EC9B0"},{"line":4,"start":12,"end":13,"color":"#D4D4D4"},{"line":4,"start":13,"end":21,"color":"#4EC9B0"},{"line":4,"start":21,"end":27,"color":"#D4D4D4"},{"line":4,"start":27,"end":53,"color":"#6A9955"},{"line":6,"start":0,"end":46,"color":"#6A9955"},{"line":7,"start":0,"end":9,"color":"#4EC9B0"},{"line":7,"start":9,"end":10,"color":"#D4D4D4"},{"line":7,"start":10,"end":18,"color":"#4EC9B0"},{"line":7,"start":18,"end":27,"color":"#D4D4D4"},{"line":7,"start":27,"end":63,"color":"#6A9955"},{"line":8,"start":0,"end":9,"color":"#4EC9B0"},{"line":8,"start":9,"end":10,"color":"#D4D4D4"},{"line":8,"start":10,"end":24,"color":"#4EC9B0"},{"line":8,"start":24,"end":27,"color":"#D4D4D4"},{"line":8,"start":27,"end":51,"color":"#6A9955"},{"line":9,"start":0,"end":6,"color":"#4EC9B0"},{"line":9,"start":6,"end":7,"color":"#D4D4D4"},{"line":9,"start":7,"end":12,"color":"#4EC9B0"},{"line":9,"start":12,"end":13,"color":"#D4D4D4"},{"line":9,"start":13,"end":23,"color":"#4EC9B0"},{"line":9,"start":23,"end":27,"color":"#D4D4D4"},{"line":9,"start":27,"end":58,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>The separation is crucial. The game logic has zero dependencies on Phoenix or the web layer. This makes it incredibly easy to test complex card interactions without spinning up a web server.</p>
+<h2 id="building-the-game-engine">Building the Game Engine</h2>
+<p>The heart of Rachel is the rule validation system. Here’s a simplified version of how special card effects work:</p>
+<pre class="shiki" data-highlight-block="hl-66"><code><span id="hl-66-L0" class="line"><span class="line-content">def apply_card_effects(game, cards, player_id) do</span></span>
+<span id="hl-66-L1" class="line"><span class="line-content">  case get_card_effect(cards) do</span></span>
+<span id="hl-66-L2" class="line"><span class="line-content">    :pickup_two -></span></span>
+<span id="hl-66-L3" class="line"><span class="line-content">      count = length(cards) * 2  # Stack multiple 2s</span></span>
+<span id="hl-66-L4" class="line"><span class="line-content">      %{game | pickup_count: game.pickup_count + count}</span></span>
+<span id="hl-66-L5" class="line"><span class="line-content">      </span></span>
+<span id="hl-66-L6" class="line"><span class="line-content">    :skip_turn -></span></span>
+<span id="hl-66-L7" class="line"><span class="line-content">      skip_count = length(cards)  # Stack multiple 7s</span></span>
+<span id="hl-66-L8" class="line"><span class="line-content">      skip_players(game, skip_count)</span></span>
+<span id="hl-66-L9" class="line"><span class="line-content">      </span></span>
+<span id="hl-66-L10" class="line"><span class="line-content">    :black_jack -></span></span>
+<span id="hl-66-L11" class="line"><span class="line-content">      %{game | pickup_count: game.pickup_count + 5}</span></span>
+<span id="hl-66-L12" class="line"><span class="line-content">      </span></span>
+<span id="hl-66-L13" class="line"><span class="line-content">    :reverse_direction -></span></span>
+<span id="hl-66-L14" class="line"><span class="line-content">      reverse_count = length(cards)</span></span>
+<span id="hl-66-L15" class="line"><span class="line-content">      apply_direction_changes(game, reverse_count)</span></span>
+<span id="hl-66-L16" class="line"><span class="line-content">      </span></span>
+<span id="hl-66-L17" class="line"><span class="line-content">    # ... other effects</span></span>
+<span id="hl-66-L18" class="line"><span class="line-content">  end</span></span>
+<span id="hl-66-L19" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-66">
+::highlight(hl-hl-66-0) { color: #C586C0; }
+::highlight(hl-hl-66-1) { color: #D4D4D4; }
+::highlight(hl-hl-66-2) { color: #DCDCAA; }
+::highlight(hl-hl-66-3) { color: #B5CEA8; }
+::highlight(hl-hl-66-4) { color: #6A9955; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-66';
+  const colorMap = {"#C586C0":"hl-hl-66-0","#D4D4D4":"hl-hl-66-1","#DCDCAA":"hl-hl-66-2","#B5CEA8":"hl-hl-66-3","#6A9955":"hl-hl-66-4"};
+  const ranges = [{"line":0,"start":0,"end":3,"color":"#C586C0"},{"line":0,"start":3,"end":4,"color":"#D4D4D4"},{"line":0,"start":4,"end":22,"color":"#DCDCAA"},{"line":0,"start":22,"end":47,"color":"#D4D4D4"},{"line":0,"start":47,"end":49,"color":"#C586C0"},{"line":1,"start":0,"end":2,"color":"#D4D4D4"},{"line":1,"start":2,"end":6,"color":"#C586C0"},{"line":1,"start":6,"end":7,"color":"#D4D4D4"},{"line":1,"start":7,"end":22,"color":"#DCDCAA"},{"line":1,"start":22,"end":30,"color":"#D4D4D4"},{"line":1,"start":30,"end":32,"color":"#C586C0"},{"line":2,"start":0,"end":18,"color":"#D4D4D4"},{"line":3,"start":0,"end":14,"color":"#D4D4D4"},{"line":3,"start":14,"end":20,"color":"#DCDCAA"},{"line":3,"start":20,"end":30,"color":"#D4D4D4"},{"line":3,"start":30,"end":31,"color":"#B5CEA8"},{"line":3,"start":31,"end":33,"color":"#D4D4D4"},{"line":3,"start":33,"end":52,"color":"#6A9955"},{"line":4,"start":0,"end":55,"color":"#D4D4D4"},{"line":5,"start":0,"end":6,"color":"#D4D4D4"},{"line":6,"start":0,"end":17,"color":"#D4D4D4"},{"line":7,"start":0,"end":19,"color":"#D4D4D4"},{"line":7,"start":19,"end":25,"color":"#DCDCAA"},{"line":7,"start":25,"end":34,"color":"#D4D4D4"},{"line":7,"start":34,"end":53,"color":"#6A9955"},{"line":8,"start":0,"end":6,"color":"#D4D4D4"},{"line":8,"start":6,"end":18,"color":"#DCDCAA"},{"line":8,"start":18,"end":36,"color":"#D4D4D4"},{"line":9,"start":0,"end":6,"color":"#D4D4D4"},{"line":10,"start":0,"end":18,"color":"#D4D4D4"},{"line":11,"start":0,"end":49,"color":"#D4D4D4"},{"line":11,"start":49,"end":50,"color":"#B5CEA8"},{"line":11,"start":50,"end":51,"color":"#D4D4D4"},{"line":12,"start":0,"end":6,"color":"#D4D4D4"},{"line":13,"start":0,"end":25,"color":"#D4D4D4"},{"line":14,"start":0,"end":22,"color":"#D4D4D4"},{"line":14,"start":22,"end":28,"color":"#DCDCAA"},{"line":14,"start":28,"end":35,"color":"#D4D4D4"},{"line":15,"start":0,"end":6,"color":"#D4D4D4"},{"line":15,"start":6,"end":29,"color":"#DCDCAA"},{"line":15,"start":29,"end":50,"color":"#D4D4D4"},{"line":16,"start":0,"end":6,"color":"#D4D4D4"},{"line":17,"start":0,"end":4,"color":"#D4D4D4"},{"line":17,"start":4,"end":23,"color":"#6A9955"},{"line":18,"start":0,"end":2,"color":"#D4D4D4"},{"line":18,"start":2,"end":5,"color":"#C586C0"},{"line":19,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>The key insight is that most special cards can be stacked, and the effects accumulate. Play three 2s, and the next player picks up 6 cards. Play two Queens, and they cancel each other out.</p>
+<h2 id="testing-complex-game-logic">Testing Complex Game Logic</h2>
+<p>One of the biggest challenges was testing all the edge cases. Card games have lots of them:</p>
+<ul>
+<li>What happens when you stack 2s, but someone counters with more 2s?</li>
+<li>How do direction changes interact with skip effects?</li>
+<li>What if the deck runs out during a penalty pickup?</li>
+</ul>
+<p>I ended up with comprehensive test coverage that reads almost like game documentation:</p>
+<pre class="shiki" data-highlight-block="hl-65"><code><span id="hl-65-L0" class="line"><span class="line-content">describe "card stacking edge cases" do</span></span>
+<span id="hl-65-L1" class="line"><span class="line-content">  test "multiple 2s accumulate pickup count correctly" do</span></span>
+<span id="hl-65-L2" class="line"><span class="line-content">    game = start_game(["Alice", "Bob", "Charlie"])</span></span>
+<span id="hl-65-L3" class="line"><span class="line-content">    </span></span>
+<span id="hl-65-L4" class="line"><span class="line-content">    # Alice plays a 2</span></span>
+<span id="hl-65-L5" class="line"><span class="line-content">    game = play_cards(game, "Alice", [two_of_hearts()])</span></span>
+<span id="hl-65-L6" class="line"><span class="line-content">    assert game.pickup_count == 2</span></span>
+<span id="hl-65-L7" class="line"><span class="line-content">    </span></span>
+<span id="hl-65-L8" class="line"><span class="line-content">    # Bob adds another 2  </span></span>
+<span id="hl-65-L9" class="line"><span class="line-content">    game = play_cards(game, "Bob", [two_of_spades()])</span></span>
+<span id="hl-65-L10" class="line"><span class="line-content">    assert game.pickup_count == 4</span></span>
+<span id="hl-65-L11" class="line"><span class="line-content">    </span></span>
+<span id="hl-65-L12" class="line"><span class="line-content">    # Charlie can't counter, picks up 4 cards</span></span>
+<span id="hl-65-L13" class="line"><span class="line-content">    game = apply_turn_end(game, "Charlie")</span></span>
+<span id="hl-65-L14" class="line"><span class="line-content">    charlie_hand = get_player_hand(game, "Charlie")</span></span>
+<span id="hl-65-L15" class="line"><span class="line-content">    assert length(charlie_hand) == 11  # Started with 7, picked up 4</span></span>
+<span id="hl-65-L16" class="line"><span class="line-content">  end</span></span>
+<span id="hl-65-L17" class="line"><span class="line-content">end</span></span></code></pre>
+<style data-highlight-styles="hl-65">
+::highlight(hl-hl-65-0) { color: #D4D4D4; }
+::highlight(hl-hl-65-1) { color: #CE9178; }
+::highlight(hl-hl-65-2) { color: #C586C0; }
+::highlight(hl-hl-65-3) { color: #DCDCAA; }
+::highlight(hl-hl-65-4) { color: #6A9955; }
+::highlight(hl-hl-65-5) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-65';
+  const colorMap = {"#D4D4D4":"hl-hl-65-0","#CE9178":"hl-hl-65-1","#C586C0":"hl-hl-65-2","#DCDCAA":"hl-hl-65-3","#6A9955":"hl-hl-65-4","#B5CEA8":"hl-hl-65-5"};
+  const ranges = [{"line":0,"start":0,"end":9,"color":"#D4D4D4"},{"line":0,"start":9,"end":35,"color":"#CE9178"},{"line":0,"start":35,"end":36,"color":"#D4D4D4"},{"line":0,"start":36,"end":38,"color":"#C586C0"},{"line":1,"start":0,"end":7,"color":"#D4D4D4"},{"line":1,"start":7,"end":54,"color":"#CE9178"},{"line":1,"start":54,"end":55,"color":"#D4D4D4"},{"line":1,"start":55,"end":57,"color":"#C586C0"},{"line":2,"start":0,"end":11,"color":"#D4D4D4"},{"line":2,"start":11,"end":21,"color":"#DCDCAA"},{"line":2,"start":21,"end":23,"color":"#D4D4D4"},{"line":2,"start":23,"end":30,"color":"#CE9178"},{"line":2,"start":30,"end":32,"color":"#D4D4D4"},{"line":2,"start":32,"end":37,"color":"#CE9178"},{"line":2,"start":37,"end":39,"color":"#D4D4D4"},{"line":2,"start":39,"end":48,"color":"#CE9178"},{"line":2,"start":48,"end":50,"color":"#D4D4D4"},{"line":3,"start":0,"end":4,"color":"#D4D4D4"},{"line":4,"start":0,"end":4,"color":"#D4D4D4"},{"line":4,"start":4,"end":21,"color":"#6A9955"},{"line":5,"start":0,"end":11,"color":"#D4D4D4"},{"line":5,"start":11,"end":21,"color":"#DCDCAA"},{"line":5,"start":21,"end":28,"color":"#D4D4D4"},{"line":5,"start":28,"end":35,"color":"#CE9178"},{"line":5,"start":35,"end":38,"color":"#D4D4D4"},{"line":5,"start":38,"end":51,"color":"#DCDCAA"},{"line":5,"start":51,"end":55,"color":"#D4D4D4"},{"line":6,"start":0,"end":32,"color":"#D4D4D4"},{"line":6,"start":32,"end":33,"color":"#B5CEA8"},{"line":7,"start":0,"end":4,"color":"#D4D4D4"},{"line":8,"start":0,"end":4,"color":"#D4D4D4"},{"line":8,"start":4,"end":26,"color":"#6A9955"},{"line":9,"start":0,"end":11,"color":"#D4D4D4"},{"line":9,"start":11,"end":21,"color":"#DCDCAA"},{"line":9,"start":21,"end":28,"color":"#D4D4D4"},{"line":9,"start":28,"end":33,"color":"#CE9178"},{"line":9,"start":33,"end":36,"color":"#D4D4D4"},{"line":9,"start":36,"end":49,"color":"#DCDCAA"},{"line":9,"start":49,"end":53,"color":"#D4D4D4"},{"line":10,"start":0,"end":32,"color":"#D4D4D4"},{"line":10,"start":32,"end":33,"color":"#B5CEA8"},{"line":11,"start":0,"end":4,"color":"#D4D4D4"},{"line":12,"start":0,"end":4,"color":"#D4D4D4"},{"line":12,"start":4,"end":45,"color":"#6A9955"},{"line":13,"start":0,"end":11,"color":"#D4D4D4"},{"line":13,"start":11,"end":25,"color":"#DCDCAA"},{"line":13,"start":25,"end":32,"color":"#D4D4D4"},{"line":13,"start":32,"end":41,"color":"#CE9178"},{"line":13,"start":41,"end":42,"color":"#D4D4D4"},{"line":14,"start":0,"end":19,"color":"#D4D4D4"},{"line":14,"start":19,"end":34,"color":"#DCDCAA"},{"line":14,"start":34,"end":41,"color":"#D4D4D4"},{"line":14,"start":41,"end":50,"color":"#CE9178"},{"line":14,"start":50,"end":51,"color":"#D4D4D4"},{"line":15,"start":0,"end":11,"color":"#D4D4D4"},{"line":15,"start":11,"end":17,"color":"#DCDCAA"},{"line":15,"start":17,"end":35,"color":"#D4D4D4"},{"line":15,"start":35,"end":37,"color":"#B5CEA8"},{"line":15,"start":37,"end":39,"color":"#D4D4D4"},{"line":15,"start":39,"end":68,"color":"#6A9955"},{"line":16,"start":0,"end":2,"color":"#D4D4D4"},{"line":16,"start":2,"end":5,"color":"#C586C0"},{"line":17,"start":0,"end":3,"color":"#C586C0"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>These tests were invaluable when implementing the LiveView layer. I could focus on the UI knowing the game logic was rock-solid.</p>
+<h2 id="ai-assisted-development-in-practice">AI-Assisted Development in Practice</h2>
+<p>Working with Claude on this project was a fascinating experience in collaborative development. The AI helped with:</p>
+<ul>
+<li><strong>Architectural decisions</strong> - Suggesting the clean separation between game logic and web layers</li>
+<li><strong>Elixir idioms</strong> - Ensuring the code followed proper OTP patterns and conventions</li>
+<li><strong>Edge case identification</strong> - Helping think through complex card interaction scenarios</li>
+<li><strong>Test coverage</strong> - Suggesting comprehensive test cases for game logic</li>
+<li><strong>Performance considerations</strong> - Optimizing for real-time multiplayer requirements</li>
+</ul>
+<p>The human-AI collaboration worked particularly well because I brought the domain knowledge (30 years of playing Rachel) while Claude contributed software engineering best practices and Phoenix LiveView expertise. The result was cleaner, more robust code delivered much faster than traditional solo development.</p>
+<p>This kind of AI-assisted development is becoming increasingly common, and I think it’s important to be transparent about it. The creativity, vision, and domain expertise are still fundamentally human, but AI can significantly accelerate the technical implementation.</p>
+<h2 id="deployment-with-flyio">Deployment with Fly.io</h2>
+<p>I’m planning to deploy Rachel to Fly.io, which is perfect for Phoenix LiveView applications. Fly.io offers:</p>
+<ul>
+<li><strong>WebSocket support</strong> out of the box (essential for LiveView)</li>
+<li><strong>Global edge network</strong> for low-latency real-time gameplay</li>
+<li><strong>Free custom domains</strong> with automatic SSL certificates</li>
+<li><strong>Elixir-optimized infrastructure</strong> built by people who understand BEAM</li>
+</ul>
+<p>The deployment process is refreshingly simple:</p>
+<pre class="shiki" data-highlight-block="hl-64"><code><span id="hl-64-L0" class="line"><span class="line-content"># Deploy to Fly.io</span></span>
+<span id="hl-64-L1" class="line"><span class="line-content">fly deploy</span></span>
+<span id="hl-64-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-64-L3" class="line"><span class="line-content"># Add custom domain (free!)</span></span>
+<span id="hl-64-L4" class="line"><span class="line-content">fly certs add rachel.stevehill.xyz</span></span>
+<span id="hl-64-L5" class="line"><span class="line-content"></span></span>
+<span id="hl-64-L6" class="line"><span class="line-content"># Point DNS: rachel.stevehill.xyz → app-name.fly.dev</span></span></code></pre>
+<style data-highlight-styles="hl-64">
+::highlight(hl-hl-64-0) { color: #6A9955; }
+::highlight(hl-hl-64-1) { color: #DCDCAA; }
+::highlight(hl-hl-64-2) { color: #D4D4D4; }
+::highlight(hl-hl-64-3) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-64';
+  const colorMap = {"#6A9955":"hl-hl-64-0","#DCDCAA":"hl-hl-64-1","#D4D4D4":"hl-hl-64-2","#CE9178":"hl-hl-64-3"};
+  const ranges = [{"line":0,"start":0,"end":18,"color":"#6A9955"},{"line":1,"start":0,"end":3,"color":"#DCDCAA"},{"line":1,"start":3,"end":4,"color":"#D4D4D4"},{"line":1,"start":4,"end":10,"color":"#CE9178"},{"line":3,"start":0,"end":27,"color":"#6A9955"},{"line":4,"start":0,"end":3,"color":"#DCDCAA"},{"line":4,"start":3,"end":4,"color":"#D4D4D4"},{"line":4,"start":4,"end":9,"color":"#CE9178"},{"line":4,"start":9,"end":10,"color":"#D4D4D4"},{"line":4,"start":10,"end":13,"color":"#CE9178"},{"line":4,"start":13,"end":14,"color":"#D4D4D4"},{"line":4,"start":14,"end":34,"color":"#CE9178"},{"line":6,"start":0,"end":52,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Rachel will be available at <a href="https://rachel.stevehill.xyz">rachel.stevehill.xyz</a> once deployment is complete.</p>
+<h2 id="whats-next">What’s Next</h2>
+<p>In the next post, I’ll dive into the LiveView implementation - how to handle real-time updates, manage player connections, and create smooth animations for card plays. I’ll also cover the AI system and how I made computer opponents that actually feel like they’re thinking strategically.</p>
+<p>The complete source code is available on <a href="https://github.com/stevehill1981/rachel">GitHub</a>.</p>
+<p>Building Rachel has been a joy - it combines the technical challenges I love (real-time systems, complex state management, AI) with something deeply personal (a game I’ve played for decades). Phoenix LiveView made it possible to focus on the game itself rather than fighting with infrastructure, and AI assistance helped turn months of work into weeks.</p>
+<p>Stay tuned for Part 2, where we’ll explore the real-time multiplayer implementation and see how LiveView makes complex UI interactions surprisingly simple.</p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Building%20Rachel%3A%20A%20Phoenix%20LiveView%20Card%20Game%20-%20Part%201&url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2025-07-03-building-rachel-part-1%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2025-07-03-building-rachel-part-1%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="post-sidebar" data-astro-cid-4sn4zg3r> <div class="sidebar-section post-meta" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Post Info</h3> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Published</strong> <span data-astro-cid-4sn4zg3r>July 3, 2025</span> </div> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Reading time</strong> <span data-astro-cid-4sn4zg3r>7 min read</span> </div> <button class="copy-link-btn" title="Copy link to this post" data-astro-cid-4sn4zg3r> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-4sn4zg3r> <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" data-astro-cid-4sn4zg3r></path> <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71" data-astro-cid-4sn4zg3r></path> </svg> <span class="copy-text" data-astro-cid-4sn4zg3r>Copy Link</span> <span class="copied-text" data-astro-cid-4sn4zg3r>Copied!</span> </button> </div> <div class="sidebar-section tags-section" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Tags</h3> <div class="tags" data-astro-cid-4sn4zg3r> <a href="/tags/elixir" class="tag" data-astro-cid-4sn4zg3r> elixir </a><a href="/tags/phoenix" class="tag" data-astro-cid-4sn4zg3r> phoenix </a><a href="/tags/liveview" class="tag" data-astro-cid-4sn4zg3r> liveview </a><a href="/tags/game-development" class="tag" data-astro-cid-4sn4zg3r> game-development </a><a href="/tags/project-showcase" class="tag" data-astro-cid-4sn4zg3r> project-showcase </a> </div> </div> <div class="sidebar-section related-posts" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Related Posts</h3> <div class="related-posts-list" data-astro-cid-4sn4zg3r> <article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Jul 8, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>7 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-07-08-building-rachel-part-2-themes-and-deployment" data-astro-cid-4sn4zg3r>Building Rachel Part 2: Themes, Polish, and Production Deployment</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>From functional card game to production-ready web application: implementing a dynamic theme system, fixing critical bugs, and deploying to the world with bank-grade security.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>elixir</span><span class="tag-small" data-astro-cid-4sn4zg3r>phoenix</span><span class="tag-small" data-astro-cid-4sn4zg3r>liveview</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 30, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>6 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-30-shipping-shelved-in-a-day" data-astro-cid-4sn4zg3r>Shipping a Rails 8 Book Tracker in a Day (With Claude Code Doing the Heavy Lifting)</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>AI-assisted development is fast. Surprisingly fast. But &#39;fast&#39; hides decisions that AI can&#39;t make for you - scope, taste, and the stuff that only matters when you&#39;re the one who has to use it.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>development</span><span class="tag-small" data-astro-cid-4sn4zg3r>rails</span><span class="tag-small" data-astro-cid-4sn4zg3r>ai</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 30, 2025</time> <span class="reading-time" data-astro-cid-4sn4zg3r>7 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2025-11-30-building-romshelf-rom-collection-manager" data-astro-cid-4sn4zg3r>Building a ROM Collection Manager: Where Domain Knowledge Meets Multi-Threaded Rust</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>The technical challenges were solvable. The harder part was understanding how collectors actually work - the DAT ecosystem, verification workflows, and organisational patterns that had to shape every architectural decision.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>development</span><span class="tag-small" data-astro-cid-4sn4zg3r>rust</span><span class="tag-small" data-astro-cid-4sn4zg3r>tauri</span> </div> </article> </div> </div> </aside> </div> <nav class="post-navigation" data-astro-cid-4sn4zg3r> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2023-10-12-sustainable-software" class="nav-link prev-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>← Previous</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Sustainable Software</div> </a> </div> <div class="nav-center" data-astro-cid-4sn4zg3r> <a href="/blog" class="back-to-blog" data-astro-cid-4sn4zg3r>Back to Blog</a> </div> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2025-07-08-building-rachel-part-2-themes-and-deployment" class="nav-link next-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>Next →</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Building Rachel Part 2: Themes, Polish, and Production Deployment</div> </a> </div> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> <script type="module">function y(){document.querySelectorAll("pre.astro-code").forEach(c=>{if(c.querySelector(".code-toolbar"))return;const e=document.createElement("div");e.className="code-toolbar";const r=c.className.match(/language-(\w+)/),t=r?r[1]:"text",n=document.createElement("span");n.className="code-lang-label",n.textContent=t,e.appendChild(n);const o=document.createElement("button");o.className="code-copy-button",o.innerHTML=`
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span>Copy</span>
+    `,o.addEventListener("click",async()=>{const l=c.querySelector("code")?.textContent||"";try{await navigator.clipboard.writeText(l);const a=o.querySelector("span");a.textContent="Copied!",o.classList.add("copied"),setTimeout(()=>{a.textContent="Copy",o.classList.remove("copied")},2e3)}catch(a){console.error("Failed to copy code:",a)}}),e.appendChild(o);const s=document.createElement("div");s.className="enhanced-code-block",c.parentNode.insertBefore(s,c),s.appendChild(e),s.appendChild(c)})}document.addEventListener("DOMContentLoaded",()=>{y();const i=document.querySelector(".reading-progress-bar"),c=document.querySelector("article");if(i&&c){let r=function(){const n=c.getBoundingClientRect(),o=n.top+window.scrollY,s=n.height,l=window.innerHeight,a=window.scrollY,d=o-l*.2,p=o+s-l*.8,m=p-d,h=a-d;let u=0;m>0&&(u=Math.max(0,Math.min(100,h/m*100))),i.style.width=`${u}%`,a>d&&a<p+l?i.parentElement.classList.add("visible"):i.parentElement.classList.remove("visible")};r();let t=!1;window.addEventListener("scroll",()=>{t||(requestAnimationFrame(()=>{r(),t=!1}),t=!0)}),window.addEventListener("resize",r)}const e=document.querySelector(".copy-link-btn");e&&e.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(window.location.href),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch{const t=document.createElement("textarea");t.value=window.location.href,document.body.appendChild(t),t.focus(),t.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(n){console.error("Failed to copy link:",n)}document.body.removeChild(t)}})});</script> 

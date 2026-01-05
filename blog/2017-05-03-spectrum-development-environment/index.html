@@ -1,0 +1,894 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="description" content="Inspired by Revival 2016 and the Spectrum Next Kickstarter, I set out to build a ZX Spectrum dev environment on macOS using Pasmo, Atom, and ZXSP."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.6"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lato:wght@400;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://stevehill.xyz/blog/2017-05-03-spectrum-development-environment/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://stevehill.xyz/blog/2017-05-03-spectrum-development-environment/"><meta property="og:title" content="Getting started with ZX Spectrum Development | Steve Hill"><meta property="og:description" content="Inspired by Revival 2016 and the Spectrum Next Kickstarter, I set out to build a ZX Spectrum dev environment on macOS using Pasmo, Atom, and ZXSP."><meta property="og:image" content="https://stevehill.xyz/favicon.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://stevehill.xyz/blog/2017-05-03-spectrum-development-environment/"><meta property="twitter:title" content="Getting started with ZX Spectrum Development | Steve Hill"><meta property="twitter:description" content="Inspired by Revival 2016 and the Spectrum Next Kickstarter, I set out to build a ZX Spectrum dev environment on macOS using Pasmo, Atom, and ZXSP."><meta property="twitter:image" content="https://stevehill.xyz/favicon.svg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Steve Hill's Blog" href="/rss.xml"><title>Getting started with ZX Spectrum Development | Steve Hill</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".mobile-menu-toggle");t&&!t.hasAttribute("data-initialized")&&t.setAttribute("data-initialized","true")});document.addEventListener("astro:before-preparation",t=>{const o=t.from?.pathname||"",a=t.to?.pathname||"";let e="forward";o.startsWith("/blog/")&&a==="/blog"||a==="/"&&o!=="/"?e="back":o==="/blog"&&a.startsWith("/blog/")&&(e="forward"),document.documentElement.setAttribute("data-transition-direction",e)});document.addEventListener("astro:after-swap",()=>{document.documentElement.removeAttribute("data-transition-direction")});</script><style>.share-buttons[data-astro-cid-zllr3mxm]{display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-md) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);margin:var(--spacing-xl) 0}.share-label[data-astro-cid-zllr3mxm]{font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}.share-button[data-astro-cid-zllr3mxm]{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all var(--transition-fast);text-decoration:none}.share-button[data-astro-cid-zllr3mxm]:hover{border-color:var(--color-border-hover);background:var(--color-bg-tertiary);text-decoration:none}.share-button[data-astro-cid-zllr3mxm].twitter:hover{color:#1da1f2;border-color:#1da1f2}.share-button[data-astro-cid-zllr3mxm].linkedin:hover{color:#0a66c2;border-color:#0a66c2}.sr-only[data-astro-cid-zllr3mxm]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+</style>
+<link rel="stylesheet" href="/_astro/about.dG-R-DBB.css">
+<link rel="stylesheet" href="/_astro/_slug_.X48vnfGS.css"></head> <body> <header style="view-transition-name: site-header;" data-astro-cid-ctg3m53h> <nav class="nav-container" data-astro-cid-ctg3m53h> <a href="/" class="site-title" aria-label="Home" data-astro-cid-ctg3m53h> <span class="site-title-first" data-astro-cid-ctg3m53h>STEVE</span> <span class="site-title-last" data-astro-cid-ctg3m53h>HILL</span> </a> <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" data-astro-cid-ctg3m53h> <svg class="menu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </button> <div class="nav-links" data-astro-cid-ctg3m53h> <a href="/about" class="nav-link " data-astro-cid-ctg3m53h>About</a> <a href="/now" class="nav-link " data-astro-cid-ctg3m53h>Now</a> <a href="/principles" class="nav-link " data-astro-cid-ctg3m53h>Principles</a> <a href="/blog" class="nav-link active" data-astro-cid-ctg3m53h>Blog</a> <a href="/projects" class="nav-link " data-astro-cid-ctg3m53h>Projects</a> <a href="https://code198x.stevehill.xyz" class="nav-link" target="_blank" rel="noopener" data-astro-cid-ctg3m53h>Code Like It's 198x</a> <div class="social-links" data-astro-cid-ctg3m53h> <a href="mailto:steve@stevehill.xyz" aria-label="Email" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z" data-astro-cid-ctg3m53h></path> </svg> </a> <a href="https://github.com/stevehill1981" target="_blank" rel="noopener" aria-label="GitHub" data-astro-cid-ctg3m53h> <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-ctg3m53h> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.823 1.104.823 2.226 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z" data-astro-cid-ctg3m53h></path> </svg> </a> </div> </div> </nav> </header> <script type="module">function c(){const e=document.querySelector(".mobile-menu-toggle");document.querySelector(".nav-links");const i=e?.cloneNode(!0);e&&i&&e.parentNode?.replaceChild(i,e);const t=document.querySelector(".mobile-menu-toggle"),n=document.querySelector(".nav-links");t?.addEventListener("click",()=>{const o=n?.classList.contains("active");n?.classList.toggle("active"),t.setAttribute("aria-expanded",(!o).toString())}),document.addEventListener("click",o=>{o.target.closest(".nav-container")||(n?.classList.remove("active"),t?.setAttribute("aria-expanded","false"))})}c();document.addEventListener("astro:page-load",()=>{c()});</script>  <main data-pagefind-body style="view-transition-name: main-content;">   <div class="reading-progress" data-astro-cid-4sn4zg3r> <div class="reading-progress-bar" data-astro-cid-4sn4zg3r></div> </div> <article class="blog-post" data-astro-cid-4sn4zg3r> <div class="post-layout" data-astro-cid-4sn4zg3r> <div class="post-main" data-astro-cid-4sn4zg3r> <h1 data-astro-cid-4sn4zg3r>Getting started with ZX Spectrum Development</h1>  <div class="content" data-astro-cid-4sn4zg3r> <p>Excited by meeting <a href="https://en.wikipedia.org/wiki/Henrique_Olifiers">Henrique Olifiers</a> and <a href="http://www.jimbagley.co.uk/aboutme.html">Jim Bagley</a> at last year’s Revival 2016,
+I was all set to start on developing a game for the upcoming <a href="http://www.specnext.com">Spectrum Next</a>.</p>
+<!--more-->
+<p>It’s taken them slightly longer than expected to launch the <a href="https://www.kickstarter.com/projects/1835143999/zx-spectrum-next/">Kickstarter for this
+absolutely stunning looking machine</a>; tweaks to the spec being the main reason
+for the delay. The team are super passionate about delivering something that
+really captures the essence of the Spectrum, while bringing it up-to-date with
+new abilities that it could never have had back in the day.</p>
+<p>That Kickstarter is already well over its initial goal; as I write this, it’s
+sitting at £431,013 - the target amount was £250,000. It’s looking likely that
+it’ll meet at least the next stretch goal at £450,000 by the end of this week,
+and hopefully then blast on to meet the others.</p>
+<p>All this has gotten me excited about Spectrum development again, and so I’m
+looking at setting up a development environment to make it easier for me to do
+so. Bear in mind that I was a kid when I had my Spectrum back in the 80s and
+early 90s, so any programming I did was fairly limited. I barely touched machine
+code, although I did experiment a little with a cool package called <a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0008967">White
+Lightning</a> (not the cider - it was a version of FORTH intended specifically for
+games programming).</p>
+<p>I’m working on a Mac, so not all of the information I share here will necessarily
+be relevant to other environments. That said, I expect to mostly be working with
+Z80 Assembly language which <em>will</em> be relevant.</p>
+<p>Since I don’t yet have my Next, I’ll be working in an emulator. I’m told that
+<a href="https://sourceforge.net/projects/zesarux/">ZEsarUX</a> is the best emulator currently available, and it’s supposed to be able to
+emulate the TBBlue, the forerunner to the Spectrum Next. I’ll also need to be
+able to compile my programs, and <a href="https://www.z88dk.org/">Z88DK</a> seems
+to be the best solution for that. It’s going to take me a while to cobble these
+together, but I’m sure I’ll get there in the end :)</p>
+<p>My first challenge to myself: be able to get a machine code program running that
+will clear the screen. Sounds simple, right? Well, Paul Land posted a <a href="http://www.speccyvirgins.com/2017/05/blog-post_72.html">very
+useful Spectrum memory map</a> on his website. As I understand it, I should be
+able to clear the screen by blanking out all the bytes from $4000 (16384) to
+$5AFF. I’ll give that a go, and update this post with my progress. And an video
+of it, if I get that far…</p>
+<p>I’ve also found these very good videos by Michael Daley, who recommends a slightly
+different toolset for building Spectrum software… <a href="https://vimeo.com/166935577">part 1 is here</a>,
+and <a href="https://vimeo.com/167876638">part 2 is here</a>. Michael recommends
+using <a href="http://zxsp.blogspot.co.uk/p/about-zxsp.html">ZXSP</a>, and the <a href="http://pasmo.speccy.org">Pasmo assembler</a>. He’s also taken the time to explain how to
+set up building your programs from within Sublime Text 3, which I found extremely
+useful. Michael is the author of <a href="https://github.com/mikedaley/SpectREM">SpectREM</a>;
+I’d assume that means he’s moved away from ZXSP since his earlier videos ;)</p>
+<h2 id="progress">Progress</h2>
+<p>After watching the Michael Daley videos I mentioned above, I got a (slightly
+less elegant) development environment configured. I’m currently using Atom,
+Pasmo and ZXSP.</p>
+<h3 id="atom">Atom</h3>
+<p>Well, it’s just a text editor, which is all that we really need. I’ve installed
+the <code>language-z80asm</code> package to get some minimal syntax highlighting. It’s not
+brilliant, but it does the job for now.</p>
+<p>You can get Atom from <a href="https://atom.io">the official website</a>.</p>
+<h3 id="pasmo">Pasmo</h3>
+<p>Pasmo seems to be pretty highly recommended. It can even compile to <code>.TAP</code> files,
+which is rather handy. There wasn’t a precompiled version for MacOS, so I had to
+do that part.</p>
+<p>Download Pasmo from the website <a href="http://pasmo.speccy.org/">here</a>. You can try
+the preview release of 0.6.0 if you like, but I’m using 0.5.4.beta2. For MacOS,
+you’ll want the Gzipped tar file. The Mac can unpack that format natively.</p>
+<p>To compile it, you’ll likely need Xcode installed, or at least the command-line
+tools. Getting those setup is beyond the scope of this post, and is well
+documented elsewhere.</p>
+<p>Once you’ve downloaded and unpacked the <code>.tgz</code> file, you’ll want to switch into
+the folder you unpacked it into, and run the following commands:</p>
+<pre class="shiki" data-highlight-block="hl-15"><code><span id="hl-15-L0" class="line"><span class="line-content">./configure</span></span>
+<span id="hl-15-L1" class="line"><span class="line-content">make</span></span></code></pre>
+<style data-highlight-styles="hl-15">
+::highlight(hl-hl-15-0) { color: #DCDCAA; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-15';
+  const colorMap = {"#DCDCAA":"hl-hl-15-0"};
+  const ranges = [{"line":0,"start":0,"end":11,"color":"#DCDCAA"},{"line":1,"start":0,"end":4,"color":"#DCDCAA"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>You could also run <code>make install</code>; I didn’t. If you’re like me, you’ll want to
+be able to run Pasmo from anywhere, so copy it to <code>/usr/local/bin</code> with the
+following command:</p>
+<pre class="shiki" data-highlight-block="hl-14"><code><span id="hl-14-L0" class="line"><span class="line-content">cp pasmo /usr/local/bin</span></span></code></pre>
+<style data-highlight-styles="hl-14">
+::highlight(hl-hl-14-0) { color: #DCDCAA; }
+::highlight(hl-hl-14-1) { color: #D4D4D4; }
+::highlight(hl-hl-14-2) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-14';
+  const colorMap = {"#DCDCAA":"hl-hl-14-0","#D4D4D4":"hl-hl-14-1","#CE9178":"hl-hl-14-2"};
+  const ranges = [{"line":0,"start":0,"end":2,"color":"#DCDCAA"},{"line":0,"start":2,"end":3,"color":"#D4D4D4"},{"line":0,"start":3,"end":8,"color":"#CE9178"},{"line":0,"start":8,"end":9,"color":"#D4D4D4"},{"line":0,"start":9,"end":23,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>If you haven’t got access to that folder (I’m not sure if you can write to it
+by default), then just copy Pasmo to your home folder for now.</p>
+<h3 id="zxsp">ZXSP</h3>
+<p>ZXSP hasn’t been updated in a while, but it’ll do for the moment. SpectREM looks
+nice, but I couldn’t find a precompiled version - I built my copy in Xcode.</p>
+<p>Download ZXSP from the <a href="http://k1.spdns.de/Develop/projects/zxsp-osx/distributions/">creator’s website</a>;
+I chose <code>zxsp-0.8.0.pre27.zip</code>, but that might have changed by the time you read
+this.</p>
+<p>Unpacking that will give you a Mac app, which you should drag to your Applications
+folder as you would any other app. That’s all you need to do for now.</p>
+<h2 id="your-first-code">Your first code</h2>
+<p>Ok. This is the (not very) exciting bit. We’re going to start by clearing the
+screen. I know, I know.</p>
+<p>Open Atom (or your preferred text editor), and create a new file. I usually save
+my new files immediately, because I like to save early and often. I’ve lost too
+many hours of work by not doing so. Make sure you save the file with an <code>.asm</code>
+extension, to make your life easier later on.</p>
+<p>You’ll want to add the following code:</p>
+<pre class="shiki" data-highlight-block="hl-13"><code><span id="hl-13-L0" class="line"><span class="line-content">; This is where your program starts in RAM.</span></span>
+<span id="hl-13-L1" class="line"><span class="line-content">org 40000</span></span>
+<span id="hl-13-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-13-L3" class="line"><span class="line-content">; Clear the screen to black.</span></span>
+<span id="hl-13-L4" class="line"><span class="line-content">    ld a,71         ; White ink (7), black paper (0), bright (64).</span></span>
+<span id="hl-13-L5" class="line"><span class="line-content">    ld (23693),a    ; Set our screen colours.</span></span>
+<span id="hl-13-L6" class="line"><span class="line-content">    xor a           ; Load accumulator with zero.</span></span>
+<span id="hl-13-L7" class="line"><span class="line-content">    call 8859       ; Set permanent border colours.</span></span>
+<span id="hl-13-L8" class="line"><span class="line-content">    call 3503       ; Clear the screen, open channel 2.</span></span>
+<span id="hl-13-L9" class="line"><span class="line-content"></span></span>
+<span id="hl-13-L10" class="line"><span class="line-content">; Pasmo needs this to know where to start running your program from.</span></span>
+<span id="hl-13-L11" class="line"><span class="line-content">; It should be the same as the address you specified at the top!</span></span>
+<span id="hl-13-L12" class="line"><span class="line-content">end 40000</span></span></code></pre>
+<style data-highlight-styles="hl-13">
+::highlight(hl-hl-13-0) { color: #6A9955; }
+::highlight(hl-hl-13-1) { color: #D4D4D4; }
+::highlight(hl-hl-13-2) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-13';
+  const colorMap = {"#6A9955":"hl-hl-13-0","#D4D4D4":"hl-hl-13-1","#B5CEA8":"hl-hl-13-2"};
+  const ranges = [{"line":0,"start":0,"end":43,"color":"#6A9955"},{"line":1,"start":0,"end":4,"color":"#D4D4D4"},{"line":1,"start":4,"end":9,"color":"#B5CEA8"},{"line":3,"start":0,"end":28,"color":"#6A9955"},{"line":4,"start":0,"end":9,"color":"#D4D4D4"},{"line":4,"start":9,"end":11,"color":"#B5CEA8"},{"line":4,"start":11,"end":20,"color":"#D4D4D4"},{"line":4,"start":20,"end":66,"color":"#6A9955"},{"line":5,"start":0,"end":8,"color":"#D4D4D4"},{"line":5,"start":8,"end":13,"color":"#B5CEA8"},{"line":5,"start":13,"end":20,"color":"#D4D4D4"},{"line":5,"start":20,"end":45,"color":"#6A9955"},{"line":6,"start":0,"end":20,"color":"#D4D4D4"},{"line":6,"start":20,"end":49,"color":"#6A9955"},{"line":7,"start":0,"end":9,"color":"#D4D4D4"},{"line":7,"start":9,"end":13,"color":"#B5CEA8"},{"line":7,"start":13,"end":20,"color":"#D4D4D4"},{"line":7,"start":20,"end":51,"color":"#6A9955"},{"line":8,"start":0,"end":9,"color":"#D4D4D4"},{"line":8,"start":9,"end":13,"color":"#B5CEA8"},{"line":8,"start":13,"end":20,"color":"#D4D4D4"},{"line":8,"start":20,"end":55,"color":"#6A9955"},{"line":10,"start":0,"end":68,"color":"#6A9955"},{"line":11,"start":0,"end":64,"color":"#6A9955"},{"line":12,"start":0,"end":4,"color":"#D4D4D4"},{"line":12,"start":4,"end":9,"color":"#B5CEA8"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Save that as something like <code>clear-screen.asm</code>, and open a Terminal window in
+the folder where you saved it.</p>
+<p>Now, use the following magical invocation to compile that code into a Spectrum
+<code>.TAP</code> file:</p>
+<pre class="shiki" data-highlight-block="hl-12"><code><span id="hl-12-L0" class="line"><span class="line-content">pasmo -1 --tapbas clear-screen.asm clear-screen.tap >> debug.txt</span></span></code></pre>
+<style data-highlight-styles="hl-12">
+::highlight(hl-hl-12-0) { color: #DCDCAA; }
+::highlight(hl-hl-12-1) { color: #D4D4D4; }
+::highlight(hl-hl-12-2) { color: #569CD6; }
+::highlight(hl-hl-12-3) { color: #CE9178; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-12';
+  const colorMap = {"#DCDCAA":"hl-hl-12-0","#D4D4D4":"hl-hl-12-1","#569CD6":"hl-hl-12-2","#CE9178":"hl-hl-12-3"};
+  const ranges = [{"line":0,"start":0,"end":5,"color":"#DCDCAA"},{"line":0,"start":5,"end":6,"color":"#D4D4D4"},{"line":0,"start":6,"end":8,"color":"#569CD6"},{"line":0,"start":8,"end":9,"color":"#D4D4D4"},{"line":0,"start":9,"end":17,"color":"#569CD6"},{"line":0,"start":17,"end":18,"color":"#D4D4D4"},{"line":0,"start":18,"end":34,"color":"#CE9178"},{"line":0,"start":34,"end":35,"color":"#D4D4D4"},{"line":0,"start":35,"end":51,"color":"#CE9178"},{"line":0,"start":51,"end":55,"color":"#D4D4D4"},{"line":0,"start":55,"end":64,"color":"#CE9178"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Let’s break that down a bit, so that you know what we’re doing.</p>
+<p>The <code>-1</code> means that Pasmo will output a log of the compiled output. You can open
+this in Atom alongside your code. I don’t really understand this yet, but I’m
+told it’s useful :)</p>
+<p>The <code>--tapbas</code> means that Pasmo will create a <code>.TAP</code> file with a BASIC loader
+that will automatically execute your code. This is great. Saves messing around,
+you can load the <code>.TAP</code> file straight into your emulator.</p>
+<p>The third parameter is the name of the file you’re compiling.</p>
+<p>The fourth is the name of the output file. In this case, you’ll see that I’ve
+given it the extension of <code>.tap</code>, which is what we’re producing.</p>
+<p>The final part of the command redirects the output from Pasmo into a text file
+called <code>debug.txt</code>; this is our debug log.</p>
+<p>All being well, you should now have a <code>clear-screen.tap</code> file in the same folder
+with your source code. If not, you may have made a typo. Check the listing above
+and make sure you haven’t!</p>
+<p>Now, load up ZXSP or your emulator of choice (if you’ve got real hardware handy,
+you should also be able to load the TAP file there, but I don’t have that at the
+moment). Loading the TAP file should automatically execute your program, and
+give you a black screen. Amazing, isn’t it?</p>
+<p><img src="/assets/images/all-black.png" alt="black screen"></p>
+<p>… applause …</p>
+<p>Ok, so it’s not that exciting. But it is machine code. Let’s modify it slightly,
+so that you can understand what’s going on. We’re going to change the colour of
+the screen again.</p>
+<p>The Speccy, in its original form at least, isn’t terribly colourful. It has 8
+colours; we set ink and paper colours at the same time, and also control whether
+it should be bright or not. That’s all held in a single byte, at position 23693,
+which corresponds to the <em>permanent</em> colours - that is, those colours will stay
+set until you override them with another value (look at <a href="http://www.speccyvirgins.com/2017/05/blog-post_72.html">Paul Land’s page</a>) to
+confirm that).</p>
+<p>The colour we chose earlier was black, with white ink and bright mode set,
+adding up to a total of 71. This is made up as follows:</p>
+<pre class="shiki" data-highlight-block="hl-11"><code><span id="hl-11-L0" class="line"><span class="line-content">INK (0-7) + PAPER (0-7 * 8) + BRIGHT (0/64)</span></span></code></pre>
+<style data-highlight-styles="hl-11">
+::highlight(hl-hl-11-0) { color: #D4D4D4; }
+::highlight(hl-hl-11-1) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-11';
+  const colorMap = {"#D4D4D4":"hl-hl-11-0","#B5CEA8":"hl-hl-11-1"};
+  const ranges = [{"line":0,"start":0,"end":5,"color":"#D4D4D4"},{"line":0,"start":5,"end":6,"color":"#B5CEA8"},{"line":0,"start":6,"end":7,"color":"#D4D4D4"},{"line":0,"start":7,"end":8,"color":"#B5CEA8"},{"line":0,"start":8,"end":19,"color":"#D4D4D4"},{"line":0,"start":19,"end":20,"color":"#B5CEA8"},{"line":0,"start":20,"end":21,"color":"#D4D4D4"},{"line":0,"start":21,"end":22,"color":"#B5CEA8"},{"line":0,"start":22,"end":25,"color":"#D4D4D4"},{"line":0,"start":25,"end":26,"color":"#B5CEA8"},{"line":0,"start":26,"end":38,"color":"#D4D4D4"},{"line":0,"start":38,"end":39,"color":"#B5CEA8"},{"line":0,"start":39,"end":40,"color":"#D4D4D4"},{"line":0,"start":40,"end":42,"color":"#B5CEA8"},{"line":0,"start":42,"end":43,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>The colours are:</p>
+<ul>
+<li>0 = Black</li>
+<li>1 = Blue</li>
+<li>2 = Red</li>
+<li>3 = Magenta</li>
+<li>4 = Green</li>
+<li>5 = Cyan</li>
+<li>6 = Yellow</li>
+<li>7 = White</li>
+</ul>
+<p>So, if we wanted to make the screen cyan with bright yellow ink, we’d go for:</p>
+<pre class="shiki" data-highlight-block="hl-10"><code><span id="hl-10-L0" class="line"><span class="line-content">INK (6) + PAPER (5 * 8 = 40) + BRIGHT (64) = 110</span></span></code></pre>
+<style data-highlight-styles="hl-10">
+::highlight(hl-hl-10-0) { color: #D4D4D4; }
+::highlight(hl-hl-10-1) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-10';
+  const colorMap = {"#D4D4D4":"hl-hl-10-0","#B5CEA8":"hl-hl-10-1"};
+  const ranges = [{"line":0,"start":0,"end":5,"color":"#D4D4D4"},{"line":0,"start":5,"end":6,"color":"#B5CEA8"},{"line":0,"start":6,"end":17,"color":"#D4D4D4"},{"line":0,"start":17,"end":18,"color":"#B5CEA8"},{"line":0,"start":18,"end":21,"color":"#D4D4D4"},{"line":0,"start":21,"end":22,"color":"#B5CEA8"},{"line":0,"start":22,"end":25,"color":"#D4D4D4"},{"line":0,"start":25,"end":27,"color":"#B5CEA8"},{"line":0,"start":27,"end":39,"color":"#D4D4D4"},{"line":0,"start":39,"end":41,"color":"#B5CEA8"},{"line":0,"start":41,"end":45,"color":"#D4D4D4"},{"line":0,"start":45,"end":48,"color":"#B5CEA8"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Let’s try that.</p>
+<pre class="shiki" data-highlight-block="hl-9"><code><span id="hl-9-L0" class="line"><span class="line-content">; This is where your program starts in RAM.</span></span>
+<span id="hl-9-L1" class="line"><span class="line-content">org 40000</span></span>
+<span id="hl-9-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-9-L3" class="line"><span class="line-content">; Clear the screen to black.</span></span>
+<span id="hl-9-L4" class="line"><span class="line-content">    ld a,110         ; Yellow ink (6), cyan paper (5 * 8), bright (64).</span></span>
+<span id="hl-9-L5" class="line"><span class="line-content">    ld (23693),a    ; Set our screen colours.</span></span>
+<span id="hl-9-L6" class="line"><span class="line-content">    xor a           ; Load accumulator with zero.</span></span>
+<span id="hl-9-L7" class="line"><span class="line-content">    call 8859       ; Set permanent border colours.</span></span>
+<span id="hl-9-L8" class="line"><span class="line-content">    call 3503       ; Clear the screen, open channel 2.</span></span>
+<span id="hl-9-L9" class="line"><span class="line-content"></span></span>
+<span id="hl-9-L10" class="line"><span class="line-content">; Pasmo needs this to know where to start running your program from.</span></span>
+<span id="hl-9-L11" class="line"><span class="line-content">; It should be the same as the address you specified at the top!</span></span>
+<span id="hl-9-L12" class="line"><span class="line-content">end 40000</span></span></code></pre>
+<style data-highlight-styles="hl-9">
+::highlight(hl-hl-9-0) { color: #6A9955; }
+::highlight(hl-hl-9-1) { color: #D4D4D4; }
+::highlight(hl-hl-9-2) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-9';
+  const colorMap = {"#6A9955":"hl-hl-9-0","#D4D4D4":"hl-hl-9-1","#B5CEA8":"hl-hl-9-2"};
+  const ranges = [{"line":0,"start":0,"end":43,"color":"#6A9955"},{"line":1,"start":0,"end":4,"color":"#D4D4D4"},{"line":1,"start":4,"end":9,"color":"#B5CEA8"},{"line":3,"start":0,"end":28,"color":"#6A9955"},{"line":4,"start":0,"end":9,"color":"#D4D4D4"},{"line":4,"start":9,"end":12,"color":"#B5CEA8"},{"line":4,"start":12,"end":21,"color":"#D4D4D4"},{"line":4,"start":21,"end":71,"color":"#6A9955"},{"line":5,"start":0,"end":8,"color":"#D4D4D4"},{"line":5,"start":8,"end":13,"color":"#B5CEA8"},{"line":5,"start":13,"end":20,"color":"#D4D4D4"},{"line":5,"start":20,"end":45,"color":"#6A9955"},{"line":6,"start":0,"end":20,"color":"#D4D4D4"},{"line":6,"start":20,"end":49,"color":"#6A9955"},{"line":7,"start":0,"end":9,"color":"#D4D4D4"},{"line":7,"start":9,"end":13,"color":"#B5CEA8"},{"line":7,"start":13,"end":20,"color":"#D4D4D4"},{"line":7,"start":20,"end":51,"color":"#6A9955"},{"line":8,"start":0,"end":9,"color":"#D4D4D4"},{"line":8,"start":9,"end":13,"color":"#B5CEA8"},{"line":8,"start":13,"end":20,"color":"#D4D4D4"},{"line":8,"start":20,"end":55,"color":"#6A9955"},{"line":10,"start":0,"end":68,"color":"#6A9955"},{"line":11,"start":0,"end":64,"color":"#6A9955"},{"line":12,"start":0,"end":4,"color":"#D4D4D4"},{"line":12,"start":4,"end":9,"color":"#B5CEA8"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>Compile that, and load it back into the emulator. You’ll end up with the screen
+being cyan in the middle, and with a black border.</p>
+<p><img src="/assets/images/cyan-centre.png" alt="cyan screen"></p>
+<p>That’s not quite right. I wanted the entire screen to be cyan, not just the
+middle bit. So what did we do wrong? The secret is in the third line:</p>
+<pre class="shiki" data-highlight-block="hl-8"><code><span id="hl-8-L0" class="line"><span class="line-content">xor a</span></span></code></pre>
+<style data-highlight-styles="hl-8">
+::highlight(hl-hl-8-0) { color: #D4D4D4; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-8';
+  const colorMap = {"#D4D4D4":"hl-hl-8-0"};
+  const ranges = [{"line":0,"start":0,"end":5,"color":"#D4D4D4"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>This sets the accumulator back to zero. Zero means black. That’ll be why. Let’s
+try it, and see if we’re right. Change the <code>xor 0</code> line to the following, and
+recompile/reload:</p>
+<pre class="shiki" data-highlight-block="hl-6"><code><span id="hl-6-L0" class="line"><span class="line-content">ld a,5           ; Set the colour to cyan (5).</span></span></code></pre>
+<style data-highlight-styles="hl-6">
+::highlight(hl-hl-6-0) { color: #D4D4D4; }
+::highlight(hl-hl-6-1) { color: #B5CEA8; }
+::highlight(hl-hl-6-2) { color: #6A9955; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-6';
+  const colorMap = {"#D4D4D4":"hl-hl-6-0","#B5CEA8":"hl-hl-6-1","#6A9955":"hl-hl-6-2"};
+  const ranges = [{"line":0,"start":0,"end":5,"color":"#D4D4D4"},{"line":0,"start":5,"end":6,"color":"#B5CEA8"},{"line":0,"start":6,"end":17,"color":"#D4D4D4"},{"line":0,"start":17,"end":46,"color":"#6A9955"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>That’s better. Now you should have this:</p>
+<p><img src="/assets/images/cyan-all-over.png" alt="cyan all over"></p>
+<p>That’s still not quite what we want though. Unfortunately, unless I’m missing
+something obvious, you can’t set the border colour to be a bright shade. Only
+the three least significant bits of the byte are used, which if you know any
+binary means you can only represent 0-7 - just the colours we know, then!</p>
+<p>So, I’m compromising. Let’s make the centre of the screen NOT bright. Here’s
+the modified code:</p>
+<pre class="shiki" data-highlight-block="hl-4"><code><span id="hl-4-L0" class="line"><span class="line-content">; This is where your program starts in RAM.</span></span>
+<span id="hl-4-L1" class="line"><span class="line-content">org 40000</span></span>
+<span id="hl-4-L2" class="line"><span class="line-content"></span></span>
+<span id="hl-4-L3" class="line"><span class="line-content">; Clear the screen to black.</span></span>
+<span id="hl-4-L4" class="line"><span class="line-content">    ld a,46         ; Yellow ink (6), cyan paper (5 * 8), not bright (0).</span></span>
+<span id="hl-4-L5" class="line"><span class="line-content">    ld (23693),a    ; Set our screen colours.</span></span>
+<span id="hl-4-L6" class="line"><span class="line-content">    ld a,5           ; Set the colour to cyan (5).</span></span>
+<span id="hl-4-L7" class="line"><span class="line-content">    call 8859       ; Set permanent border colours.</span></span>
+<span id="hl-4-L8" class="line"><span class="line-content">    call 3503       ; Clear the screen, open channel 2.</span></span>
+<span id="hl-4-L9" class="line"><span class="line-content"></span></span>
+<span id="hl-4-L10" class="line"><span class="line-content">; Pasmo needs this to know where to start running your program from.</span></span>
+<span id="hl-4-L11" class="line"><span class="line-content">; It should be the same as the address you specified at the top!</span></span>
+<span id="hl-4-L12" class="line"><span class="line-content">end 40000</span></span></code></pre>
+<style data-highlight-styles="hl-4">
+::highlight(hl-hl-4-0) { color: #6A9955; }
+::highlight(hl-hl-4-1) { color: #D4D4D4; }
+::highlight(hl-hl-4-2) { color: #B5CEA8; }
+</style>
+<script type="module">
+(function() {
+  // Check for CSS Custom Highlight API support
+  if (!CSS.highlights) {
+    console.warn('CSS Custom Highlight API not supported');
+    return;
+  }
+
+  const blockId = 'hl-4';
+  const colorMap = {"#6A9955":"hl-hl-4-0","#D4D4D4":"hl-hl-4-1","#B5CEA8":"hl-hl-4-2"};
+  const ranges = [{"line":0,"start":0,"end":43,"color":"#6A9955"},{"line":1,"start":0,"end":4,"color":"#D4D4D4"},{"line":1,"start":4,"end":9,"color":"#B5CEA8"},{"line":3,"start":0,"end":28,"color":"#6A9955"},{"line":4,"start":0,"end":9,"color":"#D4D4D4"},{"line":4,"start":9,"end":11,"color":"#B5CEA8"},{"line":4,"start":11,"end":20,"color":"#D4D4D4"},{"line":4,"start":20,"end":73,"color":"#6A9955"},{"line":5,"start":0,"end":8,"color":"#D4D4D4"},{"line":5,"start":8,"end":13,"color":"#B5CEA8"},{"line":5,"start":13,"end":20,"color":"#D4D4D4"},{"line":5,"start":20,"end":45,"color":"#6A9955"},{"line":6,"start":0,"end":9,"color":"#D4D4D4"},{"line":6,"start":9,"end":10,"color":"#B5CEA8"},{"line":6,"start":10,"end":21,"color":"#D4D4D4"},{"line":6,"start":21,"end":50,"color":"#6A9955"},{"line":7,"start":0,"end":9,"color":"#D4D4D4"},{"line":7,"start":9,"end":13,"color":"#B5CEA8"},{"line":7,"start":13,"end":20,"color":"#D4D4D4"},{"line":7,"start":20,"end":51,"color":"#6A9955"},{"line":8,"start":0,"end":9,"color":"#D4D4D4"},{"line":8,"start":9,"end":13,"color":"#B5CEA8"},{"line":8,"start":13,"end":20,"color":"#D4D4D4"},{"line":8,"start":20,"end":55,"color":"#6A9955"},{"line":10,"start":0,"end":68,"color":"#6A9955"},{"line":11,"start":0,"end":64,"color":"#6A9955"},{"line":12,"start":0,"end":4,"color":"#D4D4D4"},{"line":12,"start":4,"end":9,"color":"#B5CEA8"}];
+
+  // Group ranges by color
+  const rangesByColor = new Map();
+  ranges.forEach(r => {
+    if (!rangesByColor.has(r.color)) {
+      rangesByColor.set(r.color, []);
+    }
+    rangesByColor.get(r.color).push(r);
+  });
+
+  // Create Range objects and register highlights
+  rangesByColor.forEach((rangeList, color) => {
+    const domRanges = rangeList.map(r => {
+      const lineElement = document.getElementById(`${blockId}-L${r.line}`);
+      if (!lineElement) return null;
+
+      // Find the .line-content element which contains the actual code text
+      const lineContentElement = lineElement.querySelector('.line-content');
+      if (!lineContentElement || !lineContentElement.firstChild) return null;
+
+      const range = new Range();
+      try {
+        const textNode = lineContentElement.firstChild;
+
+        // Additional safety check
+        if (!textNode || textNode.nodeType !== 3) {
+          console.warn(`Line ${r.line}: No text node found`);
+          return null;
+        }
+
+        const textLength = textNode.nodeValue ? textNode.nodeValue.length : 0;
+        if (r.start > textLength || r.end > textLength) {
+          console.error(`Line ${r.line}: Range overflow - text length: ${textLength}, range: ${r.start}-${r.end}`);
+          return null;
+        }
+
+        range.setStart(textNode, r.start);
+        range.setEnd(textNode, r.end);
+        return range;
+      } catch (e) {
+        console.error(`Range creation failed for line ${r.line}, range ${r.start}-${r.end}:`, e);
+        return null;
+      }
+    }).filter(r => r !== null);
+
+    const highlightName = colorMap[color];
+    if (highlightName && domRanges.length > 0) {
+      const highlight = new Highlight(...domRanges);
+      CSS.highlights.set(highlightName, highlight);
+    }
+  });
+})();
+</script>
+<p>And the result:</p>
+<p><img src="/assets/images/cyan-perfect.png" alt="perfect cyan"></p>
+<p>Yes, that’s what we wanted.</p>
+<p>More next time. Maybe we’ll even print our names… or something equally as
+exciting.</p> </div> <div class="share-buttons" data-astro-cid-zllr3mxm> <span class="share-label" data-astro-cid-zllr3mxm>Share:</span> <a href="https://twitter.com/intent/tweet?text=Getting%20started%20with%20ZX%20Spectrum%20Development&url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2017-05-03-spectrum-development-environment%2F" target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on Twitter/X</span> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstevehill.xyz%2Fblog%2F2017-05-03-spectrum-development-environment%2F" target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn" data-astro-cid-zllr3mxm> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-zllr3mxm> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-zllr3mxm></path> </svg> <span class="sr-only" data-astro-cid-zllr3mxm>Share on LinkedIn</span> </a> </div>  </div> <aside class="post-sidebar" data-astro-cid-4sn4zg3r> <div class="sidebar-section post-meta" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Post Info</h3> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Published</strong> <span data-astro-cid-4sn4zg3r>May 3, 2017</span> </div> <div class="meta-item" data-astro-cid-4sn4zg3r> <strong data-astro-cid-4sn4zg3r>Reading time</strong> <span data-astro-cid-4sn4zg3r>10 min read</span> </div> <button class="copy-link-btn" title="Copy link to this post" data-astro-cid-4sn4zg3r> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-4sn4zg3r> <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" data-astro-cid-4sn4zg3r></path> <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71" data-astro-cid-4sn4zg3r></path> </svg> <span class="copy-text" data-astro-cid-4sn4zg3r>Copy Link</span> <span class="copied-text" data-astro-cid-4sn4zg3r>Copied!</span> </button> </div> <div class="sidebar-section tags-section" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Tags</h3> <div class="tags" data-astro-cid-4sn4zg3r> <a href="/tags/spectrum" class="tag" data-astro-cid-4sn4zg3r> spectrum </a><a href="/tags/development" class="tag" data-astro-cid-4sn4zg3r> development </a><a href="/tags/zx-spectrum-next" class="tag" data-astro-cid-4sn4zg3r> zx-spectrum-next </a><a href="/tags/retro" class="tag" data-astro-cid-4sn4zg3r> retro </a> </div> </div> <div class="sidebar-section related-posts" data-astro-cid-4sn4zg3r> <h3 data-astro-cid-4sn4zg3r>Related Posts</h3> <div class="related-posts-list" data-astro-cid-4sn4zg3r> <article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Nov 2, 2018</time> <span class="reading-time" data-astro-cid-4sn4zg3r>1 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2018-11-02-spectrum-next-update" data-astro-cid-4sn4zg3r>Spectrum Next Update</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>Eighteen months after my last update, I&#39;m still waiting for my Spectrum Next to arrive. Once it does, I&#39;ll be diving back into ZX Spectrum development.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>spectrum</span><span class="tag-small" data-astro-cid-4sn4zg3r>zx-spectrum-next</span><span class="tag-small" data-astro-cid-4sn4zg3r>retro</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Jul 30, 2016</time> <span class="reading-time" data-astro-cid-4sn4zg3r>8 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2016-07-30-zx-spectrum-next" data-astro-cid-4sn4zg3r>Revival Solstice 2016 and the ZX Spectrum Next</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>Reflections from Revival Solstice 2016, featuring talks by legendary developers and a look at the ZX Spectrum Next prototype.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>spectrum</span><span class="tag-small" data-astro-cid-4sn4zg3r>zx-spectrum-next</span><span class="tag-small" data-astro-cid-4sn4zg3r>retro</span> </div> </article><article class="related-post-card" data-astro-cid-4sn4zg3r> <div class="related-post-meta" data-astro-cid-4sn4zg3r> <time data-astro-cid-4sn4zg3r>Jun 13, 2019</time> <span class="reading-time" data-astro-cid-4sn4zg3r>2 min read</span> </div> <h4 class="related-post-title" data-astro-cid-4sn4zg3r> <a href="/blog/2019-06-13-lead-developer-london-2019" data-astro-cid-4sn4zg3r>Lead Developer London 2019</a> </h4> <p class="related-post-excerpt" data-astro-cid-4sn4zg3r>Lead Dev London 2019 brought together 1400+ engineers and leaders for two days of inspiration, practical advice, and community — still my favourite conference.</p> <div class="related-post-tags" data-astro-cid-4sn4zg3r> <span class="tag-small" data-astro-cid-4sn4zg3r>conferences</span><span class="tag-small" data-astro-cid-4sn4zg3r>lead-dev</span><span class="tag-small" data-astro-cid-4sn4zg3r>development</span> </div> </article> </div> </div> </aside> </div> <nav class="post-navigation" data-astro-cid-4sn4zg3r> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2017-03-16-not-a-ninja" class="nav-link prev-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>← Previous</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Not a Ninja</div> </a> </div> <div class="nav-center" data-astro-cid-4sn4zg3r> <a href="/blog" class="back-to-blog" data-astro-cid-4sn4zg3r>Back to Blog</a> </div> <div class="nav-section" data-astro-cid-4sn4zg3r> <a href="/blog/2017-05-30-guru-systems" class="nav-link next-post" data-astro-cid-4sn4zg3r> <div class="nav-direction" data-astro-cid-4sn4zg3r>Next →</div> <div class="nav-title" data-astro-cid-4sn4zg3r>Joining Guru Systems</div> </a> </div> </nav> </article>  </main> <footer data-astro-cid-gcn2mc3v> <div class="footer-bottom" data-astro-cid-gcn2mc3v> <p data-astro-cid-gcn2mc3v>&copy; 2026 Steve Hill. All rights reserved.</p> </div> </footer>   </body> </html> <script type="module">function y(){document.querySelectorAll("pre.astro-code").forEach(c=>{if(c.querySelector(".code-toolbar"))return;const e=document.createElement("div");e.className="code-toolbar";const r=c.className.match(/language-(\w+)/),t=r?r[1]:"text",n=document.createElement("span");n.className="code-lang-label",n.textContent=t,e.appendChild(n);const o=document.createElement("button");o.className="code-copy-button",o.innerHTML=`
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span>Copy</span>
+    `,o.addEventListener("click",async()=>{const l=c.querySelector("code")?.textContent||"";try{await navigator.clipboard.writeText(l);const a=o.querySelector("span");a.textContent="Copied!",o.classList.add("copied"),setTimeout(()=>{a.textContent="Copy",o.classList.remove("copied")},2e3)}catch(a){console.error("Failed to copy code:",a)}}),e.appendChild(o);const s=document.createElement("div");s.className="enhanced-code-block",c.parentNode.insertBefore(s,c),s.appendChild(e),s.appendChild(c)})}document.addEventListener("DOMContentLoaded",()=>{y();const i=document.querySelector(".reading-progress-bar"),c=document.querySelector("article");if(i&&c){let r=function(){const n=c.getBoundingClientRect(),o=n.top+window.scrollY,s=n.height,l=window.innerHeight,a=window.scrollY,d=o-l*.2,p=o+s-l*.8,m=p-d,h=a-d;let u=0;m>0&&(u=Math.max(0,Math.min(100,h/m*100))),i.style.width=`${u}%`,a>d&&a<p+l?i.parentElement.classList.add("visible"):i.parentElement.classList.remove("visible")};r();let t=!1;window.addEventListener("scroll",()=>{t||(requestAnimationFrame(()=>{r(),t=!1}),t=!0)}),window.addEventListener("resize",r)}const e=document.querySelector(".copy-link-btn");e&&e.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(window.location.href),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch{const t=document.createElement("textarea");t.value=window.location.href,document.body.appendChild(t),t.focus(),t.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(n){console.error("Failed to copy link:",n)}document.body.removeChild(t)}})});</script> 
