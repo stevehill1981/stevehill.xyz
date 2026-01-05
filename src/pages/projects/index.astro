@@ -64,10 +64,12 @@ const projectsWithStats = await Promise.all(
 <style>
 	h1 {
 		margin-top: var(--spacing-2xl);
+		color: var(--color-purple); /* Fallback */
 		background: var(--gradient-sunrise);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		color: transparent;
 	}
 
 	.project-grid {
@@ -114,6 +116,10 @@ const projectsWithStats = await Promise.all(
 		line-height: var(--line-height-relaxed);
 		margin-bottom: var(--spacing-md);
 		font-size: var(--font-size-base);
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 	
 	.project-tech {

@@ -45,7 +45,7 @@ const readingTime = getReadingTime(entry.body);
 		{seriesNavigation && (
 			<div class="series-info">
 				<div class="series-header">
-					<h3>📚 Part {seriesNavigation.currentPart} of {seriesNavigation.totalParts}: {seriesNavigation.seriesName}</h3>
+					<h3>Part {seriesNavigation.currentPart} of {seriesNavigation.totalParts}: {seriesNavigation.seriesName}</h3>
 				</div>
 				<div class="series-navigation">
 					{seriesNavigation.previousPost && (
@@ -309,10 +309,12 @@ const readingTime = getReadingTime(entry.body);
 
 	h1 {
 		margin-top: var(--spacing-2xl);
+		color: var(--color-purple); /* Fallback */
 		background: var(--gradient-sunrise);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		color: transparent;
 	}
 
 	/* Sidebar Styles */

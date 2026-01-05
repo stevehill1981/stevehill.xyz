@@ -42,7 +42,7 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 				</div>
 				{post.data.series && (
 					<div class="card-series">
-						📚 Part {post.data.series.part} of "{post.data.series.name}"
+						Part {post.data.series.part} of "{post.data.series.name}"
 					</div>
 				)}
 				<h2 class="card-title">
@@ -66,10 +66,12 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 <style>
 	h1 {
 		margin-top: var(--spacing-2xl);
+		color: var(--color-purple); /* Fallback */
 		background: var(--gradient-sunrise);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		color: transparent;
 	}
 
 	.blog-nav {
@@ -163,6 +165,10 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 		margin-bottom: var(--spacing-md);
 		flex: 1;
 		font-size: var(--font-size-base);
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 	
 	.card-series {

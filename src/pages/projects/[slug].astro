@@ -76,10 +76,12 @@ const { Content } = await entry.render();
 
 	h1 {
 		margin-top: var(--spacing-2xl);
+		color: var(--color-purple); /* Fallback */
 		background: var(--gradient-sunrise);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		color: transparent;
 		margin-bottom: var(--spacing-md);
 	}
 

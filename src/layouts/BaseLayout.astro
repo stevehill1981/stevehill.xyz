@@ -408,6 +408,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				border-color: var(--color-primary);
 			}
 			
+			/* Gradient text utility with fallbacks */
+			.gradient-text {
+				color: var(--color-purple); /* Fallback for browsers without background-clip support */
+				background: var(--gradient-sunrise);
+				-webkit-background-clip: text;
+				background-clip: text;
+				-webkit-text-fill-color: transparent;
+				color: transparent;
+			}
+
 			/* Animations */
 			@keyframes fadeIn {
 				from {

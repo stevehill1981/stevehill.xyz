@@ -21,7 +21,7 @@ const allSeries = getAllSeries(allPosts);
 				<article class="series-card">
 					<div class="series-card-header">
 						<h2 class="series-title">
-							📚 {series.name}
+							{series.name}
 						</h2>
 						<div class="series-meta">
 							{series.totalParts} part{series.totalParts !== 1 ? 's' : ''}
@@ -59,10 +59,12 @@ const allSeries = getAllSeries(allPosts);
 <style>
 	h1 {
 		margin-top: var(--spacing-2xl);
+		color: var(--color-purple); /* Fallback */
 		background: var(--gradient-sunrise);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		color: transparent;
 	}
 
 	.series-grid {
