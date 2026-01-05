@@ -62,6 +62,14 @@ const getTechIcon = (tech: string): string => {
 
 <BaseLayout pageTitle="Home">
 	<div class="hero">
+		<!-- Floating geometric shapes -->
+		<div class="hero-shapes" aria-hidden="true">
+			<div class="shape shape-1"></div>
+			<div class="shape shape-2"></div>
+			<div class="shape shape-3"></div>
+			<div class="shape shape-4"></div>
+			<div class="shape shape-5"></div>
+		</div>
 		<div class="hero-content">
 			<h1 class="hero-title">
 				<span class="hero-title-first">Steve</span>
@@ -72,7 +80,16 @@ const getTechIcon = (tech: string): string => {
 			</div>
 		</div>
 	</div>
-	
+
+	<!-- Decorative section transition -->
+	<div class="section-transition" aria-hidden="true">
+		<div class="transition-line"></div>
+		<div class="transition-dots">
+			<span></span><span></span><span></span>
+		</div>
+		<div class="transition-line"></div>
+	</div>
+
 	<div class="home-content-grid">
 		<section class="home-section">
 			<div class="section-header">
@@ -135,6 +152,38 @@ const getTechIcon = (tech: string): string => {
 	// Randomly select and display a tagline on page load
 	const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
 	document.getElementById('rotating-tagline').innerHTML = randomTagline;
+</script>
+
+<script>
+	// Scroll-triggered animations
+	function initScrollAnimations() {
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const delay = entry.target.dataset.delay || 0;
+					setTimeout(() => {
+						entry.target.classList.add('animate-in');
+					}, delay * 100);
+					observer.unobserve(entry.target);
+				}
+			});
+		}, {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		});
+
+		document.querySelectorAll('.post-card-link, .project-card-link').forEach((el, i) => {
+			el.dataset.delay = String(i % 4);
+			observer.observe(el);
+		});
+
+		document.querySelectorAll('.section-header').forEach((el) => {
+			observer.observe(el);
+		});
+	}
+
+	initScrollAnimations();
+	document.addEventListener('astro:page-load', initScrollAnimations);
 </script>
 
 <style>
@@ -213,6 +262,90 @@ const getTechIcon = (tech: string): string => {
 			background-position: 0% 50%;
 		}
 	}
+
+	/* Floating geometric shapes */
+	.hero-shapes {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.shape {
+		position: absolute;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.15);
+		backdrop-filter: blur(1px);
+		animation: float 20s ease-in-out infinite;
+	}
+
+	.shape-1 {
+		width: 300px;
+		height: 300px;
+		top: -100px;
+		right: 10%;
+		animation-delay: 0s;
+		animation-duration: 25s;
+	}
+
+	.shape-2 {
+		width: 150px;
+		height: 150px;
+		bottom: 20%;
+		left: 5%;
+		animation-delay: -5s;
+		animation-duration: 20s;
+	}
+
+	.shape-3 {
+		width: 200px;
+		height: 200px;
+		top: 30%;
+		right: 25%;
+		border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+		animation-delay: -10s;
+		animation-duration: 22s;
+	}
+
+	.shape-4 {
+		width: 100px;
+		height: 100px;
+		bottom: 10%;
+		right: 15%;
+		animation-delay: -15s;
+		animation-duration: 18s;
+	}
+
+	.shape-5 {
+		width: 80px;
+		height: 80px;
+		top: 20%;
+		left: 15%;
+		border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+		animation-delay: -7s;
+		animation-duration: 23s;
+	}
+
+	@keyframes float {
+		0%, 100% {
+			transform: translate(0, 0) rotate(0deg) scale(1);
+		}
+		25% {
+			transform: translate(30px, -30px) rotate(5deg) scale(1.05);
+		}
+		50% {
+			transform: translate(-20px, 20px) rotate(-5deg) scale(0.95);
+		}
+		75% {
+			transform: translate(15px, 15px) rotate(3deg) scale(1.02);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.shape {
+			animation: none;
+		}
+	}
 	
 	.hero-title {
 		font-family: 'Montserrat', system-ui, sans-serif;
@@ -261,6 +394,18 @@ const getTechIcon = (tech: string): string => {
 		max-width: 600px;
 		line-height: var(--line-height-tight);
 		color: rgba(0, 0, 0, 0.85);
+	}
+
+	.hero-tagline p::after {
+		content: '|';
+		animation: blink 1s step-end infinite;
+		margin-left: 0.1em;
+		font-weight: 400;
+	}
+
+	@keyframes blink {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0; }
 	}
 
 	.hero-links {
@@ -336,6 +481,51 @@ const getTechIcon = (tech: string): string => {
 	}
 	
 	/* Home sections */
+	/* Section transition decorative element */
+	.section-transition {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--spacing-md);
+		margin-bottom: var(--spacing-2xl);
+		opacity: 0.6;
+	}
+
+	.transition-line {
+		flex: 1;
+		max-width: 200px;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+	}
+
+	.transition-dots {
+		display: flex;
+		gap: 8px;
+	}
+
+	.transition-dots span {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--gradient-sunrise);
+		animation: pulse-dot 2s ease-in-out infinite;
+	}
+
+	.transition-dots span:nth-child(2) {
+		animation-delay: 0.3s;
+		background: var(--gradient-ocean);
+	}
+
+	.transition-dots span:nth-child(3) {
+		animation-delay: 0.6s;
+		background: var(--gradient-sunset);
+	}
+
+	@keyframes pulse-dot {
+		0%, 100% { transform: scale(1); opacity: 0.6; }
+		50% { transform: scale(1.3); opacity: 1; }
+	}
+
 	.home-content-grid {
 		display: grid;
 		grid-template-columns: 3fr 2fr;
@@ -361,6 +551,23 @@ const getTechIcon = (tech: string): string => {
 		font-weight: 900;
 		margin: 0;
 		color: var(--color-text-primary);
+		position: relative;
+		display: inline-block;
+	}
+
+	.section-header h2::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 0;
+		height: 3px;
+		border-radius: 2px;
+		transition: width 0.3s ease;
+	}
+
+	.section-header:hover h2::after {
+		width: 100%;
 	}
 
 	.recent-posts-heading {
@@ -371,6 +578,10 @@ const getTechIcon = (tech: string): string => {
 		color: transparent;
 	}
 
+	.recent-posts-heading::after {
+		background: var(--gradient-ocean);
+	}
+
 	.projects-heading {
 		background: var(--gradient-sunset);
 		background-clip: text;
@@ -379,15 +590,23 @@ const getTechIcon = (tech: string): string => {
 		color: transparent;
 	}
 
+	.projects-heading::after {
+		background: var(--gradient-sunset);
+	}
+
 	.view-all {
 		font-size: var(--font-size-sm);
 		color: var(--color-primary);
 		font-weight: var(--font-weight-medium);
-		transition: color var(--transition-fast);
+		transition: all 0.2s ease;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25em;
 	}
 
 	.view-all:hover {
 		color: var(--color-primary-hover);
+		gap: 0.5em;
 	}
 
 	/* Recent posts */
@@ -503,10 +722,57 @@ const getTechIcon = (tech: string): string => {
 		line-height: var(--line-height-tight);
 		color: var(--color-text-primary);
 		font-weight: var(--font-weight-semibold);
+		transition: all 0.2s ease;
 	}
 
-	.post-card-link:hover .post-title {
-		color: var(--color-primary);
+	/* Match post title hover color to card gradient */
+	.post-card-link:nth-child(1):hover .post-title {
+		background: var(--gradient-sunrise);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.post-card-link:nth-child(2):hover .post-title {
+		background: var(--gradient-ocean);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.post-card-link:nth-child(3):hover .post-title {
+		background: var(--gradient-sunset);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.post-card-link:nth-child(4):hover .post-title {
+		background: var(--gradient-forest);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.post-card-link:nth-child(5):hover .post-title {
+		background: var(--gradient-tropical);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.post-card-link:nth-child(6):hover .post-title {
+		background: var(--gradient-cosmic);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.post-card-link:nth-child(7):hover .post-title {
+		background: var(--gradient-neon);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 
 	.post-excerpt {
@@ -836,8 +1102,46 @@ const getTechIcon = (tech: string): string => {
 		.social-link,
 		.view-all,
 		.project-card-home,
-		.project-link {
+		.project-link,
+		.section-header h2::after {
 			transition: none;
 		}
+
+		.post-card-link,
+		.project-card-link,
+		.section-header {
+			opacity: 1;
+			transform: none;
+		}
+
+		.transition-dots span {
+			animation: none;
+		}
+
+		.hero-tagline p::after {
+			animation: none;
+			opacity: 0;
+		}
+	}
+
+	/* Scroll-triggered animations */
+	.post-card-link,
+	.project-card-link {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+	}
+
+	.section-header {
+		opacity: 0;
+		transform: translateY(20px);
+		transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+	}
+
+	.post-card-link.animate-in,
+	.project-card-link.animate-in,
+	.section-header.animate-in {
+		opacity: 1;
+		transform: translateY(0);
 	}
 </style>
