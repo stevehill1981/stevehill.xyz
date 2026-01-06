@@ -8,7 +8,10 @@ tags:
   - architecture
   - devops
   - lessons-learned
----  
+---
+
+*Update: In 2026, I wrote a follow-up to this post: [Six Years After Warning About Microservices](/blog/2026-01-06-six-years-after-microservices). Having spent three years inside a 120-microservice architecture, I learned what the theory didn't prepare me for.*
+
 Microservices have been fashionable for a while now, and why wouldn't they be?
 
 On the face of it, the concept sounds compelling; your application is complex, so you break it up into

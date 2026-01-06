@@ -7,6 +7,7 @@ tags:
   - engineering-leadership
   - agile
   - lessons-learned
+  - process-theatre
 ---
 
 The meeting had been going for forty minutes. We were debating whether a task was a 3 or a 5.

@@ -6,6 +6,7 @@ tags:
   - architecture
   - engineering-leadership
   - lessons-learned
+  - boring-technology
 ---
 
 The metering system had been running for years without major incident. It was PHP, which everyone agreed was embarrassing, but it worked. Data came in from electricity and gas meters across London, got processed, and the business ran.

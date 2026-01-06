@@ -7,6 +7,7 @@ tags:
   - software-engineering
   - engineering-leadership
   - lessons-learned
+  - sustainable-software
 ---
 
 In 2023, I wrote about [sustainable software](/blog/2023-10-12-sustainable-software). I talked about tests, dependencies, monitoring, pace. Good engineering practices that help teams maintain software over time.

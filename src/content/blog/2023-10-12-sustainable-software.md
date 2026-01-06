@@ -8,7 +8,11 @@ tags:
   - software-engineering
   - process
   - tooling
+  - sustainable-software
 ---
+
+*Update: In 2026, I wrote a follow-up to this post: [Sustainable Software, Revisited](/blog/2026-01-06-sustainable-software-revisited). I realised I'd focused on engineering practices when I should have focused on whether the business underneath could survive.*
+
 I've been tossing the idea of Sustainable Software back and forth in my mind for over a decade, possibly even
 longer than that.
 

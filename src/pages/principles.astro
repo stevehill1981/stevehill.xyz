@@ -9,36 +9,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	<section>
 		<h2>1. Boring Technology Wins</h2>
 		<p>Proven, stable tech beats shiny every time. I've seen fashionable rewrites corrupt six months of billing data. GraphQL layers added to paper over organisational problems. Serverless costs hidden by AWS credits until they weren't. New tech promises elegance but delivers complexity most teams can't sustain. Pick boring.</p>
+		<p class="read-more"><a href="/tags/boring-technology">Read more →</a></p>
 	</section>
 
 	<section>
 		<h2>2. Legacy Systems Aren't the Enemy</h2>
 		<p>Neglect is. Every "big rewrite" I've done could have been avoided with consistent maintenance. Rescue beats replace.</p>
+		<p class="read-more"><a href="/tags/legacy-rescue">Read more →</a></p>
 	</section>
 
 	<section>
 		<h2>3. The Monolith Is Not Your Biggest Problem</h2>
 		<p>Microservices solve organisational problems, not technical ones. I've seen them deployed most often when teams don't want to talk to each other - so instead of fixing communication, they add network boundaries. Monolith is not a dirty word.</p>
+		<p class="read-more"><a href="/tags/microservices">Read more →</a></p>
 	</section>
 
 	<section>
 		<h2>4. Sustainable Software Means Sustainable Teams</h2>
 		<p>Code that can't be maintained by humans at a reasonable pace will eventually fail. Burnout kills more projects than bad architecture.</p>
+		<p class="read-more"><a href="/tags/sustainable-software">Read more →</a></p>
 	</section>
 
 	<section>
 		<h2>5. Build for Today, Design for Tomorrow</h2>
 		<p>Most failed systems I've rescued weren't too rigid - they were too "flexible." Abstract frameworks for use cases that never materialised. Solve the problem in front of you. Avoid irreversible decisions. But don't build abstractions you don't need yet.</p>
+		<p class="read-more"><a href="/tags/build-for-today">Read more →</a></p>
 	</section>
 
 	<section>
 		<h2>6. Process Theatre Kills Teams</h2>
 		<p>Teams spend hours debating sprint length and story points while the actual work waits. Endless estimation and planning rituals create disengaged engineers who'd rather be solving problems. Trust the team. Get out of their way.</p>
+		<p class="read-more"><a href="/tags/process-theatre">Read more →</a></p>
 	</section>
 
 	<section>
 		<h2>7. Write It Down or Watch History Repeat</h2>
 		<p>Engineers hate writing documentation. Without it, teams make the same mistakes repeatedly. Knowledge expires when people move on - and those who come after figure things out from scratch, repeating avoidable errors. Writing, teaching, and documenting are how we stop wasting time.</p>
+		<p class="read-more"><a href="/tags/write-it-down">Read more →</a></p>
 	</section>
 
 	<section class="principles-footer">
@@ -80,6 +87,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		line-height: var(--line-height-relaxed);
 		color: var(--color-text-secondary);
 		font-size: var(--font-size-lg);
+	}
+
+	section p.read-more {
+		margin-top: var(--spacing-sm);
+		font-size: var(--font-size-base);
+	}
+
+	section p.read-more a {
+		color: var(--color-purple);
+		text-decoration: none;
+	}
+
+	section p.read-more a:hover {
+		text-decoration: underline;
 	}
 
 	.principles-footer {

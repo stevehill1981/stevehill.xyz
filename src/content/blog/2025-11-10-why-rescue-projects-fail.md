@@ -6,6 +6,7 @@ tags:
   - rescue-projects
   - engineering-leadership
   - career
+  - legacy-rescue
 ---
 
 I used to leave snarky comments in code. Not the helpful kind either; more the superior, dismissive kind.

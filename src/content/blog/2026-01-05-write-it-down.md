@@ -6,6 +6,7 @@ tags:
   - documentation
   - engineering-leadership
   - lessons-learned
+  - write-it-down
 ---
 
 When I returned to a company I'd worked at years earlier, I discovered I'd become a legend.
