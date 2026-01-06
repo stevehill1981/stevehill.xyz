@@ -1,72 +1,90 @@
 ---
 title: "Build for Today, Design for Tomorrow"
 pubDate: 2026-01-05
-excerpt: "Most failed systems I've rescued weren't too rigid - they were too flexible. Abstract frameworks for use cases that never materialised. Solve the problem in front of you."
+excerpt: "Most failed systems I've rescued weren't too rigid - they were too flexible. Built for futures that never arrived. I've spent years untangling the results."
 tags:
   - architecture
   - engineering-leadership
   - lessons-learned
 ---
 
-The codebase had seventeen different ways to send an email.
+The integration layer was built on MySQL stored procedures.
 
-There was the original `Mailer` class. Then someone added `EmailService` for "better abstraction." Then `NotificationGateway` for when they thought they might add SMS. Then `MessageDispatcher` for the plugin architecture that never got built. Then `CommunicationHub` for the microservices migration that never happened.
+Not one or two stored procedures for performance-critical operations. Dozens of them, chained together, forming the entire middleware that connected the customer-facing application to the back-office systems. The product's sales pitch was that anyone could build integrations - just write some stored procedures! Junior developers who didn't know what they didn't know were creating production database code.
 
-Each layer wrapped the one before it. Each added configuration options for hypothetical requirements. Each made it harder to answer the simple question: "Why didn't this customer get their receipt?"
+The problem was the infinite loops. Something in the stored procedure chain would occasionally trigger a recursive call that never terminated. The database would lock up. The whole production environment would go down. Customers couldn't access the system.
 
-The system wasn't rigid. It was the opposite - so flexible it had become incomprehensible. Built for a future that never arrived.
+The ops team were developing stress-related eczema from the constant outages. Every time a customer integration went live, we held our breath. Would this be the one that brought down production again?
+
+Nobody wanted to touch the stored procedures. Debugging them was nearly impossible. Testing them properly wasn't really feasible. They'd been written by developers who'd since learned better, or moved on, or both - each one adding their own logic to solve an immediate problem without understanding the broader implications.
 
 <!--more-->
 
 ## The Flexibility Trap
 
-Most failed systems I've rescued weren't too rigid. They were too flexible.
+I spent two years at a company specialising in PHP rescue projects. We took business-critical applications abandoned by their original developers and made them maintainable again. The pattern was always the same.
 
-Engineers are trained to think ahead. We're taught about extensibility, about open-closed principles, about designing for change. This is good advice, in moderation. But it's easily corrupted into something harmful: building for imaginary requirements.
+The systems that failed weren't too rigid. They were too flexible.
 
-I've seen it repeatedly:
+Engineers had built for futures that never arrived. Plugin architectures for plugins that never got written. Configuration systems that could handle any requirement, if you could just figure out which of the two hundred options to set. Abstraction layers wrapping abstraction layers, each added by someone solving a problem they anticipated but never encountered.
 
-**The plugin architecture nobody uses.** Hours spent designing a system where functionality can be swapped at runtime, with interfaces and factories and dependency injection. Then one plugin gets written, and it never changes.
+Most failed systems I've rescued weren't suffering from short-sighted engineering. They were suffering from long-sighted engineering - architects so focused on what the system might need to do someday that they made it unable to do what it needed to do today.
 
-**The configuration-driven everything.** Instead of writing code that does what's needed, engineers build systems that can do anything - if you just set the right flags. The configuration becomes more complex than code would have been, and nobody remembers what half the options do.
+At one company, I inherited React frontends talking to GraphQL APIs talking to REST APIs, with microservices written in four different languages. Each layer had been added to solve a hypothetical problem. The frontend might need different data shapes someday, so GraphQL. The backend might need to scale independently someday, so microservices. Different teams might have different language preferences someday, so polyglot architecture.
 
-**The abstraction layers.** A simple database query becomes a repository that implements an interface that's injected by a factory that's configured by a builder. Six files to do what one function could have done.
-
-**The microservices that never split.** A monolith designed as if it might become distributed at any moment, with message queues between components that run in the same process, serialising and deserialising data that never leaves the machine.
+Someday never came. What came instead was a system so complex that half the engineering team quit within a year, and those who remained couldn't ship features because every change required understanding five different layers of abstraction.
 
 ## Why We Do This
 
-It feels professional. It feels like engineering, rather than just hacking something together. We've all inherited codebases where nothing was abstracted, where business logic was scattered everywhere, where making a change meant editing dozens of files. We swore we'd never build something like that.
+It feels professional. It feels like engineering, rather than just hacking something together.
+
+We've all inherited codebases where nothing was abstracted, where business logic was scattered everywhere, where making a change meant editing dozens of files. We swore we'd never build something like that.
 
 So we overcorrect. We add abstractions before we need them. We design for flexibility before we understand the constraints. We solve tomorrow's problems before we've finished solving today's.
 
-There's also fear. What if the requirements change? What if we need to swap databases? What if we need to support a new channel? The abstractions feel like insurance - protection against an uncertain future.
+There's also fear. What if the requirements change? What if we need to swap databases? What if we need to support a new channel? The abstractions feel like insurance against an uncertain future.
 
 But they're expensive insurance. Every abstraction is code that must be maintained, understood, debugged. Every layer of indirection is another place where bugs can hide. Every "flexible" system is harder to change than a simple one, because you have to understand the flexibility before you can work within it.
 
+At the climate tech startup, the incoming CTO felt that Docker and Kubernetes were "too complicated." So we built our own deployment infrastructure on top of LXC. Custom tooling for a custom container system, because someday we might need features that Docker couldn't provide.
+
+We never needed those features. What we needed was a deployment system that worked, that other engineers could understand, that had documentation and community support. Instead we had bespoke infrastructure that only the CTO understood, and when he left, nobody could maintain it.
+
+## What The Rescue Work Taught Me
+
+Rescuing abandoned systems teaches you to recognise the patterns. The codebase with seventeen different ways to send an email - not because seventeen were needed, but because each developer added their own abstraction layer "for flexibility." The integration built on stored procedures - not because databases are the right place for business logic, but because someone wanted to democratise integration development without considering the consequences.
+
+The systems that aged well were almost always simpler than they needed to be.
+
+I've been working with one client for nine years now. Their Rails application handles access control and security hardware across hundreds of customer sites - complex domain, real-world messiness, serious reliability requirements.
+
+The system is simple. Not simplistic - it handles the complexity it needs to handle. But it doesn't have unnecessary machinery. No plugin architecture. No abstract factory patterns. No configuration system that can do anything. Just code that does what it needs to do, organised clearly enough that any competent engineer can understand it.
+
+That's the explicit goal: a system that doesn't depend on any single person. When I started working with them, the previous developer had left and taken significant knowledge with them. We built the replacement to never have that problem again.
+
+Nine years later, we've taken that system from Rails 3 to Rails 8, from Ruby 2 to Ruby 3.4, from PostgreSQL 11 to 17. Each upgrade was straightforward because the architecture was simple. There were no intricate abstraction layers that broke when dependencies changed. No custom frameworks that needed reimplementing. Just boring, standard Rails patterns that the upgrade guides knew how to handle.
+
 ## The Irreversibility Test
 
-Not all future-proofing is wrong. The question is: what's the cost of being wrong?
+Not all future-proofing is wrong. Some decisions genuinely deserve careful thought.
 
-Some decisions are genuinely hard to reverse:
-- **Database schema design.** Migrating data is painful. Think carefully about your data model.
-- **Public API contracts.** Once clients depend on your API, changing it breaks things. Design APIs deliberately.
-- **Core domain models.** The fundamental concepts in your system shape everything built on top. Get these wrong and you'll be fighting the abstraction forever.
+Database schema design. Migrating data is painful. The cost of being wrong is high.
 
-These deserve careful thought. Spend time on them. Get them reviewed. They're the foundation.
+Public API contracts. Once clients depend on your API, changing it breaks things. This deserves deliberate design.
 
-But most decisions aren't like this:
-- **Which library to use for HTTP calls.** Wrapped in a thin adapter, this can be changed in an afternoon.
-- **How to structure internal modules.** Refactoring is routine. Move things around when you understand the domain better.
-- **Whether to use classes or functions.** This is a style choice, not architecture. It can evolve.
+Core domain models. The fundamental concepts in your system shape everything built on top. Get these wrong and you'll fight the abstraction forever.
 
-For reversible decisions, the fastest path is to build something simple and see what happens. You'll learn more from running code than from design documents.
+These are irreversible decisions, or at least expensive-to-reverse ones. Spend time on them. Get them reviewed. Build them carefully.
+
+But most decisions aren't like this. Which library to use for HTTP calls - wrapped in a thin adapter, this can be changed in an afternoon. How to structure internal modules - refactoring is routine. Whether to use classes or functions - this is style, not architecture.
+
+For reversible decisions, the fastest path is to build something simple and see what happens. You'll learn more from running code than from design documents. The abstraction you think you need based on one use case is almost always wrong. Wait until you have three concrete examples before you extract a pattern.
 
 ## YAGNI Is Your Friend
 
-"You Aren't Gonna Need It" sounds dismissive, but it's one of the most valuable principles in software engineering.
+"You Aren't Gonna Need It" sounds dismissive. It's actually one of the most valuable principles in software engineering.
 
-That plugin system? You aren't gonna need it. Build the one thing you need, and if you ever need a second thing, *then* design for extensibility - with the benefit of knowing what extensibility actually means for your domain.
+That plugin system? You aren't gonna need it. Build the one thing you need, and if you ever need a second thing, then design for extensibility - with the benefit of knowing what extensibility actually means for your domain.
 
 That configuration option? You aren't gonna need it. Hardcode the value. If it ever needs to change, that's a five-minute edit.
 
@@ -74,38 +92,28 @@ That abstraction layer? You aren't gonna need it. Call the database directly. If
 
 The time you save by not building unnecessary flexibility can be spent on the things that matter: making the system work correctly, making it fast enough, making it maintainable by the team who'll inherit it.
 
-## What Actually Works
-
-The best codebases I've worked in shared a common trait: they were simple. Not simplistic - they handled complex domains and real-world messiness. But they didn't have unnecessary machinery.
-
-**Thin vertical slices.** Features built end-to-end, with just enough abstraction to be clear. You could trace a request from the UI to the database without getting lost in layers.
-
-**Duplication over the wrong abstraction.** When two pieces of code looked similar, they stayed duplicated until a real pattern emerged. Three concrete examples before an abstraction.
-
-**Boring patterns, consistently applied.** Not clever, not novel. The same structure repeated throughout the codebase. New team members could understand one part and understand them all.
-
-**Code that says what it does.** Not what it might do, or could be configured to do. Functions with names like `sendReceiptEmail`, not `dispatch(new EmailMessage(EmailType.RECEIPT, config))`.
-
 At my current employer, the Rails monolith people wanted to replace was actually well-designed. It was simple. New features could be added without understanding the entire system. The problem wasn't the architecture - it was that years of work had been done, and people were tired of looking at the same code.
 
-We didn't rewrite it. We upgraded it, modernised it, cleaned up the rough edges. The simplicity was a feature, not a bug.
+We didn't rewrite it. We upgraded it, modernised it, cleaned up the rough edges. Rails 5.2 to 8.0. The simplicity was a feature, not a bug.
 
 ## The Right Amount of Design
 
-I'm not advocating for no design. Some problems genuinely need thinking through before you write code. Complex domains benefit from modelling. Distributed systems require careful thought about failure modes.
+I'm not advocating for no design. Some problems need thinking through. Complex domains benefit from modelling. Distributed systems require careful thought about failure modes.
 
-But the design should be proportional to the problem. Ask yourself:
+But the design should be proportional to the problem.
 
-**Is this decision reversible?** If yes, make a choice and move on. You can change it later.
+Is this decision reversible? If yes, make a choice and move on.
 
-**Do I have three concrete examples?** If you're designing an abstraction based on one use case, you're guessing. Wait until you have enough examples to see the real pattern.
+Do I have three concrete examples? If you're designing an abstraction based on one use case, you're guessing. Wait until you see the real pattern.
 
-**What's the simplest thing that could work?** Start there. Add complexity only when the simple thing proves insufficient.
+What's the simplest thing that could work? Start there. Add complexity when the simple thing proves insufficient.
 
-**Am I solving a real problem or a hypothetical one?** If you can't point to a user, a requirement, a bug - you're probably over-engineering.
+Am I solving a real problem or a hypothetical one? If you can't point to a user, a requirement, a bug - you're probably over-engineering.
 
-Build for the problem in front of you. Keep your options open for the problems you can't yet see. But don't solve those problems until they arrive - and many of them never will.
+The stored procedure middleware wasn't built by bad engineers. It was built to solve a real problem - letting non-developers create integrations. But the flexibility it enabled came with costs nobody anticipated: infinite loops in production, databases locking up, an ops team with stress-related health problems.
 
-The seventeen email wrappers weren't built by bad engineers. They were built by engineers trying to do the right thing, preparing for futures that never happened. Each abstraction made sense at the time. Together, they made the system unmaintainable.
+The React-GraphQL-REST stack wasn't built by incompetent architects. It was built by competent people preparing for scale that never arrived and organisational complexity that never materialised.
 
-Solve today's problem. Tomorrow's can wait.
+Build for the problem in front of you. Keep your options open for problems you can't yet see. But don't solve those problems until they arrive - and most of them never will.
+
+Tomorrow's can wait.
