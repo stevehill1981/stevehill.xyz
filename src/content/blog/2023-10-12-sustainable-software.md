@@ -8,9 +8,6 @@ tags:
   - software-engineering
   - process
   - tooling
-series:
-  name: "Building Sustainable Software"
-  part: 3
 ---
 I've been tossing the idea of Sustainable Software back and forth in my mind for over a decade, possibly even
 longer than that.
