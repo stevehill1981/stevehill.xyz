@@ -1,39 +1,35 @@
 ---
-title: "Rachel - Strategic Card Game"
-description: "A 30-year-old family card game rebuilt with Phoenix LiveView. Features strategic AI opponents, real-time multiplayer for 4-8 players, and three distinct visual themes. Proves Elixir isn't just for messaging systems - it's perfect for complex, stateful games."
+title: "Rachel"
+description: "A strategic card game with a twist: the last player standing loses. Play solo against AI, locally via Game Center, or online (coming soon). Based on 30 years of family tradition."
 tags:
-  - elixir
-  - phoenix
-  - liveview
+  - swift
+  - ios
   - game-development
-  - real-time
+  - gamekit
 demo: "https://rachel.stevehill.xyz"
 featured: true
 technologies:
-  - elixir
-  - phoenix
-  - liveview
+  - Swift
+  - SpriteKit
+  - GameKit
+status: "Active"
+year: 2024
 ---
 
-Rachel is a fast-paced, strategic card game implemented in Phoenix LiveView, based on a 30-year-old family tradition. It combines the nostalgia of pub games with modern web technology to create an engaging multiplayer experience.
-
-**✨ Now live at [rachel.stevehill.xyz](https://rachel.stevehill.xyz) with a complete theme system!**
-
-The latest version features three distinct visual themes that completely transform the game's appearance - from clean Apple-inspired minimalism to luxury casino aesthetics. Users can switch themes instantly and their preferences persist across sessions.
+Rachel is a strategic card game for iOS based on 30 years of family tradition. The twist? **The last player standing loses.** Empty your hand to survive—whoever's left holding cards at the end is out.
 
 ## 🎮 What Makes Rachel Special
 
-Unlike typical card games, Rachel features a unique combination of strategic special card effects and stacking mechanics that create intense, unpredictable gameplay:
+Unlike typical shedding games, Rachel inverts the win condition. You're not racing to go out first—you're trying not to be last. This creates tense endgames where a commanding lead can collapse in moments.
 
-- **Strategic special cards** - 2s force pickups, 7s skip turns, Black Jacks deal massive penalties
-- **Stacking mechanics** - Build devastating combinations by playing multiple cards of the same rank
-- **Smart AI opponents** - Intelligent decision-making that adapts to different difficulty levels
-- **Real-time multiplayer** - Seamless LiveView updates for 4-8 players
-- **Beautiful animations** - Smooth card transitions and visual feedback
+- **Inverted victory** - Last player with cards loses
+- **Strategic special cards** - 2s force pickups, 7s skip turns, Black Jacks attack, Queens reverse, Aces change suit
+- **Stacking mechanics** - Chain multiple cards for devastating combinations
+- **Smart AI opponents** - Multiple difficulty levels with adaptive strategy
+- **Local multiplayer** - Game Center and local networking support
 
-## 🃏 Key Game Features
+## 🃏 Special Cards
 
-### Special Card Effects
 - **2s**: Next player picks up 2 cards (stackable for massive penalties)
 - **7s**: Skip the next player's turn (chainable across multiple players)
 - **Black Jacks**: Force pickup of 5 cards (the game's nuclear option)
@@ -41,109 +37,21 @@ Unlike typical card games, Rachel features a unique combination of strategic spe
 - **Queens**: Reverse the direction of play
 - **Aces**: Wild cards that let you nominate the next suit
 
-### Technical Highlights
-- **Phoenix LiveView** for real-time updates without JavaScript complexity
-- **Dynamic theme system** with 3 distinct visual identities and instant switching
-- **GenServer-based game engine** ensuring reliable state management
-- **Comprehensive rule validation** preventing cheating and handling edge cases
-- **Responsive design** with touch-friendly mobile interface
-- **AI system** with strategic decision-making and difficulty levels
-- **Production security** with CSP headers and comprehensive vulnerability protection
+## 🎮 Game Modes
 
-## 🚀 Technical Implementation
+- **Solo** - Play against AI opponents with adjustable difficulty
+- **Local Multiplayer** - Challenge friends via Game Center or local networking
+- **Online** - Play against anyone, anywhere (coming soon)
 
-### Architecture
-```elixir
-# Game state managed by isolated GenServers
-Rachel.Games.GameServer    # Authoritative game logic
-RachelWeb.GameLive        # LiveView UI with real-time updates
-Rachel.Games.AIPlayer     # Strategic AI decision engine
-```
+## 🛠️ Built With
 
-### Key Technical Challenges Solved
-- **Complex stacking rules** - Multiple cards of the same rank with accumulating effects
-- **Turn management** - Direction changes, skips, and player elimination
-- **Real-time synchronization** - PubSub ensures all players see updates within 500ms
-- **AI strategy** - Balances aggressive play with defensive card retention
-- **Connection handling** - Graceful disconnection/reconnection with AI backfill
-
-### Performance & Scalability
-- **Sub-200ms response times** for card plays and game actions
-- **Memory efficient** - Each game session uses <10MB memory
-- **Concurrent games** - Supports 50+ simultaneous games
-- **Fault tolerance** - Individual game failures don't affect other sessions
-
-## 🎯 Development Philosophy
-
-Rachel demonstrates several important software engineering principles:
-
-### Test-Driven Game Logic
-```elixir
-describe "card stacking" do
-  test "multiple 2s accumulate pickup penalty correctly" do
-    game = Game.new(["Alice", "Bob", "Charlie"])
-    |> Game.play_cards("Alice", [%Card{rank: "2", suit: "hearts"}])
-    |> Game.play_cards("Bob", [%Card{rank: "2", suit: "spades"}])
-    
-    # Charlie must pick up 4 cards (2 × 2)
-    assert Game.get_pickup_count(game) == 4
-  end
-end
-```
-
-### Separation of Concerns
-- **Game logic** is completely independent of the web layer
-- **AI decision-making** is modular and testable
-- **LiveView** handles only UI state and user interactions
-- **GenServer** manages game state with OTP supervision
-
-### Real-Time Architecture
-The game leverages Phoenix's strengths for real-time applications:
-- PubSub for efficient broadcasting
-- LiveView for seamless updates
-- Presence for connection tracking
-- Registry for game session discovery
-
-## 🎨 User Experience Design
-
-### Visual Polish
-- **Three distinct themes** - Modern Minimalist, Premium Card Room, and Warm & Social
-- **Instant theme switching** with localStorage persistence and smooth transitions
-- **Theme-specific animations** with different timing functions and visual effects
-- **Glowing effects** for special cards with theme-appropriate colors
-- **Smooth animations** for card plays and transitions
-- **AI thinking indicators** with animated dots
-- **Direction flow animations** showing play order changes
-- **Winner celebration** with theme-aware confetti effects
-
-### Accessibility
-- **Keyboard navigation** support
-- **Screen reader friendly** card descriptions
-- **Touch-optimized** interface for mobile devices
-- **Clear visual feedback** for game state changes
-
-## 📈 Future Enhancements
-
-The modular architecture supports exciting future features:
-
-- **Tournament mode** with bracket-style competition
-- **Achievement system** tracking "Most Evil" plays and defensive heroics
-- **Statistics engine** with leaderboards and player profiles
-- **Multiple game variants** including "Ultimate Rachel" with expanded rules
-- **Mobile app** using the JSON API foundation
-
-## 🛠️ Technologies Used
-
-- **Elixir 1.18+** - Concurrent, fault-tolerant backend
-- **Phoenix 1.8** - Modern web framework with LiveView
-- **PostgreSQL** - Reliable data persistence
-- **Tailwind CSS + daisyUI** - Beautiful, responsive UI components
-- **OTP GenServers** - Rock-solid game state management
-- **ExUnit** - Comprehensive test coverage (80%+ on game logic)
+- **Swift** and **SpriteKit** for native iOS performance
+- **GameKit** for Game Center integration and local multiplayer
+- Test-driven game logic ensuring rule accuracy
 
 ## 🌌 The Rachel Multiverse
 
-The Phoenix LiveView implementation you see above? That's just the **beginning**.
+The iOS app is just the **beginning**.
 
 ### The Vision: One Game, Every Platform
 
@@ -217,63 +125,33 @@ Each platform implementation:
 ### Current Status
 
 **✅ Complete:**
-- Phoenix LiveView web implementation (you're looking at it)
+- iOS app with full game rules and AI opponents
+- Game Center and local networking multiplayer
 - Comprehensive test suite validating game rules
-- AI system with strategic decision-making
-- Theme system with visual polish
 
 **🚧 In Progress:**
-- Finalizing RUBP protocol specification
-- Setting up unified repository structure
-- Building protocol server infrastructure
+- Online multiplayer
+- RUBP protocol specification
+- Protocol server infrastructure
 
 **📋 Planned:**
 - First vintage platform implementations (DOS, C64, ZX Spectrum)
 - Protocol server with matchmaking
 - Community contribution framework
-- Museum partnerships for vintage hardware testing
-
-**⏰ Timeline:**
-- Started: December 2024
-- Estimated completion: Heat death of universe
-- Current status: Lost our minds, found our purpose
-
-### The Manifesto
-
-From the [PROJECT_MANIFESTO.md](https://github.com/stevehill1981/Rachel):
-
-> *"They said it couldn't be done.*
-> *They said it shouldn't be done.*
-> *They were probably right.*
-> *We're doing it anyway.*
->
-> *From 1 MHz to quantum qubits.*
-> *From punch cards to neural implants.*
-> *From sanity to madness.*
-> *From madness to legend."*
-
-See the full platform target list, technical specifications, and documentation at the [Rachel GitHub organization](https://github.com/stevehill1981/Rachel).
 
 ---
 
 ## 🎲 Why Build Rachel?
 
-The **Phoenix LiveView version** showcases how Elixir excels at real-time, stateful applications:
+Rachel captures 30 years of family tradition in a format that can outlive us all.
 
-- **Complex business logic** implementation with comprehensive testing
-- **Real-time multiplayer** without the complexity of traditional WebSocket management
-- **AI system design** with strategic decision-making
-- **Graceful failure handling** in distributed systems
-- **Modern web UX** with traditional gaming nostalgia
+The **iOS app** delivers the core experience—a polished, accessible game you can play right now.
 
-The **Rachel Multiverse** demonstrates something different:
+The **Rachel Multiverse** is something bigger:
 
 - **Historical preservation** - Making computing history interactive and accessible
 - **Cross-platform expertise** - Assembly on multiple architectures (6502, Z80, 68K, x86)
-- **Protocol design** - Building communication systems that work on everything
+- **Protocol design** - A 64-byte format that works on everything from a C64 to an iPhone
 - **Technical ambition** - Solving problems most developers wouldn't attempt
-- **Educational mission** - Teaching through implementation across 50 years of computing
 
-Rachel proves that you can capture 30 years of family tradition in a modern, accessible format **and** use it as a vehicle for preserving computing history, teaching low-level programming, and connecting every platform ever created through one universal game.
-
-It's technical showcase meets historical preservation meets creative insanity. And it's working.
+A Commodore 64 playing against a modern smartphone. Same game. Same rules. Different eras. That's the goal.

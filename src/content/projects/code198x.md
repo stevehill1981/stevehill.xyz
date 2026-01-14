@@ -1,17 +1,16 @@
 ---
 title: "Code Like It's 198x"
-description: "Teaching assembly programming for C64, ZX Spectrum, NES, and Amiga through authentic development environments. Because modern abstractions hide how computers actually work, and the best way to learn optimization is by programming systems with 64KB of RAM."
+description: "Learn assembly programming by building complete retro games on C64, ZX Spectrum, NES, and Amiga. Docker-based toolchains eliminate setup friction, so you can focus on understanding how computers actually work."
 featured: true
 technologies: ["Astro", "Docker", "Assembly", "Emulation"]
-status: "Early Development"
+status: "Active"
+demo: "https://code198x.stevehill.xyz"
 github: "https://github.com/code198x"
 priority: 3
 year: 2024
 ---
 
-**Status**: Very early development - most features are planned rather than implemented
-
-An ambitious project to create a comprehensive vintage computer programming education platform. Teaching assembly programming for classic 8-bit and 16-bit systems through structured lessons, authentic development environments, and real constraints that force you to understand how computers actually work.
+An educational platform teaching assembly language programming through building complete retro games. Learn by doing—each game project teaches new skills while creating something you'll actually want to play.
 
 ## 🎯 The Problem with Modern Development Education
 
@@ -106,33 +105,32 @@ A multi-phase learning platform where students progress through increasingly com
 
 ## 📊 Current Status
 
-Honestly? **Very early**. But here's what exists:
+### Available Now
 
-### What's Built ✅
+**Commodore 64** (MOS 6510)
+- Game 1: Phase 2 available
 
-- **Project structure** - Astro site with content collections
-- **Docker environments** - Containers with authentic assemblers:
-  - CA65 (6502 for C64/NES)
-  - SjASMPlus (Z80 for ZX Spectrum)
-  - VASM (68000 for Amiga)
-- **Lesson framework** - Markdown-based lesson structure
-- **Basic infrastructure** - Build system, development workflow
+**ZX Spectrum** (Zilog Z80)
+- Game 1: Phase 1 available
 
-### What's In Progress 🚧
+**Nintendo Entertainment System** (Ricoh 2A03)
+- Game 1: Phase 1 available
 
-- **Lesson content** - Writing curriculum is slow and requires deep technical accuracy
-- **Emulator integration** - Getting VICE, Fuse, Nestopia, and FS-UAE working headlessly
-- **Screenshot automation** - Verifying code examples actually work
+**Commodore Amiga** (MC68000)
+- Game 1: Phase 1 available
 
-### What's Planned 📋
+### Technical Infrastructure
 
-- Interactive code examples
-- Timeline and historical context
-- Progress tracking
-- Community features
-- Everything else ambitious and difficult
+- **Docker-based toolchains** - One-command build and test, no setup friction
+- **100% open source** - All code available on GitHub
+- **Authentic assemblers** - CA65 (6502), PasmoNext (Z80), VASM (68000)
 
-The honest truth: this is a **multi-year project**. Writing accurate, engaging assembly programming lessons for 4 different CPU architectures is not fast work.
+### Educational Content
+
+Beyond the game tutorials, the site includes articles covering:
+- The Rise of the Bedroom Coder
+- Deep dives into hardware (VIC-II graphics, SID sound chip)
+- Historical context for each platform
 
 ## 🔧 Technical Approach
 
@@ -154,9 +152,9 @@ The honest truth: this is a **multi-year project**. Writing accurate, engaging a
 FROM debian:bullseye-slim
 RUN apt-get update && apt-get install -y cc65
 
-# ZX Spectrum - using SjASMPlus (Z80 assembler)
+# ZX Spectrum - using PasmoNext (Z80 assembler)
 FROM debian:bullseye-slim
-RUN apt-get update && apt-get install -y sjasmplus
+RUN apt-get update && apt-get install -y pasmo
 
 # Amiga - using VASM (68000 assembler)
 FROM debian:bullseye-slim

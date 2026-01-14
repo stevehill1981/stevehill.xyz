@@ -1,24 +1,23 @@
 ---
-title: "Chaotic Tanx - Destructible Terrain Game"
-description: "An iOS SpriteKit prototype featuring destructible terrain, physics-based combat, and multiple weapon systems with real-time crater generation"
-draft: true
+title: "Chaotic Tanx"
+description: "Artillery warfare on iOS with destructible terrain, physics-based ballistics, and turn-based multiplayer. Currently in TestFlight beta."
 tags:
   - swift
   - spritekit
   - ios
   - game-development
   - physics
-github: "https://github.com/stevehill1981/ChaoticTanx"
-featured: false
+demo: "https://chaotictanx.stevehill.xyz"
+featured: true
 technologies:
   - swift
   - spritekit
   - ios
-status: "Prototype"
+status: "Beta"
 year: 2025
 ---
 
-Chaotic Tanx is a destructible terrain iOS game prototype built with SpriteKit, featuring dynamic landscape destruction, physics-based projectiles, and strategic tank combat with visual effects.
+Chaotic Tanx is an artillery game for iOS in the tradition of Scorched Earth and Worms. Built with SpriteKit, it features destructible terrain, realistic ballistics with wind effects, and turn-based multiplayer via Game Center. Currently available on TestFlight.
 
 ## 🎮 Core Gameplay
 
@@ -65,26 +64,15 @@ EffectsManager.swift  // Visual and audio effects
 - **Anchor point management** - Consistent positioning across game objects
 - **Viewport transformation** - Scaling for different iPad screen sizes
 
-## 🎯 Current Development Status
+## 🎯 Current Features
 
-### ✅ Working Features
-- Sunburst weapon with projectile splitting mechanics
-- Screen shake and particle explosion effects
-- Drag-to-aim interface with power indication
-- Crater generation on successful terrain impact
-- Basic physics simulation and collision detection
-
-### 🔧 Active Debugging
-- **Tank visibility issues** - Coordinate system positioning problems
-- **Terrain collision mismatch** - Physics body alignment with visual terrain
-- **Coordinate system confusion** - World vs texture coordinate mapping
-- **Physics body generation** - Ensuring accurate collision from texture data
-
-### 📋 Planned Enhancements
-- **Multiple tank support** - Two-player local combat
-- **Advanced weapons** - Cluster bombs, guided missiles, drill projectiles
-- **Terrain types** - Different materials with unique destruction patterns
-- **Power-ups** - Shield generators, weapon upgrades, repair kits
+- **Destructible terrain** that evolves during gameplay
+- **Multiple weapon types** from standard shells to nuclear arms
+- **AI opponents** that adapt their strategies
+- **Turn-based multiplayer** via Game Center
+- **Touch-optimized controls** with drag-to-aim and power indication
+- **Realistic ballistics** with wind effects and trajectory calculations
+- **Progression system** with unlockable weapons
 
 ## 🎨 Visual Polish
 
@@ -108,11 +96,6 @@ terrain_base.png    // 2048x1024 terrain silhouette
 tank_sprite.png     // 128x64 tank graphic  
 explosion.wav       // Bass-heavy impact sound
 ```
-
-### Procedural Fallbacks
-- **Generated terrain** - Algorithmic landscape creation when assets missing
-- **Programmatic graphics** - Shape-based rendering for prototyping
-- **Debug visualization** - Clear indicators for development testing
 
 ## 🚀 Technical Challenges Solved
 
@@ -146,16 +129,14 @@ Chaotic Tanx emphasizes:
 
 ## 🔮 Future Expansion
 
-### Advanced Combat
+### Planned
 - **Terrain regeneration** - Slow healing or repair mechanics
 - **Environmental hazards** - Water, lava, electrified zones
-- **Weather effects** - Wind affecting projectile trajectories
 - **Day/night cycle** - Visibility and tactical considerations
-
-### Multiplayer Features
-- **Local multiplayer** - Split-screen or hot-seat gameplay
 - **Online battles** - Real-time networked combat
 - **Tournament mode** - Bracket-style competitions
 - **Replay system** - Share epic destruction moments
 
-Chaotic Tanx demonstrates advanced 2D graphics programming with SpriteKit while creating engaging tactical gameplay through environmental destruction and physics-based combat mechanics.
+---
+
+**Want to try it?** [Join the TestFlight beta](https://chaotictanx.stevehill.xyz) and help shape the game.
