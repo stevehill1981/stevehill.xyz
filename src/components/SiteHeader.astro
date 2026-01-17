@@ -180,16 +180,22 @@ const currentPath = Astro.url.pathname;
     display: none;
     background: transparent;
     border: none;
-    padding: 0.5rem;
+    padding: var(--btn-padding-icon);
     cursor: pointer;
     color: var(--color-text-secondary);
-    transition: color 0.2s;
+    transition: color var(--transition-base);
   }
   
   .mobile-menu-toggle:hover {
     color: var(--color-primary);
   }
-  
+
+  .mobile-menu-toggle:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
+
   .menu-icon {
     width: 24px;
     height: 24px;
@@ -205,11 +211,11 @@ const currentPath = Astro.url.pathname;
   .nav-links a {
     color: var(--color-text-secondary);
     text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 0.75rem;
+    font-weight: var(--font-weight-medium);
+    padding: var(--btn-padding-md);
     border-radius: var(--radius-md);
-    transition: all 0.2s;
-    font-size: 0.95rem;
+    transition: all var(--transition-base);
+    font-size: var(--font-size-base);
   }
 
   .nav-link {
@@ -267,9 +273,16 @@ const currentPath = Astro.url.pathname;
   
   .social-links a,
   .social-links button {
-    padding: 0.5rem;
+    padding: var(--btn-padding-icon);
+    border-radius: var(--radius-md);
   }
-  
+
+  .social-links a:focus-visible,
+  .social-links button:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
   .icon {
     width: 20px;
     height: 20px;

@@ -116,14 +116,15 @@ const readingTime = getReadingTime(entry.body);
 						<strong>Reading time</strong>
 						<span>{readingTime} min read</span>
 					</div>
-					<button class="copy-link-btn" title="Copy link to this post">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<button class="copy-link-btn" title="Copy link to this post" aria-describedby="copy-status">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 							<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
 							<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"></path>
 						</svg>
 						<span class="copy-text">Copy Link</span>
-						<span class="copied-text">Copied!</span>
+						<span class="copied-text" aria-hidden="true">Copied!</span>
 					</button>
+					<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
 				</div>
 
 				{entry.data.tags && (
@@ -263,6 +264,18 @@ const readingTime = getReadingTime(entry.body);
 
     // Copy link functionality
     const copyLinkBtn = document.querySelector('.copy-link-btn');
+    const copyStatus = document.getElementById('copy-status');
+
+    function announceToScreenReader(message: string) {
+      if (copyStatus) {
+        copyStatus.textContent = message;
+        // Clear after announcement to allow re-announcement
+        setTimeout(() => {
+          copyStatus.textContent = '';
+        }, 1000);
+      }
+    }
+
     if (copyLinkBtn) {
       copyLinkBtn.addEventListener('click', async () => {
         try {
@@ -270,6 +283,7 @@ const readingTime = getReadingTime(entry.body);
 
           // Show copied state
           copyLinkBtn.classList.add('copied');
+          announceToScreenReader('Link copied to clipboard');
 
           // Reset after 2 seconds
           setTimeout(() => {
@@ -286,11 +300,13 @@ const readingTime = getReadingTime(entry.body);
           try {
             document.execCommand('copy');
             copyLinkBtn.classList.add('copied');
+            announceToScreenReader('Link copied to clipboard');
             setTimeout(() => {
               copyLinkBtn.classList.remove('copied');
             }, 2000);
           } catch (fallbackErr) {
             console.error('Failed to copy link:', fallbackErr);
+            announceToScreenReader('Failed to copy link');
           }
 
           document.body.removeChild(textArea);
@@ -413,7 +429,7 @@ const readingTime = getReadingTime(entry.body);
 		background: transparent;
 		border: 1px solid var(--color-border);
 		color: var(--color-text-secondary);
-		padding: 0.5rem 0.75rem;
+		padding: var(--btn-padding-md);
 		border-radius: var(--radius-md);
 		font-size: var(--font-size-sm);
 		font-weight: var(--font-weight-medium);
@@ -571,7 +587,7 @@ const readingTime = getReadingTime(entry.body);
 		margin: var(--spacing-xl) 0;
 		border-radius: var(--radius-lg);
 		overflow: hidden;
-		background: #0f172a;
+		background: var(--code-bg);
 		border: 1px solid var(--color-border);
 		box-shadow: var(--shadow-md);
 	}
@@ -580,13 +596,13 @@ const readingTime = getReadingTime(entry.body);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0.5rem 1rem;
-		background: #0f172a;
-		border-bottom: 1px solid #1e293b;
+		padding: var(--spacing-xs) var(--spacing-md);
+		background: var(--code-bg);
+		border-bottom: 1px solid var(--code-border);
 	}
 
 	:global(.code-lang-label) {
-		color: #64748b;
+		color: var(--code-text-muted);
 		font-size: var(--font-size-sm);
 		font-weight: var(--font-weight-medium);
 		text-transform: uppercase;
@@ -596,28 +612,28 @@ const readingTime = getReadingTime(entry.body);
 	:global(.code-copy-button) {
 		display: flex;
 		align-items: center;
-		gap: 0.375rem;
+		gap: var(--spacing-xs);
 		background: transparent;
-		border: 1px solid #334155;
-		color: #94a3b8;
-		padding: 0.25rem 0.75rem;
-		border-radius: 0.375rem;
+		border: 1px solid var(--code-button-border);
+		color: var(--code-text-subtle);
+		padding: var(--spacing-xs) var(--spacing-sm);
+		border-radius: var(--radius-md);
 		font-size: var(--font-size-sm);
 		font-weight: var(--font-weight-medium);
 		cursor: pointer;
-		transition: all 0.2s;
+		transition: all var(--transition-base);
 		font-family: inherit;
 	}
 
 	:global(.code-copy-button:hover) {
-		background: #1e293b;
-		border-color: #475569;
-		color: #cbd5e1;
+		background: var(--code-bg-hover);
+		border-color: var(--code-button-border-hover);
+		color: var(--code-text-bright);
 	}
 
 	:global(.code-copy-button.copied) {
-		background: #10b981;
-		border-color: #10b981;
+		background: var(--color-success);
+		border-color: var(--color-success);
 		color: white;
 	}
 
@@ -859,7 +875,7 @@ const readingTime = getReadingTime(entry.body);
 	.tag-small {
 		background: var(--color-bg-tertiary);
 		color: var(--color-text-secondary);
-		padding: 0.125rem 0.375rem;
+		padding: var(--tag-padding-sm);
 		border-radius: var(--radius-sm);
 		font-size: var(--font-size-xs);
 		font-weight: var(--font-weight-medium);
@@ -977,5 +993,18 @@ const readingTime = getReadingTime(entry.body);
 		.nav-link {
 			max-width: 100%;
 		}
+	}
+
+	/* Screen reader only - visually hidden but accessible */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
 	}
 </style>

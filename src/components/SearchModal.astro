@@ -9,7 +9,7 @@
 </button>
 
 <div class="search-overlay" id="search-overlay" aria-hidden="true">
-  <div class="search-modal" role="dialog" aria-label="Search">
+  <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search">
     <button class="search-close" aria-label="Close search">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 6 18"></path>
@@ -24,13 +24,58 @@
   function initSearch() {
     const trigger = document.querySelector('.search-trigger');
     const overlay = document.getElementById('search-overlay');
+    const modal = overlay?.querySelector('.search-modal');
     const closeBtn = document.querySelector('.search-close');
     let pagefindLoaded = false;
+    let previousActiveElement: Element | null = null;
+
+    // Get all focusable elements within the modal
+    function getFocusableElements(): HTMLElement[] {
+      if (!modal) return [];
+      const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+      return Array.from(modal.querySelectorAll(focusableSelectors)) as HTMLElement[];
+    }
+
+    // Focus trap handler
+    function handleFocusTrap(e: KeyboardEvent) {
+      if (e.key !== 'Tab' || !overlay?.classList.contains('active')) return;
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        // Shift+Tab: if on first element, go to last
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab: if on last element, go to first
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
 
     async function openSearch() {
+      // Store the element that had focus before opening
+      previousActiveElement = document.activeElement;
+
       overlay?.classList.add('active');
       overlay?.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+
+      // Add inert to main content for better a11y
+      const main = document.querySelector('main');
+      const header = document.querySelector('header');
+      const footer = document.querySelector('footer');
+      main?.setAttribute('inert', '');
+      header?.setAttribute('inert', '');
+      footer?.setAttribute('inert', '');
 
       if (!pagefindLoaded) {
         try {
@@ -57,6 +102,9 @@
         const input = document.querySelector('#pagefind-container input');
         if (input instanceof HTMLInputElement) {
           input.focus();
+        } else {
+          // Fallback to close button if input not ready
+          closeBtn?.focus();
         }
       }, 100);
     }
@@ -65,6 +113,19 @@
       overlay?.classList.remove('active');
       overlay?.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+
+      // Remove inert from main content
+      const main = document.querySelector('main');
+      const header = document.querySelector('header');
+      const footer = document.querySelector('footer');
+      main?.removeAttribute('inert');
+      header?.removeAttribute('inert');
+      footer?.removeAttribute('inert');
+
+      // Return focus to the element that opened the modal
+      if (previousActiveElement instanceof HTMLElement) {
+        previousActiveElement.focus();
+      }
     }
 
     trigger?.addEventListener('click', openSearch);
@@ -77,7 +138,7 @@
       }
     });
 
-    // Keyboard shortcuts
+    // Keyboard shortcuts and focus trap
     document.addEventListener('keydown', (e) => {
       // Ctrl+K or Cmd+K to open
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -88,6 +149,8 @@
       if (e.key === 'Escape' && overlay?.classList.contains('active')) {
         closeSearch();
       }
+      // Focus trap
+      handleFocusTrap(e);
     });
   }
 
@@ -99,10 +162,10 @@
   .search-trigger {
     background: transparent;
     border: none;
-    padding: 0.5rem;
+    padding: var(--btn-padding-icon);
     cursor: pointer;
     color: var(--color-text-secondary);
-    transition: color 0.2s;
+    transition: color var(--transition-base);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,6 +173,12 @@
 
   .search-trigger:hover {
     color: var(--color-primary);
+  }
+
+  .search-trigger:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
   }
 
   .search-overlay {
@@ -146,19 +215,25 @@
 
   .search-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
     background: transparent;
     border: none;
-    padding: 0.5rem;
+    padding: var(--btn-padding-icon);
     cursor: pointer;
     color: var(--color-text-tertiary);
-    transition: color 0.2s;
+    transition: color var(--transition-base);
     z-index: 10;
   }
 
   .search-close:hover {
     color: var(--color-text-primary);
+  }
+
+  .search-close:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
   }
 
   #pagefind-container {

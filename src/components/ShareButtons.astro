@@ -55,8 +55,8 @@ const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 40px;
-		height: 40px;
+		width: 44px;
+		height: 44px;
 		border-radius: var(--radius-md);
 		border: 1px solid var(--color-border);
 		background: var(--color-surface);
@@ -79,6 +79,11 @@ const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
 	.share-button.linkedin:hover {
 		color: #0A66C2;
 		border-color: #0A66C2;
+	}
+
+	.share-button:focus-visible {
+		outline: 3px solid var(--color-primary);
+		outline-offset: 2px;
 	}
 
 	.sr-only {
