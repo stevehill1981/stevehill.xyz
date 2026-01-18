@@ -117,10 +117,10 @@ const getTechIcon = (tech: string): string => {
 			<div class="shape shape-5"></div>
 		</div>
 		<div class="hero-content">
-			<h1 class="hero-title">
+			<div class="hero-name-stack">
 				<span class="hero-title-first">Steve</span>
-				<span class="hero-title-last">Hill</span>
-			</h1>
+				<h1 class="hero-title-last">HILL</h1>
+			</div>
 			<div class="hero-tagline">
 				<p id="rotating-tagline"></p>
 			</div>
@@ -241,26 +241,23 @@ const getTechIcon = (tech: string): string => {
 
 <style>
 	.hero {
-		padding: var(--spacing-2xl) 0;
+		padding: var(--spacing-xl) 0;
 		width: 100vw;
 		margin-left: calc(-50vw + 50%);
 		margin-right: calc(-50vw + 50%);
 		margin-bottom: var(--spacing-2xl);
-		/* Cycling through 8 vibrant color combinations */
+		/* Bold, saturated gradient */
 		background: linear-gradient(
-			135deg,
-			var(--color-orange-vibrant) 0%,
-			var(--color-rose) 12.5%,
-			var(--color-purple-vibrant) 25%,
-			var(--color-blue) 37.5%,
-			var(--color-green) 50%,
-			var(--color-orange) 62.5%,
-			var(--color-violet) 75%,
-			var(--color-pink) 87.5%,
-			var(--color-orange-vibrant) 100%
+			125deg,
+			#ff6b35 0%,
+			#f7931e 15%,
+			#ee3e80 35%,
+			#8b5cf6 55%,
+			#3b82f6 75%,
+			#06b6d4 100%
 		);
-		background-size: 400% 400%;
-		animation: gradient-cycle 60s ease-in-out infinite;
+		background-size: 300% 300%;
+		animation: gradient-shift 20s ease infinite;
 		position: relative;
 		overflow: hidden;
 	}
@@ -268,54 +265,39 @@ const getTechIcon = (tech: string): string => {
 	@media (prefers-reduced-motion: reduce) {
 		.hero {
 			animation: none;
-			background-position: 0% 50%;
+			background-position: 50% 50%;
 		}
 	}
 
 	.hero-content {
-		max-width: 1200px;
+		max-width: 1400px;
 		margin: 0 auto;
-		padding: 0 var(--spacing-lg);
+		padding: var(--spacing-lg);
 		display: flex;
-		align-items: center;
-		gap: var(--spacing-2xl);
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: var(--spacing-xl);
+		position: relative;
+		z-index: 2;
 	}
 
-	/* Add subtle texture overlay for depth */
+	/* Grain texture overlay */
 	.hero::before {
 		content: '';
 		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-image:
-			url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E"),
-			radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-			radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+		inset: 0;
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
 		pointer-events: none;
-		opacity: 0.5;
+		opacity: 0.12;
+		z-index: 1;
 	}
 
-	@keyframes gradient-cycle {
-		0% {
-			background-position: 0% 50%;
-		}
-		25% {
-			background-position: 100% 75%;
-		}
-		50% {
-			background-position: 100% 25%;
-		}
-		75% {
-			background-position: 0% 75%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
+	@keyframes gradient-shift {
+		0%, 100% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
 	}
 
-	/* Floating geometric shapes */
+	/* Floating shapes - bolder, more saturated */
 	.hero-shapes {
 		position: absolute;
 		inset: 0;
@@ -326,132 +308,129 @@ const getTechIcon = (tech: string): string => {
 	.shape {
 		position: absolute;
 		border-radius: 50%;
-		background: rgba(0, 0, 0, 0.15);
-		backdrop-filter: blur(1px);
+		background: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(2px);
 		animation: float 20s ease-in-out infinite;
 	}
 
 	.shape-1 {
-		width: 300px;
-		height: 300px;
-		top: -100px;
-		right: 10%;
-		animation-delay: 0s;
+		width: 500px;
+		height: 500px;
+		top: -200px;
+		right: -50px;
+		background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
 		animation-duration: 25s;
 	}
 
 	.shape-2 {
-		width: 150px;
-		height: 150px;
-		bottom: 20%;
-		left: 5%;
+		width: 200px;
+		height: 200px;
+		bottom: -50px;
+		left: 10%;
+		background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, transparent 70%);
 		animation-delay: -5s;
 		animation-duration: 20s;
 	}
 
 	.shape-3 {
-		width: 200px;
-		height: 200px;
-		top: 30%;
-		right: 25%;
+		width: 300px;
+		height: 300px;
+		top: 20%;
+		right: 30%;
 		border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+		background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
 		animation-delay: -10s;
 		animation-duration: 22s;
 	}
 
 	.shape-4 {
-		width: 100px;
-		height: 100px;
-		bottom: 10%;
-		right: 15%;
+		width: 150px;
+		height: 150px;
+		bottom: 30%;
+		right: 5%;
+		background: radial-gradient(circle, rgba(0,0,0,0.08) 0%, transparent 70%);
 		animation-delay: -15s;
 		animation-duration: 18s;
 	}
 
 	.shape-5 {
-		width: 80px;
-		height: 80px;
-		top: 20%;
-		left: 15%;
+		width: 120px;
+		height: 120px;
+		top: 40%;
+		left: 5%;
 		border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+		background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
 		animation-delay: -7s;
 		animation-duration: 23s;
 	}
 
 	@keyframes float {
-		0%, 100% {
-			transform: translate(0, 0) rotate(0deg) scale(1);
-		}
-		25% {
-			transform: translate(30px, -30px) rotate(5deg) scale(1.05);
-		}
-		50% {
-			transform: translate(-20px, 20px) rotate(-5deg) scale(0.95);
-		}
-		75% {
-			transform: translate(15px, 15px) rotate(3deg) scale(1.02);
-		}
+		0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+		25% { transform: translate(30px, -30px) rotate(5deg) scale(1.05); }
+		50% { transform: translate(-20px, 20px) rotate(-5deg) scale(0.95); }
+		75% { transform: translate(15px, 15px) rotate(3deg) scale(1.02); }
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.shape {
-			animation: none;
-		}
+		.shape { animation: none; }
 	}
-	
-	.hero-title {
-		font-family: 'Montserrat', system-ui, sans-serif;
-		font-weight: 900;
-		margin: 0;
-		letter-spacing: -0.03em;
-		line-height: 0.85;
-		text-transform: uppercase;
-		text-align: left;
-		position: relative;
-		z-index: 1;
+
+	/* Name stack - DRAMATIC scale difference */
+	.hero-name-stack {
 		display: flex;
 		flex-direction: column;
-		color: rgba(0, 0, 0, 0.85);
+		line-height: 0.75;
+		position: relative;
 	}
 
 	.hero-title-first {
-		font-size: clamp(2rem, 5vw, 4rem);
-		display: block;
-		margin-left: 0;
-		padding-left: 0;
+		font-family: 'Montserrat', system-ui, sans-serif;
+		font-size: clamp(1.5rem, 4vw, 3rem);
+		font-weight: 400;
+		letter-spacing: -0.02em;
+		text-transform: uppercase;
+		color: white;
+		margin-bottom: 0.1em;
+		margin-left: 0.2em;
 	}
 
 	.hero-title-last {
-		font-size: clamp(5rem, 15vw, 12rem);
-		display: block;
-		margin-left: -0.08em;
-		padding-left: 0;
+		font-family: 'Montserrat', system-ui, sans-serif;
+		font-weight: 900;
+		font-size: clamp(5rem, 20vw, 16rem);
+		letter-spacing: -0.04em;
+		margin: 0;
+		line-height: 0.8;
+		color: white;
+		text-shadow:
+			0 4px 0 rgba(0,0,0,0.15),
+			0 8px 30px rgba(0,0,0,0.2);
 	}
 
+	/* Tagline - confident, bold */
 	.hero-tagline {
-		font-family: 'Montserrat', system-ui, sans-serif;
 		position: relative;
 		z-index: 1;
 		text-align: right;
-		flex: 1;
+		max-width: 400px;
 	}
 
 	.hero-tagline p {
-		font-size: var(--font-size-3xl);
-		font-weight: 700;
+		font-family: 'Montserrat', system-ui, sans-serif;
+		font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-2xl));
+		font-weight: 600;
 		margin: 0;
-		margin-left: auto;
 		text-transform: uppercase;
 		letter-spacing: 0.02em;
-		max-width: 600px;
 		line-height: var(--line-height-tight);
-		color: rgba(0, 0, 0, 0.85);
+		color: rgba(255, 255, 255, 0.95);
+		text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 	}
 
 	.hero-tagline p::after {
-		content: '|';
+		content: '_';
 		animation: blink 1s step-end infinite;
-		margin-left: 0.1em;
+		margin-left: 0.05em;
 		font-weight: 400;
 	}
 
@@ -599,23 +578,25 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.section-header h2 {
-		font-size: var(--font-size-4xl);
+		font-family: 'Montserrat', system-ui, sans-serif;
+		font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
 		font-weight: 900;
 		margin: 0;
 		color: var(--color-text-primary);
 		position: relative;
 		display: inline-block;
+		letter-spacing: -0.02em;
 	}
 
 	.section-header h2::after {
 		content: '';
 		position: absolute;
-		bottom: -4px;
+		bottom: -6px;
 		left: 0;
 		width: 0;
-		height: 3px;
+		height: 4px;
 		border-radius: 2px;
-		transition: width 0.3s ease;
+		transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.section-header:hover h2::after {
@@ -623,7 +604,7 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.recent-posts-heading {
-		background: var(--gradient-ocean);
+		background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -631,11 +612,11 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.recent-posts-heading::after {
-		background: var(--gradient-ocean);
+		background: linear-gradient(90deg, #3b82f6, #06b6d4);
 	}
 
 	.projects-heading {
-		background: var(--gradient-sunset);
+		background: linear-gradient(135deg, #ff6b35 0%, #ee3e80 100%);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -643,7 +624,7 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.projects-heading::after {
-		background: var(--gradient-sunset);
+		background: linear-gradient(90deg, #ff6b35, #ee3e80);
 	}
 
 	.view-all {
@@ -676,84 +657,54 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.post-card {
-		padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+		padding: var(--spacing-lg);
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
-		border-left: 6px solid;
 		border-radius: var(--radius-lg);
-		transition: all var(--transition-base);
+		transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 		cursor: pointer;
+		position: relative;
+		overflow: hidden;
 	}
 
-	/* Rotate through gradient palettes for each post card */
-	.post-card-link:nth-child(1) .post-card {
-		border-image: var(--gradient-sunrise) 1;
+	/* Bold colored accent bar on left */
+	.post-card::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 5px;
+		transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
-	.post-card-link:nth-child(2) .post-card {
-		border-image: var(--gradient-ocean) 1;
-	}
-
-	.post-card-link:nth-child(3) .post-card {
-		border-image: var(--gradient-sunset) 1;
-	}
-
-	.post-card-link:nth-child(4) .post-card {
-		border-image: var(--gradient-forest) 1;
-	}
-
-	.post-card-link:nth-child(5) .post-card {
-		border-image: var(--gradient-tropical) 1;
-	}
-
-	.post-card-link:nth-child(6) .post-card {
-		border-image: var(--gradient-cosmic) 1;
-	}
-
-	.post-card-link:nth-child(7) .post-card {
-		border-image: var(--gradient-neon) 1;
-	}
+	/* Rotate through bold colors for each card */
+	.post-card-link:nth-child(1) .post-card::before { background: linear-gradient(180deg, #ff6b35, #f7931e); }
+	.post-card-link:nth-child(2) .post-card::before { background: linear-gradient(180deg, #3b82f6, #06b6d4); }
+	.post-card-link:nth-child(3) .post-card::before { background: linear-gradient(180deg, #ee3e80, #8b5cf6); }
+	.post-card-link:nth-child(4) .post-card::before { background: linear-gradient(180deg, #10b981, #14b8a6); }
+	.post-card-link:nth-child(5) .post-card::before { background: linear-gradient(180deg, #f43f5e, #ec4899); }
+	.post-card-link:nth-child(6) .post-card::before { background: linear-gradient(180deg, #8b5cf6, #6366f1); }
+	.post-card-link:nth-child(7) .post-card::before { background: linear-gradient(180deg, #06b6d4, #3b82f6); }
 
 	.post-card:hover {
-		outline: 2px solid;
-		outline-offset: -1px;
+		transform: translateX(8px);
+		border-color: transparent;
+		box-shadow: var(--shadow-xl);
 	}
 
-	/* Add gradient-specific hover glow effects */
-	.post-card-link:nth-child(1) .post-card:hover {
-		outline-color: var(--color-amber);
-		box-shadow: 0 0 20px color-mix(in srgb, var(--color-amber) 30%, transparent), var(--shadow-md);
+	.post-card:hover::before {
+		width: 8px;
 	}
 
-	.post-card-link:nth-child(2) .post-card:hover {
-		outline-color: var(--color-blue);
-		box-shadow: 0 0 20px color-mix(in srgb, var(--color-blue) 30%, transparent), var(--shadow-md);
-	}
-
-	.post-card-link:nth-child(3) .post-card:hover {
-		outline-color: var(--color-purple);
-		box-shadow: 0 0 20px color-mix(in srgb, var(--color-purple) 30%, transparent), var(--shadow-md);
-	}
-
-	.post-card-link:nth-child(4) .post-card:hover {
-		outline-color: var(--color-green);
-		box-shadow: 0 0 20px color-mix(in srgb, var(--color-green) 30%, transparent), var(--shadow-md);
-	}
-
-	.post-card-link:nth-child(5) .post-card:hover {
-		outline-color: var(--color-pink);
-		box-shadow: 0 0 20px color-mix(in srgb, var(--color-pink) 30%, transparent), var(--shadow-md);
-	}
-
-	.post-card-link:nth-child(6) .post-card:hover {
-		outline-color: var(--color-purple);
-		box-shadow: 0 0 20px color-mix(in srgb, var(--color-purple) 30%, transparent), var(--shadow-md);
-	}
-
-	.post-card-link:nth-child(7) .post-card:hover {
-		outline-color: var(--color-cyan);
-		box-shadow: 0 0 20px color-mix(in srgb, var(--color-cyan) 30%, transparent), var(--shadow-md);
-	}
+	/* Colored glow on hover */
+	.post-card-link:nth-child(1) .post-card:hover { box-shadow: -4px 0 30px rgba(255, 107, 53, 0.25), var(--shadow-lg); }
+	.post-card-link:nth-child(2) .post-card:hover { box-shadow: -4px 0 30px rgba(59, 130, 246, 0.25), var(--shadow-lg); }
+	.post-card-link:nth-child(3) .post-card:hover { box-shadow: -4px 0 30px rgba(238, 62, 128, 0.25), var(--shadow-lg); }
+	.post-card-link:nth-child(4) .post-card:hover { box-shadow: -4px 0 30px rgba(16, 185, 129, 0.25), var(--shadow-lg); }
+	.post-card-link:nth-child(5) .post-card:hover { box-shadow: -4px 0 30px rgba(244, 63, 94, 0.25), var(--shadow-lg); }
+	.post-card-link:nth-child(6) .post-card:hover { box-shadow: -4px 0 30px rgba(139, 92, 246, 0.25), var(--shadow-lg); }
+	.post-card-link:nth-child(7) .post-card:hover { box-shadow: -4px 0 30px rgba(6, 182, 212, 0.25), var(--shadow-lg); }
 
 	.post-meta {
 		display: flex;
@@ -769,62 +720,17 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.post-title {
+		font-family: 'Montserrat', system-ui, sans-serif;
 		font-size: var(--font-size-xl);
 		margin: 0 0 var(--spacing-sm) 0;
 		line-height: var(--line-height-tight);
 		color: var(--color-text-primary);
-		font-weight: var(--font-weight-semibold);
-		transition: all 0.2s ease;
+		font-weight: 700;
+		transition: color 0.2s ease;
 	}
 
-	/* Match post title hover color to card gradient */
-	.post-card-link:nth-child(1):hover .post-title {
-		background: var(--gradient-sunrise);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.post-card-link:nth-child(2):hover .post-title {
-		background: var(--gradient-ocean);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.post-card-link:nth-child(3):hover .post-title {
-		background: var(--gradient-sunset);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.post-card-link:nth-child(4):hover .post-title {
-		background: var(--gradient-forest);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.post-card-link:nth-child(5):hover .post-title {
-		background: var(--gradient-tropical);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.post-card-link:nth-child(6):hover .post-title {
-		background: var(--gradient-cosmic);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.post-card-link:nth-child(7):hover .post-title {
-		background: var(--gradient-neon);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+	.post-card:hover .post-title {
+		color: white;
 	}
 
 	.post-excerpt {
@@ -853,53 +759,45 @@ const getTechIcon = (tech: string): string => {
 
 	.project-card-home {
 		background: var(--color-surface);
-		border: 2px solid var(--color-border);
-		border-radius: var(--radius-lg);
+		border: none;
+		border-radius: var(--radius-xl);
 		overflow: hidden;
-		transition: all var(--transition-base);
+		transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 		cursor: pointer;
-	}
-
-	/* Match border colors to gradient headers */
-	.project-card-home:has(.project-gradient[data-project="Rachel - Strategic Card Game"]) {
-		border-color: var(--color-pink-light);
-	}
-
-	.project-card-home:has(.project-gradient[data-project="shiki-highlight-api"]) {
-		border-color: var(--color-blue);
-	}
-
-	.project-card-home:has(.project-gradient[data-project="remark-shiki-highlight-api"]) {
-		border-color: var(--color-purple);
-	}
-
-	.project-card-home:has(.project-gradient[data-project="PuTTY Themer"]) {
-		border-color: var(--color-indigo-light);
+		box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 	}
 
 	.project-card-home:hover {
-		box-shadow: var(--shadow-lg);
+		transform: translateY(-12px) scale(1.03);
 	}
 
-	/* Project-specific gradient glow effects on hover */
+	/* Project-specific BOLD glow on hover */
 	.project-card-home:has(.project-gradient[data-project="Rachel - Strategic Card Game"]):hover {
-		filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--color-pink-light) 40%, transparent));
+		box-shadow: 0 25px 80px rgba(255, 45, 146, 0.5), 0 10px 30px rgba(255, 107, 53, 0.3);
 	}
 
 	.project-card-home:has(.project-gradient[data-project="shiki-highlight-api"]):hover {
-		filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--color-blue) 40%, transparent));
+		box-shadow: 0 25px 80px rgba(0, 102, 255, 0.5), 0 10px 30px rgba(0, 212, 255, 0.3);
 	}
 
 	.project-card-home:has(.project-gradient[data-project="remark-shiki-highlight-api"]):hover {
-		filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--color-purple) 40%, transparent));
+		box-shadow: 0 25px 80px rgba(124, 58, 237, 0.5), 0 10px 30px rgba(219, 39, 119, 0.3);
 	}
 
 	.project-card-home:has(.project-gradient[data-project="PuTTY Themer"]):hover {
-		filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--color-indigo-light) 40%, transparent));
+		box-shadow: 0 25px 80px rgba(79, 70, 229, 0.5), 0 10px 30px rgba(168, 85, 247, 0.3);
+	}
+
+	.project-card-home:has(.project-gradient[data-project="Chaotic Tanx"]):hover {
+		box-shadow: 0 25px 80px rgba(255, 77, 0, 0.5), 0 10px 30px rgba(255, 0, 85, 0.3);
+	}
+
+	.project-card-home:has(.project-gradient[data-project="Code Like It's 198x"]):hover {
+		box-shadow: 0 25px 80px rgba(0, 200, 83, 0.5), 0 10px 30px rgba(0, 188, 212, 0.3);
 	}
 
 	.project-header {
-		padding: var(--spacing-lg);
+		padding: var(--spacing-md) var(--spacing-lg);
 		color: white;
 		display: flex;
 		justify-content: space-between;
@@ -909,14 +807,28 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	.project-gradient {
-		filter: saturate(1.25);
+		filter: saturate(1.4) brightness(1.1);
+		position: relative;
+	}
+
+	/* Add subtle pattern overlay for texture */
+	.project-gradient::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15) 0%, transparent 50%),
+			radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 40%);
+		pointer-events: none;
 	}
 
 	.project-header h3 {
 		margin: 0;
+		font-family: 'Montserrat', system-ui, sans-serif;
 		font-size: var(--font-size-xl);
-		font-weight: var(--font-weight-semibold);
+		font-weight: 700;
 		text-align: left;
+		text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 	}
 
 	.tech-icons {
@@ -1019,36 +931,36 @@ const getTechIcon = (tech: string): string => {
 
 		/* Hero section */
 		.hero {
-			padding: var(--spacing-xl) 0;
+			padding: var(--spacing-lg) 0;
 		}
 
 		.hero-content {
 			flex-direction: column;
+			align-items: flex-start;
 			gap: var(--spacing-lg);
-			text-align: center;
+			padding: var(--spacing-md);
 		}
 
-		.hero-title {
-			text-align: center;
+		.hero-name-stack {
+			width: 100%;
 		}
 
 		.hero-title-first {
-			font-size: clamp(1.5rem, 8vw, 2.5rem);
+			font-size: clamp(1.25rem, 5vw, 2rem);
 		}
 
 		.hero-title-last {
-			font-size: clamp(3rem, 20vw, 6rem);
+			font-size: clamp(4rem, 22vw, 8rem);
 		}
 
 		.hero-tagline {
-			text-align: center;
+			text-align: right;
+			max-width: 100%;
+			align-self: flex-end;
 		}
 
 		.hero-tagline p {
-			font-size: var(--font-size-xl);
-			margin-left: 0;
-			margin-right: 0;
-			max-width: 100%;
+			font-size: var(--font-size-base);
 		}
 
 		/* Section headers */
@@ -1096,48 +1008,47 @@ const getTechIcon = (tech: string): string => {
 		}
 	}
 	
-	/* Project gradients */
-	/* Featured projects get vibrant gradients */
+	/* Project gradients - BOLD and distinctive */
+
+	/* Rachel - Hot pink/coral energy */
 	.project-gradient[data-project="Rachel - Strategic Card Game"] {
-		background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+		background:
+			linear-gradient(135deg, #ff2d92 0%, #ff6b35 100%);
 	}
 
+	/* shiki-highlight-api - Electric blue/cyan */
 	.project-gradient[data-project="shiki-highlight-api"] {
-		background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+		background:
+			linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
 	}
 
+	/* remark-shiki - Deep purple/magenta */
 	.project-gradient[data-project="remark-shiki-highlight-api"] {
-		background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+		background:
+			linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
 	}
 
+	/* PuTTY Themer - Rich indigo/violet */
 	.project-gradient[data-project="PuTTY Themer"] {
-		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		background:
+			linear-gradient(135deg, #4f46e5 0%, #a855f7 100%);
 	}
 
-	/* Non-featured projects get neutral gradients */
-	.project-gradient:not([data-project="Rachel - Strategic Card Game"]):not([data-project="shiki-highlight-api"]):not([data-project="remark-shiki-highlight-api"]):not([data-project="PuTTY Themer"]) {
-		background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+	/* Chaotic Tanx - Fiery orange/red */
+	.project-gradient[data-project="Chaotic Tanx"] {
+		background:
+			linear-gradient(135deg, #ff4d00 0%, #ff0055 100%);
 	}
 
-	/* Dark mode gradients */
-	.project-gradient[data-project="Rachel - Strategic Card Game"] {
-		background: linear-gradient(135deg, #c06dd9 0%, #c73f57 100%);
+	/* Code Like It's 198x - Retro green/teal */
+	.project-gradient[data-project="Code Like It's 198x"] {
+		background:
+			linear-gradient(135deg, #00c853 0%, #00bcd4 100%);
 	}
 
-	.project-gradient[data-project="shiki-highlight-api"] {
-		background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
-	}
-
-	.project-gradient[data-project="remark-shiki-highlight-api"] {
-		background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
-	}
-
-	.project-gradient[data-project="PuTTY Themer"] {
-		background: linear-gradient(135deg, #4c5fd8 0%, #5a3885 100%);
-	}
-
-	.project-gradient:not([data-project="Rachel - Strategic Card Game"]):not([data-project="shiki-highlight-api"]):not([data-project="remark-shiki-highlight-api"]):not([data-project="PuTTY Themer"]) {
-		background: linear-gradient(135deg, #475569 0%, #334155 100%);
+	/* Non-featured projects get a cool slate gradient */
+	.project-gradient:not([data-project="Rachel - Strategic Card Game"]):not([data-project="shiki-highlight-api"]):not([data-project="remark-shiki-highlight-api"]):not([data-project="PuTTY Themer"]):not([data-project="Chaotic Tanx"]):not([data-project="Code Like It's 198x"]) {
+		background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
 	}
 
 	/* Reduced motion support for accessibility */
