@@ -276,7 +276,6 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 
 				/* Gradient Palettes */
 				--gradient-sunrise: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-				--gradient-sunrise-vibrant: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb923c 100%);
 				--gradient-ocean: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
 				--gradient-sunset: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
 				--gradient-forest: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
@@ -286,13 +285,21 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 
 				/* Gradient colors for fine-grained control */
 				--color-purple: #8b5cf6;
+				--color-purple-vibrant: #7c3aed;
+				--color-violet: #a855f7;
 				--color-pink: #ec4899;
+				--color-pink-light: #f093fb;
+				--color-rose: #e11d48;
 				--color-blue: #3b82f6;
 				--color-cyan: #06b6d4;
 				--color-orange: #f59e0b;
+				--color-orange-vibrant: #ea580c;
+				--color-amber: #fb923c;
 				--color-red: #ef4444;
 				--color-green: #10b981;
 				--color-teal: #14b8a6;
+				--color-indigo: #6366f1;
+				--color-indigo-light: #667eea;
 
 				/* Shadows */
 				--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
@@ -874,6 +881,19 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 				}
 			}
 
+			/* Utility: Screen reader only - visually hidden but accessible */
+			.sr-only {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border-width: 0;
+			}
+
 			/* Print styles */
 			@media print {
 				/* Hide non-essential elements */
@@ -885,7 +905,8 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 				.share-buttons,
 				.post-navigation,
 				.search-modal,
-				.mobile-menu-toggle {
+				.mobile-menu-toggle,
+				.reading-progress {
 					display: none !important;
 				}
 
@@ -966,13 +987,108 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 				window.addEventListener('load', () => {
 					navigator.serviceWorker.register('/sw.js')
 						.then((registration) => {
-							console.log('SW registered:', registration.scope);
+							// Check for updates periodically (every 60 minutes)
+							setInterval(() => {
+								registration.update();
+							}, 60 * 60 * 1000);
+
+							// Listen for new service worker activation
+							registration.addEventListener('updatefound', () => {
+								const newWorker = registration.installing;
+								if (newWorker) {
+									newWorker.addEventListener('statechange', () => {
+										if (newWorker.state === 'activated' && navigator.serviceWorker.controller) {
+											// New content is available, show subtle notification
+											const toast = document.createElement('div');
+											toast.setAttribute('role', 'status');
+											toast.setAttribute('aria-live', 'polite');
+											toast.className = 'sw-update-toast';
+
+											const message = document.createElement('span');
+											message.textContent = 'Site updated';
+											toast.appendChild(message);
+
+											const refreshBtn = document.createElement('button');
+											refreshBtn.textContent = 'Refresh';
+											refreshBtn.addEventListener('click', () => location.reload());
+											toast.appendChild(refreshBtn);
+
+											const dismissBtn = document.createElement('button');
+											dismissBtn.textContent = '\u00D7';
+											dismissBtn.setAttribute('aria-label', 'Dismiss');
+											dismissBtn.addEventListener('click', () => toast.remove());
+											toast.appendChild(dismissBtn);
+
+											document.body.appendChild(toast);
+
+											// Auto-dismiss after 10 seconds
+											setTimeout(() => toast.remove(), 10000);
+										}
+									});
+								}
+							});
 						})
-						.catch((error) => {
-							console.log('SW registration failed:', error);
+						.catch(() => {
+							// Service worker registration failed - silently ignore
 						});
 				});
 			}
 		</script>
+
+		<style>
+			.sw-update-toast {
+				position: fixed;
+				bottom: 1rem;
+				right: 1rem;
+				background: var(--color-surface);
+				border: 1px solid var(--color-border);
+				border-radius: var(--radius-md);
+				padding: 0.75rem 1rem;
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				font-size: var(--font-size-sm);
+				box-shadow: var(--shadow-lg);
+				z-index: 9999;
+				animation: slide-up 0.3s ease-out;
+			}
+
+			.sw-update-toast button {
+				background: transparent;
+				border: none;
+				cursor: pointer;
+				padding: 0.25rem 0.5rem;
+				border-radius: var(--radius-sm);
+				font-size: var(--font-size-sm);
+			}
+
+			.sw-update-toast button:first-of-type {
+				background: var(--color-primary);
+				color: white;
+			}
+
+			.sw-update-toast button:last-of-type {
+				color: var(--color-text-tertiary);
+				font-size: 1.25rem;
+				line-height: 1;
+			}
+
+			@keyframes slide-up {
+				from {
+					opacity: 0;
+					transform: translateY(1rem);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.sw-update-toast {
+					animation: none;
+				}
+			}
+		</style>
 	</body>
 </html>
