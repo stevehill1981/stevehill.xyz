@@ -13,7 +13,7 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.1",
-    "astro": "^5.16.9",
+    "astro": "^5.16.15",
     "remark-shiki-highlight-api": "^0.3.6",
     "simple-icons": "^16.6.0",
     "unist-util-visit": "^5.0.0"
