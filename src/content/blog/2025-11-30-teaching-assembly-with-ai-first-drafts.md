@@ -11,21 +11,21 @@ tags:
   - project-showcase
 ---
 
-I've been a software engineer for decades. I grew up programming a ZX Spectrum, then a Commodore Amiga. That turned into a career - thirty years of building software, from embedded systems to web applications.
+The assembly programming resources I wanted didn't exist. Reference manuals and scattered tutorials, sure — but nothing that teaches through building complete games with modern tooling while respecting the authentic constraints of the hardware.
 
-But I never made a proper game. Not until very recently, when I built [Rachel](/projects/rachel), a web-based puzzle game. Somehow, despite all those years, I'd never shipped the thing I originally wanted to build when I was twelve years old.
+So I'm building it. [Code Like It's 198x](https://code198x.stevehill.xyz) teaches assembly programming on the Commodore 64, ZX Spectrum, NES, and Amiga. AI generates the first drafts. Authentic assemblers from the era validate every code sample. I'll rewrite every lesson for accuracy and voice. That's the process, honestly stated.
 
-Then I got a ZX Spectrum Next - a modern reimagining of the machine I learned to code on - and I wanted to actually learn it properly this time. Not just BASIC, but Z80 assembly. The real thing.
+Let me address the obvious question first, and then explain why this is worth doing.
 
-The learning resources I wanted didn't exist. There are reference manuals and scattered tutorials, but nothing that teaches through building complete games with modern tooling while respecting the authentic constraints. So I started building it myself.
+<!--more-->
 
 ## The Audacity of This
 
-Let's address the obvious question: who am I to teach assembly programming for four different CPU architectures?
+Who am I to teach assembly programming for four different CPU architectures?
 
-The honest answer: I'm not an expert. I'm a curator and a learner. I grew up with these machines and want to understand them properly. The resource I'm building is the one I wish existed when I got my Spectrum Next.
+I'm not an expert in 6502 opcodes or Z80 addressing modes. I'm a software engineer who grew up with these machines — ZX Spectrum, then Amiga — and spent thirty years building software without ever learning them properly. The resource I'm building is the one I wish existed when I got a ZX Spectrum Next and wanted to understand it for real.
 
-If that sounds like insufficient credentials to create an education platform, I understand. But I think the alternative - pretending to expertise I don't have - would be worse. So here's how it actually works.
+AI writes first drafts. I validate and rewrite. The credentials aren't expertise in assembly — they're decades of engineering experience, honest process, and infrastructure that catches mistakes before they ship.
 
 ## Why Vintage Computers?
 
@@ -35,91 +35,49 @@ Modern programming education starts with high-level abstractions:
 const users = await database.query('SELECT * FROM users');
 ```
 
-This code hides everything. How memory allocation works. What "await" does at the CPU level. How database queries translate to I/O operations. You can build a career without understanding any of it.
+This hides everything. Memory allocation, I/O operations, what "await" does at the CPU level. You can build a career without understanding any of it.
 
-Vintage computers force you to confront fundamentals because there are no abstractions to hide behind.
+Vintage computers strip away the hiding places. A Commodore 64 has 64KB of RAM and a 1MHz processor. The NES has *two kilobytes*. At that scale, you can't import a framework, waste memory on convenience, or ignore optimisation. You learn to count cycles because your code must finish before the next frame.
 
-A Commodore 64 has 64KB of RAM and a 1MHz processor. A ZX Spectrum has 48KB. The NES has *two kilobytes*. When your entire working memory is 2KB, you cannot:
+These skills transfer directly. Embedded systems, game engines, performance-critical code — the patterns that power modern systems were invented on machines with 64KB of RAM. Understanding them isn't nostalgia; it's education.
 
-- Import a framework
-- Use inefficient algorithms
-- Waste memory on convenience
-- Ignore optimisation
-
-You learn to count cycles because your code must finish before the next frame. You manage memory manually because every allocation is deliberate. You understand hardware because you're programming chips, not abstractions.
-
-These skills transfer. Embedded systems programming, game engine development, performance-critical code - the patterns that power modern systems were invented on machines with 64KB of RAM. Understanding them isn't nostalgia; it's education.
+That transfer works best when the teaching is concrete, which is why every lesson builds a game.
 
 ## Why Games?
 
-Games are complete systems. Input handling, state management, rendering, audio, timing - all integrated into something that runs at 50 or 60 frames per second with no room for slop.
+Games are complete systems. Input handling, state management, rendering, audio, timing — all integrated into something that runs at 50 or 60 frames per second with no room for slop.
 
-Each game in Code Like It's 198x teaches transferable patterns through concrete implementation. You're not learning abstract theory; you're building something that runs. A rhythm game that uses the SID chip. A platformer that scrolls smoothly. A shooter that manages dozens of sprites.
+Each game in Code Like It's 198x teaches transferable patterns through concrete implementation. A rhythm game that uses the C64's SID chip. A platformer with smooth scrolling. A shooter managing dozens of sprites. The structure varies by complexity — some games take 8 units, some take 32 — but each unit produces something runnable.
 
-The structure varies by complexity - some games take 8 units, some take 16, some take 32. Each unit produces something runnable. You see progress, not just concepts.
+Games also solve a motivation problem. Abstract exercises teach concepts; games teach concepts *and* produce something you want to show people. Progress is visible, not just theoretical.
 
-## The AI Reality
-
-Here's where I expect pushback.
-
-First drafts of lesson content come from Claude. The explanations, the code samples, the pedagogical structure - AI-generated, then verified.
-
-This is not a claim of expertise. It's an admission of process.
-
-The criticism is valid: "Who are you to teach this if an AI is writing it?" My answer: I'm the quality controller. I'm the person who ensures every code sample compiles and runs. I'm the one who'll rewrite every lesson for accuracy and voice once the first pass is complete.
-
-AI-generated content is starting material, not finished work. The validation infrastructure is the actual product.
+Making this work across four architectures with AI-generated drafts requires infrastructure that matters more than the drafts themselves.
 
 ## The Validation Infrastructure
 
 Every code sample must compile. This isn't negotiable.
 
-I've built Docker containers with authentic assemblers from the era:
+Docker containers run authentic assemblers from the era — the same tools, or direct descendants, that developers used on the original hardware. If a code sample doesn't assemble, it doesn't ship. If it assembles but produces the wrong output, it doesn't ship. Every lesson goes through screenshot verification: the code runs in an emulator and must produce the expected result.
 
-- **ACME** for Commodore 64 (6510 processor)
-- **sjasmplus** for ZX Spectrum (Z80 processor)
-- **ca65** for Nintendo Entertainment System (6502 processor)
-- **vasm** for Commodore Amiga (68000 processor)
+Enforced workflows mandate compilation, testing, and British English checks at every stage. These exist because AI-generated content produces code that looks plausible but doesn't work. The infrastructure catches what human review might miss.
 
-If a code sample doesn't assemble, it doesn't ship. If it assembles but produces the wrong output, it doesn't ship. Every lesson goes through screenshot verification - the code runs in an emulator and must produce the expected result.
+This is where the real work lives. AI generates drafts; infrastructure validates them; I rewrite for quality. The validation layer is the product — not the first drafts.
 
-I've built a "skills" system - enforced workflows for lesson creation that mandate compilation, testing, and British English checks. These exist because AI-generated content can produce code that looks right but doesn't work. The infrastructure catches it.
+## Where It Stands
 
-This is the actual work. The AI generates drafts; the infrastructure validates them; I'll rewrite them for quality.
+Code Like It's 198x is live. The first C64 assembly game — "Starfield," a single-screen space shooter — has 16 published units teaching hardware sprites, joystick input, and SID sound effects. Fifteen more assembly games are planned for the C64 alone, progressing from platformers and maze games through scrolling shooters to a capstone with demo-scene techniques.
 
-## What Exists Now
+Each platform also has a BASIC track — eight simpler games that teach the interpreted language before learners move to assembly. The Amiga's equivalent uses AMOS, a BASIC dialect built for game development.
 
-Code Like It's 198x is live at [code198x.stevehill.xyz](https://code198x.stevehill.xyz).
+The vault has grown to over 1,200 entries covering the people, hardware, techniques, companies, and games that defined the era. Sixty-seven platforms are documented, from the Commodore PET to the Sega Dreamcast, though active curricula currently cover four: C64, ZX Spectrum, Amiga, and NES — with plans for eleven more.
 
-Current state:
-
-- **One complete C64 game**: "SID Symphony" - 16 units building a rhythm game that makes the legendary SID chip sing
-- **46 vault entries**: Historical reference material covering people (Jeff Minter, Matthew Smith), hardware (VIC-II, SID chip), techniques (sprite multiplexing, raster interrupts), and games
-- **Platform pages** for Commodore 64, ZX Spectrum, Amiga, and NES - content in various stages of progress
-
-More platforms are planned. Some might have a single game; others might have many. The coverage is driven by interest and feasibility, not a rigid roadmap.
-
-## What's Next
-
-The immediate work is more games across more platforms. The C64 curriculum has 16 games planned, progressing from simple to complex. The ZX Spectrum, Amiga, and NES have their own curricula in development.
-
-But the bigger task is the rewrite pass. Every lesson that currently exists will be revisited for:
-
-- **Accuracy**: Does the code actually do what the explanation claims?
-- **Completeness**: Are there gaps in the explanation that would confuse a learner?
-- **Voice**: Does it read like me, or like AI-generated text?
-
-This is a multi-year project. I'm honest about the scope. Writing accurate, engaging technical education content for multiple CPU architectures is not fast work.
+The immediate work is completing Starfield's remaining phases and starting the next C64 game. But the bigger task remains the rewrite pass: revisiting every AI-generated lesson for accuracy, completeness, and voice. A multi-year project — I'm honest about the scope.
 
 ## The Point
 
-I'm not an expert in 6502 assembly or Z80 opcodes or 68000 addressing modes. I'm someone who grew up with these machines and wants to understand them properly - thirty years later than I should have.
+Building in public means showing the scaffolding, not just the facade. I'm not pretending AI-generated first drafts are finished work, and I'm not pretending to expertise I don't have.
 
-The resource I'm building is the one I wish existed. If it helps others learn, that's the goal. But I'm learning too, right alongside anyone who uses the site.
-
-Building in public means showing the scaffolding, not just the facade. AI writes first drafts. Infrastructure validates them. I'll rewrite for quality. That's the process, honestly stated.
-
-Thirty years of software engineering, and I'm finally making the games I never made as a kid. If the lessons help you do the same, that's the point.
+What I have is thirty years of software engineering, machines I grew up with and want to understand properly, and a process that's transparent about its limitations. If the lessons help you learn alongside me, that's the point.
 
 ---
 

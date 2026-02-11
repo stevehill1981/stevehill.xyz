@@ -13,7 +13,7 @@ The metering system had been running for years without major incident. It was PH
 
 Then the new CTO arrived. He was an ex-Googler, and he had opinions.
 
-PHP was shit, he said. Google didn't use it. The system needed to be rewritten in Go microservices. He also felt Docker and Kubernetes were "too complicated," so we'd build our own deployment infrastructure on top of LXC instead.
+PHP was shit, he said. Google didn't use it. The system needed to be rewritten in Go microservices. He also felt Docker and Kubernetes were "too complicated," so we'd build our own deployment infrastructure on top of LXC, a lower-level container system, instead.
 
 The complication was the data format. Meter readings came in raw, needing to be shifted by a variable number of decimal places depending on configuration stored on the meters themselves. Each meter was different. The mapping was intricate, built up over years, and I knew it was fragile. I said so. Nobody listened.
 
@@ -39,7 +39,7 @@ Meanwhile, the old system keeps running. It has to - the business depends on it.
 
 Eventually, one of three things happens: the rewrite ships and causes problems (like the meter data corruption), the rewrite gets abandoned after burning through budget and goodwill, or the company runs out of money before either outcome.
 
-I've seen all three.
+I've seen all three. The metering rewrite was the first kind — corrupted data, abandoned project. The fintech showed the second.
 
 ## The Fintech Nightmare
 
@@ -53,7 +53,9 @@ In practice, it was chaos.
 
 The CTO would dump two-thousand-line commits into Git with "changes" as a commit message. Half the engineering team departed within a year. Those who remained spent most of their time fighting the infrastructure rather than building features.
 
-By the time I left, the company had contracted to twelve engineers - but still had four tech leads, managing complexity that no longer matched the team size. Classic VC-funded pattern: Big Tech-style architecture that outlived the team sustaining it.
+By the time I left, the company had contracted to twelve engineers — but still had four tech leads, managing complexity that no longer matched the team size. Classic VC-funded pattern: Big Tech-style architecture that outlived the team sustaining it.
+
+The fintech's problem was complexity nobody could maintain. The hospitality startup's problem was subtler — the costs were hidden until they weren't.
 
 ## The Serverless Surprise
 
@@ -61,31 +63,33 @@ The hospitality startup seemed different. Modern stack, sensible team size, clea
 
 The entire backend was serverless. Lambda functions everywhere, in theory allowing infinite scale to match customer demand.
 
-Then the energy crisis hit. Customers - restaurants and bars - started going out of business. Revenue dropped. And we discovered that our AWS credits, which had been masking the true infrastructure costs, were nearly depleted.
+Then the energy crisis hit. Customers — restaurants and bars — started going out of business. Revenue dropped. And we discovered that our AWS credits, which had been masking the true infrastructure costs, were nearly depleted.
 
 Serverless scales beautifully. It also bills beautifully. Every API call, every function invocation, every gigabyte of data transfer. When you're growing fast with VC money, you don't notice. When the credits run out and the bills come due, you notice.
 
 I was promoted to interim CTO when the previous CTO left during the financial crisis. In my first two weeks, I had to manage three redundancies and figure out how to cut costs fast.
 
-The serverless architecture went first. We replaced Lambda functions with traditional background jobs running on standard servers. Monthly infrastructure costs dropped by more than five thousand pounds. As a bonus, API performance improved by over twenty percent - no more cold-start latency.
+The serverless architecture went first. We replaced Lambda functions with traditional background jobs running on standard servers. Monthly infrastructure costs dropped by more than five thousand pounds. As a bonus, API performance improved by over twenty percent — no more cold-start latency.
 
 It wasn't enough to save the company. The energy crisis had broken too many of our customers, and no amount of technical improvement could fix that. But the serverless-to-boring transition bought us months of runway and proved the point: the "boring" solution was cheaper, faster, and more predictable.
 
+Three companies, three versions of the same mistake: choosing technology for what it promised rather than what it cost. But the alternative isn't standing still.
+
 ## What Actually Works
 
-I've been working with one client since 2016, helping them maintain their Rails applications. It's now been nine years. The platform was in critical condition when I started - two major Rails versions behind, running on legacy operating systems, manually provisioned servers.
+I've been working with one client since 2016, helping them maintain their Rails applications. It's now been nine years. The platform was in critical condition when I started — two major Rails versions behind, running on legacy operating systems, manually provisioned servers.
 
 We could have rewritten it. Many would have. Instead, we chose boring.
 
-Rails 3 to 4 to 5 to 6 to 7 to 8. Ruby 2 to 3.4. PostgreSQL 11 to 17 in a single two-hour downtime window, after years of careful preparation. Capistrano to Ansible to Kubernetes - each migration deliberate, each improvement incremental.
+Rails 3 to 4 to 5 to 6 to 7 to 8. Ruby 2 to 3.4. PostgreSQL 11 to 17 in a single two-hour downtime window, after years of careful preparation. Capistrano to Ansible to Kubernetes — each migration deliberate, each improvement incremental.
 
-When we did experiment - an Elixir service that made sense on paper - we were willing to pivot when it became unmaintainable. We rewrote it in Python, which was boring but worked.
+When we did experiment — an Elixir service that made sense on paper — we were willing to pivot when it became unmaintainable. We rewrote it in Python, which was boring but worked.
 
-Nine years later, the platform is modern, reliable, and maintainable. Not because we made dramatic changes, but because we made steady ones. The system can be maintained by any competent engineer - which is the hallmark of good architecture.
+Nine years later, the platform is modern, reliable, and maintainable. Not because we made dramatic changes, but because we made steady ones. The system can be maintained by any competent engineer — which is the hallmark of good architecture.
 
 At my current employer, I walked into a similar situation. The Rails monolith was considered "legacy." There were plans for a TypeScript rewrite. The application was slated for replacement.
 
-I'd done this before. I knew the monolith didn't need scrapping - it needed modernising.
+I'd done this before. I knew the monolith didn't need scrapping — it needed modernising.
 
 Rails 5.2 to 8.0. Ruby 2.7 to 3.4. We cancelled the risky rewrite and gained a thirty percent performance improvement instead. The platform went from "legacy liability" to "strategic asset" without a single line of TypeScript.
 
@@ -103,9 +107,7 @@ New technology is exciting. It scratches an itch. There's genuine satisfaction i
 
 But that satisfaction is personal. It's for you, the engineer. It's not necessarily for the business, or for the team that has to maintain what you build, or for the customers who just need the thing to work.
 
-## The Questions I Ask
-
-Before adopting something new, I ask:
+Before adopting something new, ask:
 
 What problem does this actually solve? Not what problem does it claim to solve. What specific problem, in this specific codebase, will this fix?
 

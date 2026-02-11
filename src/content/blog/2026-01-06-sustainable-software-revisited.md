@@ -14,7 +14,7 @@ In 2023, I wrote about [sustainable software](/blog/2023-10-12-sustainable-softw
 
 I wasn't wrong. But I wasn't complete either.
 
-Since then, I've watched a company fail despite having good engineering practices, a healthy team culture, and a product people genuinely wanted. They used Shape Up. They had lightweight processes. They did many things right.
+Since then, I've watched a company fail despite having good engineering practices, a healthy team culture, and a product people genuinely wanted. They used Shape Up, Basecamp's lightweight alternative to Scrum. They had no estimation theatre. They did many things right.
 
 None of it mattered, because the business underneath wasn't sustainable.
 
@@ -70,7 +70,7 @@ Real sustainability requires more:
 
 **Technical sustainability.** Can the code evolve without heroics? Are dependencies current? Is the architecture suited to where the business is going?
 
-Miss any one of these and you're building on sand.
+Miss any one of these and you're building on sand. Good process — even great process — only covers the last two.
 
 ## Process Can't Save You
 
@@ -80,7 +80,7 @@ The company that failed had Shape Up. They had lightweight processes, no estimat
 
 Process can't save you from unit economics that don't work. It can't save you from hidden costs nobody's watching. It can't save you from a market position that's about to become contested. It can't save you from external shocks that break your customers.
 
-You can do everything "right" from an engineering and process standpoint and still fail because the foundations aren't there.
+You can do everything "right" from an engineering and process standpoint and still fail because the foundations aren't there. Which raises the question: how do you know if the foundations are there?
 
 ## The Questions I Ask Now
 

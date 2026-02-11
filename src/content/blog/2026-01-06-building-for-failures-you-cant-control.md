@@ -39,6 +39,8 @@ The waiting room lesson came from painful experience. If tickets go on sale at 9
 
 These patterns aren't sophisticated. Caching, queuing, rate limiting - they're standard tools. But they exist because some failures are inevitable, and your job is to absorb them gracefully rather than passing them through to users.
 
+The buffers protected users from failures we couldn't prevent. But building them required learning hard lessons about our own foundations too.
+
 ## Learning What You Don't Know
 
 The ticketing platform was built on Symfony 2.0 alpha.
@@ -47,13 +49,15 @@ This was a mistake. Alpha software is unstable by definition - APIs change, bugs
 
 When you're building on shifting foundations, you learn the value of tests. Not because testing is virtuous, but because it's survival. When the framework underneath you changes, tests are how you find out what broke. Without them, you're discovering problems in production, during an on-sale, with thousands of people waiting.
 
-There were other technical challenges that 2012 made harder than it would be today. Our ticketing widget had to be embedded seamlessly inside client websites via iframes. Cross-origin requests were painful - this was before CORS was well-supported everywhere, and making an iframe communicate with its parent page across different domains required ugly workarounds. Today's browsers and standards make this almost trivial. Back then, it was a source of constant debugging.
+There were other challenges that 2012 made harder: embedding our ticketing widget inside client websites via iframes meant fighting cross-origin restrictions that today's browsers handle trivially. Back then, it was a source of constant debugging.
 
 Load testing became essential too. You can't wait until the actual on-sale to find out whether your system handles the traffic. We'd simulate thousands of concurrent users hammering the system, looking for bottlenecks, race conditions, memory leaks that only appeared under pressure.
 
 Load testing also revealed where Tessitura would fail - which helped us understand what caching and queueing we needed, even though we couldn't fix the underlying problem.
 
 These weren't lessons I learned from books. I learned them from systems falling over when they shouldn't have, from debugging production issues that tests would have caught, from on-sales that nearly failed because we didn't know what we didn't know.
+
+Technical resilience was one challenge. The economics of unpredictable demand were another.
 
 ## The Economics of Unpredictability
 
@@ -68,6 +72,8 @@ We'd quote for a certain scale. If the client said "moderately popular," we'd pr
 In the moment, there's no choice. You can't let the on-sale fail while you negotiate a contract amendment. You scale up, save the customer experience, and have the difficult conversation about overages later.
 
 We built in contingency, but it was always a gamble. Price too high and you lose the work. Price too low and you absorb the cost when demand exceeds expectations. There's no formula for predicting which shows will be unexpectedly popular.
+
+Unpredictable demand was a business problem. But the manual scaling it required created an operational one.
 
 ## The Human Error Tax
 
@@ -84,6 +90,8 @@ The ops lead got a severe bollocking. But nothing systemic changed, because noth
 This is the argument for automation that has nothing to do with elegance or best practices. It's pure economics. One forgotten downscale costs more than building the automation. But in 2012, the automation we needed wasn't quite there yet.
 
 Today, you'd set a scaling policy and the infrastructure would handle it. Back then, someone had to run a script and remember.
+
+The £8,000 bill was a one-off. The 3am phone calls were a constant.
 
 ## The 3am Cost
 

@@ -99,11 +99,7 @@ Same time (or more): deciding what to build, choosing appropriate patterns over 
 
 The coding is fast. The decisions are still yours.
 
-## The Result
-
 Shelved is live and I'm using it daily. My books are finally tracked. The spreadsheet is gone.
-
-Next up: series support, more edge case handling, and whatever I discover is missing the next time I scan a book and something doesn't quite work.
 
 Would I build this way again? Absolutely. But I'd go in knowing that "AI makes it fast" really means "AI makes the typing fast." The thinking still takes exactly as long as it needs to.
 

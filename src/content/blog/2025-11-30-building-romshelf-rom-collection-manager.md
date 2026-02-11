@@ -35,6 +35,8 @@ Three major standards dominate, each with different philosophies:
 
 Here's the complication: DAT files themselves have versions. TOSEC 2024-01-01 might list different files than TOSEC 2023-06-15. Collectors often need to verify against *specific* historical versions, not just the latest. Building a tool that understands this versioning isn't optional - it's fundamental to how the community operates.
 
+DAT files define what a correct collection looks like. But how those files are physically stored adds another layer of complexity.
+
 ## Archive Complexity
 
 ROMs don't just sit as loose files. They live in archives - ZIP files, 7z files, sometimes nested inside other archives.
@@ -63,6 +65,8 @@ With the domain understood, I needed to choose a stack. The options:
 
 The honest confession: I'm not a Rust expert. Claude Code is doing the heavy lifting on implementation. But Rust's strengths - memory safety, fearless concurrency, excellent tooling - still apply even when an AI is writing most of the code. And I'm using this codebase to actually learn the language properly. Claude got it working; now I need to understand *why* it works.
 
+Choosing Rust wasn't about fashion. It was about the core technical challenge the tool needed to solve.
+
 ## Multi-Threaded Scanning
 
 The core technical challenge: scanning thousands of files, many in archives, often over network storage.
@@ -79,6 +83,8 @@ The solution is parallelism at multiple levels:
 
 The result: 130+ files per second over network storage, 100+ files per second for archived content. Real-time progress reporting keeps the Svelte UI updated via Tauri events.
 
+The scanning architecture is working. Here's where the project stands.
+
 ## Where It's At Now
 
 Two milestones complete:
@@ -91,29 +97,15 @@ Two milestones complete:
 
 The Svelte UI exists and shows real-time scan progress. The SQLite database persists ROM metadata between sessions. Eleven tests pass. It's a real, working tool - just not yet the complete tool I'm building toward.
 
-## What's Next
-
-The immediate roadmap:
-
-- **DAT parsing** for TOSEC, No-Intro, and eventually MAME formats
-- **Verification workflows** - scan against DAT, report matches and mismatches
-- **Audit mode** - what's in my collection, what's missing, what's unverified
-- **TorrentZip support** - both reading and creating deterministic archives
-- **BOM handling** - some DAT files have byte-order marks that trip up parsers
-
-Longer term, I want emulator integration (launch a verified ROM directly), save state management, and proper macOS integration (Quick Look previews, Spotlight indexing).
-
-And personally: actually learning Rust. Reading the code Claude generates, understanding the ownership model, writing tests myself, eventually contributing code directly rather than just directing. The codebase is a learning vehicle as much as a product.
-
 ## The Point
 
 The best tools are built by people who understand the problem.
 
-The technical challenges in Romshelf - parallel scanning, archive handling, hash verification - are solvable by anyone with sufficient engineering ability. What's harder to acquire is the domain knowledge: why DAT versioning matters, what TorrentZip is for, how TOSEC naming conventions encode metadata, why collectors care about the difference between No-Intro and TOSEC philosophies.
+The technical challenges in Romshelf — parallel scanning, archive handling, hash verification — are solvable by anyone with sufficient engineering ability. What's harder to acquire is the domain knowledge: why DAT versioning matters, what TorrentZip is for, how TOSEC naming conventions encode metadata, why collectors care about the difference between No-Intro and TOSEC philosophies.
 
 I've been collecting ROMs for decades. The design decisions in Romshelf aren't coming from tutorials or Stack Overflow answers. They're coming from years of manually organising files, fighting with ClrMamePro's interface, wishing something better existed for my Mac.
 
-Now I'm building it. The tool I always wanted - and learning Rust along the way.
+Now I'm building it. Next up: DAT parsing and verification workflows, then emulator integration and proper macOS support. And along the way, actually learning Rust — reading the code Claude generates, understanding the ownership model, eventually writing it myself.
 
 ---
 

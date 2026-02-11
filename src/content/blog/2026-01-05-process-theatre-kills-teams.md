@@ -26,11 +26,7 @@ It took me years to realise: this is process theatre. And it's killing teams eve
 
 ## Learning What "Agile" Meant
 
-My first proper development job after university was at a small web agency. We didn't have process - we had FTP and hope. No version control. Deploying to production meant uploading files and crossing your fingers. In 2006, that was still common.
-
-When I moved to an ecommerce company, I encountered Agile for the first time. Or rather, I encountered Scrum, which everyone called Agile. We had sprints and standups and retrospectives. We estimated in story points. We had a Scrum Master.
-
-At the time, it felt revolutionary. Structure! Planning! A way to know what everyone was working on! After the chaos of the agency, it seemed like a massive improvement.
+My first development job was at a web agency with no process at all — FTP and hope. When I moved to an ecommerce company, I encountered Scrum for the first time. Sprints, standups, retrospectives, story points, a Scrum Master. After the chaos of the agency, it felt revolutionary.
 
 It took longer to notice the dysfunction.
 
@@ -40,9 +36,11 @@ We were doing all the ceremonies. We were hitting our velocity targets. We were 
 
 We also shipped three concurrent versions of the application because nobody could agree on which one to finish, and eventually the global financial crisis put the company out of business before we resolved it.
 
+That experience felt isolated at the time. It took working in more companies to see it as a pattern — and to recognise where the pattern came from.
+
 ## The Cargo Cult
 
-The Agile Manifesto was a reaction against heavyweight processes like PRINCE2. I've worked in PRINCE2 environments. The paperwork was extraordinary. Entire weeks could be spent producing documents that nobody would ever read. Gantt charts. Risk registers. Change requests in triplicate.
+The Agile Manifesto was a reaction against heavyweight processes like PRINCE2, the UK government's project management framework. I've worked in PRINCE2 environments. The paperwork was extraordinary. Entire weeks could be spent producing documents that nobody would ever read. Gantt charts. Risk registers. Change requests in triplicate.
 
 Agile was supposed to fix this. Individuals and interactions over processes and tools. Working software over comprehensive documentation. Responding to change over following a plan.
 
@@ -52,11 +50,13 @@ The irony is painful. We escaped one set of rituals by adopting another. The mee
 
 And then there's the cargo culting. Taking practices from companies that operate at completely different scales and applying them blindly.
 
-At a climate tech startup, the incoming CTO mandated we use Gerrit with five-line commit limits. That's how his SRE team at Google had done it, he explained. Small, focused changes. Easy to review.
+At a climate tech startup, the incoming CTO mandated we use Gerrit, Google's code review tool, with five-line commit limits. That's how his SRE team at Google had done it, he explained. Small, focused changes. Easy to review.
 
-In practice, it made it impossible to see the direction of anyone's work. You couldn't understand a feature by reading the commits - there were too many, each one meaningless in isolation. You couldn't review a pull request without losing the thread. The process that was supposed to improve code quality made everything worse, because nobody could see what was actually happening.
+In practice, it made it impossible to see the direction of anyone's work. You couldn't understand a feature by reading the commits — there were too many, each one meaningless in isolation. You couldn't review a pull request without losing the thread. The process that was supposed to improve code quality made everything worse, because nobody could see what was actually happening.
 
-He'd taken a practice that made sense for a specific context - massive-scale infrastructure with thousands of engineers - and applied it to a startup of twelve people. Classic cargo cult: copying the rituals without understanding why they existed.
+He'd taken a practice that made sense for a specific context — massive-scale infrastructure with thousands of engineers — and applied it to a startup of twelve people. Classic cargo cult: copying the rituals without understanding why they existed.
+
+Cargo culting is embarrassing, but the real damage comes when process theatre scales up.
 
 ## The Real Cost
 
@@ -68,21 +68,23 @@ By the time I left, the company had contracted to twelve engineers. But the org 
 
 The standups continued. The sprint ceremonies continued. The estimation sessions continued. All for a team that was now small enough to just talk to each other. But nobody questioned the process. It was just how things were done.
 
-Meanwhile, the actual work - maintaining 120 microservices across customer-owned Kubernetes clusters - was drowning in the overhead. Engineers spent more time in meetings about the work than doing the work.
+Meanwhile, the actual work — maintaining 120 microservices across customer-owned Kubernetes clusters — was drowning in the overhead. Engineers spent more time in meetings about the work than doing the work.
 
 Process theatre doesn't just waste time. It actively damages teams.
 
-It drives out your best people. Good engineers want to solve problems. When they spend more time in meetings than writing code, they leave. They don't leave for companies with better processes - they leave for companies with fewer processes.
+It drives out your best people. Good engineers want to solve problems. When they spend more time in meetings than writing code, they leave. They don't leave for companies with better processes — they leave for companies with fewer processes.
 
-It creates learned helplessness. When engineers realise their estimates don't matter, that the plan will change anyway, that the retrospective won't fix anything - they stop trying. They show up, go through the motions, and save their energy for things they can actually influence.
+It creates learned helplessness. When engineers realise their estimates don't matter, that the plan will change anyway, that the retrospective won't fix anything — they stop trying. They show up, go through the motions, and save their energy for things they can actually influence.
 
 It optimises for the wrong things. Velocity becomes a target rather than a measure. Story points get inflated. Work gets broken into smaller tickets not because it's useful, but because more tickets completed looks better in the charts.
+
+If process theatre is the disease, what does health look like?
 
 ## What Actually Works
 
 The best teams I've worked on had almost no process at all.
 
-At my current employer, we restarted monthly "Shop Talks" where engineers present on topics that interest them - Rails improvements, Elixir experiments, AI tools, personal projects. No tickets. No story points. Just engineers sharing knowledge because they want to.
+At my current employer, we restarted monthly "Shop Talks" where engineers present on topics that interest them — Rails improvements, Elixir experiments, AI tools, personal projects. No tickets. No story points. Just engineers sharing knowledge because they want to.
 
 With a freelance client I've worked with for nine years, we've never had formal sprints or standups. I work roughly twenty hours a week, autonomously, on whatever needs doing. We have a shared understanding of priorities. When something's blocked or needs discussion, we talk. When it doesn't, we don't.
 
@@ -98,7 +100,7 @@ The patterns are consistent:
 
 **Small teams.** Five or six people who communicate naturally because they're actually working together. No ceremonies needed to force information sharing.
 
-Shape Up, Basecamp's approach, gets this right. Six-week cycles with real autonomy. No daily standups, no story points, no estimation theatre. Just a clear appetite for how much time something is worth, and trust that the team will figure it out.
+Shape Up — Basecamp's alternative to Scrum — gets this right. Six-week cycles with real autonomy. No daily standups, no story points, no estimation theatre. Just a clear appetite for how much time something is worth, and trust that the team will figure it out.
 
 ## Breaking Free
 

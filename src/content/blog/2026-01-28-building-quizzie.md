@@ -22,6 +22,8 @@ That's it.
 
 I could have reached for Next.js and Socket.io and a database. I briefly considered Elixir and Phoenix LiveView - it's genuinely excellent for real-time features, and I've enjoyed using it before. But I needed something that worked this week, something I could deploy and forget about. Express is boring. I know it inside out. Boring technology wins.
 
+That simplicity meant the entire system fit in my head — which mattered when the first real deployment broke things.
+
 ## How It Works
 
 The presenter opens a URL with a secret key, sees a QR code, and starts the quiz. Attendees scan the QR code on their phones and get a voting interface. When the presenter closes voting, animated bar charts reveal the results. Explanations can be shown between questions. At the end, everyone sees their personal score.
@@ -29,6 +31,8 @@ The presenter opens a URL with a secret key, sees a QR code, and starts the quiz
 For real-time updates, I used Server-Sent Events. SSE is beautifully simple: it's just HTTP that doesn't close. The browser opens a connection, the server sends events down it, and the browser automatically reconnects if it drops. No WebSocket handshakes, no Socket.io abstraction layer, no protocol upgrades.
 
 State lives in memory, persisted to a JSON file on disk. That's sufficient for a quiz - if the server restarts, you lose the current session's votes, but that's an acceptable trade-off for simplicity.
+
+The architecture worked perfectly in testing. The first corporate deployment told a different story.
 
 ## Corporate Networks Fight Everything
 
@@ -61,6 +65,8 @@ const connectionTimeout = setTimeout(() => {
 
 This is the kind of code that doesn't feel clever. There's no elegant abstraction, no unified streaming interface that handles both cases transparently. It's just a timeout and an if statement. But it solved the actual problem: the training session couldn't run because the corporate laptop blocked modern web features.
 
+The polling fallback solved the corporate network problem. Deploying to Render's free tier created a different one.
+
 ## Render's Free Tier
 
 I deployed to Render because it's free and handles Node apps without configuration. The trade-off: free tier services spin down after fifteen minutes of inactivity. When someone visits a sleeping app, they wait thirty to sixty seconds for the container to start.
@@ -69,13 +75,9 @@ The fix here was also simple: show "Connecting to server..." immediately, with a
 
 Again, not elegant. But it addressed the actual user experience problem without requiring a paid tier.
 
-## What I'd Do Differently
-
-Probably nothing structural. The boring choices - vanilla JS, one server file, JSON on disk - mean I can understand the entire system at a glance. When a bug gets reported, I can usually find and fix it in minutes.
-
-If I were building this for thousands of concurrent users, I'd need a real database and horizontal scaling. But I'm not. I'm building for a training room of twenty people with phones. The architecture matches the actual requirements.
-
 ## The Lesson
+
+I wouldn't change anything structural. The boring choices — vanilla JS, one server file, JSON on disk — mean I can understand the entire system at a glance. When a bug gets reported, I can usually find and fix it in minutes. If I were building for thousands of concurrent users, I'd need a real database and horizontal scaling. But I'm not. I'm building for a training room of twenty people with phones. The architecture matches the actual requirements.
 
 Every feature in Quizzie started with a real problem:
 

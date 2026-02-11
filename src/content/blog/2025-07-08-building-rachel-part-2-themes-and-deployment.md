@@ -15,6 +15,8 @@ series:
   part: 2
 ---
 
+*Update: Rachel has since been rebuilt as a native iOS app using Swift and SpriteKit. This post describes the original Phoenix LiveView version, which is no longer active.*
+
 In [Part 1](/blog/2025-07-03-building-rachel-part-1/), I covered building the core game engine for Rachel, my Phoenix LiveView card game. Today, I'm excited to share how we transformed it from a functional game into a production-ready application with a stunning theme system that's now live at [rachel.stevehill.xyz](https://rachel.stevehill.xyz).
 
 *Note: This development was done in collaboration with Claude (Anthropic's AI assistant), who provided crucial guidance on CSS architecture, security best practices, and production deployment strategies.*

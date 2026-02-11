@@ -13,6 +13,8 @@ series:
   part: 1
 ---
 
+*Update: Rachel has since been rebuilt as a native iOS app using Swift and SpriteKit. This post describes the original Phoenix LiveView version, which is no longer active. The game rules and family tradition are the same — the technology changed.*
+
 For over 30 years, my friends and I have been playing a card game we call "Rachel." It's a fast-paced, strategic game with unique rules that create intense, unpredictable gameplay. Recently, I decided to bring this beloved tradition into the digital age using Phoenix LiveView.
 
 *Note: This project was built in collaboration with Claude (Anthropic's AI assistant), who provided architectural guidance, code suggestions, and helped accelerate the development process significantly. The game concept and family tradition are mine, but the technical implementation benefited greatly from AI-assisted development.*

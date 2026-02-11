@@ -1,32 +1,35 @@
 # SteveHillXYZ
 
-Personal Astro website with blog and projects showcase.
+Personal Astro site. Blog + projects showcase. Deployed to GitHub Pages.
 
-## Tech Stack
-- Astro 4+ static site generator
-- TypeScript/JavaScript
-- Tailwind CSS
-- Content collections for blog + projects
-
-## Quick Commands
+## Commands
 ```bash
-npm run dev                 # Dev server (port 4321)
-npm run build               # Build for production
-npm run preview             # Preview production build
+npm run dev      # Dev server (port 4321)
+npm run build    # Production build
 ```
 
-## Deployment
-Publishing is automatic via GitHub Actions CI when pushing to main. Do not run `npm run deploy` manually.
+## Rules
+- **Never run `npm run deploy`** — CI handles deployment on push to main
+- Blog posts go in `src/content/blog/` (markdown + frontmatter)
+- Projects go in `src/content/projects/`
 
-## Content Structure
-- `src/content/blog/` - Blog posts (markdown with frontmatter)
-- `src/content/projects/` - Project descriptions with metadata
-- `src/components/` - Reusable Astro components
-- `src/layouts/BaseLayout.astro` - Main layout with SEO
+## Content Frontmatter
 
-## Features
-- Blog with tags, reading time estimates, chronological sorting
-- Projects showcase with GitHub integration
-- RSS feed, sitemap, Open Graph meta tags
-- Code syntax highlighting with Shiki
-- Deployed to GitHub Pages
+```yaml
+# Blog post
+title: "Post Title"
+description: "Brief description"
+pubDate: 2026-01-29
+tags: ["tag1", "tag2"]
+
+# Project
+title: "Project Name"
+description: "What it does"
+github: "username/repo"  # Optional
+url: "https://..."       # Optional
+```
+
+## Astro Patterns
+- Layouts: `src/layouts/BaseLayout.astro` (has SEO meta)
+- Dynamic routes: `[slug].astro` files use `getStaticPaths()`
+- Images: Put in `public/` or use Astro's image optimization

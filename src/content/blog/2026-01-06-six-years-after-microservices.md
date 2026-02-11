@@ -31,9 +31,9 @@ What the theory doesn't mention is where the complexity goes. It doesn't disappe
 
 **Debugging.** In a monolith, you grep the logs, set a breakpoint, step through. In 120 microservices, you're correlating request IDs across dozens of logging systems, reconstructing a call graph in your head, hoping everyone implemented tracing consistently. A bug that would take an hour to find in a monolith can take days when it spans twelve services.
 
-**Observability costs.** You can't debug what you can't see. So you pay an APM provider - tens of thousands per month - just to understand your own system. It's a tax that never appears in the "should we adopt microservices" spreadsheet, but it's enormous. And you can't not pay it, because the alternative is flying blind.
+**Observability costs.** You can't debug what you can't see. So you pay an observability provider - tens of thousands per month - just to understand your own system. It's a tax that never appears in the "should we adopt microservices" spreadsheet, but it's enormous. And you can't not pay it, because the alternative is flying blind.
 
-**YAML.** Helm charts. Kustomize overlays. CI/CD pipelines per service. Ingress configurations. Each abstraction layer exists because the previous layer was too complicated. But abstraction isn't simplification - it's just hiding complexity behind another door. Someone still has to understand how it all ties together.
+**YAML.** Kubernetes deployment configurations — Helm charts, Kustomize overlays, ingress rules — each an abstraction layer on top of the previous one, plus CI/CD pipelines per service. Abstraction isn't simplification; it's just hiding complexity behind another door. Someone still has to understand how it all ties together.
 
 The promise was that development would be easier. And maybe it was, for some definition of "development" that stops when you merge your PR. But someone has to run these services. Someone has to debug them at 3am. Someone has to keep 120 sets of dependencies current.
 
@@ -48,6 +48,8 @@ He never had to debug a production incident across twelve services. Never had to
 This is the broken feedback loop at the heart of many microservices adoptions. The decision-maker is insulated from the costs of the decision. By the time those costs become undeniable, it's an "execution problem, not an architecture problem."
 
 The people who choose microservices are often not the people who have to operate them. Development and operations remain separate in practice, whatever the DevOps manifesto says. And when the architects don't feel the operational pain, the architecture doesn't evolve to reduce it.
+
+The architecture stayed frozen while the architects stayed insulated. Then the context it was built for disappeared entirely.
 
 ## When Context Changes
 

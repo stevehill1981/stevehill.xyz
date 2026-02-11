@@ -17,7 +17,7 @@ Then I read [pavi2410's blog post](https://pavi2410.com/blog/high-performance-sy
 
 I wondered: could this work with Shiki? And could Claude Code build it for me?
 
-Spoiler: yes, but not before teaching me that 'vibe coding' without a proper development workflow will absolutely bite you.
+Yes, but not before teaching me that 'vibe coding' without a proper development workflow will absolutely bite you.
 
 ## What is CSS Custom Highlights API?
 
@@ -68,7 +68,7 @@ The performance difference is dramatic. One text node instead of hundreds of ele
 
 ## The Build: Two Packages
 
-Working with Claude Code, we (that's me directing, Claude Code implementing) built two packages.
+Working with Claude Code, we built two packages.
 
 **First: `shiki-highlight-api`** — the core library that takes Shiki's tokens and generates:
 - Clean HTML with single text nodes per line
@@ -98,7 +98,7 @@ And the code blocks? Completely unstyled. No syntax highlighting at all, despite
 
 At this point, I realized the real problem: my workflow. I'd been publishing to npm, installing on my site, discovering issues, then repeating the cycle. Vibe coding with Claude Code worked fine—I just needed a better feedback loop to ask the right questions in the right way.
 
-## The Fix: Local Development Loop
+## Fixing the Feedback Loop
 
 The solution wasn't fixing the code immediately—it was fixing how I worked with the code. I needed to test changes instantly without the publish-install-test cycle.
 
@@ -125,7 +125,7 @@ With this setup, we could actually debug the Range API errors. Add a console.log
 
 This is the lesson: when working with AI to build software, the speed of your feedback loop determines the quality of your questions. Fast iteration meant I could quickly validate hypotheses with Claude Code and see if the fixes actually worked.
 
-## The Fix: The Technical Solution
+## The Actual Bug
 
 With the fast feedback loop in place, we could actually investigate the errors. The problem became clear: empty lines.
 
@@ -186,15 +186,9 @@ The result? Zero errors. Six code blocks on the test page, all properly highligh
 
 ## The Result: Published and Working
 
-Published as `shiki-highlight-api` v1.0.2 and `remark-shiki-highlight-api` v0.3.4, these packages now work exactly as intended. This site you're reading uses them. Code Like It's 198x will use them soon. The performance gains are real: 87% fewer DOM nodes, cleaner HTML, faster rendering.
+Published as `shiki-highlight-api` v1.0.2 and `remark-shiki-highlight-api` v0.3.4, these packages now work as intended. This site uses them. Code Like It's 198x will use them soon. The performance gains are real: 87% fewer DOM nodes, cleaner HTML, faster rendering.
 
-But the real story isn't about CSS Custom Highlights API or Shiki integration. It's about workflow.
-
-'Vibe coding' with Claude Code got me 90% of the way there—the packages were conceptually correct, the architecture sound, the implementation mostly right. But that last 10% required a tight feedback loop. Publishing to npm, installing, and testing is fine for stable code. It's terrible for debugging cutting-edge browser APIs with subtle edge cases.
-
-The `npm link` setup wasn't glamorous. It didn't feel like progress. But it was the difference between frustrating hours of blind iteration and quick, confident debugging. Fast feedback meant I could ask Claude Code better questions: "Why would Range creation fail on empty lines?" instead of "Why doesn't this work?"
-
-If you're working with AI to build software—or honestly, building anything complex—invest in your development workflow first. The faster you can test hypotheses, the better your results will be.
+But the real lesson isn't about CSS Custom Highlights API or Shiki integration. It's about workflow. If you're building anything complex — with AI or without — invest in your development feedback loop first. The faster you can test hypotheses, the better your results will be.
 
 ## Try It Yourself
 

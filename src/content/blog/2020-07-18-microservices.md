@@ -23,32 +23,34 @@ operational overhead, but that's ok, right?
 
 <!--more-->
 
-I was only half-joking the other day when I told a colleague that I could measure my seniority as a
-developer by an increase in the number of times my answer to a question was "it depends". This is another
-of those situations.
-
-Whether microservices are beneficial or not depends on many factors:
+Whether microservices are beneficial depends on your organisation's maturity:
 
   * Does your organisation value code quality?
   * Do your developers write tests to prove that the code they're writing works as expected?
   * Do you have comprehensive monitoring of your production environment?
   * Does your ops team have capacity to support running dozens of new services?
-  
-If you can't answer "yes" to all of these questions, then you might want to reconsider.
+
+If you can't answer "yes" to all of these questions, then you might want to reconsider. Most organisations I've seen adopt microservices couldn't.
+
+## When Monoliths Go Wrong
 
 I've often seen microservices being adopted when an existing legacy monolith becomes too hard to maintain,
 usually because of an underinvestment in quality and testing, or because senior team members have moved on
 to pastures new and nobody left at the company fully understands how the system works.
 
-Let's be clear - these are terrible reasons to make the change. If you don't understand how your current
+Let's be clear — these are terrible reasons to make the change. If you don't understand how your current
 system works, how could you ever hope to extract it into separate services? And if you don't have a pretty
 comprehensive test suite, how do you know your system is even working in the way you think it does?
 
-And if you push ahead anyway, well... good luck. Now, instead of a single codebase fully of slightly
+And if you push ahead anyway, well... good luck. Now, instead of a single codebase full of slightly
 broken code, you have dozens or hundreds of codebases full of slightly broken code, each of which probably
 has hidden, undocumented dependencies on at least one other microservice, if not _many_.
 
-As a bonus, now each of your developers needs to be able to spin up a significant proportion of your
+The broken code is bad enough. The operational costs are worse.
+
+## The Hidden Costs
+
+Now each of your developers needs to be able to spin up a significant proportion of your
 production infrastructure on their workstations in order to be able to make a change to any single part of
 your system. You can't easily run a full end-to-end test, partly because running the entire application is
 so heavy, and partly because each of your services now interacts in subtle ways that are hard to monitor;
@@ -58,23 +60,25 @@ Oh, by the way: someone in another team changed that other service last week, in
 their test suite didn't pick up (assuming they have one), and now your service is broken too and you don't
 know why.
 
-You probably need more developers now too - at least twice as many - because now you have to try to keep
+You probably need more developers now too — at least twice as many — because now you have to try to keep
 all of these various services in sync with each other, and you can't make as much progress as you thought
 because every new feature requires changes that cascade through dozens of other services, and each of those
 other services needs to be released in the right order so that your entire production stack doesn't fall
 over.
 
-Microservices, simply put, are a solution to a problem that the majority of organisations simply do not
-have - how to ship working software when you have tens of thousands of engineers beavering away at the same
-time. If you're not operating at the scale of somewhere like Google, Facebook or Netflix, chances are good
-that you don't need to adopt a microservice architecture.
+All of this raises the question: who are microservices actually for?
+
+## The Scale Question
+
+Microservices are a solution to a problem that most organisations don't have — how to ship working software when you have tens of thousands of engineers working at the same time. If you're not operating at the scale of somewhere like Google, Facebook or Netflix, chances are good
+that you don't need a microservice architecture.
 
 There are, of course, ways to mitigate against most of the problems above, and microservices done well can
 be hugely beneficial. I've just seen enough instances where the transition has been a complete nightmare
 to be wary of yet another silver bullet. A monorepo is not the answer, either.
 
 My advice: stick with a monolith until you have no choice but to extract functionality. Even then, don't
-go whole hog - slice off a small piece of your system at a time, and iterate until you find the right
+go whole hog — slice off a small piece of your system at a time, and iterate until you find the right
 balance.
 
 There's always going to be complexity somewhere; when evaluating whether to make a move towards microservices,
