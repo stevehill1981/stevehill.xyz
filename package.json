@@ -15,7 +15,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.16.9",
     "remark-shiki-highlight-api": "^0.3.6",
-    "simple-icons": "^16.6.0",
+    "simple-icons": "^16.9.0",
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
