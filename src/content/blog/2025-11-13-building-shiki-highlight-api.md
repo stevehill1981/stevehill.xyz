@@ -11,7 +11,7 @@ tags:
   - project-showcase
 ---
 
-My retro computing learning platform, [Code Like It's 198x](https://code198x.stevehill.xyz), has a problem: pages with thousands of lines of Z80 assembly or Sinclair BASIC code. Traditional syntax highlighting wraps every token in a `<span>` element—that's tens of thousands of DOM nodes per page. The browser struggles.
+My retro computing learning platform, [Code Like It's 198x](https://www.code198x.com), has a problem: pages with thousands of lines of Z80 assembly or Sinclair BASIC code. Traditional syntax highlighting wraps every token in a `<span>` element—that's tens of thousands of DOM nodes per page. The browser struggles.
 
 Then I read [pavi2410's blog post](https://pavi2410.com/blog/high-performance-syntax-highlighting-with-css-highlights-api/) about CSS Custom Highlights API. The performance claims were compelling: 87% fewer DOM nodes, single text nodes, browser-optimized rendering. They'd left the tokenization step open: "use your lexer of choice."
 

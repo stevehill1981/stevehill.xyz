@@ -4,7 +4,7 @@ description: "Learn assembly programming by building complete retro games on C64
 featured: true
 technologies: ["Astro", "Docker", "Assembly", "Emulation"]
 status: "Active"
-demo: "https://code198x.stevehill.xyz"
+demo: "https://www.code198x.com"
 github: "https://github.com/code198x"
 priority: 3
 year: 2024

@@ -18,7 +18,7 @@ status: "Published"
 year: 2025
 ---
 
-A modern approach to syntax highlighting that leverages the CSS Highlights API to achieve dramatically better performance than traditional span-based highlighting. Created for [Code Like It's 198x](https://code198x.stevehill.xyz) to handle large code examples efficiently.
+A modern approach to syntax highlighting that leverages the CSS Highlights API to achieve dramatically better performance than traditional span-based highlighting. Created for [Code Like It's 198x](https://www.code198x.com) to handle large code examples efficiently.
 
 ## 🚀 The Problem
 

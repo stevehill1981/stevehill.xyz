@@ -75,4 +75,4 @@ Real artists ship. And finally, I have.
 
 ---
 
-*[Code Like It's 198x](https://code198x.stevehill.xyz) teaches assembly programming through game development. [Rachel](https://rachel.stevehill.xyz) is a strategic card game for iOS. [Chaotic Tanx](https://chaotictanx.stevehill.xyz) is an artillery game in TestFlight beta.*
+*[Code Like It's 198x](https://www.code198x.com) teaches assembly programming through game development. [Rachel](https://rachel.stevehill.xyz) is a strategic card game for iOS. [Chaotic Tanx](https://chaotictanx.stevehill.xyz) is an artillery game in TestFlight beta.*

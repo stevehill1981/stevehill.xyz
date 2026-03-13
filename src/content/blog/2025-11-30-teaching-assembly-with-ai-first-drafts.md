@@ -13,7 +13,7 @@ tags:
 
 The assembly programming resources I wanted didn't exist. Reference manuals and scattered tutorials, sure — but nothing that teaches through building complete games with modern tooling while respecting the authentic constraints of the hardware.
 
-So I'm building it. [Code Like It's 198x](https://code198x.stevehill.xyz) teaches assembly programming on the Commodore 64, ZX Spectrum, NES, and Amiga. AI generates the first drafts. Authentic assemblers from the era validate every code sample. I'll rewrite every lesson for accuracy and voice. That's the process, honestly stated.
+So I'm building it. [Code Like It's 198x](https://www.code198x.com) teaches assembly programming on the Commodore 64, ZX Spectrum, NES, and Amiga. AI generates the first drafts. Authentic assemblers from the era validate every code sample. I'll rewrite every lesson for accuracy and voice. That's the process, honestly stated.
 
 Let me address the obvious question first, and then explain why this is worth doing.
 
@@ -81,4 +81,4 @@ What I have is thirty years of software engineering, machines I grew up with and
 
 ---
 
-*Code Like It's 198x is live at [code198x.stevehill.xyz](https://code198x.stevehill.xyz). The project is open source at [github.com/code198x](https://github.com/code198x).*
+*Code Like It's 198x is live at [www.code198x.com](https://www.code198x.com). The project is open source at [github.com/code198x](https://github.com/code198x).*

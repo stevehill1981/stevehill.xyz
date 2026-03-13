@@ -38,7 +38,7 @@ This plugin uses the CSS Highlights API instead, achieving **90%+ fewer DOM node
 
 - **Documentation sites** with extensive code examples
 - **Technical blogs** built with Astro, Next.js, or Gatsby
-- **Tutorial platforms** like [Code Like It's 198x](https://code198x.stevehill.xyz)
+- **Tutorial platforms** like [Code Like It's 198x](https://www.code198x.com)
 - **MDX-based sites** needing performant syntax highlighting
 - Any Markdown workflow where **performance matters**
 
@@ -302,7 +302,7 @@ For faster builds, only load languages you actually use:
 ## 📚 Real-World Usage
 
 This plugin powers syntax highlighting on:
-- [Code Like It's 198x](https://code198x.stevehill.xyz) - Retro programming tutorials
+- [Code Like It's 198x](https://www.code198x.com) - Retro programming tutorials
 - This very website - All code examples on stevehill.xyz
 
 ## 🔮 Roadmap
