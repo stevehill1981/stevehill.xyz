@@ -33,3 +33,7 @@ url: "https://..."       # Optional
 - Layouts: `src/layouts/BaseLayout.astro` (has SEO meta)
 - Dynamic routes: `[slug].astro` files use `getStaticPaths()`
 - Images: Put in `public/` or use Astro's image optimization
+
+## Knowledge
+
+Knowledge layer at `knowledge/` (decisions in `knowledge/decisions/`, index at `knowledge/index.md`). The SessionStart hook surfaces this content automatically. See [[project-knowledge-layer]] for capture conventions and [[kb-architecture]] for the three-layer model.
