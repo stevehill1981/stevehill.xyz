@@ -1,7 +1,6 @@
 ---
 title: "Building Four Emulators Without Writing a Line of Rust"
 pubDate: 2026-03-13
-draft: true
 excerpt: "I needed emulators that could script input and capture screenshots on demand. Nothing on the market did that. So I built four of them with AI — in a language I don't know — guided by decades of knowing what correct looks like."
 tags:
   - development

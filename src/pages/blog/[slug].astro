@@ -9,7 +9,7 @@ import { getRelatedPosts } from '../../utils/relatedPosts.js';
 import { getSeriesPosts, getSeriesNavigation } from '../../utils/series.js';
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
+  const blogEntries = await getCollection('blog', ({ data }) => data.draft !== true);
   const sortedEntries = blogEntries.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   return sortedEntries.map((entry, index) => {

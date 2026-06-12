@@ -1,7 +1,6 @@
 ---
 title: "Guardrails, Not Fewer Problems"
 pubDate: 2026-06-12
-draft: true
 excerpt: "When someone proposed replacing the Kubernetes platform I'd built with something simpler, I didn't argue in meetings. I wrote 60 pages. The argument that won wasn't about features — it was about what happens when things go wrong."
 tags:
   - architecture

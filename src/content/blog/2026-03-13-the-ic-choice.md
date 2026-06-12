@@ -1,7 +1,6 @@
 ---
 title: "The IC Choice"
 pubDate: 2026-03-13
-draft: true
 excerpt: "After twenty years, people assume you either moved into management or failed to. There's a third option: you chose not to, because that's not where you have the most impact."
 tags:
   - engineering-leadership

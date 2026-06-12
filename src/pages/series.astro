@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getAllSeries } from '../utils/series.js';
 
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection('blog', ({ data }) => data.draft !== true);
 const allSeries = getAllSeries(allPosts);
 ---
 
