@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout pageTitle="Work With Me" description="I'm not looking for work — but I keep room for the right rescue project. Here's what that looks like.">
+	<h1>Work With Me</h1>
+	<p class="subtitle">I'm not looking for work. Sometimes the right project finds me anyway.</p>
+
+	<section>
+		<h2>The Short Version</h2>
+		<p>My time is committed — a full-time role, <a href="https://www.code198x.com" target="_blank" rel="noopener">Code Like It's 198x</a>, and existing clients. But I keep deliberate room for the occasional engagement, because the most valuable work I've ever done arrived unplanned: the system nobody else would touch, the migration that had been "next quarter" for two years. If you have one of those, read on.</p>
+	</section>
+
+	<section>
+		<h2>The Work I Take</h2>
+		<p>I fix things other people gave up on. The neglected Rails monolith that everyone's scared to deploy. The upgrade path that looks impossible until someone maps it out. The infrastructure migration the team keeps deferring because nobody understands the old system well enough to leave it. If your problem sounds like a liability rather than a greenfield, it's probably my kind of project.</p>
+	</section>
+
+	<section>
+		<h2>How I Work</h2>
+		<p>I write things down. Before any significant change, you get the reasoning — trade-offs, alternatives considered, risks named — in a document your team keeps. I pick boring technology, because rescued systems fail again when they're rebuilt on something fashionable. And I work towards my own exit: the engagement ends with your team able to maintain the system without me. If I'm still load-bearing six months later, I've done it wrong.</p>
+		<p class="read-more"><a href="/principles">Read my principles →</a></p>
+	</section>
+
+	<section>
+		<h2>What I Won't Do</h2>
+		<p>I won't pitch a rewrite when a rescue will work — rewrites are occasionally right, but they're the last resort, not the proposal. I won't add microservices to solve a communication problem. And I won't ship something your team can't sustain after I leave. If I think you don't need me, I'll say so; that conversation costs you nothing.</p>
+	</section>
+
+	<section>
+		<h2>Past Engagements</h2>
+		<p><strong>The rewrite that didn't happen.</strong> A scheduling platform's Rails monolith had been written off as legacy, with a TypeScript rewrite planned to replace it. Instead of rewriting, I mapped the upgrade path nobody believed existed: Rails 5.2 to 8.0, Ruby 2.7 to 3.4, step by step, shipping the whole way. The rewrite was cancelled, the platform picked up a thirty percent performance improvement, and "legacy liability" became "strategic asset" without a single line of TypeScript.</p>
+		<p><strong>The migration that had waited years.</strong> An access control platform of fifteen-plus interconnected services was still running on legacy servers — the migration kept being deferred because nobody understood the old system well enough to leave it. I orchestrated the move to Docker and then Kubernetes across every service with zero downtime, including a PostgreSQL 11 to 17 upgrade with a TimescaleDB extension migration.</p>
+		<p><strong>The migration that shouldn't happen.</strong> A client began questioning whether their container orchestration platform should be replaced with a simpler deployment tool — infrastructure I had proposed and built for them five years earlier. Rather than defend it meeting by meeting, I wrote a 60-page position paper: real ingress-layer data showing availability that exceeded every major cloud provider's published SLA, measured across tens of millions of requests, a risk assessment of what the migration would actually mean, and root-cause analysis showing the errors driving the debate were application bugs, not infrastructure. The migration was dropped, the application bugs got fixed, and the paper's cost-optimisation plan saved more per month than the migration ever would have — without touching the platform. I hold my own past decisions to the same standard I'd hold anyone else's: if the evidence had favoured migration, the paper would have said so.</p>
+	</section>
+
+	<section>
+		<h2>Starting a Conversation</h2>
+		<p>Email <a href="mailto:steve@stevehill.xyz">steve@stevehill.xyz</a>. Tell me what the system is, what's wrong, and what you've already tried — plain words, no pitch deck. You'll get an honest answer about fit, including "you don't need me" when that's true.</p>
+	</section>
+
+</BaseLayout>
+
+<style>
+	h1 {
+		margin-top: var(--spacing-2xl);
+		color: var(--color-purple); /* Fallback */
+		background: var(--gradient-sunrise);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
+	}
+
+	.subtitle {
+		font-style: italic;
+		color: var(--color-text-secondary);
+		margin-top: calc(-1 * var(--spacing-lg));
+		margin-bottom: var(--spacing-2xl);
+		font-size: var(--font-size-lg);
+	}
+
+	section {
+		margin: var(--spacing-2xl) 0;
+	}
+
+	section h2 {
+		font-size: var(--font-size-2xl);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-text-primary);
+		margin-bottom: var(--spacing-md);
+	}
+
+	section p {
+		line-height: var(--line-height-relaxed);
+		color: var(--color-text-secondary);
+		font-size: var(--font-size-lg);
+	}
+
+	section p.read-more {
+		margin-top: var(--spacing-sm);
+		font-size: var(--font-size-base);
+	}
+
+	section p.read-more a {
+		color: var(--color-purple);
+		text-decoration: none;
+	}
+
+	section p.read-more a:hover {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 768px) {
+		h1 {
+			font-size: var(--font-size-2xl);
+		}
+
+		.subtitle {
+			font-size: var(--font-size-base);
+		}
+
+		section h2 {
+			font-size: var(--font-size-xl);
+		}
+
+		section p {
+			font-size: var(--font-size-base);
+		}
+	}
+</style>
