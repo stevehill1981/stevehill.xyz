@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
@@ -22,14 +22,14 @@ export async function getStaticPaths() {
     const seriesNavigation = getSeriesNavigation(entry, seriesPosts);
 
     return {
-      params: { slug: entry.slug },
+      params: { slug: entry.id },
       props: { entry, prevPost, nextPost, relatedPosts, seriesNavigation },
     };
   });
 }
 
 const { entry, prevPost, nextPost, relatedPosts, seriesNavigation } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 const readingTime = getReadingTime(entry.body);
 ---
 
@@ -55,13 +55,13 @@ const readingTime = getReadingTime(entry.body);
 				</div>
 				<div class="series-navigation">
 					{seriesNavigation.previousPost && (
-						<a href={`/blog/${seriesNavigation.previousPost.slug}`} class="series-nav-link prev">
+						<a href={`/blog/${seriesNavigation.previousPost.id}`} class="series-nav-link prev">
 							<div class="series-nav-direction">← Previous</div>
 							<div class="series-nav-title">Part {seriesNavigation.previousPost.data.series.part}: {seriesNavigation.previousPost.data.title}</div>
 						</a>
 					)}
 					{seriesNavigation.nextPost && (
-						<a href={`/blog/${seriesNavigation.nextPost.slug}`} class="series-nav-link next">
+						<a href={`/blog/${seriesNavigation.nextPost.id}`} class="series-nav-link next">
 							<div class="series-nav-direction">Next →</div>
 							<div class="series-nav-title">Part {seriesNavigation.nextPost.data.series.part}: {seriesNavigation.nextPost.data.title}</div>
 						</a>
@@ -72,14 +72,14 @@ const readingTime = getReadingTime(entry.body);
 					<summary>View all parts in this series</summary>
 					<ol class="series-list">
 						{seriesNavigation.allPosts.map((post) => (
-							<li class="series-item" class:list={[{ 'current': post.slug === entry.slug }]}>
-								{post.slug === entry.slug ? (
+							<li class="series-item" class:list={[{ 'current': post.id === entry.id }]}>
+								{post.id === entry.id ? (
 									<span class="series-current">
 										<strong>Part {post.data.series.part}: {post.data.title}</strong>
 										<span class="current-indicator">(You are here)</span>
 									</span>
 								) : (
-									<a href={`/blog/${post.slug}`} class="series-link">
+									<a href={`/blog/${post.id}`} class="series-link">
 										Part {post.data.series.part}: {post.data.title}
 									</a>
 								)}
@@ -158,7 +158,7 @@ const readingTime = getReadingTime(entry.body);
 											<span class="reading-time">{relatedReadingTime} min read</span>
 										</div>
 										<h4 class="related-post-title">
-											<a href={`/blog/${relatedPost.slug}`}>{relatedPost.data.title}</a>
+											<a href={`/blog/${relatedPost.id}`}>{relatedPost.data.title}</a>
 										</h4>
 										<p class="related-post-excerpt">{relatedPost.data.excerpt}</p>
 										{relatedPost.data.tags && (
@@ -180,7 +180,7 @@ const readingTime = getReadingTime(entry.body);
 		<nav class="post-navigation">
 			<div class="nav-section">
 				{prevPost && (
-					<a href={`/blog/${prevPost.slug}`} class="nav-link prev-post">
+					<a href={`/blog/${prevPost.id}`} class="nav-link prev-post">
 						<div class="nav-direction">← Previous</div>
 						<div class="nav-title">{prevPost.data.title}</div>
 					</a>
@@ -193,7 +193,7 @@ const readingTime = getReadingTime(entry.body);
 
 			<div class="nav-section">
 				{nextPost && (
-					<a href={`/blog/${nextPost.slug}`} class="nav-link next-post">
+					<a href={`/blog/${nextPost.id}`} class="nav-link next-post">
 						<div class="nav-direction">Next →</div>
 						<div class="nav-title">{nextPost.data.title}</div>
 					</a>

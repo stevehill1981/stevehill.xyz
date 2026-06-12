@@ -9,7 +9,7 @@ export function getRelatedPosts(currentPost, allPosts, maxResults = 3) {
   if (!currentPost.data.tags || currentPost.data.tags.length === 0) {
     // If no tags, return recent posts excluding current
     return allPosts
-      .filter(post => post.slug !== currentPost.slug)
+      .filter(post => post.id !== currentPost.id)
       .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
       .slice(0, maxResults);
   }
@@ -18,7 +18,7 @@ export function getRelatedPosts(currentPost, allPosts, maxResults = 3) {
   
   // Calculate similarity score for each post
   const postsWithScore = allPosts
-    .filter(post => post.slug !== currentPost.slug) // Exclude current post
+    .filter(post => post.id !== currentPost.id) // Exclude current post
     .map(post => {
       if (!post.data.tags || post.data.tags.length === 0) {
         return { post, score: 0 };
@@ -47,8 +47,8 @@ export function getRelatedPosts(currentPost, allPosts, maxResults = 3) {
   if (relatedPosts.length < maxResults) {
     const recentPosts = allPosts
       .filter(post => 
-        post.slug !== currentPost.slug && 
-        !relatedPosts.some(item => item.post.slug === post.slug)
+        post.id !== currentPost.id && 
+        !relatedPosts.some(item => item.post.id === post.id)
       )
       .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
       .slice(0, maxResults - relatedPosts.length)

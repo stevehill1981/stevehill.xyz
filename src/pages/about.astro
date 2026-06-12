@@ -60,7 +60,7 @@ const recentProjects = allProjects
           {recentPosts.map((post) => (
             <article class="sidebar-post-card">
               <h3 class="sidebar-post-title">
-                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                <a href={`/blog/${post.id}`}>{post.data.title}</a>
               </h3>
             </article>
           ))}
@@ -74,7 +74,7 @@ const recentProjects = allProjects
           {recentProjects.map((project) => (
             <article class="sidebar-project-card">
               <h3 class="sidebar-project-title">
-                <a href={`/projects#${project.slug}`}>{project.data.title}</a>
+                <a href={`/projects#${project.id}`}>{project.data.title}</a>
               </h3>
             </article>
           ))}

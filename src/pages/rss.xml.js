@@ -19,7 +19,7 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.excerpt,
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${post.id}/`,
       categories: post.data.tags,
     })),
     customData: `<language>en-us</language><atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml"/>`,

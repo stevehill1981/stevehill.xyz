@@ -51,7 +51,7 @@ const postsWithReadingTime = posts.map((post) => {
 					<span class="card-reading-time">{post.readingTime} min read</span>
 				</div>
 				<h2 class="card-title">
-					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+					<a href={`/blog/${post.id}`}>{post.data.title}</a>
 				</h2>
 				<p class="card-excerpt">{post.data.excerpt}</p>
 			</article>

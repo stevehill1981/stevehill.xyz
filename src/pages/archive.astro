@@ -46,7 +46,7 @@ const sortedYears = Array.from(postsByYearMonth.entries()).sort((a, b) => b[0] -
 									<span class="post-date">
 										{post.data.pubDate.toLocaleDateString('en-US', { day: 'numeric' })}
 									</span>
-									<a href={`/blog/${post.slug}`}>
+									<a href={`/blog/${post.id}`}>
 										{post.data.title}
 									</a>
 								</li>

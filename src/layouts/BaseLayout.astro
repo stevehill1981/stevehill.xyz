@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import BackToTop from '../components/BackToTop.astro';
@@ -106,7 +106,7 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 		<title>{pageTitle} | Steve Hill</title>
-		<ViewTransitions fallback="swap" />
+		<ClientRouter fallback="swap" />
 
 		<script>
 			// Enhanced view transitions

@@ -144,7 +144,7 @@ const getTechIcon = (tech: string): string => {
 
 			<div class="recent-posts">
 				{recentPostsWithReadingTime.map((post) => (
-					<a href={`/blog/${post.slug}`} class="post-card-link">
+					<a href={`/blog/${post.id}`} class="post-card-link">
 						<article class="post-card">
 							<div class="post-meta">
 								<time>{post.data.pubDate.toLocaleDateString('en-US', {
@@ -170,7 +170,7 @@ const getTechIcon = (tech: string): string => {
 
 			<div class="projects-grid">
 				{allProjects.filter(project => project.data.featured).map((project) => (
-					<a href={`/projects/${project.slug}`} class="project-card-link">
+					<a href={`/projects/${project.id}`} class="project-card-link">
 						<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
 							<div class="project-header project-gradient" data-project={project.data.title}>
 								<h3>{project.data.title}</h3>

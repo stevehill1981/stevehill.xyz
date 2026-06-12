@@ -31,7 +31,7 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 	
 	<div class="card-grid">
 		{postsWithReadingTime.map((post) => (
-			<article class="card" style={`view-transition-name: card-${post.slug};`}>
+			<article class="card" style={`view-transition-name: card-${post.id};`}>
 				<div class="card-header">
 					<time class="card-date">{post.data.pubDate.toLocaleDateString('en-US', {
 						year: 'numeric',
@@ -46,7 +46,7 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 					</div>
 				)}
 				<h2 class="card-title">
-					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+					<a href={`/blog/${post.id}`}>{post.data.title}</a>
 				</h2>
 				<p class="card-excerpt">{post.data.excerpt}</p>
 				{post.data.tags && (

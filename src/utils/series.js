@@ -30,7 +30,7 @@ export function getSeriesNavigation(currentPost, seriesPosts) {
     return null;
   }
 
-  const currentIndex = seriesPosts.findIndex(post => post.slug === currentPost.slug);
+  const currentIndex = seriesPosts.findIndex(post => post.id === currentPost.id);
   const previousPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
 

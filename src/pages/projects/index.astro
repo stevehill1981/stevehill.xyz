@@ -26,7 +26,7 @@ const projectsWithStats = await Promise.all(
 			<article class="project-card">
 				<div class="project-content">
 					<h2 class="project-title">
-						<a href={`/projects/${project.slug}`}>{project.data.title}</a>
+						<a href={`/projects/${project.id}`}>{project.data.title}</a>
 					</h2>
 					<p class="project-description">{project.data.description}</p>
 					<div class="project-tech">
