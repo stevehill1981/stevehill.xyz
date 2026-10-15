@@ -1,5 +1,5 @@
 {
-  "scope": "macOS Chromium/WebKit final production build, including input-click and two-layer Escape assertions; local Firefox could not launch",
+  "scope": "Final macOS Chromium/WebKit build, controlled-clock early dismissal and two-layer mobile Escape included; local Firefox could not launch",
   "tests": [
     {
       "journey": "search has real results, contains keyboard focus and restores its trigger",

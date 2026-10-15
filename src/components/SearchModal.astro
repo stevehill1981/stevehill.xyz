@@ -115,6 +115,7 @@
 
       // Focus the search input
       setTimeout(() => {
+        if (!overlay.isConnected || !overlay.classList.contains('active')) return;
         const input = document.querySelector('#pagefind-container input');
         if (input instanceof HTMLInputElement) {
           input.focus();

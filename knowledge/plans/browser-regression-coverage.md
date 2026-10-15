@@ -44,3 +44,11 @@ The live 390px menu now accepts the About click and navigation resets it. One Pa
 Live Escape after mobile search exposed another concrete focus conflict: both the menu and modal document-level Escape handlers run, hiding the trigger before search can restore it. Document clicks within the search overlay also close the underlying menu. Keep underlying navigation open while the modal handles those events: ignore clicks inside the search overlay in the menu's outside-click handler, and ignore menu Escape while the search overlay is active. First Escape then closes only search and restores Search focus; second Escape closes the menu and restores its toggle. Add assertions for both, including an actual input click.
 
 The expanded mobile test failed before the event guards and passes afterward. All 16 Chromium/WebKit journeys pass again against the rebuilt site. No forced click or disabled assertion was used. The full Linux gate runs again on push.
+
+## Deferred-focus race caught by CI
+
+Run 38753658676 blocked deployment at 22/24: Firefox shortcut return focus reported `Expected: focused / Received: inactive`; WebKit background focus exclusion reported `Expected: 1 / Received: 0`. The latter test overclaimed inert semantics: browsers must exclude the background, but may blur the current element when an inert focus is attempted. Assert the background link cannot receive focus, then continue the actual input/keyboard journey.
+
+The former reveals the unguarded 100ms focus callback: closing during the opening animation returns focus, but queued input focus can steal it back while visibility is still transitioning. Freeze the clock before opening, close before the deferred callback, advance through it and assert the original link retains focus. Reproduce before adding a closed-overlay guard. This is a separate asynchronous path, not a reason to retry failing tests.
+
+Controlled-clock reproduction failed in both Chromium and WebKit before the guard. After guarding closed/disconnected overlays, all 16 local journeys pass, including the controlled case. The background exclusion test now asserts the actual invariant rather than a platform-specific focus side effect.

@@ -16,8 +16,9 @@ test('search has real results, contains keyboard focus and restores its trigger'
   const dialog = await openSearch(page);
   // Role locators are DOM queries, not the browser's accessibility tree.
   // Exercise inert's actual focus exclusion instead of inferring it from roles.
-  await page.getByRole('link', { name: 'Home', exact: true }).focus();
-  await expect(dialog.locator(':focus')).toHaveCount(1);
+  const backgroundLink = page.getByRole('link', { name: 'Home', exact: true });
+  await backgroundLink.focus();
+  await expect(backgroundLink).not.toBeFocused();
   expect(await dialog.evaluate(element => element.closest('[inert]'))).toBeNull();
   await dialog.getByRole('textbox').fill('microservices');
   await expect(dialog.locator('.pagefind-ui__result-link').first()).toBeVisible();
@@ -151,7 +152,9 @@ test('home and article reflow at 320px with usable navigation and search', async
 });
 
 test('keyboard shortcut returns focus to the previously active link', async ({ page }) => {
+  await page.clock.install({ time: new Date('2026-01-01T00:00:00Z') });
   await page.goto('/');
+  await page.clock.pauseAt(new Date('2026-01-01T00:01:00Z'));
   const about = page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'About', exact: true });
   await about.focus();
   await page.keyboard.press('Control+k');
@@ -159,6 +162,8 @@ test('keyboard shortcut returns focus to the previously active link', async ({ p
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('textbox')).toHaveCount(1);
   await page.keyboard.press('Escape');
+  // Closing before deferred focus runs must keep focus outside the dialog.
+  await page.clock.runFor(1000);
   await expect(about).toBeFocused();
 });
 
