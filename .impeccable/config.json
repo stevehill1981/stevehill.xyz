@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/open-table.html"
+        ],
+        "createdAt": "2026-10-15T12:20:13.430Z",
+        "reason": "Steve approved this exact Open Table preview on 15 October 2026: I like that version. Preserve the selected palette."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/article.html"
+        ],
+        "createdAt": "2026-10-15T12:21:43.410Z",
+        "reason": "The reading preview inherits the exact warm palette of the Open Table direction Steve approved on 15 October 2026."
+      },
+      {
+        "rule": "em-dash-overuse",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/article.html"
+        ],
+        "createdAt": "2026-10-15T12:22:16.581Z",
+        "reason": "The preview reproduces the existing authored Guardrails article verbatim; punctuation is preserved content, not generated design copy."
+      }
+    ]
+  }
+}

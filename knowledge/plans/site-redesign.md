@@ -5,7 +5,7 @@ Steve approved exploring a coherent whole-site redesign, warm and personal in to
 ## 1. Agree the design
 
 - Capture confirmed product truth in `PRODUCT.md` and resolve the visual-review workflow in `.impeccable/config.json` with Steve.
-- Develop and present distinct visual concepts using the Impeccable replacement-world workflow. Record the chosen direction in `DESIGN.md`, `.impeccable/design.json` and route briefs before implementation.
+- Develop and present distinct visual concepts using the Impeccable replacement-world workflow. Record the chosen direction in route briefs before implementation, then document the built system in `DESIGN.md` and `.impeccable/design.json` at finish.
 - Scope the change to presentation; retain verified facts, published destinations, search, series navigation, RSS and service-worker fixes. Do not change dependencies without approval.
 
 ## 2. Build representative pages
@@ -29,4 +29,12 @@ Existing failure modes to check against the replacement: mobile article dates an
 - Complete the Impeccable finish review and design documentation before calling the redesign complete. Retain explicit limitations where a suitable test environment is unavailable.
 - Stop task processes, close temporary preview tabs and remove disposable files before handoff.
 
-Current state: product audience and personality confirmed; visual-review workflow pending. No redesign implementation has begun.
+Current state: product audience, personality and Open Table direction confirmed. Browser sketches were used for the direction review; no standing workflow default was inferred. Steve approved the Code198x copy correction and durable rule, now recorded in `RULES.md`. No production redesign implementation has begun.
+
+Reading preview: `.impeccable/mocks/decision/article.html` uses the existing full Guardrails article, with visible original date, a constrained reading measure, desktop contents rail and expandable mobile contents above the prose. Desktop and 390px rendering were inspected; mobile width and scroll width both measured 390px and the contents expanded to expose all four real heading destinations. This is a representative design preview awaiting Steve's review, not the production article template. Review server: `http://127.0.0.1:57835/`, process session `47601`, serving `.impeccable/mocks/decision/`. Retained for review; stop after the article direction is approved or cancelled. The previous direction chooser server was stopped after the conversational approval. Palette warnings are narrowly ignored for the approved Open Table preview and its reading adaptation; existing production gradient headings remain unchanged until implementation.
+
+Preview verification: the entire original rendered article body is preserved verbatim, all contents links resolve to real headings, and the date precedes the prose. The article punctuation advisory is narrowly ignored because it concerns unchanged authored content. No published prose was rewritten to satisfy a detector. The direction contract is recorded in `.impeccable/surfaces/src-pages-index-astro.md` for the later production implementation; `DESIGN.md` remains a finish deliverable.
+
+Approved `RULES.md` addition:
+
+> Describe Code198x broadly; it includes programming foundations, languages beyond assembly, game craft and computing history. Never reduce it to an assembly-only course. This is a content rule, not a restriction on articles about assembly.
