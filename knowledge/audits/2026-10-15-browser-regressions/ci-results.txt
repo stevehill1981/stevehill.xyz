@@ -1,0 +1,14 @@
+2026-10-15T14:31:43.4810498Z node: v24.22.0
+2026-10-15T14:31:51.6097507Z ℹ tests 18
+2026-10-15T14:31:51.6098320Z ℹ pass 18
+2026-10-15T14:31:51.6098680Z ℹ fail 0
+2026-10-15T14:31:54.4962665Z   Indexed 123 pages
+2026-10-15T14:32:57.6042425Z   ✓   2 [firefox] › browser-tests/journeys.spec.mjs:13:1 › search has real results, contains keyboard focus and restores its trigger (3.6s)
+2026-10-15T14:33:00.2246827Z   ✓   5 [firefox] › browser-tests/journeys.spec.mjs:37:1 › client navigation retains styling and search works repeatedly (2.6s)
+2026-10-15T14:33:02.1557072Z   ✓   7 [firefox] › browser-tests/journeys.spec.mjs:61:1 › mobile navigation closes with Escape and resets after following a link (1.9s)
+2026-10-15T14:33:05.6025381Z   ✓   8 [firefox] › browser-tests/journeys.spec.mjs:83:1 › code controls survive client navigation and copy the actual code once (3.4s)
+2026-10-15T14:33:07.0391755Z   ✓  13 [firefox] › browser-tests/journeys.spec.mjs:116:1 › reduced motion preserves navigation, search and instant back-to-top (1.4s)
+2026-10-15T14:33:09.6982573Z   ✓  14 [firefox] › browser-tests/journeys.spec.mjs:132:1 › home and article reflow at 320px with usable navigation and search (2.6s)
+2026-10-15T14:33:10.6812732Z   ✓  16 [firefox] › browser-tests/journeys.spec.mjs:147:1 › keyboard shortcut returns focus to the previously active link (954ms)
+2026-10-15T14:33:12.4438570Z   ✓  17 [firefox] › browser-tests/journeys.spec.mjs:159:1 › forced colours retain visible focus and an operable search dialog (1.7s)
+2026-10-15T14:33:33.9811617Z   24 passed (43.1s)

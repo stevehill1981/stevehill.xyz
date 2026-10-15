@@ -1,5 +1,37 @@
 # Personal-site audit — 15 October 2026
 
+## Current status
+
+The original audit below describes the old site. The Open Table redesign, content repairs, security updates and measured baselines have since shipped. Its provisional 12/20 score and original defect descriptions are historical, not a rating of the current site.
+
+| Area | Current outcome |
+|---|---|
+| F1–F3: series, reading-time contrast, About project links | Repaired and built-output verified. |
+| F4: project truth and artifacts | Rachel, Code198x and Chaotic Tanx reflect the confirmed statuses and use real dimensioned images on Home and detail pages. Phosphene identity/destination clarified. Maintain claims as projects change. |
+| F5–F6: hierarchy and reading | Approved redesign shipped; projects precede infrequent posts, article dates/contents/prose measure repaired. |
+| F7: image layout | Intrinsic dimensions emitted and regression tested. Sampled Home/article Lighthouse CLS is zero; no field range is established. |
+| F8: navigation and accessibility | State/disclosure/Escape fixes shipped. Browser regression follow-up adds real journey checks; full native/assistive-technology acceptance remains open. |
+| Security/runtime | Dependency audit zero; published Node 24 highlighting releases consumed. Deployment reads its Node version from mise.toml. |
+| Measured performance | Home 100 mobile/desktop; Spectrum article 98 mobile / 100 desktop in the recorded lab samples. No field/INP data. |
+
+### Browser regression follow-up
+
+Three additional defects were reproduced before repair:
+
+- **Mobile menu behind content:** Chromium/WebKit clicks on About were intercepted by the homepage heading. Header/main view-transition stacking contexts trapped the menu beneath main. Positioning the header above main repairs the actual click path; the menu remains below the search overlay.
+- **Search return focus in WebKit:** pointer clicks do not necessarily focus buttons. Search previously recorded body rather than its trigger, so Escape could not restore the trigger. Trigger clicks now record currentTarget; keyboard shortcuts retain their previous-focus behaviour.
+- **Mobile search/menu event conflict:** both Escape handlers closed their layers, and clicks inside search also closed the underlying menu. This hid the Search return target. The menu now ignores modal clicks and defers Escape while search is active. Tests click the input and verify first Escape restores Search, then second Escape closes the menu and restores its toggle.
+
+Eight automated journeys cover results/search isolation and focus, repeated client navigation and styling, mobile Escape/navigation reset, code-copy payloads without changing the OS clipboard, reduced motion, forced colours, 320px reflow and shortcut focus restoration. All 16 Chromium/WebKit runs pass locally; [Linux CI](https://github.com/stevehill1981/stevehill.xyz/actions/runs/38752174552) passed all 24 Chromium/Firefox/WebKit tests, all 18 existing tests and the 123-page build on the mise-declared Node 24.22.0. The relevant CI output is retained in the browser evidence folder. Local Firefox failed before page load with `Could not find profile folder.` Changing TMPDIR did not resolve it; no site failure is inferred from that startup error.
+
+The search check was proven red by making only the disposable built dialog inert (one failed test, exit 1), then green after restoration (one passed test, exit 0). Screenshot inspection confirms the repaired mobile layering and readable, operable forced-colour search. See [browser evidence](2026-10-15-browser-regressions/) and [the implementation plan](../plans/browser-regression-coverage.md).
+
+**Remaining acceptance, owner: Steve Hill:** native Safari keyboard-policy/search diagnostics, full VoiceOver or NVDA reading/navigation/search announcements, actual 200% browser/text enlargement and physical touch. Reduced-motion/forced-colour engine emulation is now exercised; it does not establish native OS or physical-device behaviour. WebKit is not a Safari/VoiceOver certification. Steve deprioritised the full VoiceOver pass for this round; it is deferred with that limitation recorded. No native Safari/zoom session was performed in this follow-up, and no accessibility setting was changed. Keep #79 open; there is no WCAG conformance claim.
+
+## Original audit and earlier follow-ups
+
+Preserved below as the evidence trail. Where a statement conflicts with the current-status summary, it describes the earlier state.
+
 The site has useful engineering stories and technical writing, but visitors encounter broken discovery paths, inconsistent project status and a homepage that gives decoration and chronology more prominence than the work. Repair those defects first, then use an editorial portfolio direction for the redesign. A framework rewrite is unnecessary.
 
 Audit of source and shipped output at `863f18f`, for [#79](https://github.com/stevehill1981/stevehill.xyz/issues/79) under [#78](https://github.com/stevehill1981/stevehill.xyz/issues/78). This report proposes work; it does not approve a visual direction or change site content.
@@ -214,3 +246,7 @@ The search fix in [8097925](https://github.com/stevehill1981/stevehill.xyz/commi
 Proposed editorial standard: publish when there is useful work to explain, with no arbitrary blog cadence. Update project availability when a release/status changes; check the small project/Now inventory quarterly. Show checked dates for live project claims. Keep historical posts dated and add explicit update notes where old advice could confuse readers. Keep numerical claims only when supporting evidence can be retained and explained, with confidential examples anonymized.
 
 This audit provides findings, repeatable HTTP evidence, three journeys, owners, issue-ready follow-ups and a small next action. Keep #79 open: major-browser/screen-reader validation and rendering baselines remain incomplete. Safari desktop coverage is now recorded, with navigation styling and keyboard observations requiring follow-up; the other missing coverage needs a suitable test environment. F1–F8 can become linked GitHub follow-ups when issue creation is requested.
+
+## Live check after browser regression deployment
+
+Pages run 38752174552 completed successfully. At 390px, the live menu covered page content and its About link completed client navigation with the menu reset. The first search attempt failed to import `/pagefind/pagefind.js` and remained on “Searching for Rachel...”. Direct requests for pagefind.js, pagefind-ui.js and pagefind-entry.json returned HTTP 200 with the correct content types. Reloading recovered to 19 Rachel results. This single loading failure has no established network/cache cause; do not count recovery as a diagnosis. A bounded investigation is tracked in [#81](https://github.com/stevehill1981/stevehill.xyz/issues/81). The native Safari window was not touched.
