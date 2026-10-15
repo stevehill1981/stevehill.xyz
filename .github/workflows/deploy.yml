@@ -16,10 +16,25 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v7.0.1
+      - name: Read the project Node version
+        id: runtime
+        run: |
+          python3 - <<'PY'
+          import os
+          import tomllib
+          with open('mise.toml', 'rb') as config:
+              version = tomllib.load(config)['tools']['node']
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'node={version}\n')
+          PY
       - name: Install, build, and upload your site output
         uses: withastro/action@v6.1.3
         with:
-          node-version: 24.22.0
+          node-version: ${{ steps.runtime.outputs.node }}
+      - name: Install browser test engines
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Check browser journeys
+        run: npm run test:browser
   deploy:
     needs: build
     runs-on: ubuntu-latest

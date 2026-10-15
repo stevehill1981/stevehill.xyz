@@ -12,6 +12,14 @@ I use AI in my projects, and I remain responsible for what I choose to publish. 
 
 Use Node.js 24 or newer. The project uses mise to select Node.js 24.22.0 locally; run `mise install` before installing dependencies. CI uses the same Node.js version.
 
+The deployment workflow reads its Node version directly from `mise.toml`. Update that single declaration when moving to a newer patch.
+
+## Browser checks
+
+Run `npm ci`, `npm run build`, `npx playwright install chromium firefox webkit`, then `npm run test:browser`. The tests start and stop an isolated production preview on port 4329, using the generated Pagefind index. Keep that port free; an existing server is deliberately not reused.
+
+The same Chromium, Firefox and WebKit journeys gate deployment. They cover search/results, keyboard containment and focus restoration, mobile navigation, Astro client navigation, code-copy payloads, reduced motion, forced colours and 320px reflow. A clipboard test double checks the copied code without changing the system clipboard. Browser-engine emulation does not replace native Safari, actual browser zoom, physical touch or screen-reader testing.
+
 ## Features
 
 ### Content

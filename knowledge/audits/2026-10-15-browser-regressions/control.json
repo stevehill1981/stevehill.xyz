@@ -1,0 +1,6 @@
+{
+  "mutation": "Make the built search overlay inert, reproducing inaccessible dialog focus",
+  "broken_exit": 1,
+  "restored_exit": 0,
+  "source_changed": false
+}

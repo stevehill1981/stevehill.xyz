@@ -1,0 +1,133 @@
+{
+  "scope": "macOS Chromium/WebKit production build; local Firefox could not launch",
+  "tests": [
+    {
+      "journey": "search has real results, contains keyboard focus and restores its trigger",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "client navigation retains styling and search works repeatedly",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "mobile navigation closes with Escape and resets after following a link",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "code controls survive client navigation and copy the actual code once",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "reduced motion preserves navigation, search and instant back-to-top",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "home and article reflow at 320px with usable navigation and search",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "keyboard shortcut returns focus to the previously active link",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "forced colours retain visible focus and an operable search dialog",
+      "engine": "chromium",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "search has real results, contains keyboard focus and restores its trigger",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "client navigation retains styling and search works repeatedly",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "mobile navigation closes with Escape and resets after following a link",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "code controls survive client navigation and copy the actual code once",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "reduced motion preserves navigation, search and instant back-to-top",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "home and article reflow at 320px with usable navigation and search",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "keyboard shortcut returns focus to the previously active link",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "journey": "forced colours retain visible focus and an operable search dialog",
+      "engine": "webkit",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    }
+  ]
+}
