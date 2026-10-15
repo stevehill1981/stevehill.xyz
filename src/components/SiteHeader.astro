@@ -1,5 +1,5 @@
 ---
-import SearchModal from './SearchModal.astro';
+import SearchTrigger from './SearchTrigger.astro';
 const { active = "" } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
@@ -27,7 +27,7 @@ const currentPath = Astro.url.pathname;
       <a href="https://www.code198x.com" class="nav-link" target="_blank" rel="noopener">Code Like It's 198x</a>
       
       <div class="social-links">
-        <SearchModal />
+        <SearchTrigger />
         <a href="mailto:steve@stevehill.xyz" aria-label="Email">
           <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 13.065L2.4 6.6V18h19.2V6.6l-9.6 6.465zm9.6-10.065H2.4A1.4 1.4 0 0 0 1 4.4v.27l11 7.41 11-7.41V4.4a1.4 1.4 0 0 0-1.4-1.4z"/>

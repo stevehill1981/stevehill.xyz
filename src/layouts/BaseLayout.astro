@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import SiteHeader from '../components/SiteHeader.astro';
+import SearchModal from '../components/SearchModal.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import BackToTop from '../components/BackToTop.astro';
 
@@ -156,6 +157,7 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 	<body>
 		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<SiteHeader />
+		<SearchModal />
 		<main id="main-content" data-pagefind-body style="view-transition-name: main-content;">
 			<slot />
 		</main>

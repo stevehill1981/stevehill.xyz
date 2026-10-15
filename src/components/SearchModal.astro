@@ -1,13 +1,6 @@
 ---
 ---
 
-<button class="search-trigger" aria-label="Search" title="Search (Ctrl+K)">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="11" cy="11" r="8"></circle>
-    <path d="m21 21-4.35-4.35"></path>
-  </svg>
-</button>
-
 <div class="search-overlay" id="search-overlay" aria-hidden="true">
   <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search">
     <button class="search-close" aria-label="Close search">
@@ -24,6 +17,12 @@
   function initSearch() {
     const trigger = document.querySelector('.search-trigger');
     const overlay = document.getElementById('search-overlay');
+    if (!overlay || overlay.dataset.initialized) return;
+    overlay.dataset.initialized = 'true';
+
+    const controller = new AbortController();
+    const { signal } = controller;
+    document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
     const modal = overlay?.querySelector('.search-modal');
     const closeBtn = document.querySelector('.search-close');
     let pagefindLoaded = false;
@@ -62,6 +61,7 @@
     }
 
     async function openSearch() {
+      if (overlay?.classList.contains('active')) return;
       // Store the element that had focus before opening
       previousActiveElement = document.activeElement;
 
@@ -85,9 +85,9 @@
           link.href = '/pagefind/pagefind-ui.css';
           document.head.appendChild(link);
 
-          const script = document.createElement('script');
-          script.src = '/pagefind/pagefind-ui.js';
-          script.onload = () => {
+          const initializePagefind = () => {
+            const container = overlay.querySelector('#pagefind-container');
+            if (!container?.isConnected || container.childElementCount > 0) return;
             // @ts-ignore
             new window.PagefindUI({
               element: '#pagefind-container',
@@ -95,7 +95,16 @@
               showImages: false
             });
           };
-          document.head.appendChild(script);
+          // Astro navigation keeps globals alive; reuse the loaded library.
+          // @ts-ignore
+          if (window.PagefindUI) {
+            initializePagefind();
+          } else {
+            const script = document.createElement('script');
+            script.src = '/pagefind/pagefind-ui.js';
+            script.onload = initializePagefind;
+            document.head.appendChild(script);
+          }
           pagefindLoaded = true;
         } catch (e) {
           console.error('Failed to load Pagefind:', e);
@@ -156,36 +165,13 @@
       }
       // Focus trap
       handleFocusTrap(e);
-    });
+    }, { signal });
   }
 
-  initSearch();
   document.addEventListener('astro:page-load', initSearch);
 </script>
 
 <style>
-  .search-trigger {
-    background: transparent;
-    border: none;
-    padding: var(--btn-padding-icon);
-    cursor: pointer;
-    color: var(--color-text-secondary);
-    transition: color var(--transition-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .search-trigger:hover {
-    color: var(--color-primary);
-  }
-
-  .search-trigger:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 2px;
-    border-radius: var(--radius-md);
-  }
-
   .search-overlay {
     position: fixed;
     inset: 0;
