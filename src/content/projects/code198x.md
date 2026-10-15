@@ -1,6 +1,6 @@
 ---
 title: "Code Like It's 198x"
-description: "Learn assembly programming by building complete retro games on C64, ZX Spectrum, NES, and Amiga. Docker-based toolchains eliminate setup friction, so you can focus on understanding how computers actually work."
+description: "Programming, game-making and computing history, explored through classic computers."
 featured: true
 technologies: ["Astro", "Docker", "Assembly", "Emulation"]
 status: "Live"
@@ -10,7 +10,7 @@ priority: 3
 year: 2024
 ---
 
-An educational platform teaching assembly language programming through building complete retro games. Learn by doing — each game project teaches new skills while creating something you'll actually want to play.
+Code198x is a place to learn programming and game-making through classic computers. Building real games gives the ideas a purpose, while shared subjects explore the foundations, maths, craft and history behind them.
 
 ## The Problem
 
@@ -30,20 +30,14 @@ Vintage computers force you to confront fundamentals because there are no abstra
 
 When you have 2KB of RAM, you can't import a framework, use inefficient algorithms, or ignore optimisation. You learn to count cycles, manage memory manually, understand hardware directly, and optimise ruthlessly.
 
-## Curriculum Structure
+## Ways to Learn
 
-Students progress through increasingly complex projects on each system:
+There are routes through BASIC and assembly on the ZX Spectrum and Commodore 64, AMOS, Blitz BASIC and assembly on the Amiga, and assembly on the NES. Beginners can start with The Basics before choosing a machine or language.
 
-**Phase 1: Foundations** (32 lessons per system) — Memory addressing, registers, arithmetic, loops, drawing to the screen, reading input, making sound.
-
-**Phases 2–8** (planned) — Sprite graphics, scrolling, interrupt handling, music, game loop architecture, optimisation techniques.
-
-Each lesson runs in a **Docker environment** with authentic assemblers (CA65, PasmoNext, VASM) and emulators for immediate feedback. No setup friction — one command to build and test.
+The shared subjects explore ideas that travel across systems: programming foundations, maths for games, controls, movement and feedback. The Pattern Library collects techniques and their trade-offs; the Vault and Timeline explore the machines and their place in computing history.
 
 ## Current Status
 
 Code198x is live and operational at [www.code198x.com](https://www.code198x.com). I'm also actively developing the wider 198x family.
 
-Four systems have Phase 1 content available (C64, ZX Spectrum, NES, Amiga). The site also includes articles on the history of bedroom coding and deep dives into hardware like the VIC-II and SID chip.
-
-This project might take years. Writing accurate, engaging technical education content is hard. Writing it for four different assembly languages is harder. But the goal — helping modern developers understand how computers actually work — makes it worth the effort.
+The site includes real course captures such as Safe Cracker on the Commodore 64, Dash on the NES and Flock on the Amiga. Coverage varies between routes; the systems and curriculum directories show what's available.
