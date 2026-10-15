@@ -19,7 +19,7 @@ export default defineConfig({
           theme: 'dark-plus'
         }]
       ],
-      rehypePlugins: [rehypeLazyImages]
+      rehypePlugins: [[rehypeLazyImages, { publicDir: new URL('./public/', import.meta.url) }]]
     })
   },
   vite: {

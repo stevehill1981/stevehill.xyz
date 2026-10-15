@@ -163,6 +163,8 @@ Alternative: **a project gallery**, with large artifacts and compact writing lin
 
 ## Repair status after the audit
 
+- F7 markup repaired: the existing image plugin now reads intrinsic dimensions for public article assets during the build. All five article images (four PNGs and one SVG) emit verified width/height while preserving lazy/async attributes and responsive CSS. Seven focused regressions were proven red against the old plugin; all 18 tests and the 123-page build now pass. See `knowledge/plans/article-image-dimensions.md`. A cold-load trace and measured CLS remain unverified.
+
 - F5/F6 repaired in the approved Open Table redesign: stable introduction, real selected projects before three recent posts, article dates before prose, early native mobile contents and constrained prose measure throughout. Shared styling now covers all existing page templates. All 123 routes and 33 article bodies are preserved. Evidence: `.impeccable/review/verification.md` and the independent finish review.
 - F8 partially repaired: top navigation emits `aria-current`, the disclosure has `aria-controls`, and Escape restores the mobile toggle. Search/client navigation and narrow-width reflow were checked in Chrome. Cross-engine, screen-reader speech, zoom and forced-colour validation remain outstanding; the redesign does not close #79 or establish WCAG conformance.
 - F4 detail-page evidence extended: Rachel, Code198x and Chaotic Tanx now reuse the same real, dimensioned images as Home, with appropriate captions and alternatives.
