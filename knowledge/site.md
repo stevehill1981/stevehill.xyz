@@ -1,10 +1,10 @@
 # Site Overview
 
-stevehill.xyz -- personal portfolio and blog. Astro 5.17.3 static site deployed to GitHub Pages.
+stevehill.xyz -- personal portfolio and blog. Astro 7.3.8 static site deployed to GitHub Pages.
 
 ## Deployment
 
-Deployed via `gh-pages` CI workflow on push to the default branch. **Never run `npm run deploy` manually** -- the CI handles it.
+Deployed via `.github/workflows/deploy.yml` using GitHub Pages actions on push to `main`. CI handles deployment; there is no manual deploy command.
 
 ## Content
 
@@ -15,7 +15,7 @@ Deployed via `gh-pages` CI workflow on push to the default branch. **Never run `
 
 | Concern | Tool |
 |---------|------|
-| Framework | Astro 5.17.3 (static output) |
+| Framework | Astro 7.3.8 (static output) |
 | Hosting | GitHub Pages |
 | Search | Pagefind (static indexing, built at deploy time) |
 | RSS | @astrojs/rss |

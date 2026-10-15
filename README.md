@@ -19,7 +19,7 @@ The source code for my personal website, built with [Astro](https://astro.build/
 - **Content collections** for structured blog and project content
 
 ### Built With
-- [Astro](https://astro.build/) v5.10.2 - Static site generator
+- [Astro](https://astro.build/) v7 - Static site generator
 - Content collections for blog posts and projects
 - Astro integrations: RSS, Sitemap
 - GitHub Pages deployment
@@ -61,11 +61,6 @@ npm run preview
 
 ## Deployment
 
-Deployed to GitHub Pages. Build and deploy with:
-
-```bash
-npm run build
-npm run deploy
-```
+GitHub Actions builds and deploys the site to GitHub Pages when changes are pushed to `main`. Run `npm run build` locally to verify changes before pushing.
 
 The site is available at [stevehill.xyz](https://stevehill.xyz).
