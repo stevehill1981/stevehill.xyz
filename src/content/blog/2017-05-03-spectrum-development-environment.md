@@ -79,7 +79,7 @@ Pasmo seems to be pretty highly recommended. It can even compile to `.TAP` files
 which is rather handy. There wasn't a precompiled version for MacOS, so I had to
 do that part.
 
-Download Pasmo from the website [here](http://pasmo.speccy.org/). You can try
+Download Pasmo from the [Pasmo website](http://pasmo.speccy.org/). You can try
 the preview release of 0.6.0 if you like, but I'm using 0.5.4.beta2. For MacOS,
 you'll want the Gzipped tar file. The Mac can unpack that format natively.
 
