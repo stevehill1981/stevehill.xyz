@@ -10,7 +10,7 @@ I use AI in my projects, and I remain responsible for what I choose to publish. 
 
 ## Development runtime
 
-Use Node.js 24 or newer. The project uses mise to select Node.js 24.22.0 locally; run `mise install` before installing dependencies. CI follows the current Node 24 patch release.
+Use Node.js 24 or newer. The project uses mise to select Node.js 24.22.0 locally; run `mise install` before installing dependencies. CI uses the same Node.js version.
 
 ## Features
 
