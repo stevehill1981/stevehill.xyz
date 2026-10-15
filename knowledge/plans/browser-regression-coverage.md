@@ -30,3 +30,17 @@ After the menu fix, Chromium's seven journeys passed and WebKit passed six. WebK
 Clean install, all 18 existing tests and the 123-page production build pass. Eight journeys each pass in Chromium and WebKit (16 total), including reduced motion, forced colours and 320px reflow. Native Safari's Tab preferences are not inferred: the forced-colour check explicitly focuses the skip link after keyboard input to inspect its focus paint. Code-copy checks capture the actual writeText payload using a test double, preserving the OS clipboard. An intentionally inert built dialog caused exactly one selected test to fail (exit 1); restoring the build made that test pass (exit 0). No source was changed for the control. Results, control status and inspected before/after/forced-colour screenshots are in knowledge/audits/2026-10-15-browser-regressions/.
 
 The deployment now reads tools.node from mise.toml with Python tomllib. The actual workflow parser emits 24.22.0 and fails when the Node declaration is missing; CI still must verify its runtime output and all three browser engines. Native Safari/VoiceOver is waiting for an isolated front window; full speech, actual zoom and physical-touch acceptance remains separate.
+
+## CI and acceptance
+
+Run 38752174552 passed all 24 browser tests in Linux, including all eight Firefox journeys. The actual log confirms Node 24.22.0 read from mise, all 18 existing tests and 123 indexed pages. Relevant lines are retained as ci-results.txt in the evidence folder. This resolves the Firefox engine-coverage gap despite the local macOS launch error.
+
+Steve deprioritised the full VoiceOver check for this round. No native Safari/actual-zoom session or accessibility setting changes were performed. Those manual checks remain explicit limits, not release-blocking claims of defects. A 15-minute CI build timeout bounds future browser installation/test failures.
+
+## Live mobile focus follow-up
+
+The live 390px menu now accepts the About click and navigation resets it. One Pagefind module import failed on the first search attempt; CLI asset requests returned 200/application/javascript and reload recovered to 19 Rachel results. No underlying network/cache cause is established.
+
+Live Escape after mobile search exposed another concrete focus conflict: both the menu and modal document-level Escape handlers run, hiding the trigger before search can restore it. Document clicks within the search overlay also close the underlying menu. Keep underlying navigation open while the modal handles those events: ignore clicks inside the search overlay in the menu's outside-click handler, and ignore menu Escape while the search overlay is active. First Escape then closes only search and restores Search focus; second Escape closes the menu and restores its toggle. Add assertions for both, including an actual input click.
+
+The expanded mobile test failed before the event guards and passes afterward. All 16 Chromium/WebKit journeys pass again against the rebuilt site. No forced click or disabled assertion was used. The full Linux gate runs again on push.

@@ -50,10 +50,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       toggle.setAttribute('aria-expanded', String(open));
     }, { signal });
     document.addEventListener('click', (event) => {
-      if (event.target instanceof Element && !event.target.closest('.nav-container')) closeMenu();
+      if (event.target instanceof Element && !event.target.closest('.nav-container, .search-overlay')) closeMenu();
     }, { signal });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && links.classList.contains('active')) {
+      if (event.key === 'Escape' && links.classList.contains('active') && !document.querySelector('.search-overlay.active')) {
         closeMenu(); toggle.focus();
       }
     }, { signal });

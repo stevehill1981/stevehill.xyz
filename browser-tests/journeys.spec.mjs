@@ -75,9 +75,15 @@ test('mobile navigation closes with Escape and resets after following a link', a
   await toggle.click();
   await expect(page.getByRole('link', { name: 'About', exact: true })).toHaveAttribute('aria-current', 'page');
   const dialog = await openSearch(page);
+  await dialog.getByRole('textbox').click();
   await dialog.getByRole('textbox').fill('Rachel');
   await expect(dialog.locator('.pagefind-ui__result-link').first()).toBeVisible();
   await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeFocused();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await page.keyboard.press('Escape');
+  await expect(toggle).toBeFocused();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
 });
 
 test('code controls survive client navigation and copy the actual code once', async ({ page, context }) => {
