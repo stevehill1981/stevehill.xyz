@@ -3,7 +3,7 @@ title: "Code Like It's 198x"
 description: "Learn assembly programming by building complete retro games on C64, ZX Spectrum, NES, and Amiga. Docker-based toolchains eliminate setup friction, so you can focus on understanding how computers actually work."
 featured: true
 technologies: ["Astro", "Docker", "Assembly", "Emulation"]
-status: "Active"
+status: "Live"
 demo: "https://www.code198x.com"
 github: "https://github.com/code198x"
 priority: 3
@@ -41,6 +41,8 @@ Students progress through increasingly complex projects on each system:
 Each lesson runs in a **Docker environment** with authentic assemblers (CA65, PasmoNext, VASM) and emulators for immediate feedback. No setup friction — one command to build and test.
 
 ## Current Status
+
+Code198x is live and operational at [www.code198x.com](https://www.code198x.com). I'm also actively developing the wider 198x family.
 
 Four systems have Phase 1 content available (C64, ZX Spectrum, NES, Amiga). The site also includes articles on the history of bedroom coding and deep dives into hardware like the VIC-II and SID chip.
 

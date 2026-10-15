@@ -163,6 +163,7 @@ Alternative: **a project gallery**, with large artifacts and compact writing lin
 
 ## Repair status after the audit
 
+- F4, Code198x reconciled: Steve confirmed the site is live and operational at www.code198x.com and the wider 198x family is under active development. The project status is now Live; its detail page and Now state those facts. Generated destinations and copy were verified, and the production build passed with all 11 regressions.
 - F4, Chaotic Tanx reconciled: Steve confirmed development is paused pending substantial refactoring because of performance and playability issues. Home/project summaries and Now now say paused; the project page removes the current TestFlight invitation and 60fps claim. The January shipping post retains its historical text with a dated status update. Generated pages and the full build, including 11 regressions, were verified.
 - F4 partially reconciled: Steve confirmed Rachel is publicly released, live and has paying customers. Rachel now appears under Released on Now; its project summary/status and current-status section state App Store availability. The direct store destination matches Rachel's own website. No sales figures or additional feature claims were published. Other project statuses still need confirmation.
 
