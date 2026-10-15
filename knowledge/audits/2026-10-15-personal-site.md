@@ -20,6 +20,25 @@ The existing decision to keep Work With Me out of the top navigation remains bin
 - No performance trace/Lighthouse MCP tool or installed Lighthouse executable was available. The public PageSpeed API returned HTTP 429. LCP, INP, CLS, FCP, TBT and a Lighthouse score are **not measured**. No field analytics, Search Console or CrUX dataset was available; journey priority is inferred from the agreed brief, not traffic.
 - Impeccable technical audit and bounded visual inspection were used. This is not the separate formal dual-assessment `critique` workflow. No redesign or general polishing was performed.
 
+## Modernisation validation follow-up
+
+PageSpeed Insights UI supplied real Lighthouse lab measurements after the earlier API rate limit. Reports were captured on 15 October 2026 at 14:49 and 14:52 BST with Lighthouse 13.5.0 / Headless Chromium 153.0.8010.36. Mobile used emulated Moto G Power with Slow 4G; desktop used the report’s desktop/custom throttling. These are one initial-load sample per page/device, not a distribution or field Core Web Vitals. Both reports say **No Data** for real users; INP remains unmeasured.
+
+| Page / mode | Performance | FCP | LCP | TBT | CLS | Speed index |
+|---|---:|---:|---:|---:|---:|---:|
+| Home / mobile | 100 | 1.1s | 1.2s | 0ms | 0 | 2.4s |
+| Home / desktop | 100 | 0.3s | 0.3s | 0ms | 0 | 0.5s |
+| Spectrum article / mobile | 98 | 1.0s | 1.3s | 0ms | 0 | 3.8s |
+| Spectrum article / desktop | 100 | 0.3s | 0.3s | 0ms | 0 | 0.5s |
+
+All four accessibility and best-practices scores were 100. Home SEO was 100; the article was 92 because one Pasmo link read “here”. The scoped repair changes that anchor to “Pasmo website”, preserving the URL and historical advice. That edit does not retrospectively change these captured scores. Automated accessibility scores do not establish WCAG conformance. Cache/render-blocking suggestions are estimates, not measured regressions requiring a redesign.
+
+Evidence: [Home report](https://pagespeed.web.dev/analysis/https-www-stevehill-xyz/ktagd1d0x3?form_factor=mobile), [article report](https://pagespeed.web.dev/analysis/https-www-stevehill-xyz-blog-2017-05-03-spectrum-development-environment/j079hxid92?form_factor=mobile), and the four visible report snapshots in [2026-10-15-validation](2026-10-15-validation/). The Home mobile screenshot was visually inspected and agrees with the report text.
+
+Steve isolated the live homepage in a separate Safari window and explicitly approved temporarily enabling VoiceOver. He confirmed it was speaking, then confirmed it read page content when moved forward. This is a user-observed homepage speech smoke check; automation could not observe exact announcements or the caption panel, so heading/rotor navigation, focus restoration, modal containment and complete reading order remain unverified. The tool’s off shortcut did not stop speech; Steve turned VoiceOver off himself and confirmed completion. Safari’s front window subsequently changed, so further Safari interaction stopped without acting on the unrelated page. No zoom was changed.
+
+Firefox, full screen-reader journeys, Safari search keyboard diagnostics, 200% enlargement, forced colours, reduced-motion emulation and physical touch remain outstanding. Keep #79 open. The earlier “not measured” statements describe the original audit; this follow-up supplies lab baselines only.
+
 ## Safari follow-up
 
 Native macOS Safari inspection used only the isolated personal-site window after explicit user approval. No browser preferences, extensions or website data were changed. The test used accessibility snapshots and screenshots; CSS viewport dimensions, Safari version, rendering timings and screen-reader speech were not measured.
