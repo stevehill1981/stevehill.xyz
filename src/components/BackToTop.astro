@@ -28,7 +28,7 @@
 
     background: var(--color-bg-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-md);
     color: var(--color-text-secondary);
     cursor: pointer;
 
@@ -37,7 +37,7 @@
     transform: translateY(10px);
     transition: all var(--transition-base);
 
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
   }
 
   .back-to-top:hover {
@@ -77,7 +77,10 @@
 <script>
   function initBackToTop() {
     const button = document.getElementById('back-to-top');
-    if (!button) return;
+    if (!button || button.dataset.initialized) return;
+    button.dataset.initialized = 'true';
+    const controller = new AbortController();
+    document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
 
     const scrollThreshold = 300;
 
@@ -92,7 +95,7 @@
     function scrollToTop() {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
       });
     }
 
@@ -100,7 +103,7 @@
     toggleVisibility();
 
     // Listen for scroll
-    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    window.addEventListener('scroll', toggleVisibility, { passive: true, signal: controller.signal });
 
     // Handle click
     button.addEventListener('click', scrollToTop);

@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import rachel from '../assets/projects/rachel.webp';
+import code198x from '../assets/projects/code198x.png';
+import chaoticTanx from '../assets/projects/chaotic-tanx.png';
+const images = {
+  rachel: { src: rachel, alt: 'Rachel on iPad, showing the card table, three character opponents and the player’s hand.', caption: 'Rachel on iPad' },
+  code198x: { src: code198x, alt: 'Dash from the Code198x NES curriculum, showing a character and platforms on a black background.', caption: 'Dash · NES curriculum' },
+  'chaotic-tanx': { src: chaoticTanx, alt: 'A Chaotic Tanx development build with two tanks on hilly terrain and a projectile in flight.', caption: 'Chaotic Tanx · development build' },
+};
+interface Props { projectId: string }
+const { projectId } = Astro.props;
+const image = images[projectId as keyof typeof images];
+---
+{image && (
+  <figure class="project-preview">
+    <Image src={image.src} alt={image.alt} width={Math.min(image.src.width, 720)}
+      widths={projectId === 'code198x' ? [256] : [360, 720]}
+      sizes="(max-width: 800px) calc(100vw - 48px), (max-width: 1100px) 50vw, 420px"
+      format={projectId === 'code198x' ? 'png' : 'webp'} loading="lazy"
+      class:list={{ 'pixel-art': projectId === 'code198x' }} />
+    <figcaption>{image.caption}</figcaption>
+  </figure>
+)}
+<style>
+  .project-preview { margin: 0; }
+  img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; background: #191a17; }
+  .pixel-art { image-rendering: pixelated; }
+  figcaption { font-size: 14px; line-height: 1.4; color: var(--color-text-tertiary); margin-top: 8px; }
+</style>

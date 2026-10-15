@@ -7,7 +7,7 @@ related_targets: ["src/pages/blog/[slug].astro"]
 
 # Open Table
 
-Scope: Home and the first reading-page adaptation. Home is approved; the article composition remains under review. Visitor mode: Read, with project exploration alongside the writing.
+Scope: Approved Home and reading-page adaptation, extended through the shared site shell and existing secondary pages. Steve approved both representative previews before implementation. Visitor mode: Read, with project exploration alongside the writing.
 
 ## Direction contract
 

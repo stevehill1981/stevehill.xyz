@@ -25,7 +25,7 @@ Steve Hill's personal website connects his engineering writing, independent proj
 ## Brand Commitments
 
 - Steve confirmed a warm, personal direction for the whole-site redesign.
-- Steve approved the Open Table browser preview on 15 October 2026: warm cream, dark ink and brick, a personal introduction, real project images and a restrained writing index. The article adaptation remains to be reviewed.
+- Steve approved the Open Table browser preview on 15 October 2026: warm cream, dark ink and brick, a personal introduction, real project images and a restrained writing index. Steve also approved the matching article adaptation before the whole-site rollout.
 - This remains Steve's personal site. Phosphene is his publishing brand for independent software and games, with Steve publicly identifiable as creator; current App Store releases appear under his own name. Use Phosphene, not Phosphene Studios; destination: https://phosphene.uk.
 - Code198x is live at https://www.code198x.com; the wider 198x family is under active development. Phosphene and 198x retain their own identities.
 - Code198x includes programming foundations, languages beyond assembly, game craft and computing history. Follow `RULES.md`; Steve approved the broader description and rule on 15 October 2026.
@@ -47,4 +47,4 @@ Steve Hill's personal website connects his engineering writing, independent proj
 
 ## Open Decisions
 
-The Open Table visual direction and broader Code198x wording are approved. The permanent implementation-workflow default and article adaptation remain open.
+The Open Table visual direction and broader Code198x wording are approved. No permanent implementation-workflow default was inferred from this session. The homepage and article adaptation are approved.

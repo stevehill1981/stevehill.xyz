@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T12:57:31.915603+00:00",
+  "title": "Design System: Steve Hill",
+  "extensions": {
+    "colorMeta": {
+      "brick": {
+        "role": "primary",
+        "displayName": "Brick",
+        "tonalRamp": [
+          "oklch(15% 0.1256 34.97)",
+          "oklch(26% 0.1256 34.97)",
+          "oklch(38% 0.1256 34.97)",
+          "oklch(49% 0.1256 34.97)",
+          "oklch(61% 0.1256 34.97)",
+          "oklch(72% 0.1256 34.97)",
+          "oklch(84% 0.1256 34.97)",
+          "oklch(95% 0.1256 34.97)"
+        ]
+      },
+      "brick-hover": {
+        "role": "primary",
+        "displayName": "Brick Hover",
+        "tonalRamp": [
+          "oklch(15% 0.1052 34.62)",
+          "oklch(26% 0.1052 34.62)",
+          "oklch(38% 0.1052 34.62)",
+          "oklch(49% 0.1052 34.62)",
+          "oklch(61% 0.1052 34.62)",
+          "oklch(72% 0.1052 34.62)",
+          "oklch(84% 0.1052 34.62)",
+          "oklch(95% 0.1052 34.62)"
+        ]
+      },
+      "brick-wash": {
+        "role": "primary",
+        "displayName": "Brick Wash",
+        "tonalRamp": [
+          "oklch(15% 0.0295 67.45)",
+          "oklch(26% 0.0295 67.45)",
+          "oklch(38% 0.0295 67.45)",
+          "oklch(49% 0.0295 67.45)",
+          "oklch(61% 0.0295 67.45)",
+          "oklch(72% 0.0295 67.45)",
+          "oklch(84% 0.0295 67.45)",
+          "oklch(95% 0.0295 67.45)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Cream",
+        "tonalRamp": [
+          "oklch(15% 0.0176 81.33)",
+          "oklch(26% 0.0176 81.33)",
+          "oklch(38% 0.0176 81.33)",
+          "oklch(49% 0.0176 81.33)",
+          "oklch(61% 0.0176 81.33)",
+          "oklch(72% 0.0176 81.33)",
+          "oklch(84% 0.0176 81.33)",
+          "oklch(95% 0.0176 81.33)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15% 0.0227 78.22)",
+          "oklch(26% 0.0227 78.22)",
+          "oklch(38% 0.0227 78.22)",
+          "oklch(49% 0.0227 78.22)",
+          "oklch(61% 0.0227 78.22)",
+          "oklch(72% 0.0227 78.22)",
+          "oklch(84% 0.0227 78.22)",
+          "oklch(95% 0.0227 78.22)"
+        ]
+      },
+      "surface-hover": {
+        "role": "neutral",
+        "displayName": "Surface Hover",
+        "tonalRamp": [
+          "oklch(15% 0.0245 77.45)",
+          "oklch(26% 0.0245 77.45)",
+          "oklch(38% 0.0245 77.45)",
+          "oklch(49% 0.0245 77.45)",
+          "oklch(61% 0.0245 77.45)",
+          "oklch(72% 0.0245 77.45)",
+          "oklch(84% 0.0245 77.45)",
+          "oklch(95% 0.0245 77.45)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0128 93.88)",
+          "oklch(26% 0.0128 93.88)",
+          "oklch(38% 0.0128 93.88)",
+          "oklch(49% 0.0128 93.88)",
+          "oklch(61% 0.0128 93.88)",
+          "oklch(72% 0.0128 93.88)",
+          "oklch(84% 0.0128 93.88)",
+          "oklch(95% 0.0128 93.88)"
+        ]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Text Secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0227 75.01)",
+          "oklch(26% 0.0227 75.01)",
+          "oklch(38% 0.0227 75.01)",
+          "oklch(49% 0.0227 75.01)",
+          "oklch(61% 0.0227 75.01)",
+          "oklch(72% 0.0227 75.01)",
+          "oklch(84% 0.0227 75.01)",
+          "oklch(95% 0.0227 75.01)"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Text Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0344 66.84)",
+          "oklch(26% 0.0344 66.84)",
+          "oklch(38% 0.0344 66.84)",
+          "oklch(49% 0.0344 66.84)",
+          "oklch(61% 0.0344 66.84)",
+          "oklch(72% 0.0344 66.84)",
+          "oklch(84% 0.0344 66.84)",
+          "oklch(95% 0.0344 66.84)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15% 0.0246 79.72)",
+          "oklch(26% 0.0246 79.72)",
+          "oklch(38% 0.0246 79.72)",
+          "oklch(49% 0.0246 79.72)",
+          "oklch(61% 0.0246 79.72)",
+          "oklch(72% 0.0246 79.72)",
+          "oklch(84% 0.0246 79.72)",
+          "oklch(95% 0.0246 79.72)"
+        ]
+      },
+      "code-bg": {
+        "role": "neutral",
+        "displayName": "Code Bg",
+        "tonalRamp": [
+          "oklch(15% 0.0242 256.44)",
+          "oklch(26% 0.0242 256.44)",
+          "oklch(38% 0.0242 256.44)",
+          "oklch(49% 0.0242 256.44)",
+          "oklch(61% 0.0242 256.44)",
+          "oklch(72% 0.0242 256.44)",
+          "oklch(84% 0.0242 256.44)",
+          "oklch(95% 0.0242 256.44)"
+        ]
+      },
+      "code-text": {
+        "role": "neutral",
+        "displayName": "Code Text",
+        "tonalRamp": [
+          "oklch(15% 0.0126 255.51)",
+          "oklch(26% 0.0126 255.51)",
+          "oklch(38% 0.0126 255.51)",
+          "oklch(49% 0.0126 255.51)",
+          "oklch(61% 0.0126 255.51)",
+          "oklch(72% 0.0126 255.51)",
+          "oklch(84% 0.0126 255.51)",
+          "oklch(95% 0.0126 255.51)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Homepage welcome only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Main page and article headings."
+      },
+      "section": {
+        "displayName": "Section",
+        "purpose": "Shared second-level headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default interface and general reading."
+      },
+      "prose": {
+        "displayName": "Prose",
+        "purpose": "Article and About long-form reading."
+      },
+      "note": {
+        "displayName": "Note",
+        "purpose": "Quotations; the homepage uses a larger Bitter note line."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Supporting metadata."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Technical examples."
+      }
+    },
+    "shadows": [
+      {
+        "name": "navigation",
+        "value": "0 8px 24px rgb(41 39 32 / .10)",
+        "purpose": "Expanded mobile masthead."
+      },
+      {
+        "name": "search-dialog",
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+        "purpose": "Search overlay depth."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-color",
+        "value": "200ms ease-out",
+        "purpose": "Search trigger and close color transitions."
+      },
+      {
+        "name": "search-overlay",
+        "value": "opacity 0.2s, visibility 0.2s",
+        "purpose": "Opening and closing search; disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "360px"
+      },
+      {
+        "name": "sidebar-single",
+        "value": "480px"
+      },
+      {
+        "name": "mobile",
+        "value": "800px"
+      },
+      {
+        "name": "tablet",
+        "value": "1000px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Outlined action",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Existing shared action treatment.",
+      "html": "<button class=\"ds-button-outline\">Continue</button>",
+      "css": ".ds-button-outline{font-family:var(--font-body);display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--color-border);border-radius:4px;font-size:1.125rem;line-height:1.65;cursor:pointer;background:transparent;color:var(--color-text-primary)}.ds-button-outline:hover{color:var(--color-primary-hover)}.ds-button-outline:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}"
+    },
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Existing shared action treatment.",
+      "html": "<button class=\"ds-button-primary\">Continue</button>",
+      "css": ".ds-button-primary{font-family:var(--font-body);display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--color-primary);border-radius:4px;font-size:1.125rem;line-height:1.65;cursor:pointer;background:var(--color-primary);color:#fff}.ds-button-primary:hover{background:var(--color-primary-hover);color:#fff}.ds-button-primary:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search-input",
+      "description": "The Pagefind field appearance; search behavior belongs to the application.",
+      "html": "<label class=\"ds-field-label\" for=\"ds-search\">Search</label><input class=\"ds-search\" id=\"ds-search\" type=\"search\" placeholder=\"Search this site\">",
+      "css": ".ds-field-label{font-family:var(--font-body);display:block;color:var(--color-text-primary)}.ds-search{font-family:var(--font-body);background:var(--color-surface);color:var(--color-text-primary);border:1px solid var(--color-border);border-radius:4px;font-size:1.125rem;padding:1rem 1rem 1rem 3rem;width:100%}.ds-search::placeholder{color:var(--color-text-muted)}.ds-search:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}"
+    },
+    {
+      "name": "Masthead links",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Desktop link states from the shared masthead.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a href=\"/about\">About</a><a href=\"/projects\">Projects</a><a href=\"/blog\" aria-current=\"page\">Writing</a><a href=\"/now\">Now</a></nav>",
+      "css": ".ds-nav{font-family:var(--font-body);display:flex;flex-wrap:wrap;gap:20px;align-items:center}.ds-nav a{color:var(--color-text-primary);font-size:17px;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current]{color:var(--color-primary);text-decoration:underline;text-underline-offset:6px}.ds-nav a:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}"
+    },
+    {
+      "name": "Topic tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Compact linked topic used with articles.",
+      "html": "<a class=\"ds-tag\" href=\"/tags\">Programming</a>",
+      "css": ".ds-tag{font-family:var(--font-body);display:inline-block;font-size:.875rem;color:var(--color-text-secondary);padding:2px 8px;background:var(--color-bg-surface);border-radius:3px;text-decoration:none}.ds-tag:hover{color:var(--color-primary-hover);text-decoration-thickness:2px}.ds-tag:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}"
+    },
+    {
+      "name": "Article row",
+      "kind": "card",
+      "refersTo": "article-card",
+      "description": "Open writing-index block, separated by a rule.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-meta\">Engineering · 5 min read</div><h2><a href=\"/blog\">Writing</a></h2><p>Things I’ve learned along the way.</p></article>",
+      "css": ".ds-card{font-family:var(--font-body);padding:28px 0;border-top:1px solid var(--color-border)}.ds-meta{font-size:.9375rem;color:var(--color-text-tertiary)}.ds-card h2{font-size:1.75rem;line-height:1.2;font-weight:600;margin:14px 0 12px}.ds-card a{color:var(--color-text-primary);text-decoration:none}.ds-card a:hover{color:var(--color-primary);text-decoration:underline}.ds-card a:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}.ds-card p{font-size:1.125rem;line-height:1.65;color:var(--color-text-secondary);margin:0 0 1.25em}"
+    },
+    {
+      "name": "Search container",
+      "kind": "custom",
+      "refersTo": "search-modal",
+      "description": "Dialog shell only; the live implementation supplies results and focus management.",
+      "html": "<section class=\"ds-dialog\" aria-label=\"Search preview\"><button class=\"ds-close\" aria-label=\"Close search\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></button><p>Search this site</p></section>",
+      "css": ".ds-dialog{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text-primary);border:1px solid var(--color-border);border-radius:var(--radius-lg);width:90%;max-width:600px;max-height:80vh;overflow:hidden;position:relative;padding:32px 0 0;box-shadow:0 25px 50px -12px rgba(0,0,0,.5)}.ds-dialog p{padding:1.5rem;margin:0}.ds-close{position:absolute;top:1rem;right:1rem;background:transparent;border:none;padding:.625rem;cursor:pointer;color:var(--color-text-tertiary);transition:color 200ms ease-out}.ds-close:hover{color:var(--color-text-primary)}.ds-close:focus-visible{outline:3px solid var(--color-primary);outline-offset:2px;border-radius:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Open Table",
+    "overview": "Open Table is a warm, personal visual system built from cream, dark ink and brick. Source Sans 3 carries the interface and long-form reading; Bitter gives personal notes and quotations a distinct voice.\n\nThe material is mostly flat: open space, quiet rules and restrained surface tones organize content. Images retain the visual identity of the real projects they show. The homepage composition and audience strategy remain in PRODUCT.md and the surface brief; they are not universal layout requirements.",
+    "keyCharacteristics": [
+      "Warm cream canvas with dark, readable text.",
+      "Brick for links, emphasis and interaction states.",
+      "Open layouts divided by quiet rules.",
+      "Real, uncropped project images and comfortable prose."
+    ],
+    "rules": [
+      {
+        "name": "The Reading Measure Rule",
+        "body": "Keep long-form prose within the established 70ch measure; use the wider shell for navigation, images and supporting material.",
+        "section": "typography"
+      },
+      {
+        "name": "The Quiet Separation Rule",
+        "body": "Use rules and space for ordinary content separation; reserve pronounced depth for overlays.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Source Sans 3 for the main interface and Bitter for the established note and quotation roles.",
+      "Do keep prose near the implemented 70ch measure and let layouts stack when space narrows.",
+      "Do retain visible keyboard focus and reduced-motion behavior.",
+      "Do preserve project screenshots with contain sizing and pixelated rendering where the source is pixel art."
+    ],
+    "donts": [
+      "Don't add decorative glows or card stripes to the Open Table world.",
+      "Don't turn open article and project rows into elevated cards.",
+      "Don't apply the homepage’s three-project composition to every surface."
+    ]
+  }
+}

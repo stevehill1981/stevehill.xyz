@@ -26,7 +26,7 @@ if (filteredHeadings.length === 0) {
 
 {filteredHeadings.length > 0 && (
   <nav class="toc" aria-label="Table of contents">
-    <h3>On this page</h3>
+    <h2>On this page</h2>
     <ul class="toc-list">
       {filteredHeadings.map((heading) => (
         <li class={`toc-item toc-depth-${heading.depth}`}>
@@ -40,65 +40,14 @@ if (filteredHeadings.length === 0) {
 )}
 
 <style>
-  .toc {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
-  }
-
-  .toc h3 {
-    margin: 0 0 var(--spacing-md) 0;
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-primary);
-  }
-
-  .toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .toc-item {
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .toc-link {
-    display: block;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    border-radius: var(--radius-sm);
-    border-left: 2px solid transparent;
-    transition: all var(--transition-fast);
-    line-height: var(--line-height-snug);
-  }
-
-  .toc-link:hover {
-    color: var(--color-text-primary);
-    background: var(--color-bg-tertiary);
-    text-decoration: none;
-  }
-
-  .toc-link.active {
-    color: var(--color-primary);
-    border-left-color: var(--color-primary);
-    background: var(--color-primary-light);
-  }
-
-  /* Indent h3 items */
-  .toc-depth-3 .toc-link {
-    padding-left: var(--spacing-lg);
-    font-size: var(--font-size-xs);
-  }
-
-  .toc-depth-4 .toc-link {
-    padding-left: calc(var(--spacing-lg) + var(--spacing-sm));
-    font-size: var(--font-size-xs);
-  }
+.toc { border-top: 1px solid var(--color-border); padding: 20px 0; }
+.toc h2 { font-size: 19px; margin: 0 0 16px; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin: 0 0 12px; }
+.toc-link { color: var(--color-text-tertiary); text-decoration: none; font-size: 17px; line-height: 1.4; display: block; }
+.toc-link:hover,.toc-link.active { color: var(--color-primary); text-decoration: underline; }
+.toc-depth-3 { padding-left: 16px; }
+.toc-depth-3 .toc-link { font-size: 15px; }
 </style>
 
 <script>
@@ -181,6 +130,5 @@ if (filteredHeadings.length === 0) {
   }
 
   // Initialize on page load and after view transitions
-  initTableOfContents();
   document.addEventListener('astro:page-load', initTableOfContents);
 </script>

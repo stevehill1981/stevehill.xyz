@@ -5,76 +5,15 @@ const currentYear = new Date().getFullYear();
 <footer>
   <div class="footer-bottom">
     <p>&copy; {currentYear} Steve Hill. All rights reserved.</p>
+    <nav aria-label="More about Steve"><a href="/principles">Principles</a><a href="https://www.code198x.com">Code198x</a><a href="mailto:steve@stevehill.xyz">Email</a><a href="https://github.com/stevehill1981">GitHub</a></nav>
+    <nav aria-label="More writing"><a href="/archive">Archive</a><a href="/tags">Topics</a><a href="/series">Series</a><a href="/rss.xml">RSS</a></nav>
   </div>
 </footer>
 
 <style>
-  footer {
-    background: var(--color-bg);
-    position: relative;
-    margin-top: var(--spacing-2xl);
-    animation: fadeIn var(--transition-slow) ease-out;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-  }
-
-  footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      var(--color-purple),
-      var(--color-pink),
-      var(--color-blue),
-      var(--color-cyan),
-      var(--color-orange),
-      var(--color-red),
-      var(--color-green),
-      var(--color-teal),
-      var(--color-purple)
-    );
-    background-size: 200% 100%;
-    animation: border-shift 15s linear infinite;
-  }
-
-  @keyframes border-shift {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
-  }
-
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-lg);
-    text-align: left;
-  }
-
-  .footer-bottom p {
-    margin: 0;
-    color: var(--color-text-tertiary);
-    font-size: var(--font-size-sm);
-  }
-
-  @media (max-width: 768px) {
-    .footer-bottom {
-      padding: var(--spacing-md) var(--spacing-sm);
-    }
-  }
-
-  /* Reduced motion support for accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    footer,
-    footer::before {
-      animation: none;
-    }
-
-    footer::before {
-      background-position: 0% 0%;
-    }
-  }
+footer { margin-top: 32px; }
+.footer-bottom { max-width: 1280px; margin: 0 auto; padding: 24px 0 36px; border-top: 1px solid var(--color-border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: var(--color-text-tertiary); font-size: 15px; }
+.footer-bottom p { margin: 0; } nav { display: flex; flex-wrap: wrap; gap: 22px; } a { color: var(--color-text-tertiary); }
+@media(max-width:1408px){.footer-bottom{margin-inline:64px}}
+@media(max-width:800px){.footer-bottom{margin-inline:24px}}
 </style>
