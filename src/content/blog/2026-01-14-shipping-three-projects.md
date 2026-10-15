@@ -11,6 +11,8 @@ tags:
   - project-showcase
 ---
 
+*Update, 15 October 2026: Chaotic Tanx is now paused pending substantial refactoring to address performance and playability. The [project page](/projects/chaotic-tanx) has its current status; the post below describes where it stood in January.*
+
 I just shipped three projects that had stalled for years — in one case, over two decades. Not three related features. Three separate things, each with different tech stacks, different purposes, different audiences:
 
 - **Code Like It's 198x** — An assembly programming education platform teaching game development on C64, ZX Spectrum, NES, and Amiga

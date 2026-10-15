@@ -1,6 +1,6 @@
 ---
 title: "Chaotic Tanx"
-description: "Artillery warfare on iOS with destructible terrain, physics-based ballistics, and turn-based multiplayer. Currently in TestFlight beta."
+description: "An iOS artillery game with destructible terrain and physics-based ballistics. Paused pending refactoring to address performance and playability."
 tags:
   - swift
   - spritekit
@@ -13,15 +13,19 @@ technologies:
   - swift
   - spritekit
   - ios
-status: "Beta"
+status: "Paused"
 year: 2025
 ---
 
-Chaotic Tanx is an artillery game for iOS in the tradition of Scorched Earth and Worms. Built with SpriteKit, it features destructible terrain, realistic ballistics with wind effects, and turn-based multiplayer via Game Center. Currently available on TestFlight.
+Chaotic Tanx is an artillery game for iOS in the tradition of Scorched Earth and Worms. Built with SpriteKit, it features destructible terrain, realistic ballistics with wind effects, and turn-based multiplayer via Game Center.
+
+## Current Status
+
+Development is paused. I thought the game was closer to ready than it was, but performance and playability issues made me reconsider. It needs substantial refactoring before I can move it forward.
 
 ## Core Gameplay
 
-**Destructible terrain** is the centrepiece — every explosion carves permanent craters into the landscape, changing the battlefield as you play. The terrain system uses real-time bitmap manipulation with physics bodies that regenerate after each impact, keeping collision detection accurate at 60fps.
+**Destructible terrain** is the centrepiece — every explosion carves permanent craters into the landscape, changing the battlefield as you play. The terrain system uses real-time bitmap manipulation with physics bodies that regenerate after each impact, keeping collision shapes in step with the terrain.
 
 Combat uses intuitive drag-to-aim controls with a visual arc preview. Different weapons suit different situations: the basic cannon for precision shots, the Sunburst Launcher for area denial (it splits into 3–5 projectiles at trajectory peak). Wind effects and realistic ballistics mean you're solving physics problems under pressure.
 
@@ -39,8 +43,8 @@ Screen shake, particle explosions, and muzzle flash effects sell the impacts.
 
 ## What's Next
 
-Online multiplayer, environmental hazards (water, lava), and a replay system for sharing moments of spectacular destruction.
+Refactoring to address performance and playability comes before further features.
 
 ---
 
-**Want to try it?** [Join the TestFlight beta](https://chaotictanx.stevehill.xyz) and help shape the game.
+[Project website](https://chaotictanx.stevehill.xyz)

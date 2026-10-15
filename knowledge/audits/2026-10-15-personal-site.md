@@ -163,6 +163,7 @@ Alternative: **a project gallery**, with large artifacts and compact writing lin
 
 ## Repair status after the audit
 
+- F4, Chaotic Tanx reconciled: Steve confirmed development is paused pending substantial refactoring because of performance and playability issues. Home/project summaries and Now now say paused; the project page removes the current TestFlight invitation and 60fps claim. The January shipping post retains its historical text with a dated status update. Generated pages and the full build, including 11 regressions, were verified.
 - F4 partially reconciled: Steve confirmed Rachel is publicly released, live and has paying customers. Rachel now appears under Released on Now; its project summary/status and current-status section state App Store availability. The direct store destination matches Rachel's own website. No sales figures or additional feature claims were published. Other project statuses still need confirmation.
 
 - F2 repaired: homepage reading-time text now uses the existing tertiary text token. Browser-computed foreground `rgb(156,163,175)` against `rgb(26,26,26)` gives 6.86:1 at 14px, up from 3.60:1. The full build and all 11 regressions pass.
