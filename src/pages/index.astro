@@ -1,5 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import rachelScreenshot from '../assets/projects/rachel.webp';
+import code198xScreenshot from '../assets/projects/code198x.png';
+import chaoticTanxScreenshot from '../assets/projects/chaotic-tanx.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getReadingTime } from '../utils/readingTime.js';
 import {
@@ -39,12 +43,18 @@ const recentPostsWithReadingTime = recentPosts.map((post) => {
 
 // Selected work, with released and live projects first.
 const allProjects = await getCollection('projects', ({ data }) => data.draft !== true);
-const selectedProjectIds = ['rachel', 'code198x', 'chaotic-tanx'];
+const projectImages = {
+	rachel: { src: rachelScreenshot, alt: 'Rachel on iPad, showing the card table, three character opponents and the player’s hand.', caption: 'Rachel on iPad' },
+	code198x: { src: code198xScreenshot, alt: 'Dash from the Code198x NES assembly curriculum, showing a character and platforms on a black background.', caption: 'Dash · NES assembly curriculum' },
+	'chaotic-tanx': { src: chaoticTanxScreenshot, alt: 'A Chaotic Tanx development build with two tanks on hilly terrain and a projectile in flight.', caption: 'Chaotic Tanx · development build' },
+};
+const selectedProjectIds = ['rachel', 'code198x', 'chaotic-tanx'] as const;
 const selectedProjects = selectedProjectIds.map(id => {
 	const project = allProjects.find(project => project.id === id);
 	if (!project) throw new Error(`Selected project is missing or unpublished: ${id}`);
-	return project;
+	return { ...project, image: projectImages[id] };
 });
+
 
 // Technology icon mapping using simple-icons
 type SimpleIcon = { svg: string; hex: string; title: string };
@@ -144,6 +154,18 @@ const getTechIcon = (tech: string): string => {
 				{selectedProjects.map((project) => (
 					<a href={`/projects/${project.id}`} class="project-card-link">
 						<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
+							<figure class="project-preview">
+								<Image
+									src={project.image.src}
+									alt={project.image.alt}
+									widths={project.id === 'code198x' ? [256] : [360, 720]}
+									sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1100px) 50vw, 384px"
+									format={project.id === 'code198x' ? 'png' : 'webp'}
+									loading="lazy"
+									class:list={{ 'pixel-art': project.id === 'code198x' }}
+								/>
+								<figcaption>{project.image.caption}</figcaption>
+							</figure>
 							<div class="project-header project-gradient" data-project={project.data.title}>
 								<h3>{project.data.title}</h3>
 								{project.data.technologies && project.data.technologies.length > 0 && (
@@ -757,6 +779,29 @@ const getTechIcon = (tech: string): string => {
 	}
 
 	/* Projects grid */
+	.project-preview {
+		margin: 0;
+		background: var(--color-bg-primary);
+	}
+
+	.project-preview img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3 / 2;
+		height: auto;
+		object-fit: contain;
+	}
+
+	.project-preview .pixel-art {
+		image-rendering: pixelated;
+	}
+
+	.project-preview figcaption {
+		padding: var(--spacing-sm) var(--spacing-md);
+		font-size: var(--font-size-sm);
+		color: var(--color-text-tertiary);
+	}
+
 	.projects-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
