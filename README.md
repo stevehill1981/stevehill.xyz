@@ -2,6 +2,12 @@
 
 The source code for my personal website, built with [Astro](https://astro.build/). A consolidated site featuring my blog, projects showcase, and personal landing page.
 
+## What I want the site to show
+
+I want visitors to be able to explore the work without already knowing its tools or terminology. Useful explanations should make the choices and constraints easier to understand. Accessibility, fast pages and a maintainable site are part of that work.
+
+I use AI in my projects, and I remain responsible for what I choose to publish. Claims should point to code, sources, tests or observed results, with their limits made clear. I would rather revise or remove weak work than dress it up as finished. The [site quality epic](https://github.com/stevehill1981/stevehill.xyz/issues/78) tracks that standard; it is an ambition to verify, not a claim that every project has been independently audited.
+
 ## Features
 
 ### Content
