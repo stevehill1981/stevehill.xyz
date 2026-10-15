@@ -1,0 +1,213 @@
+{
+  "title": "A warmer home for the work",
+  "question": "Open a preview to see your real content. Choose a direction, or tell me what to change.",
+  "options": [
+    {
+      "id": "open-table",
+      "label": "The open table",
+      "thesis": "A welcoming personal introduction, followed by the work and the thinking behind it.",
+      "palette": [
+        "#fbf4e8",
+        "#292720",
+        "#9c422c"
+      ],
+      "materials": [
+        "Typography, real project images and generous reading space"
+      ],
+      "viewport": "A broad, friendly introduction with the three real project images directly below.",
+      "risk": "Can feel too informal unless article typography remains disciplined.",
+      "html": ".impeccable/mocks/decision/open-table.html",
+      "comp": ".impeccable/mocks/decision/open-table.png",
+      "kicker": "THE ROLL",
+      "lineage": "The shared kitchen table: warm surfaces, clear places and room for conversation",
+      "raised": [
+        {
+          "from": "Reference setting",
+          "raise": "Comfortable reading measure with notes kept beside the text."
+        },
+        {
+          "from": "Dense web",
+          "raise": "Useful information remains close at hand without crowding the page."
+        },
+        {
+          "from": "Transforming cape",
+          "raise": "Small-screen layouts change structure rather than merely shrinking."
+        },
+        {
+          "from": "Deep dive",
+          "raise": "A clear route through a long article and back to its contents."
+        },
+        {
+          "from": "Data field",
+          "raise": "A disciplined contrast system for all running text."
+        },
+        {
+          "from": "Cutting bench",
+          "raise": "The same visual grammar follows you from project to writing."
+        }
+      ]
+    },
+    {
+      "id": "small-press",
+      "label": "The small press",
+      "thesis": "A personal journal of practical engineering, with the projects as its illustrations.",
+      "palette": [
+        "#f5f0e5",
+        "#262d28",
+        "#526548"
+      ],
+      "materials": [
+        "Typography, real project images and generous reading space"
+      ],
+      "viewport": "A serif introduction above a carefully set project spread and a compact list of essays.",
+      "risk": "A familiar editorial direction; its distinction depends on the writing and real work.",
+      "html": ".impeccable/mocks/decision/small-press.html",
+      "comp": ".impeccable/mocks/decision/small-press.png",
+      "kicker": "IMPECCABLE\u2019S PICK",
+      "lineage": "Independent literary journals and small-press colophons"
+    },
+    {
+      "id": "reference",
+      "label": "The annotated edition",
+      "thesis": "A quiet reading room with helpful notes in the margins.",
+      "palette": [
+        "#f4eddf",
+        "#292722",
+        "#a53d2e"
+      ],
+      "materials": [
+        "Typography, real project images and generous reading space"
+      ],
+      "viewport": "A compact masthead and a two-column introduction beside an index of the work.",
+      "risk": "The reference-book structure is more formal than conversational.",
+      "html": ".impeccable/mocks/decision/reference.html",
+      "comp": ".impeccable/mocks/decision/reference.png",
+      "verdict": "competitive",
+      "lineage": "Wide-margin reference editions",
+      "case": "Strong recognition for technical readers; the open table explains the person and projects more immediately.",
+      "hero": "https://impeccable.style/worlds/cards/rw-centre-rail-reference-setting-hero.webp"
+    },
+    {
+      "id": "dense",
+      "label": "Dense web",
+      "thesis": "A compact project and essay index organized into small ruled modules.",
+      "palette": [
+        "#ffffff",
+        "#181818",
+        "#b12d20"
+      ],
+      "materials": [
+        "Ruled content and a consistent navigation system"
+      ],
+      "viewport": "A compact project and essay index organized into small ruled modules.",
+      "risk": "High information density competes with comfortable reading.",
+      "case": "Too busy for the requested warm welcome.",
+      "kept": "Information kept close at hand.",
+      "verdict": "declined",
+      "hero": "https://impeccable.style/worlds/cards/japanese-high-density-web-hero.webp"
+    },
+    {
+      "id": "cape",
+      "label": "Transforming cape",
+      "thesis": "Sections gather around a common navigation line.",
+      "palette": [
+        "#171717",
+        "#d2b066",
+        "#6d7178"
+      ],
+      "materials": [
+        "Ruled content and a consistent navigation system"
+      ],
+      "viewport": "Sections gather around a common navigation line.",
+      "risk": "The clothing metaphor distracts from the work.",
+      "case": "Readers are unlikely to identify with a fashion interaction.",
+      "kept": "Structural adaptation across screen sizes.",
+      "verdict": "declined",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-drawcord-transforming-cape-hero.webp"
+    },
+    {
+      "id": "dive",
+      "label": "Deep dive",
+      "thesis": "Writing follows a single vertical route with a persistent section index.",
+      "palette": [
+        "#09273b",
+        "#edf3ef",
+        "#52bdc9"
+      ],
+      "materials": [
+        "Ruled content and a consistent navigation system"
+      ],
+      "viewport": "Writing follows a single vertical route with a persistent section index.",
+      "risk": "An immersive environment is less personal.",
+      "case": "The ocean setting obscures the engineering portfolio.",
+      "kept": "Clear wayfinding through long material.",
+      "verdict": "declined",
+      "hero": "https://impeccable.style/worlds/cards/rivers-tides-ocean-depths-mesophotic-deep-dive-hero.webp"
+    },
+    {
+      "id": "data",
+      "label": "Data field",
+      "thesis": "An index arranged in dense, high-contrast columns.",
+      "palette": [
+        "#000000",
+        "#ffffff"
+      ],
+      "materials": [
+        "Ruled content and a consistent navigation system"
+      ],
+      "viewport": "An index arranged in dense, high-contrast columns.",
+      "risk": "Its starkness conflicts with warmth.",
+      "case": "The data-art frame hides the person behind the site.",
+      "kept": "A disciplined contrast system.",
+      "verdict": "declined",
+      "hero": "https://impeccable.style/worlds/cards/ikeda-datamatics-hero.webp"
+    },
+    {
+      "id": "bench",
+      "label": "Cutting bench",
+      "thesis": "Projects and essays sit along a horizontal selection rail.",
+      "palette": [
+        "#171513",
+        "#d56b30",
+        "#ffffff"
+      ],
+      "materials": [
+        "Ruled content and a consistent navigation system"
+      ],
+      "viewport": "Projects and essays sit along a horizontal selection rail.",
+      "risk": "A film metaphor adds work to navigation.",
+      "case": "The browsing ritual is less clear than ordinary links.",
+      "kept": "Consistency between different content types.",
+      "verdict": "declined",
+      "hero": "https://impeccable.style/worlds/cards/operate-a-cutting-bench-select-rail-hero.webp"
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "steer": true,
+  "canon": true,
+  "canonCard": {
+    "label": "A conventional personal portfolio",
+    "thesis": "A straightforward personal site with familiar navigation and simple project listings.",
+    "palette": [
+      "#ffffff",
+      "#282828",
+      "#365ba8"
+    ],
+    "materials": [
+      "Typography, real project images and generous reading space"
+    ],
+    "viewport": "A short introduction, three selected projects and recent writing.",
+    "risk": "Less distinctive by design.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "comp": ".impeccable/mocks/decision/canon.png"
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  }
+}

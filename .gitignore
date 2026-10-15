@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local design-review server state (keep authored previews and payloads)
+.impeccable/questions/*.hand.json
+.impeccable/questions/*.state.json
+.impeccable/questions/*.log
