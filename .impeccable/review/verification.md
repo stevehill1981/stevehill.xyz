@@ -30,3 +30,9 @@ The independent full review found one tablet introduction issue. The fix stacks 
 ## Limits and remaining audit work
 
 No new Safari, Firefox, VoiceOver/NVDA speech, forced-colour, text-zoom, physical-touch or reduced-motion emulation pass was performed. Reduced-motion handling was inspected in code. No Core Web Vitals, Lighthouse or field-performance improvement is claimed. Historical article images lacking dimensions remain the separate F7 follow-up. GitHub issue #79 remains open for that work and broader validation.
+
+## Production check
+
+Redesign integrated into main at `54633f8`, preserving the concurrent README-only update. GitHub Pages run `38738944026` completed successfully. Live Home and Guardrails returned HTTP 200 with the new stylesheet, local font preload and expected content order. The Source Sans 3 response is valid WOFF2 (28,804 bytes). Live generated Rachel/Chaotic Tanx image bytes matched the local build. The browser’s native screenshot visibly rendered all three project images, Source Sans 3 and the cream palette. File exports omitted two loaded WebP images despite that correct native view, so malformed exported files were discarded; the valid local-build captures remain the durable screenshot evidence. No product change was needed.
+
+Task-owned preview ports 54367, 57835 and 59393 are closed; temporary files were removed. Production `dist` remains the normal ignored build output, and the live homepage tab is retained as the user-facing result.
