@@ -38,6 +38,14 @@ Two observations need a focused diagnostic before a broad Safari pass can be cla
 
 The final project-case-study check was not completed: the Safari window showed an unrelated site when inspected. Automation stopped immediately; no further content was examined and the window was left open to avoid disrupting other activity. The task-created site tab may still exist and can be closed manually once no longer needed. Safari mobile/device behavior remains outside this desktop follow-up.
 
+### Navigation-cache diagnosis and bounded fix
+
+A subsequent isolated reproduction established a cache/request cause matching the unstyled-navigation/reload observation. Astro ClientRouter fetches HTML without a navigation Accept header. The old worker classified only `Accept: text/html` requests as pages, so client navigation could return cached HTML from a previous release with removed hashed stylesheet references. Reloads used the network-first branch and recovered. This mechanism is browser-independent; the original Safari session was not network-traced.
+
+`public/sw.js` now recognizes navigation requests and same-origin fetches of the site's extensionless, trailing-slash and `.html` page URLs, using network-first with the existing offline fallback. Assets retain cache-first behavior. Eleven tests in `test/service-worker.test.mjs` failed appropriately against the old worker (7 failures) and pass against the fix. They run as part of the normal production build.
+
+A real-worker diagnostic on a fresh local Chrome origin seeded previous-release HTML. The old worker returned that stale HTML; the patched worker returned current HTML and both referenced local stylesheet requests returned HTTP 200 with CSS content types. Normal Home → About navigation retained the dark layout and 20px icon sizing. See `knowledge/plans/safari-navigation-styles.md` for the reproduction and limits. Safari's keyboard observations remain unresolved.
+
 ## Provisional audit health
 
 Scores are engineering judgment over this sample, not a WCAG conformance statement or a performance benchmark.

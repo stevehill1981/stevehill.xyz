@@ -53,8 +53,16 @@ self.addEventListener('fetch', (event) => {
   // Skip pagefind requests (search index)
   if (url.pathname.startsWith('/pagefind/')) return;
 
-  // For HTML pages: network-first with cache fallback
-  if (request.headers.get('Accept')?.includes('text/html')) {
+  // ClientRouter fetches pages without a navigation Accept header. Serving old
+  // HTML cache-first can reference hashed stylesheets removed by a deployment.
+  const lastSegment = url.pathname.split('/').pop();
+  const isPageURL = !lastSegment.includes('.') || url.pathname.endsWith('.html');
+  const isPageRequest = request.mode === 'navigate' ||
+    request.headers.get('Accept')?.includes('text/html') ||
+    (request.destination === '' && isPageURL);
+
+  // All page requests: network-first with cache fallback.
+  if (isPageRequest) {
     event.respondWith(
       fetch(request)
         .then((response) => {
