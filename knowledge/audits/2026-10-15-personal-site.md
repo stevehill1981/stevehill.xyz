@@ -163,6 +163,7 @@ Alternative: **a project gallery**, with large artifacts and compact writing lin
 
 ## Repair status after the audit
 
+- F2 repaired: homepage reading-time text now uses the existing tertiary text token. Browser-computed foreground `rgb(156,163,175)` against `rgb(26,26,26)` gives 6.86:1 at 14px, up from 3.60:1. The full build and all 11 regressions pass.
 - F1 repaired: the optional series object is preserved by the blog schema. Built output contains both Building Rachel parts in order, reciprocal part navigation, and no series UI on an ordinary non-series post. All 123 routes still build and the 11 regression tests pass.
 - F3 repaired: About's three project links now lead to the existing detail routes. The production build and all 11 service-worker regressions pass; all three generated links resolve and no `/projects#...` links remain on About.
 - The navigation-cache fix is recorded above; the remaining findings retain their original evidence until repaired.
