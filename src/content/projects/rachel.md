@@ -1,6 +1,6 @@
 ---
 title: "Rachel"
-description: "A strategic card game with a twist: the last player standing loses. Play solo against AI, locally via Game Center, or online (coming soon). Based on 30 years of family tradition."
+description: "A strategic card game for iOS where the last player standing loses. Based on 30 years of family tradition. Available on the App Store."
 tags:
   - swift
   - ios
@@ -12,7 +12,7 @@ technologies:
   - Swift
   - SpriteKit
   - GameKit
-status: "Active"
+status: "Released"
 year: 2024
 ---
 
@@ -48,6 +48,8 @@ The iOS app is the starting point. The long-term goal is to implement Rachel on 
 It's ambitious and aspirational. The iOS app comes first. The multiverse comes when there's time.
 
 ## Current Status
+
+Rachel is publicly released and available on the [App Store](https://apps.apple.com/app/id6794358319).
 
 - iOS app with full game rules and AI opponents
 - Game Center and local networking multiplayer
