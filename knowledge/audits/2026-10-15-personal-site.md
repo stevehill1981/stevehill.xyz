@@ -161,6 +161,11 @@ Recommended direction: **an editorial portfolio**. A clear introduction, selecte
 
 Alternative: **a project gallery**, with large artifacts and compact writing links. This would suit a stronger emphasis on games/visual work, but gives engineering writing less prominence. The editorial direction fits all three agreed journeys better. These are proposals, not an approved new design system; PRODUCT.md/DESIGN.md and design choices should be agreed in the redesign phase.
 
+## Repair status after the audit
+
+- F3 repaired: About's three project links now lead to the existing detail routes. The production build and all 11 service-worker regressions pass; all three generated links resolve and no `/projects#...` links remain on About.
+- The navigation-cache fix is recorded above; the remaining findings retain their original evidence until repaired.
+
 ## Three high-leverage improvements
 
 1. **Repair existing journeys:** restore series, replace About project links, and fix metadata contrast. Start with F3 as a small independently reviewable change, then F1 and F2. Verify the visitor outcome, not just a green build.
