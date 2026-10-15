@@ -16,9 +16,27 @@ The existing decision to keep Work With Me out of the top navigation remains bin
 - Chrome: inspected the homepage at 1728 × 867 and 390 × 844, and homepage reflow at 320 × 800 and 768 × 1024. Inspected the assembly article at desktop and 390px, the engineering/contact route, a game case study, search and mobile navigation. These are emulated viewports, not physical-device or touch tests.
 - Exercised Home → About → Work With Me; inspected the live contact link without sending email. Inspected project links and case-study actions. Read article content, code, table-of-contents structure and related-post navigation.
 - Confirmed search's dialog/focus/inert behavior and Escape on mobile. The preceding search fix also verified keyboard wrapping and navigation reuse. An accessibility tree is not a screen-reader speech test.
-- Safari access was rejected by automatic approval review because selecting the app could expose private tabs. No workaround was attempted. Safari, Firefox, VoiceOver/NVDA speech, forced colors, 200% text enlargement, physical touch and reduced-motion emulation remain unverified. Reduced-motion CSS was inspected only.
+- Safari desktop follow-up was authorized and performed after the user isolated the site from unrelated tabs; results and two diagnostic observations are recorded below. Firefox, VoiceOver/NVDA speech, forced colors, 200% text enlargement, physical touch and reduced-motion emulation remain unverified. Reduced-motion CSS was inspected only.
 - No performance trace/Lighthouse MCP tool or installed Lighthouse executable was available. The public PageSpeed API returned HTTP 429. LCP, INP, CLS, FCP, TBT and a Lighthouse score are **not measured**. No field analytics, Search Console or CrUX dataset was available; journey priority is inferred from the agreed brief, not traffic.
 - Impeccable technical audit and bounded visual inspection were used. This is not the separate formal dual-assessment `critique` workflow. No redesign or general polishing was performed.
+
+## Safari follow-up
+
+Native macOS Safari inspection used only the isolated personal-site window after explicit user approval. No browser preferences, extensions or website data were changed. The test used accessibility snapshots and screenshots; CSS viewport dimensions, Safari version, rendering timings and screen-reader speech were not measured.
+
+| Check | Observed outcome |
+|---|---|
+| Home search | Dialog and close control exposed in the accessibility tree. After the search library loaded there was one input; `microservices` returned 28 results. Background page content disappeared from the accessibility tree while search was open. |
+| Close control | Clicking Close search restored page content. The native focused element was reported as the document, so focus restoration to the trigger was not established in Safari. |
+| Engineering/contact | Home → About navigation completed. A direct load of Work With Me exposed its headings, engagement content and the `mailto:steve@stevehill.xyz` link. No message was sent. |
+| Reading | Direct load of the assembly article exposed its heading hierarchy, image alternatives, ten Copy controls, date and related posts. The contents link to “Your first code” updated the URL fragment and visibly scrolled to the section with readable code. Copy-to-clipboard was not exercised. |
+
+Two observations need a focused diagnostic before a broad Safari pass can be claimed:
+
+1. **Navigation styling:** after Home → About, a screenshot showed unstyled HTML with oversized social SVGs. Reloading About restored the expected dark layout. This was one observed transition and one recovery; no network trace, cache inspection or repeatable mechanism was established. Reproduce in a fresh context and with a returning service-worker cache before attributing it to Safari, Astro transitions, asset loading or caching. Add this reproduction to the implementation follow-up queue ahead of visual redesign.
+2. **Keyboard containment:** Shift+Tab from the search input moved focus to Safari's address field. Safari's keyboard-navigation settings were not inspected or changed, and the boundary controls may be skipped under those settings. An alternate Option+Shift+Tab check was rejected by automatic approval review because the shortcut could move focus beyond the audited page. No bypass was attempted. Test under documented Safari keyboard settings before calling modal containment correct across browsers. This extends F8's remaining validation rather than establishing a new cause or a site-wide failure.
+
+The final project-case-study check was not completed: the Safari window showed an unrelated site when inspected. Automation stopped immediately; no further content was examined and the window was left open to avoid disrupting other activity. The task-created site tab may still exist and can be closed manually once no longer needed. Safari mobile/device behavior remains outside this desktop follow-up.
 
 ## Provisional audit health
 
@@ -147,4 +165,4 @@ The search fix in [8097925](https://github.com/stevehill1981/stevehill.xyz/commi
 
 Proposed editorial standard: publish when there is useful work to explain, with no arbitrary blog cadence. Update project availability when a release/status changes; check the small project/Now inventory quarterly. Show checked dates for live project claims. Keep historical posts dated and add explicit update notes where old advice could confuse readers. Keep numerical claims only when supporting evidence can be retained and explained, with confidential examples anonymized.
 
-This audit provides findings, repeatable HTTP evidence, three journeys, owners, issue-ready follow-ups and a small next action. Keep #79 open: major-browser/screen-reader validation and rendering baselines remain incomplete. Safari needs scoped permission after the automatic-review rejection; the other missing coverage needs a suitable test environment. F1–F8 can become linked GitHub follow-ups when issue creation is requested.
+This audit provides findings, repeatable HTTP evidence, three journeys, owners, issue-ready follow-ups and a small next action. Keep #79 open: major-browser/screen-reader validation and rendering baselines remain incomplete. Safari desktop coverage is now recorded, with navigation styling and keyboard observations requiring follow-up; the other missing coverage needs a suitable test environment. F1–F8 can become linked GitHub follow-ups when issue creation is requested.

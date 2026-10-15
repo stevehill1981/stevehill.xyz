@@ -7,3 +7,9 @@ Audit the shipped site at commit 863f18f before proposing a redesign under #78. 
 3. Collect repeated HTTP baselines and inspect metadata, generated routes, image sizes and network dependencies. Attempt available public lab measurements; do not present HTTP timings as Core Web Vitals.
 4. Run Impeccable's detector once and verify relevant findings in context. Produce `knowledge/audits/2026-10-15-personal-site.md` with evidence, limitations, owners, three prioritized improvements and a proposed redesign direction.
 5. Verify report links and claims, commit and push the audit. The prior search fix is the first shipped bounded improvement; remaining issue acceptance coverage stays explicit. Do not close #79 while required coverage is missing.
+
+## Safari follow-up
+
+User approved Safari testing and isolated the site tab from unrelated content. Check the actual macOS Safari window with native accessibility inspection: search results and closing, navigation, engineering/contact, project discovery and a code article. Record isolated observations separately from cross-browser guarantees; do not change browser settings. Update the audit, commit and push the evidence, and close only the task-owned site tab.
+
+Outcome: Safari search returned 28 results; contact content and article anchor/code checks succeeded. Recorded a single unstyled navigation/reload recovery and an unresolved keyboard-focus observation. The final project check stopped when the window showed unrelated activity. The window was left open to preserve that activity; any remaining site audit tab can be closed once the user no longer needs it. No application code or Safari settings changed.
