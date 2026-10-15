@@ -43,3 +43,7 @@ Direct upstream main pushes were rejected because protected branches required ch
 ## Cleanup
 
 Verified each task commit against its retained GitHub PR head ref and the merged main tree before cleanup. Removed the core linked worktree, temporary remark clone, audit scratch directories, dependency caches, generated task build directories and logs. The clean original core checkout was fast-forwarded to c654a3d; its pre-existing dependency cache was preserved. No task-owned background processes remain.
+
+## Subsequent approved modernisation
+
+The later approved work supersedes the earlier “no releases” and TypeScript 5.9.3 status above. [Core 2.0.0](https://github.com/shiki-highlights/shiki-highlight-api/releases/tag/v2.0.0) and [remark 0.5.0](https://github.com/shiki-highlights/remark-shiki-highlight-api/releases/tag/v0.5.0) are published with Node >=24 and provenance, after protected PRs and full CI. Both use tsdown 0.23.1 / TypeScript 6.0.3 and durable installed-package checks. The site now consumes these releases on Node 24.22.0. Clean install, 18 tests, 123 pages, unchanged rendered code blocks and audit zero were verified. See [finish-modernisation.md](finish-modernisation.md) for exact release runs, checks and remaining manual validation limits.

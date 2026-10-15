@@ -8,6 +8,10 @@ I want visitors to be able to explore the work without already knowing its tools
 
 I use AI in my projects, and I remain responsible for what I choose to publish. Claims should point to code, sources, tests or observed results, with their limits made clear. I would rather revise or remove weak work than dress it up as finished. The [site quality epic](https://github.com/stevehill1981/stevehill.xyz/issues/78) tracks that standard; it is an ambition to verify, not a claim that every project has been independently audited.
 
+## Development runtime
+
+Use Node.js 24 or newer. The project uses mise to select Node.js 24.22.0 locally; run `mise install` before installing dependencies. CI follows the current Node 24 patch release.
+
 ## Features
 
 ### Content
