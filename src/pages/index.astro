@@ -24,10 +24,10 @@ const taglines = [
 ];
 
 // Get recent blog posts
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection('blog', ({ data }) => data.draft !== true);
 const recentPosts = allPosts
 	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-	.slice(0, 7);
+	.slice(0, 3);
 
 // Get reading times for recent posts
 const recentPostsWithReadingTime = recentPosts.map((post) => {
@@ -37,18 +37,14 @@ const recentPostsWithReadingTime = recentPosts.map((post) => {
 	};
 });
 
-// Get projects, sorted with featured ones first
-const allProjects = (await getCollection('projects', ({ data }) => {
-	return data.draft !== true;
-})).sort((a, b) => {
-		// Featured projects first
-		const aFeatured = a.data.featured ?? false;
-		const bFeatured = b.data.featured ?? false;
-		if (aFeatured && !bFeatured) return -1;
-		if (!aFeatured && bFeatured) return 1;
-		// Then sort alphabetically by title
-		return a.data.title.localeCompare(b.data.title);
-	});
+// Selected work, with released and live projects first.
+const allProjects = await getCollection('projects', ({ data }) => data.draft !== true);
+const selectedProjectIds = ['rachel', 'code198x', 'chaotic-tanx'];
+const selectedProjects = selectedProjectIds.map(id => {
+	const project = allProjects.find(project => project.id === id);
+	if (!project) throw new Error(`Selected project is missing or unpublished: ${id}`);
+	return project;
+});
 
 // Technology icon mapping using simple-icons
 type SimpleIcon = { svg: string; hex: string; title: string };
@@ -135,10 +131,42 @@ const getTechIcon = (tech: string): string => {
 		<div class="transition-line"></div>
 	</div>
 
+	<p class="home-intro">I'm Steve Hill, a software engineer building apps, games and tools. I release independent projects under <a href="https://phosphene.uk">Phosphene</a> and teach assembly programming through <a href="https://www.code198x.com">Code198x</a>.</p>
+
 	<div class="home-content-grid">
 		<section class="home-section">
 			<div class="section-header">
-				<h2 class="recent-posts-heading">Recent Posts</h2>
+				<h2 class="projects-heading">Selected Projects</h2>
+				<a href="/projects" class="view-all">View all projects →</a>
+			</div>
+
+			<div class="projects-grid">
+				{selectedProjects.map((project) => (
+					<a href={`/projects/${project.id}`} class="project-card-link">
+						<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
+							<div class="project-header project-gradient" data-project={project.data.title}>
+								<h3>{project.data.title}</h3>
+								{project.data.technologies && project.data.technologies.length > 0 && (
+									<div class="tech-icons">
+										{project.data.technologies.slice(0, 3).map((tech) => (
+											<span class="tech-badge" title={tech} set:html={getTechIcon(tech)}></span>
+										))}
+									</div>
+								)}
+							</div>
+							<div class="project-content">
+								<p class="project-status">{project.data.status}</p>
+								<p>{project.data.description}</p>
+							</div>
+						</article>
+					</a>
+				))}
+			</div>
+		</section>
+
+		<section class="home-section">
+			<div class="section-header">
+				<h2 class="recent-posts-heading">Recent Writing</h2>
 				<a href="/blog" class="view-all">View all posts →</a>
 			</div>
 
@@ -162,34 +190,6 @@ const getTechIcon = (tech: string): string => {
 			</div>
 		</section>
 
-		<section class="home-section">
-			<div class="section-header">
-				<h2 class="projects-heading">Projects</h2>
-				<a href="/projects" class="view-all">View all projects →</a>
-			</div>
-
-			<div class="projects-grid">
-				{allProjects.filter(project => project.data.featured).map((project) => (
-					<a href={`/projects/${project.id}`} class="project-card-link">
-						<article class={`project-card-home ${project.data.featured ? 'featured' : ''}`}>
-							<div class="project-header project-gradient" data-project={project.data.title}>
-								<h3>{project.data.title}</h3>
-								{project.data.technologies && project.data.technologies.length > 0 && (
-									<div class="tech-icons">
-										{project.data.technologies.slice(0, 3).map((tech) => (
-											<span class="tech-badge" title={tech} set:html={getTechIcon(tech)}></span>
-										))}
-									</div>
-								)}
-							</div>
-							<div class="project-content">
-								<p>{project.data.description}</p>
-							</div>
-						</article>
-					</a>
-				))}
-			</div>
-		</section>
 	</div>
 </BaseLayout>
 
@@ -556,9 +556,23 @@ const getTechIcon = (tech: string): string => {
 		50% { transform: scale(1.3); opacity: 1; }
 	}
 
+	.home-intro {
+		max-width: 70ch;
+		margin: 0 0 var(--spacing-2xl);
+		font-size: var(--font-size-lg);
+		line-height: var(--line-height-relaxed);
+		color: var(--color-text-primary);
+	}
+
+	.project-content .project-status {
+		font-weight: var(--font-weight-bold);
+		color: var(--color-text-primary);
+		margin-bottom: var(--spacing-sm);
+	}
+
 	.home-content-grid {
 		display: grid;
-		grid-template-columns: 3fr 2fr;
+		grid-template-columns: minmax(0, 1fr);
 		gap: var(--spacing-2xl);
 		margin-bottom: var(--spacing-2xl);
 		align-items: start;
@@ -744,8 +758,8 @@ const getTechIcon = (tech: string): string => {
 
 	/* Projects grid */
 	.projects-grid {
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 		gap: var(--spacing-lg);
 	}
 
