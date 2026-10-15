@@ -1,0 +1,145 @@
+{
+  "method": "Three fresh urllib connections per route; headers time includes DNS/TLS/connect and server latency. Client-local measurements, no rendering or throttling.",
+  "pages": [
+    {
+      "path": "/",
+      "runs": [
+        {
+          "response_headers_ms": 502.8,
+          "total_ms": 503.7,
+          "wire_body_bytes": 9779,
+          "html_bytes": 35891,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        },
+        {
+          "response_headers_ms": 178.7,
+          "total_ms": 178.9,
+          "wire_body_bytes": 9779,
+          "html_bytes": 35891,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        },
+        {
+          "response_headers_ms": 355.0,
+          "total_ms": 355.2,
+          "wire_body_bytes": 9779,
+          "html_bytes": 35891,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        }
+      ],
+      "median_headers_ms": 355.0
+    },
+    {
+      "path": "/work-with-me",
+      "runs": [
+        {
+          "response_headers_ms": 680.0,
+          "total_ms": 681.1,
+          "wire_body_bytes": 6462,
+          "html_bytes": 19449,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        },
+        {
+          "response_headers_ms": 635.6,
+          "total_ms": 636.2,
+          "wire_body_bytes": 6462,
+          "html_bytes": 19449,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        },
+        {
+          "response_headers_ms": 560.8,
+          "total_ms": 561.0,
+          "wire_body_bytes": 6462,
+          "html_bytes": 19449,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        }
+      ],
+      "median_headers_ms": 635.6
+    },
+    {
+      "path": "/blog/2017-05-03-spectrum-development-environment",
+      "runs": [
+        {
+          "response_headers_ms": 842.4,
+          "total_ms": 844.7,
+          "wire_body_bytes": 15738,
+          "html_bytes": 73817,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        },
+        {
+          "response_headers_ms": 911.5,
+          "total_ms": 917.9,
+          "wire_body_bytes": 15738,
+          "html_bytes": 73817,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        },
+        {
+          "response_headers_ms": 280.6,
+          "total_ms": 281.5,
+          "wire_body_bytes": 15738,
+          "html_bytes": 73817,
+          "status": 200,
+          "cache_control": "max-age=600",
+          "encoding": "gzip"
+        }
+      ],
+      "median_headers_ms": 842.4
+    }
+  ],
+  "links": [
+    {
+      "url": "https://stevehill.xyz/",
+      "final_url": "https://www.stevehill.xyz/",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.code198x.com/",
+      "final_url": "https://code198x.com/",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://chaotictanx.stevehill.xyz/",
+      "final_url": "https://chaotictanx.stevehill.xyz/",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://rachel.stevehill.xyz/",
+      "final_url": "https://rachel.stevehill.xyz/",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.stevehill.xyz/pagefind/pagefind-ui.js",
+      "final_url": "https://www.stevehill.xyz/pagefind/pagefind-ui.js",
+      "status": 200,
+      "type": "application/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.stevehill.xyz/og-image.svg",
+      "final_url": "https://www.stevehill.xyz/og-image.svg",
+      "status": 200,
+      "type": "image/svg+xml"
+    }
+  ],
+  "pagespeed": {
+    "error": "HTTP Error 429: Too Many Requests"
+  }
+}
