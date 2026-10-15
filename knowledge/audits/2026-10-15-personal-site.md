@@ -29,6 +29,14 @@ The search check was proven red by making only the disposable built dialog inert
 
 **Remaining acceptance, owner: Steve Hill:** native Safari keyboard-policy/search diagnostics, full VoiceOver or NVDA reading/navigation/search announcements, actual 200% browser/text enlargement and physical touch. Reduced-motion/forced-colour engine emulation is now exercised; it does not establish native OS or physical-device behaviour. WebKit is not a Safari/VoiceOver certification. Steve deprioritised the full VoiceOver pass for this round; it is deferred with that limitation recorded. No native Safari/zoom session was performed in this follow-up, and no accessibility setting was changed. Keep #79 open; there is no WCAG conformance claim.
 
+### Search load recovery (#81)
+
+The indefinite-loading path is now reproduced and repaired in the integration. Pagefind UI 1.5.2 logs a failed runtime import but leaves its API reference unset; its later search waits for that reference. The old synchronous catch only surrounded script insertion/constructor setup and could not catch that async failure. The original request's delivery/network cause remains unknown.
+
+Search now awaits the exact runtime module and the existing UI script before constructing the widget. A loading message is bounded to ten seconds, then a caught failure shows a visible alert with Reload page and Browse writing. Reload gives a fresh document/module state; no service-worker/cache workaround or automatic retry was added. Closed/detached initializers cannot move focus or modify a new page. Errors remain logged for diagnosis.
+
+Blocked module and UI-script tests failed against the old build. The repaired build passes those cases with reload-to-real-results, a stalled request deadline and late failure/navigation checks, alongside all existing journeys: 24 local Chromium/WebKit cases. Failure injection isolates service workers only in its own test file because worker-controlled requests bypass Playwright routing; the normal journeys keep workers enabled. [Evidence](2026-10-15-search-recovery/) includes the original failure and inspected desktop/mobile recovery screenshots. Three-engine CI remains the deployment gate. Later index/WASM/shard errors are outside this bounded fix.
+
 ## Original audit and earlier follow-ups
 
 Preserved below as the evidence trail. Where a statement conflicts with the current-status summary, it describes the earlier state.

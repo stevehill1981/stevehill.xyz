@@ -14,6 +14,9 @@
 </div>
 
 <script>
+  type SearchUI = new (options: { element: string; showSubResults: boolean; showImages: boolean }) => unknown;
+  const pagefindWindow = window as Window & { PagefindUI?: SearchUI };
+
   function initSearch() {
     const trigger = document.querySelector('.search-trigger');
     const overlay = document.getElementById('search-overlay');
@@ -25,8 +28,108 @@
     document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
     const modal = overlay?.querySelector('.search-modal');
     const closeBtn = document.querySelector('.search-close');
-    let pagefindLoaded = false;
+    let searchState: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
     let previousActiveElement: Element | null = null;
+
+    function loadUI(signal: AbortSignal): Promise<void> {
+      if (pagefindWindow.PagefindUI) return Promise.resolve();
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = '/pagefind/pagefind-ui.js';
+        const cleanup = () => {
+          script.onload = null;
+          script.onerror = null;
+          signal.removeEventListener('abort', abort);
+        };
+        const abort = () => {
+          cleanup();
+          script.remove();
+          reject(new DOMException('Search load cancelled', 'AbortError'));
+        };
+        script.onload = () => {
+          cleanup();
+          if (pagefindWindow.PagefindUI) resolve();
+          else reject(new Error('Search UI did not initialize'));
+        };
+        script.onerror = () => {
+          cleanup();
+          script.remove();
+          reject(new Error('Search UI failed to load'));
+        };
+        signal.addEventListener('abort', abort, { once: true });
+        document.head.appendChild(script);
+      });
+    }
+
+    async function initializePagefind() {
+      const container = overlay?.querySelector('#pagefind-container');
+      if (!container || searchState !== 'idle') return;
+      searchState = 'loading';
+      const message = document.createElement('p');
+      message.setAttribute('role', 'status');
+      message.textContent = 'Loading search…';
+      container.replaceChildren(message);
+
+      if (!document.querySelector('link[href="/pagefind/pagefind-ui.css"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/pagefind/pagefind-ui.css';
+        document.head.appendChild(link);
+      }
+      const attempt = new AbortController();
+      const cancel = () => attempt.abort();
+      signal.addEventListener('abort', cancel, { once: true });
+      let timeout: ReturnType<typeof setTimeout> | undefined;
+      try {
+        const interrupted = new Promise<never>((_, reject) => {
+          attempt.signal.addEventListener('abort', () => reject(new DOMException('Search load cancelled', 'AbortError')), { once: true });
+        });
+        const deadline = new Promise<never>((_, reject) => {
+          timeout = setTimeout(() => {
+            reject(new Error('Search loading timed out'));
+            attempt.abort();
+          }, 10_000);
+        });
+        // Generated after Astro builds. Preload the exact module the default UI
+        // imports later, so its asynchronous import failure is caught here.
+        const runtimeURL = '/pagefind/pagefind.js';
+        await Promise.race([
+          Promise.all([import(/* @vite-ignore */ runtimeURL), loadUI(attempt.signal)]),
+          deadline,
+          interrupted,
+        ]);
+        if (signal.aborted || !container.isConnected) return;
+        const UI = pagefindWindow.PagefindUI;
+        if (!UI) throw new Error('Search UI is unavailable');
+        container.replaceChildren();
+        new UI({ element: '#pagefind-container', showSubResults: true, showImages: false });
+        searchState = 'ready';
+        if (overlay?.classList.contains('active') && document.activeElement === closeBtn) {
+          container.querySelector<HTMLInputElement>('input')?.focus();
+        }
+      } catch (error) {
+        if (signal.aborted || !container.isConnected) return;
+        attempt.abort();
+        searchState = 'error';
+        console.error('Failed to load search:', error);
+        message.setAttribute('role', 'alert');
+        message.textContent = 'Search couldn’t load. Reload this page to try again, or browse the writing.';
+        const actions = document.createElement('div');
+        actions.className = 'search-recovery-actions';
+        const reload = document.createElement('button');
+        reload.className = 'search-reload';
+        reload.textContent = 'Reload page';
+        reload.addEventListener('click', () => window.location.reload(), { signal });
+        const writing = document.createElement('a');
+        writing.href = '/blog';
+        writing.textContent = 'Browse writing';
+        actions.append(reload, writing);
+        container.replaceChildren(message, actions);
+      } finally {
+        clearTimeout(timeout);
+        signal.removeEventListener('abort', cancel);
+      }
+    }
 
     // Get all focusable elements within the modal
     function getFocusableElements(): HTMLElement[] {
@@ -79,39 +182,7 @@
       header?.setAttribute('inert', '');
       footer?.setAttribute('inert', '');
 
-      if (!pagefindLoaded) {
-        try {
-          // Dynamically load Pagefind CSS and JS at runtime (generated during build)
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = '/pagefind/pagefind-ui.css';
-          document.head.appendChild(link);
-
-          const initializePagefind = () => {
-            const container = overlay.querySelector('#pagefind-container');
-            if (!container?.isConnected || container.childElementCount > 0) return;
-            // @ts-ignore
-            new window.PagefindUI({
-              element: '#pagefind-container',
-              showSubResults: true,
-              showImages: false
-            });
-          };
-          // Astro navigation keeps globals alive; reuse the loaded library.
-          // @ts-ignore
-          if (window.PagefindUI) {
-            initializePagefind();
-          } else {
-            const script = document.createElement('script');
-            script.src = '/pagefind/pagefind-ui.js';
-            script.onload = initializePagefind;
-            document.head.appendChild(script);
-          }
-          pagefindLoaded = true;
-        } catch (e) {
-          console.error('Failed to load Pagefind:', e);
-        }
-      }
+      void initializePagefind();
 
       // Focus the search input
       setTimeout(() => {
@@ -233,6 +304,9 @@
   #pagefind-container {
     padding: 1.5rem;
   }
+
+  :global(.search-recovery-actions) { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-md); }
+  :global(.search-reload) { background: var(--color-primary); color: white; border: 1px solid var(--color-primary); border-radius: var(--radius-md); padding: var(--btn-padding-md); cursor: pointer; }
 
   /* Pagefind UI Overrides */
   :global(.pagefind-ui) {

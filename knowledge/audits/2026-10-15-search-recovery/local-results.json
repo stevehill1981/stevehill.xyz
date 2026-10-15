@@ -1,0 +1,197 @@
+{
+  "scope": "Chromium and WebKit on macOS; controlled network faults in search-loading.spec.mjs only; existing journeys retain service workers",
+  "tests": [
+    {
+      "test": "search has real results, contains keyboard focus and restores its trigger",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "client navigation retains styling and search works repeatedly",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "mobile navigation closes with Escape and resets after following a link",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "code controls survive client navigation and copy the actual code once",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "reduced motion preserves navigation, search and instant back-to-top",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "home and article reflow at 320px with usable navigation and search",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "keyboard shortcut returns focus to the previously active link",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "forced colours retain visible focus and an operable search dialog",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "search has real results, contains keyboard focus and restores its trigger",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "client navigation retains styling and search works repeatedly",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "mobile navigation closes with Escape and resets after following a link",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "code controls survive client navigation and copy the actual code once",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "reduced motion preserves navigation, search and instant back-to-top",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "home and article reflow at 320px with usable navigation and search",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "keyboard shortcut returns focus to the previously active link",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "forced colours retain visible focus and an operable search dialog",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "failed pagefind.js offers recovery and reload restores real search",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "failed pagefind-ui.js offers recovery and reload restores real search",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "a stalled runtime request times out to a closable recovery state",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "a load failing after close cannot steal focus or poison client navigation",
+      "engine": "chromium",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "failed pagefind.js offers recovery and reload restores real search",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "failed pagefind-ui.js offers recovery and reload restores real search",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "a stalled runtime request times out to a closable recovery state",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "test": "a load failing after close cannot steal focus or poison client navigation",
+      "engine": "webkit",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    }
+  ]
+}

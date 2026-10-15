@@ -18,7 +18,7 @@ The deployment workflow reads its Node version directly from `mise.toml`. Update
 
 Run `npm ci`, `npm run build`, `npx playwright install chromium firefox webkit`, then `npm run test:browser`. The tests start and stop an isolated production preview on port 4329, using the generated Pagefind index. Keep that port free; an existing server is deliberately not reused.
 
-The same Chromium, Firefox and WebKit journeys gate deployment. They cover search/results, keyboard containment and focus restoration, mobile navigation, Astro client navigation, code-copy payloads, reduced motion, forced colours and 320px reflow. A clipboard test double checks the copied code without changing the system clipboard. Browser-engine emulation does not replace native Safari, actual browser zoom, physical touch or screen-reader testing.
+The same Chromium, Firefox and WebKit journeys gate deployment. They cover search/results, keyboard containment and focus restoration, mobile navigation, Astro client navigation, code-copy payloads, reduced motion, forced colours and 320px reflow. A clipboard test double checks the copied code without changing the system clipboard. Browser-engine emulation does not replace native Safari, actual browser zoom, physical touch or screen-reader testing. Network-failure tests also cover blocked search scripts/modules, stalled loads and late failures. Those fault-injection tests isolate service workers so routing can inject the failures; the ordinary journeys keep workers enabled.
 
 ## Features
 
