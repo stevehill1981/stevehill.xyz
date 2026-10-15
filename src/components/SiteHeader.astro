@@ -61,7 +61,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   document.addEventListener('astro:page-load', initializeMobileMenu);
 </script>
 <style>
-  header { width: 100%; }
+  header { width: 100%; position: relative; z-index: 10; }
   .nav-container { max-width: 1408px; padding: 24px 64px; min-height: 96px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 28px; position: relative; }
   .nav-container::after { content: ''; position: absolute; bottom: 0; left: 64px; right: 64px; border-bottom: 1px solid var(--color-border); }
   .site-title { display: flex; gap: .2em; font-size: 27px; font-weight: 700; color: var(--color-text-primary); text-decoration: none; white-space: nowrap; }
