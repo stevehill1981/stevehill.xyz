@@ -172,47 +172,19 @@ const recentProjects = allProjects
     gap: var(--spacing-sm);
   }
 
-  /* Sidebar post cards with gradient left borders like homepage */
+  /* Sidebar post cards */
   .sidebar-post-card {
     padding: var(--spacing-md);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-left: 4px solid;
     border-radius: var(--radius-md);
-    transition: all var(--transition-base);
+    transition: border-color var(--transition-fast);
     width: 100%;
   }
 
-  .sidebar-post-card:nth-child(1) {
-    border-image: var(--gradient-sunrise) 1;
-  }
-
-  .sidebar-post-card:nth-child(2) {
-    border-image: var(--gradient-ocean) 1;
-  }
-
-  .sidebar-post-card:nth-child(3) {
-    border-image: var(--gradient-sunset) 1;
-  }
-
-  .sidebar-post-card:hover {
-    outline: 2px solid;
-    outline-offset: -1px;
-  }
-
-  .sidebar-post-card:nth-child(1):hover {
-    outline-color: #fb923c;
-    box-shadow: 0 0 15px rgba(251, 146, 60, 0.25), var(--shadow-sm);
-  }
-
-  .sidebar-post-card:nth-child(2):hover {
-    outline-color: #3b82f6;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25), var(--shadow-sm);
-  }
-
-  .sidebar-post-card:nth-child(3):hover {
-    outline-color: #8b5cf6;
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25), var(--shadow-sm);
+  .sidebar-post-card:hover,
+  .sidebar-post-card:focus-within {
+    border-color: var(--color-primary);
   }
 
   .sidebar-post-title {
