@@ -60,10 +60,12 @@
       }
     }
 
-    async function openSearch() {
+    async function openSearch(event?: Event) {
       if (overlay?.classList.contains('active')) return;
       // Store the element that had focus before opening
-      previousActiveElement = document.activeElement;
+      previousActiveElement = event?.currentTarget instanceof HTMLElement
+        ? event.currentTarget
+        : document.activeElement;
 
       overlay?.classList.add('active');
       overlay?.setAttribute('aria-hidden', 'false');
