@@ -123,6 +123,10 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 		<script>
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load', () => {
+					// The worker claims clients on activation, so a first install
+					// gains a controller too. Only a page that already had one can
+					// receive an update.
+					const hadController = Boolean(navigator.serviceWorker.controller);
 					navigator.serviceWorker.register('/sw.js')
 						.then((registration) => {
 							// Check for updates periodically (every 60 minutes)
@@ -135,7 +139,7 @@ const jsonLd = type === "article" ? articleSchema : websiteSchema;
 								const newWorker = registration.installing;
 								if (newWorker) {
 									newWorker.addEventListener('statechange', () => {
-										if (newWorker.state === 'activated' && navigator.serviceWorker.controller) {
+										if (newWorker.state === 'activated' && hadController) {
 											// New content is available, show subtle notification
 											const toast = document.createElement('div');
 											toast.setAttribute('role', 'status');

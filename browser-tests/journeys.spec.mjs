@@ -38,6 +38,33 @@ test('update notice is styled in the viewport and can be dismissed with reduced 
   await expect(notice).toHaveCount(0);
 });
 
+test('a first visit installs the service worker without announcing an update', async ({ page }) => {
+  // On a first install, clients.claim() sets the controller before the worker
+  // reports "activated", so the controller must be read before registering.
+  await page.addInitScript(() => {
+    const registration = new EventTarget();
+    const worker = new EventTarget();
+    registration.installing = worker;
+    registration.update = async () => {};
+    const serviceWorker = { controller: null };
+    serviceWorker.register = async () => {
+      window.activateFirstInstall = () => {
+        registration.dispatchEvent(new Event('updatefound'));
+        serviceWorker.controller = {};
+        worker.state = 'activated';
+        worker.dispatchEvent(new Event('statechange'));
+      };
+      return registration;
+    };
+    Object.defineProperty(navigator, 'serviceWorker', { value: serviceWorker });
+  });
+  await page.goto('/');
+  await page.waitForFunction(() => typeof window.activateFirstInstall === 'function');
+  await page.evaluate(() => window.activateFirstInstall());
+  await expect(page.locator('.sw-update-toast')).toHaveCount(0);
+  await expect(page.getByRole('status').filter({ hasText: 'Site updated' })).toHaveCount(0);
+});
+
 async function openSearch(page) {
   await page.getByRole('button', { name: 'Search', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Search', exact: true });
