@@ -108,6 +108,14 @@ test('interface labels use sentence case and the share row follows the prose', a
   }
 });
 
+test('the X share button uses X’s name, link and black brand colour', async ({ page }) => {
+  await page.goto(article);
+  const share = page.getByRole('link', { name: 'Share on X', exact: true });
+  await expect(share).toHaveAttribute('href', /^https:\/\/x\.com\/intent\/tweet\?/);
+  await share.hover();
+  await expect(share).toHaveCSS('color', 'rgb(0, 0, 0)');
+});
+
 async function openSearch(page) {
   await page.getByRole('button', { name: 'Search', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Search', exact: true });

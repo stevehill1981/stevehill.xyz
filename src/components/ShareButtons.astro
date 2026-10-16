@@ -9,8 +9,8 @@ const shareUrl = url || Astro.url.href;
 const encodedUrl = encodeURIComponent(shareUrl);
 const encodedTitle = encodeURIComponent(title);
 
-// Twitter/X share URL
-const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+// X share URL
+const xUrl = `https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
 
 // LinkedIn share URL
 const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
@@ -18,11 +18,11 @@ const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
 
 <div class="share-buttons">
 	<span class="share-label">Share</span>
-	<a href={twitterUrl} target="_blank" rel="noopener noreferrer" class="share-button twitter" title="Share on Twitter/X">
+	<a href={xUrl} target="_blank" rel="noopener noreferrer" class="share-button x" title="Share on X">
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 			<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
 		</svg>
-		<span class="sr-only">Share on Twitter/X</span>
+		<span class="sr-only">Share on X</span>
 	</a>
 	<a href={linkedInUrl} target="_blank" rel="noopener noreferrer" class="share-button linkedin" title="Share on LinkedIn">
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -72,9 +72,10 @@ const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
 		text-decoration: none;
 	}
 
-	.share-button.twitter:hover {
-		color: #1DA1F2;
-		border-color: #1DA1F2;
+	/* X's brand colour is black. */
+	.share-button.x:hover {
+		color: #000;
+		border-color: #000;
 	}
 
 	.share-button.linkedin:hover {
