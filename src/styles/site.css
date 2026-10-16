@@ -117,6 +117,7 @@ th,td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--col
 .sidebar-section h2,.sidebar-section h3 { font-size: 1.1875rem; margin: 0 0 16px; }
 .sidebar-post-card,.sidebar-project-card,.related-post-card { margin-bottom: 18px; }
 .sidebar-post-title,.sidebar-project-title,.related-post-title { font-size: 1.125rem; margin: 0 0 8px; }
+.sidebar-project-card .sidebar-project-title { margin-bottom: 2px; }
 .sidebar-post-title a,.sidebar-project-title a { color: var(--color-text-primary); text-decoration: none; }
 .sidebar-link { font-size: .9375rem; }
 .project-page { padding-top: 40px; }

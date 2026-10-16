@@ -151,6 +151,27 @@ test('selected projects retain their status and destinations across pages', asyn
   expect(await page.locator('.sidebar-project-card .project-status').allTextContents()).toEqual(homeStatuses);
 });
 
+test('project statuses sit beside their titles and empty stats stay hidden', async ({ page }) => {
+  await page.goto('/projects');
+  for (const project of await page.locator('.featured-project, .project-card').all()) {
+    const status = project.locator('.project-status');
+    if (await status.count() === 0) continue;
+    const title = await project.locator('h3 a').boundingBox();
+    const box = await status.boundingBox();
+    // Same row, close to the title; or wrapped directly beneath it.
+    const sameRow = Math.abs(box.y + box.height - (title.y + title.height)) < 12 && box.x - (title.x + title.width) < 40;
+    const below = box.y - (title.y + title.height);
+    const wrapped = below >= -4 && below < 12 && Math.abs(box.x - title.x) < 4;
+    expect(sameRow || wrapped, await project.locator('h3').textContent()).toBe(true);
+  }
+  for (const stats of await page.locator('.github-stats').all()) {
+    expect((await stats.locator('.stat').allTextContents()).some(text => Number(text.trim()) > 0)).toBe(true);
+  }
+  await page.goto('/projects/rachel/');
+  await expect(page.locator('.project-sidebar .project-status')).toHaveText('Released');
+  await expect(page.locator('.project-availability a.btn-primary')).toHaveText(/App Store/);
+});
+
 test('writing recommendations reach real essays and keep the full index accessible', async ({ page }) => {
   await page.goto('/blog');
   const recommendations = await page.locator('.starting-points h3 a').evaluateAll(links => links.map(link => ({

@@ -52,17 +52,17 @@ const projectsWithStats = await Promise.all(
 		{projectsWithStats.map((project) => (
 			<article class="project-card">
 				<div class="project-content">
-					<h3 class="project-title">
-						<a href={`/projects/${project.id}`}>{project.data.title}</a>
-					</h3>
+					<div class="project-card-heading">
+						<h3 class="project-title"><a href={`/projects/${project.id}`}>{project.data.title}</a></h3>
+						{project.data.status && <span class="project-status">{project.data.status}</span>}
+					</div>
 					<p class="project-description">{project.data.description}</p>
-					{project.data.status && <p class="project-status">{project.data.status}</p>}
 					<div class="project-tech">
 						{project.data.technologies.map((tech) => (
 							<span class="tech-tag">{tech}</span>
 						))}
 					</div>
-					{project.githubStats && (
+					{project.githubStats && (project.githubStats.stars > 0 || project.githubStats.forks > 0) && (
 						<div class="github-stats">
 							<span class="stat">
 								<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -95,12 +95,14 @@ const projectsWithStats = await Promise.all(
   .featured-project { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 48px; align-items: center; margin-bottom: 36px; }
   .featured-project > div { min-width: 0; }
   .featured-project > a { text-decoration: none; }
-  .featured-project-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 14px; }
+  .featured-project-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 14px; }
   .featured-project h3 { margin: 0; font-size: 2rem; }
   .featured-project h3 a { color: var(--color-text-primary); text-decoration: none; }
   .featured-project h3 a:hover { color: var(--color-primary); text-decoration: underline; }
   .featured-project p { font-size: 1.125rem; color: var(--color-text-secondary); margin-bottom: 20px; }
   .project-status { font-size: 1rem; color: var(--color-text-tertiary); }
+  .project-card-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 14px; }
+  .project-card-heading .project-title { margin: 0; }
   .project-actions { display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: 1rem; }
   @media(max-width:1000px) { .featured-project { gap: 24px; } .featured-project h3 { font-size: 1.75rem; } }
   @media(max-width:600px) { .featured-project { grid-template-columns: minmax(0,1fr); gap: 20px; margin-bottom: 40px; } }

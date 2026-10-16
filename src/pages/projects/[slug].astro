@@ -30,7 +30,7 @@ const destination = getProjectDestination(entry);
 				<p class="project-description">{entry.data.description}</p>
 				{(entry.data.status || destination) && <div class="project-availability">
 					{entry.data.status && <span class="project-status">{entry.data.status}</span>}
-					{destination && <a href={destination.href}>{destination.label} →</a>}
+					{destination && <a href={destination.href} class="btn btn-primary">{destination.label} →</a>}
 				</div>}
                 <ProjectImage projectId={entry.id} />
 
@@ -44,6 +44,7 @@ const destination = getProjectDestination(entry);
 			<aside class="project-sidebar">
 				<div class="sidebar-section project-info">
 					<h2>Project info</h2>
+					{entry.data.status && <div class="info-item"><strong>Status</strong><span class="project-status">{entry.data.status}</span></div>}
 					<div class="info-item">
 						<strong>Technologies</strong>
 						<div class="technologies">
