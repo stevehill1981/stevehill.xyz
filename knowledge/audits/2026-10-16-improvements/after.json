@@ -1,0 +1,248 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "status": 200,
+    "overflow": false,
+    "writingY": 1641.0625,
+    "brokenImages": []
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "writingY": 1639.828125,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/blog",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/about",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects/rachel",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects/code198x",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects/chaotic-tanx",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/series",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/archive",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/tags",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/principles",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/now",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/work-with-me",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/blog/2026-06-12-guardrails",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "status": 200,
+    "overflow": false,
+    "writingY": 1167.171875,
+    "brokenImages": []
+  },
+  {
+    "route": "/",
+    "width": 800,
+    "status": 200,
+    "overflow": false,
+    "writingY": 1192.765625,
+    "brokenImages": []
+  },
+  {
+    "route": "/",
+    "width": 801,
+    "status": 200,
+    "overflow": false,
+    "writingY": 1204.484375,
+    "brokenImages": []
+  },
+  {
+    "route": "/",
+    "width": 1000,
+    "status": 200,
+    "overflow": false,
+    "writingY": 1347.296875,
+    "brokenImages": []
+  },
+  {
+    "route": "/",
+    "width": 1001,
+    "status": 200,
+    "overflow": false,
+    "writingY": 872.53125,
+    "brokenImages": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "writingY": 784.921875,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/blog",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/about",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects/rachel",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects/code198x",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/projects/chaotic-tanx",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/series",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/archive",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/tags",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/principles",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/now",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/work-with-me",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  },
+  {
+    "route": "/blog/2026-06-12-guardrails",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "brokenImages": []
+  }
+]

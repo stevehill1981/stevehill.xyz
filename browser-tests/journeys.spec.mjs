@@ -60,6 +60,44 @@ test('a one-pixel tablet resize does not bury recent writing', async ({ page }) 
   expect(Math.abs(positions[1] - positions[0])).toBeLessThan(200);
 });
 
+test('selected projects retain their status and destinations across pages', async ({ page }) => {
+  await page.goto('/');
+  const homeLinks = await page.locator('.selected-projects h3 a').evaluateAll(links => links.map(link => link.getAttribute('href')));
+  expect(homeLinks.length).toBeGreaterThan(0);
+  const homeStatuses = await page.locator('.selected-projects .project-status').allTextContents();
+  await page.goto('/projects');
+  expect(await page.locator('.featured-project h3 a').evaluateAll(links => links.map(link => link.getAttribute('href')))).toEqual(homeLinks);
+  expect(await page.locator('.featured-project .project-status').allTextContents()).toEqual(homeStatuses);
+  const destinations = await page.locator('.featured-project').evaluateAll(projects => projects.map(project => ({
+    detail: project.querySelector('h3 a').getAttribute('href'),
+    destination: project.querySelector('.project-actions a').getAttribute('href'),
+  })));
+  for (const project of destinations) {
+    await page.goto(project.detail);
+    await expect(page.locator('.project-availability a')).toHaveAttribute('href', project.destination);
+  }
+  await page.goto('/about');
+  expect(await page.locator('.sidebar-project-title a').evaluateAll(links => links.map(link => link.getAttribute('href')))).toEqual(homeLinks);
+  expect(await page.locator('.sidebar-project-card .project-status').allTextContents()).toEqual(homeStatuses);
+});
+
+test('writing recommendations reach real essays and keep the full index accessible', async ({ page }) => {
+  await page.goto('/blog');
+  const recommendations = await page.locator('.starting-points h3 a').evaluateAll(links => links.map(link => ({
+    title: link.textContent, href: link.getAttribute('href'),
+  })));
+  expect(recommendations.length).toBeGreaterThan(0);
+  for (const recommendation of recommendations) {
+    await expect(page.locator(`.card-title a[href="${recommendation.href}"]`)).toHaveText(recommendation.title);
+  }
+  await page.getByRole('link', { name: 'Latest writing ↓' }).click();
+  await expect(page.getByRole('heading', { name: 'Latest writing', exact: true })).toBeInViewport();
+  for (const recommendation of recommendations) {
+    await page.goto(recommendation.href);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(recommendation.title);
+  }
+});
+
 test('search has real results, contains keyboard focus and restores its trigger', async ({ page }) => {
   await page.goto('/');
   const trigger = page.getByRole('button', { name: 'Search', exact: true });

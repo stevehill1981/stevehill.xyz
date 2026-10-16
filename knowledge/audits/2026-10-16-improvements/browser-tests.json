@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T07:38:53.928Z",
+    "duration": 33350.557,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "update notice is styled in the viewport and can be dismissed with reduced motion",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "a one-pixel tablet resize does not bury recent writing",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "selected projects retain their status and destinations across pages",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "writing recommendations reach real essays and keep the full index accessible",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "search has real results, contains keyboard focus and restores its trigger",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "client navigation retains styling and search works repeatedly",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "mobile navigation closes with Escape and resets after following a link",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "code controls survive client navigation and copy the actual code once",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "reduced motion preserves navigation, search and instant back-to-top",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "home and article reflow at 320px with usable navigation and search",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "keyboard shortcut returns focus to the previously active link",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "forced colours retain visible focus and an operable search dialog",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "failed pagefind.js offers recovery and reload restores real search",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "failed pagefind-ui.js offers recovery and reload restores real search",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "a stalled runtime request times out to a closable recovery state",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    },
+    {
+      "title": "a load failing after close cannot steal focus or poison client navigation",
+      "ok": true,
+      "results": [
+        "expected"
+      ]
+    }
+  ]
+}

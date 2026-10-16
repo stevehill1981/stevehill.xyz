@@ -13,27 +13,50 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 		readingTime: getReadingTime(post.body)
 	};
 });
+const startingPoints = [
+  { id: '2026-01-05-boring-technology-wins', subject: 'Choosing technology' },
+  { id: '2025-11-10-why-rescue-projects-fail', subject: 'Rescuing systems' },
+  { id: '2026-03-13-the-ic-choice', subject: 'Staying technical' },
+].map(selection => {
+  const post = postsWithReadingTime.find(post => post.id === selection.id);
+  if (!post) throw new Error(`Selected essay is missing or unpublished: ${selection.id}`);
+  return { ...post, subject: selection.subject };
+});
 ---
 
-<BaseLayout pageTitle="Blog" description="Steve Hill's blog - thoughts on software engineering, technology, and more">
-	<h1>Blog</h1>
-	<p>Thoughts on software engineering, technology, and more.</p>
+<BaseLayout pageTitle="Writing" description="Engineering principles, architecture trade-offs, and why boring technology usually wins.">
+	<h1>Writing</h1>
+	<p>Engineering principles, architecture trade-offs, and why boring technology usually wins.</p>
 	
 	<div class="blog-nav">
-		<a href="/series" class="nav-link">Post Series</a>
+		<a href="#latest-writing" class="nav-link">Latest writing ↓</a>
+		<a href="/series" class="nav-link">Series</a>
 		<span class="separator">•</span>
-		<a href="/tags" class="nav-link">Browse by Tag</a>
+		<a href="/tags" class="nav-link">Topics</a>
 		<span class="separator">•</span>
 		<a href="/archive" class="nav-link">Archive</a>
 		<span class="separator">•</span>
 		<a href="/rss.xml" class="nav-link">RSS Feed</a>
 	</div>
+	<section class="starting-points" aria-labelledby="start-here">
+		<div><h2 id="start-here">Start here</h2></div>
+		<ul>
+			{startingPoints.map(post => (
+				<li>
+					<h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+					<p class="starting-point-meta">{post.subject} · {post.readingTime} min read</p>
+					<p>{post.data.excerpt}</p>
+				</li>
+			))}
+		</ul>
+	</section>
+	<h2 id="latest-writing">Latest writing</h2>
 	
 	<div class="card-grid">
 		{postsWithReadingTime.map((post) => (
 			<article class="card" style={`view-transition-name: card-${post.id};`}>
 				<div class="card-header">
-					<time class="card-date">{post.data.pubDate.toLocaleDateString('en-US', {
+				<time class="card-date" datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-GB', {
 						year: 'numeric',
 						month: 'long',
 						day: 'numeric'
@@ -62,3 +85,18 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 		))}
 	</div>
 </BaseLayout>
+
+<style>
+  .starting-points { max-width: none; display: grid; grid-template-columns: 1fr 2fr; gap: 64px; padding: 32px 0 0; margin: 0 0 56px; border-top: 1px solid var(--color-border); }
+  .starting-points h2 { margin: 0; }
+  .starting-points ul { list-style: none; margin: 0; padding: 0; }
+  .starting-points li { margin: 0 0 28px; }
+  .starting-points li:last-child { margin-bottom: 0; }
+  .starting-points h3 { margin: 0 0 8px; font-size: 1.5rem; }
+  .starting-points h3 a { color: var(--color-text-primary); text-decoration: none; }
+  .starting-points h3 a:hover { color: var(--color-primary); text-decoration: underline; }
+  .starting-points p { font-size: 1.125rem; margin: 0; color: var(--color-text-secondary); }
+  .starting-points .starting-point-meta { font-size: .9375rem; margin-bottom: 10px; color: var(--color-text-tertiary); }
+  #latest-writing { scroll-margin-top: 32px; }
+  @media(max-width:800px) { .starting-points { grid-template-columns: minmax(0,1fr); gap: 24px; } }
+</style>

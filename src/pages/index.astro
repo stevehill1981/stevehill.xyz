@@ -3,18 +3,11 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectImage from '../components/ProjectImage.astro';
 import { getReadingTime } from '../utils/readingTime.js';
+import { getSelectedProjects } from '../utils/selectedProjects';
 const posts = (await getCollection('blog', ({ data }) => data.draft !== true))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()).slice(0, 3);
 const projects = await getCollection('projects', ({ data }) => data.draft !== true);
-const selected = [
-  { id: 'rachel', summary: 'A family card game, now on iOS.' },
-  { id: 'code198x', summary: 'Programming, game-making and computing history, explored through classic computers.' },
-  { id: 'chaotic-tanx', summary: 'An artillery game; paused for refactoring.' },
-].map(selection => {
-  const project = projects.find(project => project.id === selection.id);
-  if (!project) throw new Error(`Selected project is missing or unpublished: ${selection.id}`);
-  return { ...project, summary: selection.summary };
-});
+const selected = getSelectedProjects(projects);
 ---
 <BaseLayout pageTitle="Home">
   <section class="home-introduction" aria-labelledby="hello">

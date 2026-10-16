@@ -36,7 +36,7 @@ const postsWithReadingTime = posts.map((post) => {
 ---
 
 <BaseLayout pageTitle={`Tag: ${tag}`} description={`Blog posts tagged with "${tag}"`}>
-	<h1>Tag: {tag}</h1>
+	<h1>{tag.replace(/-/g, ' ')}</h1>
 	<p>{posts.length} post{posts.length !== 1 ? 's' : ''} tagged with "{tag}"</p>
 	
 	<div class="card-grid">
@@ -59,8 +59,8 @@ const postsWithReadingTime = posts.map((post) => {
 	</div>
 	
 	<nav class="tag-nav">
-		<a href="/tags">&larr; Back to All Tags</a>
+		<a href="/tags">&larr; All topics</a>
 		<span class="separator">|</span>
-		<a href="/blog">Back to Blog</a>
+		<a href="/blog">Back to writing</a>
 	</nav>
 </BaseLayout>

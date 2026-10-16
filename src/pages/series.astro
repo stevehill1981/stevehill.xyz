@@ -7,9 +7,9 @@ const allPosts = await getCollection('blog', ({ data }) => data.draft !== true);
 const allSeries = getAllSeries(allPosts);
 ---
 
-<BaseLayout pageTitle="Post Series" description="Explore multi-part blog series covering in-depth topics">
-	<h1>Post Series</h1>
-	<p>In-depth explorations of important topics, broken down into digestible parts.</p>
+<BaseLayout pageTitle="Series" description="Follow multi-part projects and articles in order.">
+	<h1>Series</h1>
+	<p>Follow multi-part projects and articles in order.</p>
 	
 	{allSeries.length === 0 ? (
 		<div class="no-series">
@@ -54,4 +54,5 @@ const allSeries = getAllSeries(allPosts);
 			))}
 		</div>
 	)}
+	<nav class="archive-navigation" aria-label="Writing navigation"><a href="/blog">← Back to writing</a></nav>
 </BaseLayout>

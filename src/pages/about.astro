@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSelectedProjects } from '../utils/selectedProjects';
 
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
@@ -9,10 +10,7 @@ const recentPosts = allPosts
   .slice(0, 3);
 
 const allProjects = await getCollection('projects');
-const recentProjects = allProjects
-  .filter(project => !project.data.draft)
-  .sort((a, b) => (b.data.order || 0) - (a.data.order || 0))
-  .slice(0, 3);
+const selectedProjects = getSelectedProjects(allProjects);
 ---
 
 <BaseLayout
@@ -59,7 +57,7 @@ const recentProjects = allProjects
 
     <aside class="about-sidebar">
       <section class="sidebar-section">
-        <h2>Recent Posts</h2>
+        <h2>Recent writing</h2>
         <div class="sidebar-posts">
           {recentPosts.map((post) => (
             <article class="sidebar-post-card">
@@ -69,21 +67,22 @@ const recentProjects = allProjects
             </article>
           ))}
         </div>
-        <a href="/blog" class="sidebar-link">View all posts →</a>
+        <a href="/blog" class="sidebar-link">All writing →</a>
       </section>
 
       <section class="sidebar-section">
-        <h2>Recent Projects</h2>
+        <h2>Selected projects</h2>
         <div class="sidebar-projects">
-          {recentProjects.map((project) => (
+          {selectedProjects.map((project) => (
             <article class="sidebar-project-card">
               <h3 class="sidebar-project-title">
                 <a href={`/projects/${project.id}`}>{project.data.title}</a>
               </h3>
+              <span class="project-status">{project.data.status}</span>
             </article>
           ))}
         </div>
-        <a href="/projects" class="sidebar-link">View all projects →</a>
+        <a href="/projects" class="sidebar-link">All projects →</a>
       </section>
     </aside>
   </div>

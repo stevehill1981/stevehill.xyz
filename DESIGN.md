@@ -154,7 +154,11 @@ The shared shell has a maximum outer width of 1408px, with 64px horizontal paddi
 
 Writing and project indexes use two-column open grids on wider screens, with 64px column gaps. About and project detail pages place supporting material beside a main column, while articles pair the prose with a 220px sidebar and an 80px gap. At 1000px, sidebar gaps reduce to 40px; About and project detail sidebars narrow from 240px to 210px, while the article sidebar stays 220px. At 800px, these layouts stack. The About sidebar retains two columns until 480px.
 
-The homepage has its own responsive arrangement: its introduction stacks at 1000px; selected projects and recent writing stack at 800px. This composition belongs to its surface brief. The shared spacing scale supports controls and supporting groups; editorial sections also use observed 20px, 24px, 28px, 36px and 40px offsets rather than a rigid single grid.
+The homepage has its own responsive arrangement: its introduction stacks at 1000px; selected projects become image-and-text rows from 601px to 1000px, and stack image above text at 600px and below. Recent writing stacks at 800px. This keeps tablet screenshots from pushing the writing far down the page. This composition belongs to its surface brief. The shared spacing scale supports controls and supporting groups; editorial sections also use observed 20px, 24px, 28px, 36px and 40px offsets rather than a rigid single grid.
+
+The Projects index leads with Rachel, Code198x and Chaotic Tanx as image-and-text rows, with explicit availability and direct destinations. At 600px and below, each image sits above its description. Remaining projects retain the open two-column catalogue. About repeats the same selected projects and statuses rather than claiming they are the most recent.
+
+Writing opens with three selected essays and their existing excerpts. On desktop, the Start here heading sits beside the list; on mobile it precedes it. The complete chronological index follows, with a direct Latest writing anchor above the selection. Writing, Series and Topics use the same names across the navigation and return links. Series part numbers sit above their article at 480px and below to leave more room for titles and excerpts.
 
 ## Elevation & Depth
 
@@ -162,7 +166,7 @@ Ordinary content remains flat. Thin rules, warm surface fills and white space co
 
 **The Quiet Separation Rule.** Use rules and space for ordinary content separation; reserve pronounced depth for overlays.
 
-Search fades over 200ms and icon controls use the shared 200ms ease-out color transition. Search transitions are disabled for reduced motion. Smooth scrolling is enabled only when reduced motion is not requested, and root view-transition animations are disabled when it is requested.
+Search fades over 200ms and icon controls use the shared 200ms ease-out color transition. Search transitions are disabled for reduced motion. Smooth scrolling is enabled only when reduced motion is not requested, and root view-transition animations are disabled when it is requested. The dynamically created update notification uses explicitly global component styles so it receives the same fixed overlay treatment in the built site; its entrance animation is disabled for reduced motion.
 
 ## Shapes
 
