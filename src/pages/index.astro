@@ -40,6 +40,7 @@ const selected = getSelectedProjects(projects);
       ))}
     </ul>
   </section>
+  <p class="closing-note">I also fix things other people gave up on. <a href="/about">Read more about me</a>, or email <a href="mailto:steve@stevehill.xyz">steve@stevehill.xyz</a>.</p>
 </BaseLayout>
 <style>
   .home-introduction { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: end; max-width: none; margin: 0; padding: 55px 0 48px; }
@@ -52,7 +53,8 @@ const selected = getSelectedProjects(projects);
   .section-heading > a,.recent-writing > div > a { display: inline-block; padding-block: 4px; font-size: 16px; color: var(--color-text-primary); }
   .selected-projects { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px; }
   .selected-projects article { min-width: 0; }
-  @media(min-width:1001px) { .selected-projects :global(.project-preview img) { height: 202px; aspect-ratio: auto; } }
+  /* Rachel and Chaotic Tanx are 1.44:1 and fill the box; the near-square NES frame sits at its own shape on the page rather than in a dark letterbox. */
+  .selected-projects :global(.project-preview img) { aspect-ratio: 59 / 41; background: none; object-position: left bottom; }
   .project-image-link { display: block; text-decoration: none; }
   .project-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 14px; }
   h3 { margin: 0; font-size: 23px; }
@@ -68,6 +70,7 @@ const selected = getSelectedProjects(projects);
   li > a { font-size: 20px; color: var(--color-text-primary); text-decoration: none; }
   li > a:hover { color: var(--color-primary); text-decoration: underline; }
   .writing-meta { display: flex; flex-wrap: wrap; gap: 0 16px; color: var(--color-text-tertiary); font-size: 15px; line-height: 1.5; }
+  .closing-note { max-width: 40ch; margin: 48px 0 0; font: 1.4rem/1.5 var(--font-note); color: var(--color-text-primary); }
   @media(max-width:1000px) { .home-introduction { grid-template-columns: minmax(0,1fr); gap: 25px; } .project-heading { flex-wrap: wrap; gap: 4px 12px; } }
   @media(max-width:800px) { .home-introduction { grid-template-columns: minmax(0,1fr); gap: 25px; padding: 38px 0; } h1 { font-size: 52px; } .home-introduction p { font-size: 20px; } .selected-projects { grid-template-columns: minmax(0,1fr); gap: 32px; } .recent-writing { grid-template-columns: minmax(0,1fr); gap: 24px; } .recent-writing ul { grid-column: auto; } }
   @media(min-width:601px) and (max-width:1000px) {

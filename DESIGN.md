@@ -154,7 +154,7 @@ The shared shell has a maximum outer width of 1408px, with 64px horizontal paddi
 
 Writing and project indexes use two-column open grids on wider screens, with 64px column gaps. About and project detail pages place supporting material beside a main column, while articles pair the prose with a 220px sidebar and an 80px gap. At 1000px, sidebar gaps reduce to 40px; About and project detail sidebars narrow from 240px to 210px, while the article sidebar stays 220px. At 800px, these layouts stack. The About sidebar retains two columns until 480px.
 
-The homepage has its own responsive arrangement: its introduction stacks at 1000px; selected projects become image-and-text rows from 601px to 1000px, and stack image above text at 600px and below. Recent writing stacks at 800px. This keeps tablet screenshots from pushing the writing far down the page. This composition belongs to its surface brief. The shared spacing scale supports controls and supporting groups; editorial sections also use observed 20px, 24px, 28px, 36px and 40px offsets rather than a rigid single grid.
+The homepage has its own responsive arrangement: its introduction stacks at 1000px; selected projects become image-and-text rows from 601px to 1000px, and stack image above text at 600px and below. Recent writing shares the project grid's three columns, with dates beneath each title, and stacks at 800px. A closing note in the Bitter note role follows it and points to About and email; Steve approved it on 16 October 2026. This keeps tablet screenshots from pushing the writing far down the page. This composition belongs to its surface brief. The shared spacing scale supports controls and supporting groups; editorial sections also use observed 20px, 24px, 28px, 36px and 40px offsets rather than a rigid single grid.
 
 The Projects index leads with Rachel, Code198x and Chaotic Tanx as image-and-text rows, with explicit availability and direct destinations. At 600px and below, each image sits above its description. Remaining projects retain the open two-column catalogue. About repeats the same selected projects and statuses rather than claiming they are the most recent.
 
@@ -200,7 +200,7 @@ A cream dialog sits over a translucent ink overlay, with a quiet border, large d
 
 ### Project images
 
-The shared project figure uses a dark image bed with a 3:2 ratio and contain sizing, followed by a muted caption. Pixel art uses pixelated rendering. The homepage applies a 202px image height above 800px. Captions explain the actual artifact; image treatment does not merge the projects’ independent identities.
+The shared project figure uses a dark image bed with a 3:2 ratio and contain sizing, followed by a muted caption. Pixel art uses pixelated rendering. The homepage drops the dark bed: its image boxes use the 1.44:1 ratio that the Rachel and Chaotic Tanx captures share, so those fill the box, and the near-square NES frame sits at its own shape against the cream, aligned left and bottom. Approved by Steve on 16 October 2026 after the critique found the letterboxed 202px images read as dark slabs. Captions explain the actual artifact; image treatment does not merge the projects’ independent identities.
 
 ### Contents and code
 

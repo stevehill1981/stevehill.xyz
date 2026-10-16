@@ -173,6 +173,24 @@ test('recent writing lines up with the projects and links are easy to tap', asyn
   }
 });
 
+test('homepage screenshots show without a dark letterbox and the page ends with an invitation', async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    for (const image of await page.locator('.selected-projects .project-preview img').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect(image).toHaveJSProperty('complete', true);
+      expect(await image.evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
+    }
+    const rachel = await page.locator('.selected-projects .project-preview img').first().boundingBox();
+    expect(rachel.height).toBeGreaterThan(202);
+    expect(Math.abs(rachel.width / rachel.height - 59 / 41)).toBeLessThan(0.02);
+  }
+  const note = page.locator('.closing-note');
+  await expect(note.getByRole('link', { name: 'Read more about me' })).toHaveAttribute('href', '/about');
+  await expect(note).toContainText('steve@stevehill.xyz');
+});
+
 test('project statuses sit beside their titles and empty stats stay hidden', async ({ page }) => {
   await page.goto('/projects');
   for (const project of await page.locator('.featured-project, .project-card').all()) {
