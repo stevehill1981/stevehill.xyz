@@ -1,0 +1,1034 @@
+[
+  {
+    "name": "home",
+    "width": 1440,
+    "status": 200,
+    "title": "Home | Steve Hill",
+    "bodyWidth": 1440,
+    "viewport": 1440,
+    "headings": [
+      {
+        "text": "Hello, I’m Steve.\nI make things.",
+        "width": 678.25,
+        "height": 169.59375,
+        "fontSize": "80px",
+        "lineHeight": "84.8px"
+      },
+      {
+        "text": "Selected projects",
+        "width": 175.953125,
+        "height": 30,
+        "fontSize": "25px",
+        "lineHeight": "30px"
+      },
+      {
+        "text": "Rachel",
+        "width": 66.703125,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Code Like It's 198x",
+        "width": 182.015625,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Chaotic Tanx",
+        "width": 126.40625,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Recent writing",
+        "width": 411.65625,
+        "height": 30,
+        "fontSize": "25px",
+        "lineHeight": "30px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "article": "/blog/2026-06-12-guardrails"
+  },
+  {
+    "name": "writing",
+    "width": 1440,
+    "status": 200,
+    "title": "Blog | Steve Hill",
+    "bodyWidth": 1440,
+    "viewport": 1440,
+    "headings": [
+      {
+        "text": "Blog",
+        "width": 1280,
+        "height": 79.1875,
+        "fontSize": "66px",
+        "lineHeight": "79.2px"
+      },
+      {
+        "text": "Guardrails, Not Fewer Problems",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Four Emulators Without Writing a Line of Rust",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "The IC Choice",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Quizzie: A Real-Time Quiz App in Boring Technology",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Shipping Three Projects (and What Opus 4.5 Made Possible)",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building for the Failures You Can't Control",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Six Years After Warning About Microservices",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Sustainable Software, Revisited",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Boring Technology Wins",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Build for Today, Design for Tomorrow",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Process Theatre Kills Teams",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Write It Down or Watch History Repeat",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building a ROM Collection Manager: Where Domain Knowledge Meets Multi-Threaded Rust",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Shipping a Rails 8 Book Tracker in a Day (With Claude Code Doing the Heavy Lifting)",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Teaching Assembly Programming (With AI Writing the First Drafts)",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Shiki Highlight API: How Development Workflow Saved My Syntax Highlighting",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Why rescue projects fail even when you do everything right",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Rachel Part 2: Themes, Polish, and Production Deployment",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Rachel: A Phoenix LiveView Card Game - Part 1",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Sustainable Software",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Microservices, and why they're not always the answer",
+        "width": 608,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Lead Developer London 2019",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Containers",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Moving on from Guru Systems, joining Divido",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Deus Ex",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Spectrum Next Update",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Joining Guru Systems",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Getting started with ZX Spectrum Development",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Not a Ninja",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Revival Solstice 2016 and the ZX Spectrum Next",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Joining the team at Siftware",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Elite: Dangerous",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Why I like Ruby on Rails",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "name": "projects",
+    "width": 1440,
+    "status": 200,
+    "title": "Projects | Steve Hill",
+    "bodyWidth": 1440,
+    "viewport": 1440,
+    "headings": [
+      {
+        "text": "Projects",
+        "width": 1280,
+        "height": 79.1875,
+        "fontSize": "66px",
+        "lineHeight": "79.2px"
+      },
+      {
+        "text": "Chaotic Tanx",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Code Like It's 198x",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "NetNodes Platform Development",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Open Source Contributions",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "PuTTY Themer",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Rachel",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "remark-shiki-highlight-api",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Romshelf - ROM Collection Manager",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "RSpec GitHub Actions Formatter",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Shelved - Media Collection Tracker",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "shiki-highlight-api",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "SitemapGenerator Cache Adapter",
+        "width": 608,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "name": "about",
+    "width": 1440,
+    "status": 200,
+    "title": "About | Steve Hill",
+    "bodyWidth": 1440,
+    "viewport": 1440,
+    "headings": [
+      {
+        "text": "About Me",
+        "width": 730.609375,
+        "height": 79.1875,
+        "fontSize": "66px",
+        "lineHeight": "79.2px"
+      },
+      {
+        "text": "Recent Posts",
+        "width": 240,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Guardrails, Not Fewer Problems",
+        "width": 240,
+        "height": 45.59375,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Building Four Emulators Without Writing a Line of Rust",
+        "width": 240,
+        "height": 68.390625,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "The IC Choice",
+        "width": 240,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Recent Projects",
+        "width": 240,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Chaotic Tanx",
+        "width": 240,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Code Like It's 198x",
+        "width": 240,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "NetNodes Platform Development",
+        "width": 240,
+        "height": 45.59375,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "name": "article",
+    "path": "/blog/2026-06-12-guardrails",
+    "width": 1440,
+    "status": 200,
+    "title": "Guardrails, Not Fewer Problems | Steve Hill",
+    "bodyWidth": 1440,
+    "viewport": 1440,
+    "heading": "Guardrails, Not Fewer Problems"
+  },
+  {
+    "name": "home",
+    "width": 390,
+    "status": 200,
+    "title": "Home | Steve Hill",
+    "bodyWidth": 390,
+    "viewport": 390,
+    "headings": [
+      {
+        "text": "Hello, I’m Steve.\nI make things.",
+        "width": 342,
+        "height": 110.21875,
+        "fontSize": "52px",
+        "lineHeight": "55.12px"
+      },
+      {
+        "text": "Selected projects",
+        "width": 175.953125,
+        "height": 30,
+        "fontSize": "25px",
+        "lineHeight": "30px"
+      },
+      {
+        "text": "Rachel",
+        "width": 66.703125,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Code Like It's 198x",
+        "width": 182.015625,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Chaotic Tanx",
+        "width": 126.40625,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Recent writing",
+        "width": 342,
+        "height": 30,
+        "fontSize": "25px",
+        "lineHeight": "30px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "name": "writing",
+    "width": 390,
+    "status": 200,
+    "title": "Blog | Steve Hill",
+    "bodyWidth": 390,
+    "viewport": 390,
+    "headings": [
+      {
+        "text": "Blog",
+        "width": 342,
+        "height": 52.796875,
+        "fontSize": "44px",
+        "lineHeight": "52.8px"
+      },
+      {
+        "text": "Guardrails, Not Fewer Problems",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Four Emulators Without Writing a Line of Rust",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "The IC Choice",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Quizzie: A Real-Time Quiz App in Boring Technology",
+        "width": 342,
+        "height": 100.78125,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Shipping Three Projects (and What Opus 4.5 Made Possible)",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building for the Failures You Can't Control",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Six Years After Warning About Microservices",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Sustainable Software, Revisited",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Boring Technology Wins",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Build for Today, Design for Tomorrow",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Process Theatre Kills Teams",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Write It Down or Watch History Repeat",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building a ROM Collection Manager: Where Domain Knowledge Meets Multi-Threaded Rust",
+        "width": 342,
+        "height": 134.375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Shipping a Rails 8 Book Tracker in a Day (With Claude Code Doing the Heavy Lifting)",
+        "width": 342,
+        "height": 100.78125,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Teaching Assembly Programming (With AI Writing the First Drafts)",
+        "width": 342,
+        "height": 100.78125,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Shiki Highlight API: How Development Workflow Saved My Syntax Highlighting",
+        "width": 342,
+        "height": 100.78125,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Why rescue projects fail even when you do everything right",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Rachel Part 2: Themes, Polish, and Production Deployment",
+        "width": 342,
+        "height": 100.78125,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Building Rachel: A Phoenix LiveView Card Game - Part 1",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Sustainable Software",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Microservices, and why they're not always the answer",
+        "width": 342,
+        "height": 100.78125,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Lead Developer London 2019",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Containers",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Moving on from Guru Systems, joining Divido",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Deus Ex",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Spectrum Next Update",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Joining Guru Systems",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Getting started with ZX Spectrum Development",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Not a Ninja",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Revival Solstice 2016 and the ZX Spectrum Next",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Joining the team at Siftware",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Elite: Dangerous",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Why I like Ruby on Rails",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "name": "projects",
+    "width": 390,
+    "status": 200,
+    "title": "Projects | Steve Hill",
+    "bodyWidth": 390,
+    "viewport": 390,
+    "headings": [
+      {
+        "text": "Projects",
+        "width": 342,
+        "height": 52.796875,
+        "fontSize": "44px",
+        "lineHeight": "52.8px"
+      },
+      {
+        "text": "Chaotic Tanx",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Code Like It's 198x",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "NetNodes Platform Development",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Open Source Contributions",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "PuTTY Themer",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Rachel",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "remark-shiki-highlight-api",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Romshelf - ROM Collection Manager",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "RSpec GitHub Actions Formatter",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "Shelved - Media Collection Tracker",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "shiki-highlight-api",
+        "width": 342,
+        "height": 33.59375,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      },
+      {
+        "text": "SitemapGenerator Cache Adapter",
+        "width": 342,
+        "height": 67.1875,
+        "fontSize": "28px",
+        "lineHeight": "33.6px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "name": "about",
+    "width": 390,
+    "status": 200,
+    "title": "About | Steve Hill",
+    "bodyWidth": 390,
+    "viewport": 390,
+    "headings": [
+      {
+        "text": "About Me",
+        "width": 342,
+        "height": 52.796875,
+        "fontSize": "44px",
+        "lineHeight": "52.8px"
+      },
+      {
+        "text": "Recent Posts",
+        "width": 342,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Guardrails, Not Fewer Problems",
+        "width": 342,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Building Four Emulators Without Writing a Line of Rust",
+        "width": 342,
+        "height": 45.59375,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "The IC Choice",
+        "width": 342,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Recent Projects",
+        "width": 342,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Chaotic Tanx",
+        "width": 342,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "Code Like It's 198x",
+        "width": 342,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      },
+      {
+        "text": "NetNodes Platform Development",
+        "width": 342,
+        "height": 22.796875,
+        "fontSize": "19px",
+        "lineHeight": "22.8px"
+      }
+    ],
+    "brokenImages": []
+  },
+  {
+    "name": "article",
+    "path": "/blog/2026-06-12-guardrails",
+    "width": 390,
+    "status": 200,
+    "title": "Guardrails, Not Fewer Problems | Steve Hill",
+    "bodyWidth": 390,
+    "viewport": 390,
+    "heading": "Guardrails, Not Fewer Problems"
+  },
+  {
+    "name": "home",
+    "width": 320,
+    "status": 200,
+    "title": "Home | Steve Hill",
+    "bodyWidth": 320,
+    "viewport": 320,
+    "headings": [
+      {
+        "text": "Hello, I’m Steve.\nI make things.",
+        "width": 272,
+        "height": 139.875,
+        "fontSize": "44px",
+        "lineHeight": "46.64px"
+      },
+      {
+        "text": "Selected projects",
+        "width": 175.953125,
+        "height": 30,
+        "fontSize": "25px",
+        "lineHeight": "30px"
+      },
+      {
+        "text": "Rachel",
+        "width": 66.703125,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Code Like It's 198x",
+        "width": 182.015625,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Chaotic Tanx",
+        "width": 126.40625,
+        "height": 27.59375,
+        "fontSize": "23px",
+        "lineHeight": "27.6px"
+      },
+      {
+        "text": "Recent writing",
+        "width": 272,
+        "height": 30,
+        "fontSize": "25px",
+        "lineHeight": "30px"
+      }
+    ],
+    "brokenImages": []
+  }
+]

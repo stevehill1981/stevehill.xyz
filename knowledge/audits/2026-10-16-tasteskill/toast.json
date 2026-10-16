@@ -1,0 +1,23 @@
+{
+  "text": "Site updatedRefresh×",
+  "html": "<div role=\"status\" aria-live=\"polite\" class=\"sw-update-toast\"><span>Site updated</span><button>Refresh</button><button aria-label=\"Dismiss\">×</button></div>",
+  "position": "static",
+  "display": "block",
+  "bounds": {
+    "x": 0,
+    "y": 2314.96875,
+    "width": 390,
+    "height": 35.6875,
+    "top": 2314.96875,
+    "right": 390,
+    "bottom": 2350.65625,
+    "left": 0
+  },
+  "matchingSelectors": [
+    ".sw-update-toast[data-astro-cid-z4jru4n3] { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--font-size-sm); box-shadow: var(--shadow-lg); z-index: 9999; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; animation: 0.3s ease-out 0s 1 normal none running slide-up; display: flex; position: fixed; bottom: 1rem; right: 1rem; }",
+    ".sw-update-toast[data-astro-cid-z4jru4n3] button[data-astro-cid-z4jru4n3] { cursor: pointer; border-radius: var(--radius-sm); font-size: var(--font-size-sm); background: 0px 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 0.25rem 0.5rem; }",
+    ".sw-update-toast[data-astro-cid-z4jru4n3] button[data-astro-cid-z4jru4n3]:first-of-type { background: var(--color-primary); color: rgb(255, 255, 255); }",
+    ".sw-update-toast[data-astro-cid-z4jru4n3] button[data-astro-cid-z4jru4n3]:last-of-type { color: var(--color-text-tertiary); font-size: 1.25rem; line-height: 1; }",
+    "@media (prefers-reduced-motion: reduce) {\n  .sw-update-toast[data-astro-cid-z4jru4n3] { animation: auto ease 0s 1 normal none running none; }\n}"
+  ]
+}
