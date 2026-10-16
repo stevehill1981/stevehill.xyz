@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-15T12:57:31.915603+00:00",
+  "generatedAt": "2026-10-16T09:22:30.812770+00:00",
   "title": "Design System: Steve Hill",
   "extensions": {
     "colorMeta": {
@@ -171,6 +171,21 @@
           "oklch(84% 0.0126 255.51)",
           "oklch(95% 0.0126 255.51)"
         ]
+      },
+      "image-bed": {
+        "role": "neutral",
+        "displayName": "Image bed",
+        "canonical": "#191a17",
+        "tonalRamp": [
+          "oklch(15% 0.0059 121.94)",
+          "oklch(26% 0.0059 121.94)",
+          "oklch(38% 0.0059 121.94)",
+          "oklch(49% 0.0059 121.94)",
+          "oklch(61% 0.0059 121.94)",
+          "oklch(72% 0.0059 121.94)",
+          "oklch(84% 0.0059 121.94)",
+          "oklch(95% 0.0059 121.94)"
+        ]
       }
     },
     "typographyMeta": {
@@ -205,6 +220,54 @@
       "code": {
         "displayName": "Code",
         "purpose": "Technical examples."
+      },
+      "display-compact": {
+        "displayName": "Display compact",
+        "purpose": "Homepage welcome at 800px and below."
+      },
+      "display-narrow": {
+        "displayName": "Display narrow",
+        "purpose": "Homepage welcome at 360px and below."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The masthead name."
+      },
+      "home-section": {
+        "displayName": "Home section",
+        "purpose": "Homepage section headings."
+      },
+      "home-lead": {
+        "displayName": "Home lead",
+        "purpose": "Homepage introduction; project titles use it at semibold."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and project titles in indexes."
+      },
+      "subsection": {
+        "displayName": "Subsection",
+        "purpose": "Third-level headings, Start here essays and Writing year headings."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Page introductions, fourth-level headings and homepage writing titles."
+      },
+      "small-heading": {
+        "displayName": "Small heading",
+        "purpose": "Sidebar, contents and article navigation headings."
+      },
+      "interface": {
+        "displayName": "Interface",
+        "purpose": "Navigation links, article metadata, contents links and project summaries."
+      },
+      "secondary": {
+        "displayName": "Secondary",
+        "purpose": "Sidebars, project statuses and actions, related-post excerpts."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Figure captions."
       }
     },
     "shadows": [
@@ -239,6 +302,10 @@
       {
         "name": "sidebar-single",
         "value": "480px"
+      },
+      {
+        "name": "rows-stack",
+        "value": "600px"
       },
       {
         "name": "mobile",
@@ -295,7 +362,7 @@
       "name": "Article row",
       "kind": "card",
       "refersTo": "article-card",
-      "description": "Open writing-index block, separated by a rule.",
+      "description": "Open article card on topic pages, separated by a rule. The Writing index uses the year group instead.",
       "html": "<article class=\"ds-card\"><div class=\"ds-meta\">Engineering · 5 min read</div><h2><a href=\"/blog\">Writing</a></h2><p>Things I’ve learned along the way.</p></article>",
       "css": ".ds-card{font-family:var(--font-body);padding:28px 0;border-top:1px solid var(--color-border)}.ds-meta{font-size:.9375rem;color:var(--color-text-tertiary)}.ds-card h2{font-size:1.75rem;line-height:1.2;font-weight:600;margin:14px 0 12px}.ds-card a{color:var(--color-text-primary);text-decoration:none}.ds-card a:hover{color:var(--color-primary);text-decoration:underline}.ds-card a:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}.ds-card p{font-size:1.125rem;line-height:1.65;color:var(--color-text-secondary);margin:0 0 1.25em}"
     },
@@ -306,6 +373,30 @@
       "description": "Dialog shell only; the live implementation supplies results and focus management.",
       "html": "<section class=\"ds-dialog\" aria-label=\"Search preview\"><button class=\"ds-close\" aria-label=\"Close search\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></button><p>Search this site</p></section>",
       "css": ".ds-dialog{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text-primary);border:1px solid var(--color-border);border-radius:var(--radius-lg);width:90%;max-width:600px;max-height:80vh;overflow:hidden;position:relative;padding:32px 0 0;box-shadow:0 25px 50px -12px rgba(0,0,0,.5)}.ds-dialog p{padding:1.5rem;margin:0}.ds-close{position:absolute;top:1rem;right:1rem;background:transparent;border:none;padding:.625rem;cursor:pointer;color:var(--color-text-tertiary);transition:color 200ms ease-out}.ds-close:hover{color:var(--color-text-primary)}.ds-close:focus-visible{outline:3px solid var(--color-primary);outline-offset:2px;border-radius:4px}"
+    },
+    {
+      "name": "Writing year group",
+      "kind": "custom",
+      "refersTo": "subsection",
+      "description": "One year of the Writing index: year beside a single-column list of posts, no tags.",
+      "html": "<section class=\"ds-year\"><h3>2026</h3><ol class=\"ds-year-list\"><li><h4><a href=\"/blog\">Guardrails, Not Fewer Problems</a></h4><p class=\"ds-year-meta\">12 June 2026 · 5 min read</p><p>When someone proposed replacing the platform I’d built, I wrote 60 pages.</p></li></ol></section>",
+      "css": ".ds-year{display:grid;grid-template-columns:1fr 2fr;gap:64px;padding-top:28px;border-top:1px solid var(--color-border);font-family:var(--font-body)}.ds-year h3{margin:0;font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-primary)}.ds-year-list{list-style:none;margin:0;padding:0;display:grid;gap:28px}.ds-year-list h4{margin:0 0 6px;font-size:1.375rem;font-weight:600}.ds-year-list a{color:var(--color-text-primary);text-decoration:none}.ds-year-list a:hover{color:var(--color-primary);text-decoration:underline}.ds-year-list a:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}.ds-year-list p{max-width:60ch;margin:0;font-size:1.125rem;color:var(--color-text-secondary)}.ds-year-list .ds-year-meta{margin-bottom:8px;font-size:.9375rem;color:var(--color-text-tertiary)}"
+    },
+    {
+      "name": "Status label",
+      "kind": "custom",
+      "refersTo": "secondary",
+      "description": "A project title with its status beside it; one of Released, Live, Published, In progress or Paused.",
+      "html": "<div class=\"ds-status-row\"><h3><a href=\"/projects/rachel\">Rachel</a></h3><span class=\"ds-status\">Released</span></div>",
+      "css": ".ds-status-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 16px;font-family:var(--font-body)}.ds-status-row h3{margin:0;font-size:1.75rem;font-weight:600}.ds-status-row a{color:var(--color-text-primary);text-decoration:none}.ds-status-row a:hover{color:var(--color-primary);text-decoration:underline}.ds-status-row a:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}.ds-status{font-size:1rem;color:var(--color-text-tertiary)}"
+    },
+    {
+      "name": "Closing note",
+      "kind": "custom",
+      "refersTo": "note",
+      "description": "The homepage’s Bitter closing line, pointing readers to About and email.",
+      "html": "<p class=\"ds-closing\">I also fix things other people gave up on. <a href=\"/about\">Read more about me</a>, or email <a href=\"mailto:steve@stevehill.xyz\">steve@stevehill.xyz</a>.</p>",
+      "css": ".ds-closing{max-width:40ch;margin:0;font:1.4rem/1.5 var(--font-note);color:var(--color-text-primary)}.ds-closing a{color:var(--color-primary);text-underline-offset:.2em;text-decoration-thickness:1px}.ds-closing a:hover{color:var(--color-primary-hover);text-decoration-thickness:2px}.ds-closing a:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}"
     }
   ],
   "narrative": {
@@ -318,6 +409,16 @@
       "Real, uncropped project images and comfortable prose."
     ],
     "rules": [
+      {
+        "name": "The Reuse-a-Role Rule",
+        "body": "The scale already has more steps than it needs. New interface takes the role of the nearest existing element instead of adding a size.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Interface labels, navigation, section headings and buttons use sentence case (\"Related posts\", \"Copy link\"). Headings inside published posts and project write-ups keep the case they were written in.",
+        "section": "typography"
+      },
       {
         "name": "The Reading Measure Rule",
         "body": "Keep long-form prose within the established 70ch measure; use the wider shell for navigation, images and supporting material.",
@@ -333,12 +434,15 @@
       "Do use Source Sans 3 for the main interface and Bitter for the established note and quotation roles.",
       "Do keep prose near the implemented 70ch measure and let layouts stack when space narrows.",
       "Do retain visible keyboard focus and reduced-motion behavior.",
-      "Do preserve project screenshots with contain sizing and pixelated rendering where the source is pixel art."
+      "Do preserve project screenshots with contain sizing and pixelated rendering where the source is pixel art.",
+      "Do keep each project's status beside its title, using one of the five statuses.",
+      "Do write interface labels in sentence case."
     ],
     "donts": [
       "Don't add decorative glows or card stripes to the Open Table world.",
       "Don't turn open article and project rows into elevated cards.",
-      "Don't apply the homepage’s three-project composition to every surface."
+      "Don't apply the homepage’s three-project composition to every surface.",
+      "Don't add a new font size when an existing role fits."
     ]
   }
 }

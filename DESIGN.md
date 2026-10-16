@@ -14,6 +14,7 @@ colors:
   rule: '#cfc5b5'
   code-bg: '#18202b'
   code-text: '#e2e8f0'
+  image-bed: '#191a17'
 typography:
   display:
     fontFamily: Source Sans 3, sans-serif
@@ -52,6 +53,65 @@ typography:
     fontFamily: Source Sans 3, sans-serif
     fontSize: .9375rem
     fontWeight: 400
+  display-compact:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 52px
+    fontWeight: 600
+    lineHeight: 1.06
+  display-narrow:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 44px
+    fontWeight: 600
+    lineHeight: 1.06
+  wordmark:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 27px
+    fontWeight: 700
+  home-section:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 25px
+    fontWeight: 600
+    lineHeight: 1.2
+  home-lead:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 23px
+    fontWeight: 400
+    lineHeight: 1.45
+  title:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 1.75rem
+    fontWeight: 600
+    lineHeight: 1.2
+  subsection:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 1.5rem
+    fontWeight: 600
+    lineHeight: 1.2
+  lead:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 1.25rem
+    fontWeight: 400
+    lineHeight: 1.65
+  small-heading:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 19px
+    fontWeight: 600
+    lineHeight: 1.2
+  interface:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 17px
+    fontWeight: 400
+    lineHeight: 1.4
+  secondary:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.5
+  caption:
+    fontFamily: Source Sans 3, sans-serif
+    fontSize: 14px
+    fontWeight: 400
+    lineHeight: 1.4
   code:
     fontFamily: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
     fontSize: .875rem
@@ -137,12 +197,30 @@ Brick is the primary accent against a warm neutral canvas. The frontmatter recor
 - **Secondary text / muted text:** descriptions, captions, dates and supporting navigation.
 - **Quiet rule:** borders and separators.
 - **Code background / code text:** dark technical examples, independent of the light reading canvas. Syntax colors remain defined in the stylesheet rather than being promoted to brand accents.
+- **Image bed:** the near-black ground behind contained project screenshots on Projects, About and project pages. The homepage omits it (see Project images). The share buttons' X and LinkedIn hover colours are third-party brand values, not palette tokens.
 
 ## Typography
 
 **Display and body font:** Source Sans 3, with sans-serif fallback. **Note font:** Bitter, with Georgia and serif fallback. Both are locally hosted variable WOFF2 faces with swap loading and weights from 400 to 700. Code uses the system monospace stack.
 
-The principal hierarchy is recorded above. Normal reading uses the body role; article and About prose use the larger prose role. Headings use semibold weight, tight leading and slight negative tracking. Third-level headings use 1.5rem; fourth-level headings use 1.25rem. Metadata generally ranges from 14px to 17px depending on context.
+The principal hierarchy is recorded above. Normal reading uses the body role; article and About prose use the larger prose role. Headings use semibold weight, tight leading and slight negative tracking.
+
+The supporting roles are each tied to a place:
+- **Display compact and narrow** carry the homepage welcome at 800px and 360px and below.
+- **Wordmark** is the masthead name.
+- **Home section and home lead** are the homepage's section headings and introduction. The homepage project titles use the home lead size at semibold.
+- **Title** is for card and project titles in indexes.
+- **Subsection** is for third-level headings, Start here essays and Writing's year headings.
+- **Lead** is for page introductions, fourth-level headings and the homepage writing titles.
+- **Small heading** heads sidebars, contents and article navigation.
+- **Interface** is for navigation links, article metadata, contents links and project summaries.
+- **Secondary** is for sidebars, project statuses, actions and related-post excerpts.
+- **Label** is for dates, captions under titles and supporting links.
+- **Caption** is for figure captions.
+
+**The Reuse-a-Role Rule.** The scale already has more steps than it needs. New interface takes the role of the nearest existing element instead of adding a size.
+
+**The Sentence Case Rule.** Interface labels, navigation, section headings and buttons use sentence case ("Related posts", "Copy link"). Headings inside published posts and project write-ups keep the case they were written in.
 
 The large mixed-family welcome is a homepage expression: its second line uses Bitter at weight 500. It is not the default heading style for secondary pages. Quotations use the note role between horizontal rules.
 
@@ -152,13 +230,13 @@ The large mixed-family welcome is a homepage expression: its second line uses Bi
 
 The shared shell has a maximum outer width of 1408px, with 64px horizontal padding and 64px bottom padding. At 800px and below, horizontal padding becomes 24px and bottom padding becomes 40px. The header and footer align to the same inner edges.
 
-Writing and project indexes use two-column open grids on wider screens, with 64px column gaps. About and project detail pages place supporting material beside a main column, while articles pair the prose with a 220px sidebar and an 80px gap. At 1000px, sidebar gaps reduce to 40px; About and project detail sidebars narrow from 240px to 210px, while the article sidebar stays 220px. At 800px, these layouts stack. The About sidebar retains two columns until 480px.
+The project catalogue and topic pages use two-column open grids on wider screens, with 64px column gaps. About and project detail pages place supporting material beside a main column, while articles pair the prose with a 220px sidebar and an 80px gap. At 1000px, sidebar gaps reduce to 40px; About and project detail sidebars narrow from 240px to 210px, while the article sidebar stays 220px. At 800px, these layouts stack. The About sidebar retains two columns until 480px.
 
 The homepage has its own responsive arrangement: its introduction stacks at 1000px; selected projects become image-and-text rows from 601px to 1000px, and stack image above text at 600px and below. Recent writing shares the project grid's three columns, with dates beneath each title, and stacks at 800px. A closing note in the Bitter note role follows it and points to About and email; Steve approved it on 16 October 2026. This keeps tablet screenshots from pushing the writing far down the page. This composition belongs to its surface brief. The shared spacing scale supports controls and supporting groups; editorial sections also use observed 20px, 24px, 28px, 36px and 40px offsets rather than a rigid single grid.
 
-The Projects index leads with Rachel, Code198x and Chaotic Tanx as image-and-text rows, with explicit availability and direct destinations. At 600px and below, each image sits above its description. Remaining projects retain the open two-column catalogue. About repeats the same selected projects and statuses rather than claiming they are the most recent.
+The Projects index leads with Rachel, Code Like It's 198x and Chaotic Tanx as image-and-text rows, with each status beside its title and direct destinations. At 600px and below, each image sits above its description. Remaining projects retain the open two-column catalogue. About repeats the same selected projects and statuses rather than claiming they are the most recent.
 
-Writing opens with three selected essays and their existing excerpts. On desktop, the Start here heading sits beside the list; on mobile it precedes it. The complete chronological index follows, with a direct Latest writing anchor above the selection. Writing, Series and Topics use the same names across the navigation and return links. Series part numbers sit above their article at 480px and below to leave more room for titles and excerpts.
+Writing opens with three selected essays and their existing excerpts. On desktop, the Start here heading sits beside the list; on mobile it precedes it. The complete index follows in the same arrangement, grouped by year: each year heading sits beside a single-column list of title, date, reading time, series part and excerpt, with no tags. Excerpts cap at 60ch, which keeps rendered lines at 80 characters or fewer. A direct Latest writing anchor sits above the selection. Writing, Series and Topics use the same names across the navigation and return links. Series part numbers sit above their article at 480px and below to leave more room for titles and excerpts.
 
 ## Elevation & Depth
 
@@ -176,7 +254,7 @@ Controls use small, practical corners: the small radius for tags and inline code
 
 ### Buttons
 
-Outlined actions use a transparent background, quiet border, medium corners and inline icon/text alignment. Primary actions use brick with white text and deepen on hover. Shared keyboard focus is a brick outline (2px, offset 4px); search trigger and close controls use their own stronger outline (3px, offset 2px). Copy controls use a compact outline and replace their label after success.
+Outlined actions use a transparent background, quiet border, medium corners and inline icon/text alignment. Primary actions use brick with white text and deepen on hover. Shared keyboard focus is a brick outline (2px, offset 4px); search trigger and close controls use their own stronger outline (3px, offset 2px). Copy controls use a compact outline and replace their label after success. A project page's destination, such as "View on the App Store", is its one primary action.
 
 ### Tags
 
@@ -184,7 +262,7 @@ Small warm surface labels carry secondary text and small corners. Linked tags in
 
 ### Cards / Containers
 
-Article, project, series and sidebar groups are open content blocks divided by rules. Article cards have vertical padding and no filled panel or shadow. Titles remain ink at rest and become brick and underlined on hover. There is no shared elevated-card shell.
+Article, project, series and sidebar groups are open content blocks divided by rules. Article cards on topic pages have vertical padding and no filled panel or shadow. The Writing index uses its year-grouped list instead of cards. Titles remain ink at rest and become brick and underlined on hover. There is no shared elevated-card shell.
 
 ### Inputs / Fields
 
@@ -192,11 +270,15 @@ The implemented field is Pagefind search: a warm surface, ink text, muted placeh
 
 ### Navigation
 
-The masthead pairs a bold personal wordmark with sentence-case links. Current and hovered links turn brick and underline. At 800px and below, a menu button opens a cream, bordered list beneath the masthead; Escape and outside clicks close it. The footer wraps small supporting links below a quiet rule.
+The masthead pairs a bold personal wordmark with sentence-case links. Current and hovered links turn brick and underline. At 800px and below, a menu button opens a cream, bordered list beneath the masthead; Escape and outside clicks close it. The footer wraps small supporting links below a quiet rule. Small text links (footer, "All writing →", sidebar links) carry 4px of block padding so each target is at least 24px tall.
 
 ### Search dialog
 
-A cream dialog sits over a translucent ink overlay, with a quiet border, large dialog corners, a maximum width of 600px and maximum height of 80vh. Results scroll within a 50vh area. Opening search moves focus inside and makes the main page inert; Escape closes it and focus returns to the opener.
+A cream dialog sits over a translucent ink overlay, with a quiet border, large dialog corners, a maximum width of 600px and maximum height of 80vh. Results scroll within a 50vh area. Opening search moves focus inside and makes the main page inert; Escape closes it and focus returns to the opener. A search with no matches suggests a shorter word, and a muted line beneath the results always offers topics, series and the archive.
+
+### Status labels
+
+Status is the site's honest-availability signal, so it always sits beside its project's title, or directly beneath it when the title wraps. It uses the label or secondary role in muted text. There are five statuses: Released (apps and games), Live (websites), Published (libraries and scripts), In progress and Paused. The content schema rejects anything else. Project pages repeat the status in the sidebar's Project info.
 
 ### Project images
 
@@ -214,9 +296,12 @@ Article contents use a quiet top rule, muted links and indented third-level head
 - Do keep prose near the implemented 70ch measure and let layouts stack when space narrows.
 - Do retain visible keyboard focus and reduced-motion behavior.
 - Do preserve project screenshots with contain sizing and pixelated rendering where the source is pixel art.
+- Do keep each project's status beside its title, using one of the five statuses.
+- Do write interface labels in sentence case.
 
 ### Don't:
 
 - Don't add decorative glows or card stripes to the Open Table world.
 - Don't turn open article and project rows into elevated cards.
 - Don't apply the homepage’s three-project composition to every surface.
+- Don't add a new font size when an existing role fits.
