@@ -2,6 +2,42 @@ import { test, expect } from '@playwright/test';
 
 const article = '/blog/2025-11-13-building-shiki-highlight-api/';
 
+test('update notice is styled in the viewport and can be dismissed with reduced motion', async ({ page }) => {
+  // Simulate activation, then exercise the production handler and its real CSS.
+  // This isolates notice rendering from service-worker installation timing.
+  await page.addInitScript(() => {
+    const registration = new EventTarget();
+    const worker = new EventTarget();
+    registration.installing = worker;
+    registration.update = async () => {};
+    Object.defineProperty(navigator, 'serviceWorker', {
+      value: { controller: {}, register: async () => registration },
+    });
+    window.activateUpdate = () => {
+      registration.dispatchEvent(new Event('updatefound'));
+      worker.state = 'activated';
+      worker.dispatchEvent(new Event('statechange'));
+    };
+  });
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  await page.evaluate(() => window.activateUpdate());
+  const notice = page.getByRole('status').filter({ hasText: 'Site updated' });
+  await expect(notice).toBeVisible();
+  const box = await notice.boundingBox();
+  expect(box.x).toBeGreaterThanOrEqual(0);
+  expect(box.y).toBeGreaterThanOrEqual(0);
+  expect(box.x + box.width).toBeLessThanOrEqual(320);
+  expect(box.y + box.height).toBeLessThanOrEqual(800);
+  expect(await notice.evaluate(element => getComputedStyle(element).position)).toBe('fixed');
+  expect(await notice.evaluate(element => getComputedStyle(element).animationName)).toBe('none');
+  await expect(notice.getByRole('button', { name: 'Refresh' })).toBeVisible();
+  await notice.getByRole('button', { name: 'Dismiss' }).click();
+  await expect(notice).toHaveCount(0);
+});
+
 async function openSearch(page) {
   await page.getByRole('button', { name: 'Search', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Search', exact: true });
