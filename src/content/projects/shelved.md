@@ -1,6 +1,6 @@
 ---
 title: "Shelved - Media Collection Tracker"
-description: "A privacy-focused Rails app for tracking books, movies, and TV shows. Shipped in a day with AI-assisted development, then shut down due to hosting costs."
+description: "A privacy-focused Rails app for tracking books, movies, and TV shows. Shipped in a day with AI-assisted development, then taken offline because of hosting costs."
 tags:
   - rails
   - hotwire
