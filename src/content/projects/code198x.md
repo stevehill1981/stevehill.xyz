@@ -10,7 +10,7 @@ priority: 3
 year: 2024
 ---
 
-Code198x is a place to learn programming and game-making through classic computers. Building real games gives the ideas a purpose, while shared subjects explore the foundations, maths, craft and history behind them.
+Code Like It's 198x is a place to learn programming and game-making through classic computers. Building real games gives the ideas a purpose, while shared subjects explore the foundations, maths, craft and history behind them.
 
 ## The Problem
 
@@ -38,6 +38,6 @@ The shared subjects explore ideas that travel across systems: programming founda
 
 ## Current Status
 
-Code198x is live and operational at [www.code198x.com](https://www.code198x.com). I'm also actively developing the wider 198x family.
+Code Like It's 198x is live and operational at [www.code198x.com](https://www.code198x.com). I'm also actively developing the wider 198x family.
 
 The site includes real course captures such as Safe Cracker on the Commodore 64, Dash on the NES and Flock on the Amiga. Coverage varies between routes; the systems and curriculum directories show what's available.

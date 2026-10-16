@@ -21,6 +21,6 @@ export function getProjectDestination(project: CollectionEntry<'projects'>) {
   if (!project.data.demo) return null;
   return {
     href: project.data.demo,
-    label: project.id === 'code198x' ? 'Visit Code198x' : 'Visit project website',
+    label: project.id === 'code198x' ? "Visit Code Like It's 198x" : 'Visit project website',
   };
 }

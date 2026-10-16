@@ -78,6 +78,17 @@ test('every listed date uses the same day-month-year style', async ({ page }) =>
   }
 });
 
+test('Code Like It’s 198x keeps one name across the site', async ({ page }) => {
+  const name = /^Code Like It[’']s 198x$/;
+  for (const path of ['/', '/now/', '/projects/code198x/']) {
+    await page.goto(path);
+    const labels = await page.locator('a[href^="https://www.code198x.com"]').allTextContents();
+    expect(labels.length, `${path} links to Code198x`).toBeGreaterThan(0);
+    for (const label of labels.filter(text => !/code198x\.com/.test(text))) expect(label.replace(/\s*→$/, '').replace(/^Visit\s+/, '').trim(), path).toMatch(name);
+  }
+  await expect(page.locator('body')).not.toContainText(/\bCode198x\b/);
+});
+
 async function openSearch(page) {
   await page.getByRole('button', { name: 'Search', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Search', exact: true });
