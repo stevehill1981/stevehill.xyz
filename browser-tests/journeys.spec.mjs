@@ -89,6 +89,25 @@ test('Code Like It’s 198x keeps one name across the site', async ({ page }) =>
   await expect(page.locator('body')).not.toContainText(/\bCode198x\b/);
 });
 
+test('interface labels use sentence case and the share row follows the prose', async ({ page }) => {
+  await page.goto(article);
+  await expect(page.getByRole('button', { name: 'Copy link' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Related posts', exact: true })).toBeVisible();
+  const label = page.locator('.share-label');
+  await expect(label).toHaveText('Share');
+  expect(await label.evaluate(element => getComputedStyle(element).textTransform)).toBe('none');
+  const prose = await page.locator('.content').first().boundingBox();
+  const share = await page.locator('.share-buttons').boundingBox();
+  expect(Math.abs(share.x + share.width - (prose.x + prose.width))).toBeLessThanOrEqual(2);
+  await page.goto('/projects/rachel/');
+  await expect(page.getByRole('heading', { name: 'Project info', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: '← Back to projects' })).toBeVisible();
+  for (const [path, name] of [['/about/', 'About me'], ['/work-with-me/', 'Work with me'], ['/principles/', 'My principles']]) {
+    await page.goto(path);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(name);
+  }
+});
+
 async function openSearch(page) {
   await page.getByRole('button', { name: 'Search', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Search', exact: true });

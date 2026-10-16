@@ -83,7 +83,7 @@ test('a load failing after close cannot steal focus or poison client navigation'
   await expect(trigger).toBeFocused();
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'About', exact: true }).click();
   await expect(page).toHaveURL(/\/about\/?$/);
-  await expect(page.getByRole('heading', { name: 'About Me' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'About me' })).toBeVisible();
   await trigger.click();
   await expect(dialog.getByRole('alert')).toContainText('Search couldn’t load');
   await dialog.getByRole('link', { name: 'Browse writing' }).click();

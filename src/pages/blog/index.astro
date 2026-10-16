@@ -17,7 +17,7 @@ const postsWithReadingTime = sortedPosts.map((post) => {
 const startingPoints = [
   { id: '2026-01-05-boring-technology-wins', subject: 'Choosing technology' },
   { id: '2025-11-10-why-rescue-projects-fail', subject: 'Rescuing systems' },
-  { id: '2026-03-13-the-ic-choice', subject: 'Staying technical' },
+  { id: '2026-03-13-the-ic-choice', subject: 'Staying an individual contributor' },
 ].map(selection => {
   const post = postsWithReadingTime.find(post => post.id === selection.id);
   if (!post) throw new Error(`Selected essay is missing or unpublished: ${selection.id}`);
@@ -37,7 +37,7 @@ const startingPoints = [
 		<span class="separator">•</span>
 		<a href="/archive" class="nav-link">Archive</a>
 		<span class="separator">•</span>
-		<a href="/rss.xml" class="nav-link">RSS Feed</a>
+		<a href="/rss.xml" class="nav-link">RSS feed</a>
 	</div>
 	<section class="starting-points" aria-labelledby="start-here">
 		<div><h2 id="start-here">Start here</h2></div>
