@@ -2,7 +2,7 @@
 title: "Open Source Contributions"
 description: "Fixed MySQL check constraint bugs in Rails core, enhanced TimescaleDB schema dumping for multi-column compression, and debugged HTML Pipeline's node filter merging. Real-world problems found in production, fixed upstream for everyone."
 technologies: ["Ruby", "Rails", "MySQL", "PostgreSQL", "TimescaleDB", "HTML Processing"]
-status: "Ongoing"
+status: "In progress"
 priority: 1
 year: 2022
 ---

@@ -27,7 +27,8 @@ const projects = defineCollection({
     draft: z.boolean().optional(),
     featured: z.boolean().optional(),
     technologies: z.array(z.string()).default([]),
-    status: z.string().optional(),
+    // Released: apps and games. Live: websites. Published: libraries and scripts.
+    status: z.enum(['Released', 'Live', 'Published', 'In progress', 'Paused']).optional(),
     year: z.number().optional(),
     repository: z.string().optional(),
     homepage: z.string().optional(),

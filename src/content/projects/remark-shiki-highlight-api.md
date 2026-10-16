@@ -11,12 +11,7 @@ tags:
 github: "https://github.com/shiki-highlights/remark-shiki-highlight-api"
 demo: "https://www.npmjs.com/package/remark-shiki-highlight-api"
 featured: true
-technologies:
-  - typescript
-  - remark
-  - shiki
-  - markdown
-  - css-highlights-api
+technologies: ["TypeScript", "remark", "Shiki", "Markdown", "CSS Custom Highlight API"]
 status: "Published"
 year: 2025
 ---

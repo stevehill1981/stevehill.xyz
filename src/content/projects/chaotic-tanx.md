@@ -9,10 +9,7 @@ tags:
   - physics
 demo: "https://chaotictanx.stevehill.xyz"
 featured: true
-technologies:
-  - swift
-  - spritekit
-  - ios
+technologies: ["Swift", "SpriteKit", "iOS"]
 status: "Paused"
 year: 2025
 ---

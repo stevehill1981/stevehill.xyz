@@ -8,13 +8,8 @@ tags:
   - privacy
   - tracking
 featured: false
-technologies:
-  - rails
-  - hotwire
-  - postgresql
-  - swift
-  - kotlin
-status: "Parked"
+technologies: ["Rails", "Hotwire", "PostgreSQL", "Swift", "Kotlin"]
+status: "Paused"
 year: 2025
 ---
 

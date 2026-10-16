@@ -9,11 +9,8 @@ tags:
   - research
   - preservation
 featured: false
-technologies:
-  - rust
-  - metal
-  - macos
-status: "Research"
+technologies: ["Rust", "Metal", "macOS"]
+status: "In progress"
 year: 2025
 ---
 

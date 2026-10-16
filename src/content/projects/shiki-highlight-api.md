@@ -10,10 +10,7 @@ tags:
 github: "https://github.com/shiki-highlights/shiki-highlight-api"
 demo: "https://www.npmjs.com/package/shiki-highlight-api"
 featured: true
-technologies:
-  - typescript
-  - shiki
-  - css-highlights-api
+technologies: ["TypeScript", "Shiki", "CSS Custom Highlight API"]
 status: "Published"
 year: 2025
 ---

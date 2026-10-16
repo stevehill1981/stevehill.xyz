@@ -10,13 +10,8 @@ tags:
   - desktop-app
 github: "https://github.com/romshelf"
 featured: false
-technologies:
-  - rust
-  - tauri
-  - svelte
-  - typescript
-  - sqlite
-status: "In Development"
+technologies: ["Rust", "Tauri", "Svelte", "TypeScript", "SQLite"]
+status: "In progress"
 year: 2025
 ---
 

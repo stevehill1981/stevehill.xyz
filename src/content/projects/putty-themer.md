@@ -2,7 +2,7 @@
 title: "PuTTY Themer"
 description: "Tired of manually theming 20+ PuTTY sessions? This Ruby script reads your Windows Registry, applies Solarized Dark and Fira Mono to every saved session in one shot. Built in 2011 when repetitive tasks annoyed me enough to automate them."
 technologies: ["Ruby", "Windows Registry", "PuTTY"]
-status: "Complete"
+status: "Published"
 github: "https://github.com/stevehill1981/putty_themer"
 priority: 5
 year: 2011

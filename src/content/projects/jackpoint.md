@@ -11,13 +11,8 @@ tags:
   - real-time
 github: "https://github.com/stevehill1981/Jackpoint"
 featured: false
-technologies:
-  - elixir
-  - phoenix
-  - liveview
-  - postgresql
-  - postgis
-status: "Planning"
+technologies: ["Elixir", "Phoenix", "LiveView", "PostgreSQL", "PostGIS"]
+status: "In progress"
 year: 2025
 ---
 
