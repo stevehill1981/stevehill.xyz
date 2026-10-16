@@ -33,3 +33,21 @@ The back-to-top button "sitting on a rule" at 390px happens because a fixed butt
 - Push, then verify the live site after CI deploys.
 - Close the critique snapshot only if every priority issue is cleared.
 - Stop task-owned servers and browsers.
+
+## Result
+
+16 October 2026. Every step shipped and was verified on the live site. CI ran the browser suite on Chromium, Firefox and WebKit; the final run passed 75 tests. Locally, Playwright's own browser wasn't installed, so the suite ran on installed Chrome through a scratchpad config.
+
+A re-run critique scored 23/32 (72%, Good), up from 27/40 (67%, Acceptable); the re-run marked heuristics 5 and 10 n/a. Its follow-ups were fixed in the same session:
+- excerpt measure, empty-search copy, About tap targets and unnamed stat icons;
+- then, at Steve's direction, Shelved's wording, letterbox-free homepage images and a closing note.
+
+The X share button now uses X's black and x.com. DESIGN.md and `.impeccable/design.json` were refreshed, and the detector went from 46 findings to 2, both third-party brand hover colours.
+
+Decisions recorded on the way:
+- **Code Like It's 198x:** added to RULES.md.
+- **Content headings:** posts and project write-ups keep their own case, by Steve's choice.
+- **Chaotic Tanx:** keeps "Visit project website", because its site is a live landing page.
+- **The h1 "missing space":** wasn't real for screen readers.
+
+Local builds can hit GitHub's anonymous API rate limit and then render no project stats; the stats test records when that happens.
