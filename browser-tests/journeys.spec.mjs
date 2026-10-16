@@ -46,6 +46,20 @@ async function openSearch(page) {
   return dialog;
 }
 
+test('a one-pixel tablet resize does not bury recent writing', async ({ page }) => {
+  const positions = [];
+  for (const width of [801, 800]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+    const heading = page.getByRole('heading', { name: 'Recent writing', exact: true });
+    const box = await heading.boundingBox();
+    positions.push(box.y);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
+  }
+  expect(Math.abs(positions[1] - positions[0])).toBeLessThan(200);
+});
+
 test('search has real results, contains keyboard focus and restores its trigger', async ({ page }) => {
   await page.goto('/');
   const trigger = page.getByRole('button', { name: 'Search', exact: true });
