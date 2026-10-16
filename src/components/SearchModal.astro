@@ -105,7 +105,7 @@
         container.replaceChildren();
         new UI({
           element: '#pagefind-container', showSubResults: true, showImages: false,
-          translations: { zero_results: 'Nothing matches [SEARCH_TERM]. Try a shorter word, or browse below.' },
+          translations: { zero_results: 'Nothing matches [SEARCH_TERM]. Try a shorter word.' },
         });
         searchState = 'ready';
         if (overlay?.classList.contains('active') && document.activeElement === closeBtn) {

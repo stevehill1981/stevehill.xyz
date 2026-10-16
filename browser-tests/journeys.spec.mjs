@@ -167,6 +167,10 @@ test('recent writing lines up with the projects and links are easy to tap', asyn
   for (const link of await page.locator('footer a, .section-heading > a, .recent-writing > div > a').all()) {
     expect((await link.boundingBox()).height, await link.textContent()).toBeGreaterThanOrEqual(24);
   }
+  await page.goto('/about/');
+  for (const link of await page.locator('.sidebar-link').all()) {
+    expect((await link.boundingBox()).height, await link.textContent()).toBeGreaterThanOrEqual(24);
+  }
 });
 
 test('project statuses sit beside their titles and empty stats stay hidden', async ({ page }) => {
@@ -182,8 +186,15 @@ test('project statuses sit beside their titles and empty stats stay hidden', asy
     const wrapped = below >= -4 && below < 12 && Math.abs(box.x - title.x) < 4;
     expect(sameRow || wrapped, await project.locator('h3').textContent()).toBe(true);
   }
-  for (const stats of await page.locator('.github-stats').all()) {
-    expect((await stats.locator('.stat').allTextContents()).some(text => Number(text.trim()) > 0)).toBe(true);
+  // Stats are fetched from the GitHub API at build time; a rate-limited build
+  // renders none, so record when there was nothing to check.
+  const statBlocks = await page.locator('.github-stats').all();
+  if (statBlocks.length === 0) test.info().annotations.push({ type: 'skipped-check', description: 'build rendered no GitHub stats' });
+  for (const stats of statBlocks) {
+    for (const stat of await stats.locator('.stat').all()) {
+      expect(await stat.textContent()).toMatch(/^\s*[1-9]\d* (stars? on GitHub|forks?)\s*$/);
+      await expect(stat.locator('svg')).toHaveAttribute('aria-hidden', 'true');
+    }
   }
   await page.goto('/projects/rachel/');
   await expect(page.locator('.project-sidebar .project-status')).toHaveText('Released');
@@ -206,6 +217,19 @@ test('writing recommendations reach real essays and keep the full index accessib
   const startList = await page.locator('.starting-points ul').boundingBox();
   const yearList = await page.locator('.writing-list').first().boundingBox();
   expect(Math.abs(yearList.x - startList.x)).toBeLessThanOrEqual(2);
+  // Excerpts keep a readable measure: no rendered line over 80 characters.
+  const longest = await page.locator('.writing-list p:not(.writing-meta), .starting-points p:not(.starting-point-meta)').evaluateAll(paragraphs => Math.max(...paragraphs.map(paragraph => {
+    const range = document.createRange();
+    const lines = new Map();
+    const text = paragraph.firstChild;
+    for (let index = 0; index < text.length; index++) {
+      range.setStart(text, index); range.setEnd(text, index + 1);
+      const top = Math.round(range.getBoundingClientRect().top);
+      lines.set(top, (lines.get(top) ?? 0) + 1);
+    }
+    return Math.max(...lines.values());
+  })));
+  expect(longest).toBeLessThanOrEqual(80);
   expect(await page.locator('.writing-year time').evaluateAll(times => times.every(time =>
     time.closest('.writing-year').querySelector('h3').textContent === time.dateTime.slice(0, 4)))).toBe(true);
   await page.getByRole('link', { name: 'Latest writing ↓' }).click();
@@ -245,7 +269,8 @@ test('a search with no matches offers a way to browse instead', async ({ page })
   await page.goto('/');
   const dialog = await openSearch(page);
   await dialog.getByRole('textbox').fill('zzqxvplm');
-  await expect(dialog.getByText(/Nothing matches .*zzqxvplm.*browse below/)).toBeVisible();
+  await expect(dialog.getByText(/Nothing matches .*zzqxvplm.*shorter word/)).toBeVisible();
+  await expect(dialog.getByText('Or browse')).toBeVisible();
   await dialog.getByRole('link', { name: 'topics' }).click();
   await expect(page).toHaveURL(/\/tags\/?$/);
   await expect(page.getByRole('dialog', { name: 'Search', exact: true })).toBeHidden();
