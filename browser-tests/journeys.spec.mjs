@@ -151,6 +151,24 @@ test('selected projects retain their status and destinations across pages', asyn
   expect(await page.locator('.sidebar-project-card .project-status').allTextContents()).toEqual(homeStatuses);
 });
 
+test('recent writing lines up with the projects and links are easy to tap', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+  const secondProject = await page.locator('.selected-projects article').nth(1).boundingBox();
+  const list = await page.locator('.recent-writing ul').boundingBox();
+  expect(Math.abs(list.x - secondProject.x)).toBeLessThanOrEqual(2);
+  for (const item of await page.locator('.recent-writing li').all()) {
+    const title = await item.locator('a').boundingBox();
+    const date = await item.locator('time').boundingBox();
+    const reading = await item.locator('.writing-meta span').boundingBox();
+    expect(Math.abs(date.y - reading.y)).toBeLessThanOrEqual(2);
+    expect(Math.abs(date.x - title.x)).toBeLessThanOrEqual(2);
+  }
+  for (const link of await page.locator('footer a, .section-heading > a, .recent-writing > div > a').all()) {
+    expect((await link.boundingBox()).height, await link.textContent()).toBeGreaterThanOrEqual(24);
+  }
+});
+
 test('project statuses sit beside their titles and empty stats stay hidden', async ({ page }) => {
   await page.goto('/projects');
   for (const project of await page.locator('.featured-project, .project-card').all()) {
@@ -185,6 +203,9 @@ test('writing recommendations reach real essays and keep the full index accessib
   expect(years.length).toBeGreaterThan(1);
   expect(years).toEqual([...years].sort((a, b) => b - a));
   expect(await page.locator('.writing-year .tag').count()).toBe(0);
+  const startList = await page.locator('.starting-points ul').boundingBox();
+  const yearList = await page.locator('.writing-list').first().boundingBox();
+  expect(Math.abs(yearList.x - startList.x)).toBeLessThanOrEqual(2);
   expect(await page.locator('.writing-year time').evaluateAll(times => times.every(time =>
     time.closest('.writing-year').querySelector('h3').textContent === time.dateTime.slice(0, 4)))).toBe(true);
   await page.getByRole('link', { name: 'Latest writing ↓' }).click();
