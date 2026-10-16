@@ -10,11 +10,12 @@
       </svg>
     </button>
     <div id="pagefind-container"></div>
+    <p class="search-browse">Or browse <a href="/tags">topics</a>, <a href="/series">series</a> or the <a href="/archive">archive</a>.</p>
   </div>
 </div>
 
 <script>
-  type SearchUI = new (options: { element: string; showSubResults: boolean; showImages: boolean }) => unknown;
+  type SearchUI = new (options: { element: string; showSubResults: boolean; showImages: boolean; translations?: Record<string, string> }) => unknown;
   const pagefindWindow = window as Window & { PagefindUI?: SearchUI };
 
   function initSearch() {
@@ -102,7 +103,10 @@
         const UI = pagefindWindow.PagefindUI;
         if (!UI) throw new Error('Search UI is unavailable');
         container.replaceChildren();
-        new UI({ element: '#pagefind-container', showSubResults: true, showImages: false });
+        new UI({
+          element: '#pagefind-container', showSubResults: true, showImages: false,
+          translations: { zero_results: 'Nothing matches [SEARCH_TERM]. Try a shorter word, or browse below.' },
+        });
         searchState = 'ready';
         if (overlay?.classList.contains('active') && document.activeElement === closeBtn) {
           container.querySelector<HTMLInputElement>('input')?.focus();
@@ -304,6 +308,8 @@
   #pagefind-container {
     padding: 1.5rem;
   }
+
+  .search-browse { margin: 0; padding: 0 1.5rem 1.5rem; font-size: var(--font-size-sm); color: var(--color-text-tertiary); }
 
   :global(.search-recovery-actions) { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-md); }
   :global(.search-reload) { background: var(--color-primary); color: white; border: 1px solid var(--color-primary); border-radius: var(--radius-md); padding: var(--btn-padding-md); cursor: pointer; }

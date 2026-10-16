@@ -193,6 +193,16 @@ test('search has real results, contains keyboard focus and restores its trigger'
   await expect(page.locator('[inert]')).toHaveCount(0);
 });
 
+test('a search with no matches offers a way to browse instead', async ({ page }) => {
+  await page.goto('/');
+  const dialog = await openSearch(page);
+  await dialog.getByRole('textbox').fill('zzqxvplm');
+  await expect(dialog.getByText(/Nothing matches .*zzqxvplm.*browse below/)).toBeVisible();
+  await dialog.getByRole('link', { name: 'topics' }).click();
+  await expect(page).toHaveURL(/\/tags\/?$/);
+  await expect(page.getByRole('dialog', { name: 'Search', exact: true })).toBeHidden();
+});
+
 test('client navigation retains styling and search works repeatedly', async ({ page }) => {
   await page.goto('/');
   const before = await page.evaluate(() => ({
