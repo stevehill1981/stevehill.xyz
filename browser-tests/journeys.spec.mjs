@@ -158,8 +158,14 @@ test('writing recommendations reach real essays and keep the full index accessib
   })));
   expect(recommendations.length).toBeGreaterThan(0);
   for (const recommendation of recommendations) {
-    await expect(page.locator(`.card-title a[href="${recommendation.href}"]`)).toHaveText(recommendation.title);
+    await expect(page.locator(`.writing-list h4 a[href="${recommendation.href}"]`)).toHaveText(recommendation.title);
   }
+  const years = (await page.locator('.writing-year h3').allTextContents()).map(Number);
+  expect(years.length).toBeGreaterThan(1);
+  expect(years).toEqual([...years].sort((a, b) => b - a));
+  expect(await page.locator('.writing-year .tag').count()).toBe(0);
+  expect(await page.locator('.writing-year time').evaluateAll(times => times.every(time =>
+    time.closest('.writing-year').querySelector('h3').textContent === time.dateTime.slice(0, 4)))).toBe(true);
   await page.getByRole('link', { name: 'Latest writing ↓' }).click();
   await expect(page.getByRole('heading', { name: 'Latest writing', exact: true })).toBeInViewport();
   for (const recommendation of recommendations) {

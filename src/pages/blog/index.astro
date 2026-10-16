@@ -23,6 +23,7 @@ const startingPoints = [
   if (!post) throw new Error(`Selected essay is missing or unpublished: ${selection.id}`);
   return { ...post, subject: selection.subject };
 });
+const postsByYear = [...Map.groupBy(postsWithReadingTime, post => post.data.pubDate.getUTCFullYear())];
 ---
 
 <BaseLayout pageTitle="Writing" description="Engineering principles, architecture trade-offs, and why boring technology usually wins.">
@@ -52,35 +53,20 @@ const startingPoints = [
 		</ul>
 	</section>
 	<h2 id="latest-writing">Latest writing</h2>
-	
-	<div class="card-grid">
-		{postsWithReadingTime.map((post) => (
-			<article class="card" style={`view-transition-name: card-${post.id};`}>
-				<div class="card-header">
-				<time class="card-date" datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-					<span class="card-reading-time">{post.readingTime} min read</span>
-				</div>
-				{post.data.series && (
-					<div class="card-series">
-						Part {post.data.series.part} of "{post.data.series.name}"
-					</div>
-				)}
-				<h2 class="card-title">
-					<a href={`/blog/${post.id}`}>{post.data.title}</a>
-				</h2>
-				<p class="card-excerpt">{post.data.excerpt}</p>
-				{post.data.tags && (
-					<div class="card-tags">
-						{post.data.tags.map((tag) => (
-							<a href={`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`} class="tag">
-								{tag}
-							</a>
-						))}
-					</div>
-				)}
-			</article>
-		))}
-	</div>
+	{postsByYear.map(([year, posts]) => (
+		<section class="writing-year" aria-labelledby={`year-${year}`}>
+			<h3 id={`year-${year}`}>{year}</h3>
+			<ol class="writing-list">
+				{posts.map(post => (
+					<li>
+						<h4><a href={`/blog/${post.id}`}>{post.data.title}</a></h4>
+						<p class="writing-meta"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time> · {post.readingTime} min read{post.data.series && <> · Part {post.data.series.part} of “{post.data.series.name}”</>}</p>
+						<p>{post.data.excerpt}</p>
+					</li>
+				))}
+			</ol>
+		</section>
+	))}
 </BaseLayout>
 
 <style>
@@ -95,5 +81,14 @@ const startingPoints = [
   .starting-points p { font-size: 1.125rem; margin: 0; color: var(--color-text-secondary); }
   .starting-points .starting-point-meta { font-size: .9375rem; margin-bottom: 10px; color: var(--color-text-tertiary); }
   #latest-writing { scroll-margin-top: 32px; }
-  @media(max-width:800px) { .starting-points { grid-template-columns: minmax(0,1fr); gap: 24px; } }
+  .writing-year { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; padding: 28px 0 0; margin: 0 0 44px; border-top: 1px solid var(--color-border); }
+  .writing-year h3 { margin: 0; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+  .writing-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+  .writing-list li { margin: 0; max-width: 70ch; }
+  .writing-list h4 { margin: 0 0 6px; font-size: 1.375rem; }
+  .writing-list h4 a { color: var(--color-text-primary); text-decoration: none; }
+  .writing-list h4 a:hover { color: var(--color-primary); text-decoration: underline; }
+  .writing-list p { font-size: 1.125rem; margin: 0; color: var(--color-text-secondary); }
+  .writing-list .writing-meta { font-size: .9375rem; margin-bottom: 8px; color: var(--color-text-tertiary); }
+  @media(max-width:800px) { .starting-points,.writing-year { grid-template-columns: minmax(0,1fr); gap: 24px; } }
 </style>
