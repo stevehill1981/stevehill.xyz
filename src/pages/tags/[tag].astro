@@ -1,4 +1,5 @@
 ---
+import { formatDate } from '../../utils/formatDate.js';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getReadingTime } from '../../utils/readingTime.js';
@@ -43,11 +44,7 @@ const postsWithReadingTime = posts.map((post) => {
 		{postsWithReadingTime.map((post) => (
 			<article class="card">
 				<div class="card-header">
-					<time class="card-date">{post.data.pubDate.toLocaleDateString('en-US', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}</time>
+					<time class="card-date">{formatDate(post.data.pubDate)}</time>
 					<span class="card-reading-time">{post.readingTime} min read</span>
 				</div>
 				<h2 class="card-title">

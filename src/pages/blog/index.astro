@@ -1,4 +1,5 @@
 ---
+import { formatDate } from '../../utils/formatDate.js';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getReadingTime } from '../../utils/readingTime.js';
@@ -56,11 +57,7 @@ const startingPoints = [
 		{postsWithReadingTime.map((post) => (
 			<article class="card" style={`view-transition-name: card-${post.id};`}>
 				<div class="card-header">
-				<time class="card-date" datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-GB', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}</time>
+				<time class="card-date" datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
 					<span class="card-reading-time">{post.readingTime} min read</span>
 				</div>
 				{post.data.series && (

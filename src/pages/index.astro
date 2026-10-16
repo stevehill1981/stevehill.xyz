@@ -1,4 +1,5 @@
 ---
+import { formatDate } from '../utils/formatDate.js';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectImage from '../components/ProjectImage.astro';
@@ -34,7 +35,7 @@ const selected = getSelectedProjects(projects);
       {posts.map(post => (
         <li>
           <a href={`/blog/${post.id}`}>{post.data.title}</a>
-          <div class="writing-meta"><time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</time><span>{getReadingTime(post.body)} min read</span></div>
+          <div class="writing-meta"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time><span>{getReadingTime(post.body)} min read</span></div>
         </li>
       ))}
     </ul>

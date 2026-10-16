@@ -1,4 +1,5 @@
 ---
+import { formatDate } from '../utils/formatDate.js';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const lastUpdated = new Date('2026-10-15');
@@ -9,11 +10,7 @@ const lastUpdated = new Date('2026-10-15');
 	<p class="subtitle">What I'm doing now</p>
 
 	<div class="last-updated">
-		Last updated: {lastUpdated.toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		})}
+		Last updated: {formatDate(lastUpdated)}
 	</div>
 
 	<section>

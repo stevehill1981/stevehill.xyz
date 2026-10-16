@@ -10,7 +10,7 @@ const postsByYearMonth = new Map();
 
 sortedPosts.forEach(post => {
   const year = post.data.pubDate.getFullYear();
-  const month = post.data.pubDate.toLocaleDateString('en-US', { month: 'long' });
+  const month = post.data.pubDate.toLocaleDateString('en-GB', { month: 'long', timeZone: 'UTC' });
   const yearMonth = `${year}-${month}`;
   
   if (!postsByYearMonth.has(year)) {
@@ -44,7 +44,7 @@ const sortedYears = Array.from(postsByYearMonth.entries()).sort((a, b) => b[0] -
 							{posts.map(post => (
 								<li>
 									<span class="post-date">
-										{post.data.pubDate.toLocaleDateString('en-US', { day: 'numeric' })}
+										{post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', timeZone: 'UTC' })}
 									</span>
 									<a href={`/blog/${post.id}`}>
 										{post.data.title}

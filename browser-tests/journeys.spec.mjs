@@ -65,6 +65,19 @@ test('a first visit installs the service worker without announcing an update', a
   await expect(page.getByRole('status').filter({ hasText: 'Site updated' })).toHaveCount(0);
 });
 
+test('every listed date uses the same day-month-year style', async ({ page }) => {
+  const pages = ['/', '/blog/', article, '/tags/architecture/', '/series/', '/now/'];
+  const month = '(January|February|March|April|May|June|July|August|September|October|November|December)';
+  for (const path of pages) {
+    await page.goto(path);
+    const dates = await page.locator('time, .series-post-date, .last-updated').allTextContents();
+    expect(dates.length, `${path} lists dates`).toBeGreaterThan(0);
+    for (const date of dates) {
+      expect(date.trim().replace(/^Last updated:\s*/, ''), `${path} date`).toMatch(new RegExp(`^\\d{1,2} ${month} \\d{4}$`));
+    }
+  }
+});
+
 async function openSearch(page) {
   await page.getByRole('button', { name: 'Search', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Search', exact: true });

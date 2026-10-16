@@ -1,4 +1,5 @@
 ---
+import { formatDate } from '../utils/formatDate.js';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getAllSeries } from '../utils/series.js';
@@ -40,11 +41,7 @@ const allSeries = getAllSeries(allPosts);
 									</h3>
 									<p class="series-post-excerpt">{post.data.excerpt}</p>
 									<div class="series-post-date">
-										{post.data.pubDate.toLocaleDateString('en-US', {
-											year: 'numeric',
-											month: 'long',
-											day: 'numeric'
-										})}
+										{formatDate(post.data.pubDate)}
 									</div>
 								</div>
 							</div>

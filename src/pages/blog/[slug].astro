@@ -1,4 +1,5 @@
 ---
+import { formatDate } from '../../utils/formatDate.js';
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
@@ -47,7 +48,7 @@ const contents = headings.filter(heading => heading.depth >= 2 && heading.depth 
 		]} />
 		<header class="article-heading">
 			<h1>{entry.data.title}</h1>
-			<div class="article-meta"><time datetime={entry.data.pubDate.toISOString()}>{entry.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time><span>{readingTime} min read</span></div>
+			<div class="article-meta"><time datetime={entry.data.pubDate.toISOString()}>{formatDate(entry.data.pubDate)}</time><span>{readingTime} min read</span></div>
 		</header>
 		{contents.length > 0 && (
 			<details class="mobile-contents">
@@ -147,11 +148,7 @@ const contents = headings.filter(heading => heading.depth >= 2 && heading.depth 
 								return (
 									<article class="related-post-card">
 										<div class="related-post-meta">
-											<time>{relatedPost.data.pubDate.toLocaleDateString('en-US', {
-												year: 'numeric',
-												month: 'short',
-												day: 'numeric'
-											})}</time>
+											<time>{formatDate(relatedPost.data.pubDate)}</time>
 											<span class="reading-time">{relatedReadingTime} min read</span>
 										</div>
 										<h3 class="related-post-title">
