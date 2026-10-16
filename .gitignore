@@ -29,3 +29,11 @@ pnpm-debug.log*
 .impeccable/questions/*.hand.json
 .impeccable/questions/*.state.json
 .impeccable/questions/*.log
+
+# Locally installed agent skills and hooks (Impeccable, Tasteskill); not shipped with the site
+.agents/
+.codex/
+.github/agents/
+.github/hooks/
+.github/skills/
+skills-lock.json
